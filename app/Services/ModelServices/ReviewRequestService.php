@@ -34,13 +34,13 @@ class ReviewRequestService implements ModelServiceContract
                 $instance->target_href = route("profile", $instance->reviewrequestable->slug);
             break;
             
-            case "Tessify\\Core\\Models\\Task":
+            case "App\\Models\\Task":
                 $instance->formatted_type = __("reviews.type_task");
                 $instance->formatted_name = $instance->reviewrequestable->title;
                 $instance->target_href = route("tasks.view", $instance->reviewrequestable->slug);
             break;
 
-            case "Tessify\\Core\\Models\\Project":
+            case "App\\Models\\Project":
                 $instance->formatted_type = __("reviews.type_project");
                 $instance->formatted_name = $instance->reviewrequestable->title;
                 $instance->target_href = route("projects.view", $instance->reviewrequestable->slug);
@@ -183,15 +183,15 @@ class ReviewRequestService implements ModelServiceContract
         switch ($type)
         {
             case "user":
-                return "Tessify\\Core\\Models\\User";
+                return "App\\Models\\User";
             break;
 
             case "task":
-                return "Tessify\\Core\\Models\\Task";
+                return "App\\Models\\Task";
             break;
 
             case "project":
-                return "Tessify\\Core\\Models\\Project";
+                return "App\\Models\\Project";
             break;
         }
 

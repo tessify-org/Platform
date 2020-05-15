@@ -40,11 +40,11 @@ class ReviewService implements ModelServiceContract
                 $instance->formatted_type = __("reviews.type_user");
                 $instance->formatted_name = $instance->reviewable->formatted_name;
             break;
-            case "Tessify\\Core\\Models\\Task":
+            case "App\\Models\\Task":
                 $instance->formatted_type = __("reviews.type_task");
                 $instance->formatted_name = $instance->reviewable->title;
             break;
-            case "Tessify\\Core\\Models\\Project":
+            case "App\\Models\\Project":
                 $instance->formatted_type = __("reviews.type_project");
                 $instance->formatted_name = $instance->reviewable->title;
             break;

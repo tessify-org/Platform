@@ -301,7 +301,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer("layouts.app", function($view) {
             $view->with("user", Auth::user());
-            $view->with("locales", config("tessify-core.locales"));
+            $view->with("locales", config("platform.locales"));
             $view->with("activeLocale", app()->getLocale());
             $view->with("numUnreadNotifications", app("notifications")->numUnread());
             $view->with("numUnreadMessages", app("messages")->numUnread());

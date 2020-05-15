@@ -6,7 +6,7 @@ use Users;
 use Avatar;
 use Uploader;
 
-use Tessify\Core\Traits\Searchable;
+use App\Traits\Searchable;
 use Overtrue\LaravelFollow\Followable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Overtrue\LaravelSubscribe\Traits\Subscriber;
