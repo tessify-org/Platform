@@ -1,11 +1,11 @@
 <?php
 
-use Tessify\Core\Models\Ministry;
-use Tessify\Core\Models\Organization;
-use Tessify\Core\Models\OrganizationType;
-use Tessify\Core\Models\OrganizationLocation;
-use Tessify\Core\Models\OrganizationDepartment;
-use Tessify\Core\Models\AssignmentType;
+use App\Models\Ministry;
+use App\Models\Organization;
+use App\Models\OrganizationType;
+use App\Models\OrganizationLocation;
+use App\Models\OrganizationDepartment;
+use App\Models\AssignmentType;
 
 use Illuminate\Database\Seeder;
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Tessify\Core\Models\Message;
+use App\Models\Message;
 use Illuminate\Database\Seeder;
 
 class MessageSeeder extends Seeder

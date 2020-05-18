@@ -1,6 +1,6 @@
 <?php
 
-use Tessify\Core\Models\Skill;
+use App\Models\Skill;
 
 use Illuminate\Database\Seeder;
 

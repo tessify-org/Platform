@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Tessify\Core\Models\Notification;
+use App\Models\Notification;
 use Illuminate\Database\Seeder;
 
 class NotificationSeeder extends Seeder

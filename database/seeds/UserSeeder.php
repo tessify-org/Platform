@@ -2,12 +2,12 @@
 
 use App\Models\User;
 
-use Tessify\Core\Models\Skill;
-use Tessify\Core\Models\Assignment;
-use Tessify\Core\Models\AssignmentType;
-use Tessify\Core\Models\Ministry;
-use Tessify\Core\Models\Organization;
-use Tessify\Core\Models\OrganizationDepartment;
+use App\Models\Skill;
+use App\Models\Assignment;
+use App\Models\AssignmentType;
+use App\Models\Ministry;
+use App\Models\Organization;
+use App\Models\OrganizationDepartment;
 
 use Illuminate\Database\Seeder;
 

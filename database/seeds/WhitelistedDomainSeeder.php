@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Tessify\Core\Models\WhitelistedDomain;
+use App\Models\WhitelistedDomain;
 
 class WhitelistedDomainSeeder extends Seeder
 {

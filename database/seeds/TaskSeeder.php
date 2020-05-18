@@ -1,14 +1,14 @@
 <?php
 
 use App\Models\User;
-use Tessify\Core\Models\Skill;
-use Tessify\Core\Models\Project;
-use Tessify\Core\Models\Task;
-use Tessify\Core\Models\TaskStatus;
-use Tessify\Core\Models\TaskCategory;
-use Tessify\Core\Models\TaskSeniority;
-use Tessify\Core\Models\Ministry;
-use Tessify\Core\Models\Organization;
+use App\Models\Skill;
+use App\Models\Project;
+use App\Models\Task;
+use App\Models\TaskStatus;
+use App\Models\TaskCategory;
+use App\Models\TaskSeniority;
+use App\Models\Ministry;
+use App\Models\Organization;
 
 use Illuminate\Database\Seeder;
 

@@ -1,10 +1,10 @@
 <?php
 
 use App\Models\User;
-use Tessify\Core\Models\Task;
-use Tessify\Core\Models\Project;
-use Tessify\Core\Models\Ministry;
-use Tessify\Core\Models\Organization;
+use App\Models\Task;
+use App\Models\Project;
+use App\Models\Ministry;
+use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
 class SubscriptionSeeder extends Seeder

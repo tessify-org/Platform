@@ -1,10 +1,10 @@
 <?php
 
 use App\Models\User;
-use Tessify\Core\Models\Task;
-use Tessify\Core\Models\Project;
-use Tessify\Core\Models\Review;
-use Tessify\Core\Models\ReviewRequest;
+use App\Models\Task;
+use App\Models\Project;
+use App\Models\Review;
+use App\Models\ReviewRequest;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder

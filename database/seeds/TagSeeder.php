@@ -1,8 +1,8 @@
 <?php
 
-use Tessify\Core\Models\Tag;
-use Tessify\Core\Models\Task;
-use Tessify\Core\Models\Project;
+use App\Models\Tag;
+use App\Models\Task;
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
