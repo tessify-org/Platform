@@ -112,68 +112,68 @@ class ProjectSeeder extends Seeder
         // Generate projects
         //
 
-        $skills = Skill::all();
-        $phases = ProjectPhase::all();
-        $ministries = Ministry::all();
-        $categories = ProjectCategory::all();
-        $statuses = ProjectStatus::all();
-        $workMethods = WorkMethod::all();
+        // $skills = Skill::all();
+        // $phases = ProjectPhase::all();
+        // $ministries = Ministry::all();
+        // $categories = ProjectCategory::all();
+        // $statuses = ProjectStatus::all();
+        // $workMethods = WorkMethod::all();
 
-        for ($i = 0; $i < 30; $i++)
-        {
-            // Create the project
-            $project = factory(Project::class)->create([
-                "author_id" => $user->id,
-                "work_method_id" => $workMethods->random()->id,
-                "project_status_id" => $statuses->random()->id,
-                "project_category_id" => $categories->random()->id,
-                "ministry_id" => rand(0, 1) == 1 ? $ministries->random()->id : null,
-                "project_phase_id" => $phases->random()->id,
-                "header_image_url" => "storage/images/projects/header/default.jpeg"
-            ]);
+        // for ($i = 0; $i < 30; $i++)
+        // {
+        //     // Create the project
+        //     $project = factory(Project::class)->create([
+        //         "author_id" => $user->id,
+        //         "work_method_id" => $workMethods->random()->id,
+        //         "project_status_id" => $statuses->random()->id,
+        //         "project_category_id" => $categories->random()->id,
+        //         "ministry_id" => rand(0, 1) == 1 ? $ministries->random()->id : null,
+        //         "project_phase_id" => $phases->random()->id,
+        //         "header_image_url" => "storage/images/projects/header/default.jpeg"
+        //     ]);
                 
-            // Role 1
-            $role_one = TeamRole::create([
-                "project_id" => $project->id,
-                "name" => "Developer",
-                "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
-            ]);
-            $role_one->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
+        //     // Role 1
+        //     $role_one = TeamRole::create([
+        //         "project_id" => $project->id,
+        //         "name" => "Developer",
+        //         "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
+        //     ]);
+        //     $role_one->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
             
-            // Role 1 team member
-            $role_one_member = TeamMember::create([
-                "project_id" => $project->id,
-                "user_id" => $user->id,
-            ]);
-            $role_one_member->teamRoles()->attach($role_one->id);
+        //     // Role 1 team member
+        //     $role_one_member = TeamMember::create([
+        //         "project_id" => $project->id,
+        //         "user_id" => $user->id,
+        //     ]);
+        //     $role_one_member->teamRoles()->attach($role_one->id);
 
-            // Role 2
-            $role_two = TeamRole::create([
-                "project_id" => $project->id,
-                "name" => "Designer",
-                "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
-            ]);
-            $skills = $skills->shuffle();
-            $role_two->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
+        //     // Role 2
+        //     $role_two = TeamRole::create([
+        //         "project_id" => $project->id,
+        //         "name" => "Designer",
+        //         "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
+        //     ]);
+        //     $skills = $skills->shuffle();
+        //     $role_two->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
 
-            // Role 2 applications
-            $role_two_application = TeamMemberApplication::create([
-                "project_id" => $project->id,
-                "user_id" => $user->id,
-                "team_role_id" => $role_two->id,
-                "motivation" => "I'm the 1337est hax0r",
-                "processed" => false,
-                "accepted" => false,
-            ]);
+        //     // Role 2 applications
+        //     $role_two_application = TeamMemberApplication::create([
+        //         "project_id" => $project->id,
+        //         "user_id" => $user->id,
+        //         "team_role_id" => $role_two->id,
+        //         "motivation" => "I'm the 1337est hax0r",
+        //         "processed" => false,
+        //         "accepted" => false,
+        //     ]);
             
-            // Role 3
-            $role_three = TeamRole::create([
-                "project_id" => $project->id,
-                "name" => "Scrum Master",
-                "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
-            ]);
-            $skills = $skills->shuffle();
-            $role_three->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
-        }
+        //     // Role 3
+        //     $role_three = TeamRole::create([
+        //         "project_id" => $project->id,
+        //         "name" => "Scrum Master",
+        //         "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
+        //     ]);
+        //     $skills = $skills->shuffle();
+        //     $role_three->skills()->attach([$skills->get(0)->id, $skills->get(1)->id, $skills->get(2)->id]);
+        // }
     }
 }

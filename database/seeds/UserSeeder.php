@@ -93,13 +93,13 @@ class UserSeeder extends Seeder
         // More admin accounts
         // 
 
-        $nick2 = User::create([
-            "first_name" => "Nick",
-            "last_name" => "Verheijen de Tweede",
-            "email" => "verheijen.webdevelopment@gmail.com",
-            "password" => bcrypt("engeland"),
-            "is_admin" => true,
-        ]);
+        // $nick2 = User::create([
+        //     "first_name" => "Nick",
+        //     "last_name" => "Verheijen de Tweede",
+        //     "email" => "verheijen.webdevelopment@gmail.com",
+        //     "password" => bcrypt("engeland"),
+        //     "is_admin" => true,
+        // ]);
         // Users::generateAvatar($nick2);
         
         $victor = User::create([
@@ -133,29 +133,29 @@ class UserSeeder extends Seeder
         // Dummy users
         //
 
-        for ($i = 0; $i < 10; $i++)
-        {
-            $user = factory(User::class)->create();
+        // for ($i = 0; $i < 10; $i++)
+        // {
+        //     $user = factory(User::class)->create();
 
-            // Follow the almighty nick
-            $user->follow($nick);
-            if ($i < 2) $nick->follow($user);
-        }
+        //     // Follow the almighty nick
+        //     $user->follow($nick);
+        //     if ($i < 2) $nick->follow($user);
+        // }
 
-        // Generate avatars for all users
-        foreach (User::all() as $user)
-        {
-            app()->make("users")->generateAvatar($user);
-        }
+        // // Generate avatars for all users
+        // foreach (User::all() as $user)
+        // {
+        //     app()->make("users")->generateAvatar($user);
+        // }
 
-        // Make the users follow eachother
-        $users = User::all();
-        foreach ($users as $user)
-        {
-            foreach ($users->shuffle()->take(3) as $u)
-            {
-                if ($user->id != $u->id) $user->follow($u);
-            }
-        }
+        // // Make the users follow eachother
+        // $users = User::all();
+        // foreach ($users as $user)
+        // {
+        //     foreach ($users->shuffle()->take(3) as $u)
+        //     {
+        //         if ($user->id != $u->id) $user->follow($u);
+        //     }
+        // }
     }
 }

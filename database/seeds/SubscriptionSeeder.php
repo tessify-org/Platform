@@ -16,33 +16,33 @@ class SubscriptionSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
-        $ministries = Ministry::all();
-        $organizations = Organization::all();
-        $projects = Project::all();
-        $tasks = Task::all();
+        // $users = User::all();
+        // $ministries = Ministry::all();
+        // $organizations = Organization::all();
+        // $projects = Project::all();
+        // $tasks = Task::all();
 
-        foreach ($users as $user)
-        {
-            foreach ($ministries->shuffle()->take(3) as $ministry)
-            {
-                $user->subscribe($ministry);
-            }
+        // foreach ($users as $user)
+        // {
+        //     foreach ($ministries->shuffle()->take(3) as $ministry)
+        //     {
+        //         $user->subscribe($ministry);
+        //     }
 
-            foreach ($organizations->shuffle()->take(3) as $organization)
-            {
-                $user->subscribe($organization);
-            }
+        //     foreach ($organizations->shuffle()->take(3) as $organization)
+        //     {
+        //         $user->subscribe($organization);
+        //     }
 
-            foreach ($projects->shuffle()->take(3) as $project)
-            {
-                $user->subscribe($project);
-            }
+        //     foreach ($projects->shuffle()->take(3) as $project)
+        //     {
+        //         $user->subscribe($project);
+        //     }
 
-            foreach ($tasks->shuffle()->take(3) as $task)
-            {
-                $user->subscribe($task);
-            }
-        }
+        //     foreach ($tasks->shuffle()->take(3) as $task)
+        //     {
+        //         $user->subscribe($task);
+        //     }
+        // }
     }
 }

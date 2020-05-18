@@ -15,10 +15,10 @@ class NotificationSeeder extends Seeder
     {
         DB::table("notifications")->delete();
 
-        $nick = User::where("email", "nick.verheijen@minbzk.nl")->first();
+        // $nick = User::where("email", "nick.verheijen@minbzk.nl")->first();
 
-        factory(Notification::class, 10)->create([
-            "user_id" => $nick->id,
-        ]);
+        // factory(Notification::class, 10)->create([
+        //     "user_id" => $nick->id,
+        // ]);
     }
 }

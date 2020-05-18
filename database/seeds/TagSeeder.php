@@ -17,32 +17,32 @@ class TagSeeder extends Seeder
         DB::table("tags")->delete();
         DB::table("taggables")->delete();
 
-        factory(Tag::class, 20)->create();
+        // factory(Tag::class, 20)->create();
 
-        $tags = Tag::all();
+        // $tags = Tag::all();
 
-        foreach (Task::all() as $task)
-        {
-            $tag_ids = [];
+        // foreach (Task::all() as $task)
+        // {
+        //     $tag_ids = [];
             
-            foreach ($tags->shuffle()->take(5) as $tag)
-            {
-                $tag_ids[] = $tag->id;
-            }
+        //     foreach ($tags->shuffle()->take(5) as $tag)
+        //     {
+        //         $tag_ids[] = $tag->id;
+        //     }
             
-            $task->tags()->attach($tag_ids);
-        }
+        //     $task->tags()->attach($tag_ids);
+        // }
 
-        foreach (Project::all() as $project)
-        {
-            $tag_ids = [];
+        // foreach (Project::all() as $project)
+        // {
+        //     $tag_ids = [];
 
-            foreach ($tags->shuffle()->take(5) as $tag)
-            {
-                $tag_ids[] = $tag->id;
-            }
+        //     foreach ($tags->shuffle()->take(5) as $tag)
+        //     {
+        //         $tag_ids[] = $tag->id;
+        //     }
 
-            $project->tags()->attacH($tag_ids);
-        }
+        //     $project->tags()->attacH($tag_ids);
+        // }
     }
 }
