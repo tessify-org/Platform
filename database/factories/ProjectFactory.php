@@ -5,14 +5,10 @@ use App\Models\Project;
 use Faker\Generator as Faker;
 
 $factory->define(Project::class, function (Faker $faker) {
-    $title = $faker->words(rand(2, 3), true);
     $slogan = $faker->sentence;
     $desc = $faker->paragraph(10, true);
     return [
-        "title" => [
-            "nl" => $title,
-            "en" => $title,
-        ],
+        "title" => $faker->words(rand(2, 3), true),
         "slogan" => [
             "nl" => $slogan,
             "en" => $slogan,

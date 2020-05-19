@@ -34,27 +34,51 @@
                         </div>
 
                         <!-- Slogan -->
-                        <div class="form-field">
-                            <v-text-field
-                                name="slogan"
-                                :label="strings.slogan+'*'"
-                                :placeholder="strings.slogan_hint"
-                                v-model="form.slogan"
-                                :errors="hasErrors('slogan')"
-                                :error-messages="getErrors('slogan')">
-                            </v-text-field>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-text-field
+                                    name="slogan_nl"
+                                    :label="strings.slogan+' ('+strings.nl+')*'"
+                                    :placeholder="strings.slogan_hint"
+                                    v-model="form.slogan.nl"
+                                    :errors="hasErrors('slogan_nl')"
+                                    :error-messages="getErrors('slogan_nl')">
+                                </v-text-field>
+                            </div>
+                            <div class="form-field">
+                                <v-text-field
+                                    name="slogan_en"
+                                    :label="strings.slogan+' ('+strings.en+')*'"
+                                    :placeholder="strings.slogan_hint"
+                                    v-model="form.slogan.en"
+                                    :errors="hasErrors('slogan_en')"
+                                    :error-messages="getErrors('slogan_en')">
+                                </v-text-field>
+                            </div>
                         </div>
 
                         <!-- Description -->
-                        <div class="form-field">
-                            <v-textarea
-                                name="description" 
-                                :label="strings.description+'*'"
-                                :placeholder="strings.description_hint"
-                                v-model="form.description" 
-                                :errors="hasErrors('description')" 
-                                :error-messages="getErrors('description')">
-                            </v-textarea>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-textarea
+                                    name="description_nl" 
+                                    :label="strings.description+' ('+strings.nl+')*'"
+                                    :placeholder="strings.description_hint"
+                                    v-model="form.description.nl" 
+                                    :errors="hasErrors('description_nl')" 
+                                    :error-messages="getErrors('description_nl')">
+                                </v-textarea>
+                            </div>
+                            <div class="form-field">
+                                <v-textarea
+                                    name="description_en" 
+                                    :label="strings.description+' ('+strings.en+')*'"
+                                    :placeholder="strings.description_hint"
+                                    v-model="form.description.en" 
+                                    :errors="hasErrors('description_en')" 
+                                    :error-messages="getErrors('description_en')">
+                                </v-textarea>
+                            </div>
                         </div>
 
                         <!-- Tags -->
@@ -69,16 +93,6 @@
                                 :error-messages="getErrors('tags')">
                             </v-combobox>
                             <input type="hidden" name="tags" :value="encodedTags">
-                        </div>
-
-                        <!-- Has deadline -->
-                        <div class="form-field checkbox">
-                            <v-checkbox
-                                hide-details
-                                :label="strings.has_deadline"
-                                v-model="form.has_deadline">
-                            </v-checkbox>
-                            <input type="hidden" name="has_deadline" :value="form.has_deadline">
                         </div>
 
                         <!-- Has budget -->
@@ -102,8 +116,42 @@
                         </div>
                         <input type="hidden" name="budget" :value="form.budget">
 
+                        <!-- Has deadline -->
+                        <div class="form-field checkbox">
+                            <v-checkbox
+                                hide-details
+                                :label="strings.has_deadline"
+                                v-model="form.has_deadline">
+                            </v-checkbox>
+                            <input type="hidden" name="has_deadline" :value="form.has_deadline">
+                        </div>
+
+                        <!-- Start & End date -->
+                        <div class="form-fields">
+                            <!-- Starts at -->
+                            <div class="form-field">
+                                <datepicker
+                                    name="starts_at"
+                                    :label="strings.start_date+'*'"
+                                    v-model="form.starts_at"
+                                    :errors="hasErrors('starts_at')"
+                                    :error-messages="getErrors('starts_at')">
+                                </datepicker>
+                            </div>
+                            <!-- Ends at -->
+                            <div class="form-field" v-if="form.has_deadline">
+                                <datepicker
+                                    name="ends_at"
+                                    :label="strings.deadline+'*'"
+                                    v-model="form.ends_at"
+                                    :errors="hasErrors('ends_at')"
+                                    :error-messages="getErrors('ends_at')">
+                                </datepicker>
+                            </div>
+                        </div>
+
                         <!-- Project code -->
-                        <div class="form-field mb-0" :class="{ 'mt-10': !form.has_budget }">
+                        <div class="form-field mb-0 mt-10">
                             <v-text-field
                                 name="project_code"
                                 :label="strings.project_code"
@@ -175,28 +223,6 @@
                             </v-combobox>
                             <input type="hidden" name="project_phase" :value="form.project_phase">
                         </div>
-
-                        <!-- Starts at -->
-                        <div class="form-field" :class="{ 'mb-10': form.has_deadline }">
-                            <datepicker
-                                name="starts_at"
-                                :label="strings.start_date+'*'"
-                                v-model="form.starts_at"
-                                :errors="hasErrors('starts_at')"
-                                :error-messages="getErrors('starts_at')">
-                            </datepicker>
-                        </div>
-
-                        <!-- Ends at -->
-                        <div class="form-field" v-if="form.has_deadline">
-                            <datepicker
-                                name="ends_at"
-                                :label="strings.deadline+'*'"
-                                v-model="form.ends_at"
-                                :errors="hasErrors('ends_at')"
-                                :error-messages="getErrors('ends_at')">
-                            </datepicker>
-                        </div>
                         
                     </div>
                 </div>
@@ -249,6 +275,7 @@
             </div>
         </div>
 
+        <!-- Controls -->
         <div class="page-controls">
             <div class="page-controls__left">
                 <v-btn :href="backHref" outlined>
@@ -283,6 +310,7 @@
             "oldInput",
             "strings",
             "backHref",
+            "locale",
             "createResourceApiEndpoint",
             "updateResourceApiEndpoint",
             "deleteResourceApiEndpoint",
@@ -304,8 +332,14 @@
                 organization_id: 0,
                 department: "",
                 title: "",
-                slogan: "",
-                description: "",
+                slogan: {
+                    nl: "",
+                    en: "",
+                },
+                description: {
+                    nl: "",
+                    en: "",
+                },
                 tags: [],
                 starts_at: "",
                 ends_at: "",
@@ -373,14 +407,16 @@
                 // If we received a project, load it's data
                 if (this.project !== undefined && this.project !== null) {
                     this.form.project_status_id = this.project.project_status_id;
-                    this.form.project_category = this.project.category.label;
-                    if (this.project.phase) this.form.project_phase = this.project.phase.name;
+                    this.form.project_category = this.project.category.label[this.locale];
+                    if (this.project.phase) this.form.project_phase = this.project.phase.label[this.locale];
                     this.form.ministry_id = this.project.ministry_id;
                     this.form.organization_id = this.project.organization_id;
-                    this.form.department = this.project.department.name;
+                    this.form.department = this.project.department.name[this.locale];
                     this.form.title = this.project.title;
-                    this.form.slogan = this.project.slogan;
-                    this.form.description = this.project.description;
+                    this.form.slogan.en = this.project.slogan.en;
+                    this.form.slogan.nl = this.project.slogan.nl;
+                    this.form.description.en = this.project.description.en;
+                    this.form.description.nl = this.project.description.nl;
                     this.form.starts_at = this.project.starts_at;
                     if (this.project.ends_at !== null) {
                         this.form.has_deadline = true;
@@ -408,8 +444,10 @@
                     if (this.oldInput.organization_id !== null) this.form.organization_id = parseInt(this.oldInput.organization_id);
                     if (this.oldInput.department !== null) this.form.department = this.oldInput.department;
                     if (this.oldInput.title !== null) this.form.title = this.oldInput.title;
-                    if (this.oldInput.slogan !== null) this.form.slogan = this.oldInput.slogan;
-                    if (this.oldInput.description !== null) this.form.description = this.oldInput.description;
+                    if (this.oldInput.slogan_nl !== null) this.form.slogan.nl = this.oldInput.slogan_nl;
+                    if (this.oldInput.slogan_en !== null) this.form.slogan.en = this.oldInput.slogan_en;
+                    if (this.oldInput.description_nl !== null) this.form.description.nl = this.oldInput.description_nl;
+                    if (this.oldInput.description_en !== null) this.form.description.en = this.oldInput.description_en;
                     if (this.oldInput.starts_at !== null) this.form.starts_at = this.oldInput.starts_at;
                     if (this.oldInput.ends_at !== null) this.form.ends_at = this.oldInput.ends_at;
                     if (this.oldInput.has_tasks !== null) this.form.has_tasks = this.oldInput.has_tasks === "true" ? true : false;
@@ -423,18 +461,18 @@
                 if (this.projectStatuses !== undefined && this.projectStatuses !== null && this.projectStatuses.length > 0) {
                     for (let i = 0; i < this.projectStatuses.length; i++) {
                         this.statusOptions.push({
-                            text: this.projectStatuses[i].label,
+                            text: this.projectStatuses[i].label[this.locale],
                             value: this.projectStatuses[i].id,
                         });
                     }
                 } else {
-                    this.statusOptions.push({ text: "Geen statusen gevonden", value: 0 });
+                    this.statusOptions.push({ text: this.strings.no_statuses, value: 0 });
                 }
             },
             generateCategoryOptions() {
                 if (this.projectCategories !== undefined && this.projectCategories !== null && this.projectCategories.length > 0) {
                     for (let i = 0; i < this.projectCategories.length; i++) {
-                        this.categoryOptions.push(this.projectCategories[i].label);
+                        this.categoryOptions.push(this.projectCategories[i].label[this.locale]);
                     }
                 }
             },
@@ -442,12 +480,12 @@
                 if (this.ministries !== undefined && this.ministries !== null && this.ministries.length > 0) {
                     for (let i = 0; i < this.ministries.length; i++) {
                         this.ministryOptions.push({
-                            text: this.ministries[i].name,
+                            text: this.ministries[i].name[this.locale],
                             value: this.ministries[i].id,
                         });
                     }
                 } else {
-                    this.ministryOptions.push({ text: "Geen ministeries gevonden", value: 0 });
+                    this.ministryOptions.push({ text: this.strings.no_ministries, value: 0 });
                 }
             },
             generateOrganizationOptions() {
@@ -456,7 +494,7 @@
                     for (let i = 0; i < this.organizations.length; i++) {
                         if (this.organizations[i].ministry_id === this.form.ministry_id) {
                             this.organizationOptions.push({
-                                text: this.organizations[i].name,
+                                text: this.organizations[i].name[this.locale],
                                 value: this.organizations[i].id,
                             });
                         }
@@ -468,7 +506,7 @@
                 if (this.form.organization_id > 0 && this.departments !== undefined && this.departments !== null && this.departments.length > 0) {
                     for (let i = 0; i < this.departments.length; i++) {
                         if (this.departments[i].organization_id === this.form.organization_id) {
-                            this.departmentOptions.push(this.departments[i].name);
+                            this.departmentOptions.push(this.departments[i].name[this.locale]);
                         }
                     }
                 }
@@ -476,7 +514,7 @@
             generatePhaseOptions() {
                 if (this.projectPhases !== undefined && this.projectPhases !== null && this.projectPhases.length > 0) {
                     for (let i = 0; i < this.projectPhases.length; i++) {
-                        this.phaseOptions.push(this.projectPhases[i].name);
+                        this.phaseOptions.push(this.projectPhases[i].label[this.locale]);
                     }
                 }
             },

@@ -42,7 +42,7 @@
                     <span class="project-bg" :style="{ backgroundImage: 'url(' + project.header_image_url + ')' }"></span>
                     <span class="project-overlay"></span>
                     <span class="project-text">
-                        <h3 class="project-title">{{ project.title[locale] }}</h3>
+                        <h3 class="project-title">{{ project.title }}</h3>
                         <h4 class="project-category">{{ project.category.label[locale] }}</h4>
                     </span>
                     <span class="project-indicators">

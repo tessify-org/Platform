@@ -23,11 +23,11 @@ class FeedActivity extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function actor()
     {
-        return $this->belongsTo(\App\Models\User::class, "actor_id", "id");
+        return $this->belongsTo(User::class, "actor_id", "id");
     }
 }

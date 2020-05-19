@@ -24,7 +24,7 @@ class Skill extends Model
 
     public function users()
     {
-        return $this->belongsToMany(\App\Models\User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function teamRoles()

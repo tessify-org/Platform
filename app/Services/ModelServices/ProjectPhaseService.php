@@ -25,6 +25,25 @@ class ProjectPhaseService implements ModelServiceContract
         return $instance;
     }
 
+    public function findOrCreateByLabel($label)
+    {
+        foreach ($this->getAll() as $phase)
+        {
+            if ($phase->label == $label)
+            {
+                return $phase;
+            }
+        }
+
+        return ProjectPhase::create([
+            "name" => strtolower($label),
+            "label" => [
+                "en" => $label,
+                "nl" => $label,
+            ]
+        ]);
+    }
+
     public function findOrCreateByName($name)
     {
         foreach ($this->getAll() as $phase)
@@ -36,9 +55,10 @@ class ProjectPhaseService implements ModelServiceContract
         }
 
         return ProjectPhase::create([
-            "name" => [
-                "en" => $name,
-                "nl" => $name,
+            "name" => $name,
+            "label" => [
+                "en" => ucfirst(strtolower($name)),
+                "nl" => ucfirst(strtolower($name)),
             ]
         ]);
     }

@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedInteger('organization_department_id')->nullable();
             $table->unsignedInteger('work_method_id')->nullable();
             $table->string('slug');
-            $table->json('title');
+            $table->string('title');
             $table->json('slogan')->nullable();
             $table->json('description')->nullable();
             $table->string('header_image_url')->default('storage/images/projects/header/default.png');

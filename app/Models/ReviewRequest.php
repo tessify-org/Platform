@@ -36,12 +36,12 @@ class ReviewRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function targetUser()
     {
-        return $this->belongsTo(\App\Models\User::class, "target_user_id", "id");
+        return $this->belongsTo(User::class, "target_user_id", "id");
     }
 
     public function reviewrequestable()
