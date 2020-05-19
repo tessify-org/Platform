@@ -17,7 +17,7 @@ class CreateTeamRolesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('project_id');
             $table->string('slug');
-            $table->json('name');
+            $table->string('name');
             $table->json('description')->nullable();
             $table->unsignedInteger('positions')->default(1);
             $table->timestamps();

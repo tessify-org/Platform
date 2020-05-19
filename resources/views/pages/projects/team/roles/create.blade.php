@@ -19,12 +19,9 @@
                 <project-team-role-form
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
-                    name-text="@lang('projects.create_role_name')"
-                    description-text="@lang('projects.create_role_description')"
-                    positions-text="@lang('projects.create_role_positions')"
+                    :strings="{{ $strings->toJson() }}"
                     back-href="{{ route('projects.team.view', $project->slug) }}"
-                    back-text="@lang('projects.create_role_back')"
-                    submit-text="@lang('projects.create_role_submit')">
+                    locale="{{ app()->getLocale() }}">
                 </project-team-role-form>
                 
             </form>

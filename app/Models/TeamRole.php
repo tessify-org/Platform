@@ -21,7 +21,6 @@ class TeamRole extends Model
         "positions",
     ];
     public $translatable = [
-        "name",
         "description",
     ];
 

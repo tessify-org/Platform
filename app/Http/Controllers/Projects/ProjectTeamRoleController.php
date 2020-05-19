@@ -44,6 +44,8 @@ class ProjectTeamRoleController extends Controller
                 "form_name" => __("projects.team_roles_form_name"),
                 "form_description" => __("projects.team_roles_form_description"),
                 "form_positions" => __("projects.team_roles_form_positions"),
+                "nl" => __("general.nl"),
+                "en" => __("general.en"),
             ]),
             "apiEndpoints" => collect([
                 "create" => route("api.team-roles.create"),
@@ -68,7 +70,16 @@ class ProjectTeamRoleController extends Controller
                 "name" => old("name"),
                 "description" => old("description"),
                 "positions" => old("positions"),
-            ])
+            ]),
+            "strings" => collect([
+                "name" => __("projects.create_role_name"),
+                "description" => __("projects.create_role_description"),
+                "positions" => __("projects.create_role_positions"),
+                "back" => __("projects.create_role_back"),
+                "submit" => __("projects.create_role_submit"),
+                "en" => __("general.en"),
+                "nl" => __("general.nl"),
+            ]),
         ]);
     }
 
@@ -112,7 +123,16 @@ class ProjectTeamRoleController extends Controller
                 "name" => old("name"),
                 "description" => old("description"),
                 "positions" => old("positions"),
-            ])
+            ]),
+            "strings" => collect([
+                "name" => __("projects.create_role_name"),
+                "description" => __("projects.create_role_description"),
+                "positions" => __("projects.create_role_positions"),
+                "back" => __("projects.create_role_back"),
+                "submit" => __("projects.create_role_submit"),
+                "en" => __("general.en"),
+                "nl" => __("general.nl"),
+            ]),
         ]);
     }
 

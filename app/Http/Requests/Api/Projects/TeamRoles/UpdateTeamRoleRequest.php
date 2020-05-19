@@ -26,7 +26,8 @@ class UpdateTeamRoleRequest extends FormRequest
         return [
             "team_role_id" => "required|exists:team_roles,id",
             "name" => "required",
-            "description" => "required",
+            "description_nl" => "required",
+            "description_en" => "required",
             "positions" => "required|integer",
         ];
     }

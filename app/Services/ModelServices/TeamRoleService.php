@@ -132,7 +132,10 @@ class TeamRoleService implements ModelServiceContract
         return TeamRole::create([
             "project_id" => $project->id,
             "name" => $request->name,
-            "description" => $request->description,
+            "description" => [
+                "nl" => $request->description_nl,
+                "en" => $request->description_en,
+            ],
             "positions" => $request->positions,
         ]);
     }
@@ -140,7 +143,10 @@ class TeamRoleService implements ModelServiceContract
     public function updateFromRequest(TeamRole $role, UpdateTeamRoleRequest $request)
     {
         $role->name = $request->name;
-        $role->description = $request->description;
+        $role->description = [
+            "nl" => $request->description_nl,
+            "en" => $request->description_en,
+        ];
         $role->positions = $request->positions;
         $role->save();
     }
@@ -156,7 +162,10 @@ class TeamRoleService implements ModelServiceContract
         $role = TeamRole::create([
             "project_id" => $request->project_id,
             "name" => $request->name,
-            "description" => $request->description,
+            "description" => [
+                "nl" => $request->description_nl,
+                "en" => $request->description_en,
+            ],
             "positions" => $request->positions,
         ]);
         
@@ -167,7 +176,10 @@ class TeamRoleService implements ModelServiceContract
     {
         $role = $this->find($request->team_role_id);
         $role->name = $request->name;
-        $role->description = $request->description;
+        $role->description = [
+            "nl" => $request->description_nl,
+            "en" => $request->description_en,
+        ];
         $role->positions = $request->positions;
         $role->save();
 

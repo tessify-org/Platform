@@ -197,10 +197,7 @@ class ProjectSeeder extends Seeder
             // Role 1
             $role_one = TeamRole::create([
                 "project_id" => $project->id,
-                "name" => [
-                    "nl" => "Ontwikkelaar",
-                    "en" => "Developer",
-                ],
+                "name" => "Developer",
                 "description" => [
                     "nl" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
                     "en" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
@@ -218,10 +215,7 @@ class ProjectSeeder extends Seeder
             // Role 2
             $role_two = TeamRole::create([
                 "project_id" => $project->id,
-                "name" => [
-                    "nl" => "Ontwerper",
-                    "en" => "Designer",
-                ],
+                "name" => "Designer",
                 "description" => [
                     "nl" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
                     "en" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
@@ -243,10 +237,7 @@ class ProjectSeeder extends Seeder
             // Role 3
             $role_three = TeamRole::create([
                 "project_id" => $project->id,
-                "name" => [
-                    "nl" => "Scrum Master",
-                    "en" => "Scrum Master",
-                ],
+                "name" => "Scrum Master",
                 "description" => [
                     "nl" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
                     "en" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras massa tellus, consectetur eu pellentesque id, mollis id ante. Sed accumsan auctor tortor, sit amet blandit ex dapibus ac. Nullam feugiat malesuada felis at malesuada.",
