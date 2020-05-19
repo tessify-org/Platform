@@ -124,7 +124,7 @@
                                                 @if ($task->urgency == 1)
                                                     @lang("general.urgency_low")
                                                 @elseif ($task->urgency == 2)
-                                                    @lang("general.urgency_medium")
+                                                    @lang("general.urgency_normal")
                                                 @elseif ($task->urgency == 3)
                                                     @lang("general.urgency_high")
                                                 @endif
@@ -299,7 +299,7 @@
                                                 <div class="required-skill__name">{{ $skill->name }}</div>
                                                 @if (!is_null($skill->pivot->description))
                                                     <div class="required-skill__description">
-                                                        {{ $skill->pivot->description }}
+                                                        {{ $skill->pivot->description->$locale }}
                                                     </div>
                                                 @endif
                                             </div>

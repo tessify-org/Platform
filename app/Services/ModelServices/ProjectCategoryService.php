@@ -61,7 +61,10 @@ class ProjectCategoryService implements ModelServiceContract
 
         return ProjectCategory::create([
             "name" => str_replace(" ", "_", strtolower($label)),
-            "label" => $label,
+            "label" => [
+                "en" => $label,
+                "nl" => $label,
+            ],
         ]);
     }
 }

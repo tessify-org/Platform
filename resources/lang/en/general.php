@@ -13,6 +13,13 @@
 return [
 
     //
+    // Languages (locales)
+    //
+
+    "nl" => "Dutch",
+    "en" => "English",
+
+    //
     // General strings
     //
 

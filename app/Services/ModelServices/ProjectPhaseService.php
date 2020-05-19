@@ -35,7 +35,12 @@ class ProjectPhaseService implements ModelServiceContract
             }
         }
 
-        return ProjectPhase::create(["name" => $name]);
+        return ProjectPhase::create([
+            "name" => [
+                "en" => $name,
+                "nl" => $name,
+            ]
+        ]);
     }
 
     public function findForProject(Project $project)

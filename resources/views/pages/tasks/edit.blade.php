@@ -35,7 +35,8 @@
                     :seniorities="{{ $seniorities->toJson() }}"
                     :tags="{{ $tags->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
-                    back-href="{{ route('tasks.view', $task->slug) }}">
+                    back-href="{{ route('tasks.view', $task->slug) }}"
+                    locale="{{ app()->getLocale() }}">
                 </task-form>
                 
             </form>

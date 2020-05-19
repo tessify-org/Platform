@@ -34,7 +34,8 @@
                     :seniorities="{{ $seniorities->toJson() }}"
                     :tags="{{ $tags->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
-                    back-href="{{ is_null($project) ? route('tasks') : route('projects.tasks', $project->slug) }}">
+                    back-href="{{ is_null($project) ? route('tasks') : route('projects.tasks', $project->slug) }}"
+                    locale="{{ app()->getLocale() }}">
                 </task-form>
                 
             </form>
