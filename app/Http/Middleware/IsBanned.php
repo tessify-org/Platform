@@ -22,7 +22,7 @@ class IsBanned
                 Auth::logout();
 
                 // Redirect + flash message
-                flash(__('tessify-core::auth.middleware_banned_permanently'))->error();
+                flash(__('auth.middleware_banned_permanently'))->error();
                 return redirect()->route("auth.login");
             }
             // If the user has been temp banned
@@ -39,11 +39,11 @@ class IsBanned
 
                     // Determine what word to use for the "days" part in the flash message string
                     $dayString = $numDays == 1 
-                        ? __('tessify-core::auth.middleware_banned_temporarily_day') 
-                        : __('tessify-core::auth.middleware_banned_temporarily_days');
+                        ? __('auth.middleware_banned_temporarily_day') 
+                        : __('auth.middleware_banned_temporarily_days');
 
                     // Redirect + flash message
-                    flash(__('tessify-core::auth.middleware_banned_temporarily', ['days' => $numDays, 'day' => $dayString]))->error();
+                    flash(__('auth.middleware_banned_temporarily', ['days' => $numDays, 'day' => $dayString]))->error();
                     return redirect()->route("auth.login");
                 }
                 // If the user is not banned permanently and the ban has expired
@@ -54,7 +54,7 @@ class IsBanned
                     $user->save();
                     
                     // Redirect + flash message
-                    flash(__('tessify-core::auth.middleware_ban_lifted'))->error();
+                    flash(__('auth.middleware_ban_lifted'))->error();
                     return redirect()->route("home");
                 }
             }

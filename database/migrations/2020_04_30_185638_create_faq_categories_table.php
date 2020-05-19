@@ -16,8 +16,8 @@ class CreateFaqCategoriesTable extends Migration
         Schema::create('faq_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('slug');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

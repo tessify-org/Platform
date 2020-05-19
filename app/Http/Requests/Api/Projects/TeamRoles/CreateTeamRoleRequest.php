@@ -26,7 +26,8 @@ class CreateTeamRoleRequest extends FormRequest
         return [
             "project_id" => "required|exists:projects,id",
             "name" => "required",
-            "description" => "required",
+            "description_nl" => "required",
+            "description_en" => "required",
             "positions" => "required|integer",
         ];
     }

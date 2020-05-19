@@ -19,24 +19,94 @@ class SkillSeeder extends Seeder
         // Programming 
         //
         
-        Skill::create(["name" => "PHP"]);
-        Skill::create(["name" => "MySQL"]);
-        Skill::create(["name" => "JavaScript"]);
-        Skill::create(["name" => "HTML"]);
-        Skill::create(["name" => "CSS"]);
-        Skill::create(["name" => "C"]);
-        Skill::create(["name" => "C++"]);
-        Skill::create(["name" => "C#"]);
-        Skill::create(["name" => ".NET"]);
-        Skill::create(["name" => "Python"]);
-        Skill::create(["name" => "R"]);
+        Skill::create([
+            "name" => [
+                "nl" => "PHP",
+                "en" => "PHP",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "MySQL",
+                "en" => "MySQL",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "JavaScript",
+                "en" => "JavaScript",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "HTML",
+                "en" => "HTML",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "CSS",
+                "en" => "CSS",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "C",
+                "en" => "C",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "C++",
+                "en" => "C++",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "C#",
+                "en" => "C#",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => ".NET",
+                "en" => ".NET",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "Python",
+                "en" => "Python",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "R",
+                "en" => "R",
+            ],
+        ]);
 
         //
         // Project management
         //
 
-        Skill::create(["name" => "Scrum"]);
-        Skill::create(["name" => "Prince2"]);
-        Skill::create(["name" => "Project Management"]);
+        Skill::create([
+            "name" => [
+                "nl" => "Scrum",
+                "en" => "Scrum",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "Prince2",
+                "en" => "Prince2",
+            ],
+        ]);
+        Skill::create([
+            "name" => [
+                "nl" => "Project Management",
+                "en" => "Project Management",
+            ],
+        ]);
     }
 }

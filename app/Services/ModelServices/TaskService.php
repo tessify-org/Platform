@@ -223,8 +223,14 @@ class TaskService implements ModelServiceContract
             "task_status_id" => $open->id,
             "task_category_id" => $category->id,
             "task_seniority_id" => $request->task_seniority_id,
-            "title" => $request->title,
-            "description" => $request->description,
+            "title" => [
+                "en" => $request->title_en,
+                "nl" => $request->title_nl,
+            ],
+            "description" => [
+                "en" => $request->description_en,
+                "nl" => $request->description_nl,
+            ],
             "complexity" => $request->complexity,
             "estimated_hours" => $request->estimated_hours,
             "urgency" => $request->urgency,
@@ -306,8 +312,14 @@ class TaskService implements ModelServiceContract
         $task->project_id = $request->project_id;
         $task->task_status_id = $request->task_status_id;
         $task->task_seniority_id = $request->task_seniority_id;
-        $task->title = $request->title;
-        $task->description = $request->description;
+        $task->title = [
+            "nl" => $request->title_nl,
+            "en" => $request->title_en
+        ];
+        $task->description = [
+            "nl" => $request->description_nl,
+            "en" => $request->description_en,
+        ];
         $task->complexity = $request->complexity;
         $task->estimated_hours = $request->estimated_hours;
         $task->realized_hours = is_null($request->realized_hours) ? 0 : $request->realized_hours;
@@ -347,7 +359,10 @@ class TaskService implements ModelServiceContract
                 $skill = Skills::findOrCreateByName($skillData->skill);
                 $task->skills()->attach($skill->id, [
                     "required_mastery" => $skillData->required_mastery,
-                    "description" => $skillData->description,
+                    "description" => json_encode([
+                        "nl" => $skillData->description->nl,
+                        "en" => $skillData->description->en,
+                    ]),
                 ]);
             }
         }

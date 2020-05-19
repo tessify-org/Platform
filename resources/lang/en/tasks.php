@@ -217,13 +217,18 @@ return [
     "form_ownership_title" => "Ownership",
     "form_ownership_description" => "What entities own this task?",
     "form_ministry" => "Ministry",
+    "form_no_ministries" => "No ministries found",
     "form_organization" => "Organization",
+    "form_no_organizations" => "No organizations found",
     "form_department" => "Department",
     "form_formatting_title" => "Design",
     "form_formatting_description" => "Make your task stand out",
     "form_header_image" => "Header background image",
     "form_has_deadline" => "Has deadline",
     "form_ends_at" => "End date",
+    "form_project" => "Project",
+    "form_no_projects" => "No projects found",
+    "form_dont_associate_project" => "Don't associate with a project",
 
     //
     // Delete

@@ -17,8 +17,8 @@ class CreateOrganizationDepartmentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('organization_id');
             $table->string('slug');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->string('website_url')->nullable();
             $table->string('header_image_url')->nullable();
             $table->timestamps();

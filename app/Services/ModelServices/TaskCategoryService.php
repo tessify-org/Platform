@@ -41,16 +41,21 @@ class TaskCategoryService implements ModelServiceContract
 
     public function findOrCreateByName($name)
     {
+        $locale = app()->getLocale();
+
         foreach ($this->getAll() as $category)
         {
-            if ($category->name === $name)
+            if ($category->name == $name)
             {
                 return $category;
             }
         }
 
         return TaskCategory::create([
-            "name" => $name,
+            "name" => [
+                "en" => $name,
+                "nl" => $name,
+            ],
         ]);
     }
 }

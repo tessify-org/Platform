@@ -3,16 +3,16 @@
 
         <!-- Current assignment -->
         <div id="current-assignment" v-if="currentAssignment !== null">
-            <div id="current-assignment__label">{{ currentAssignmentText }}</div>
+            <div id="current-assignment__label">{{ strings.current_assignment }}</div>
             <div id="current-assignment__card">
                 <div id="card-image__wrapper">
                     <div id="card-image">
-                        {{ currentAssignment.organization.ministry.abbreviation }}
+                        {{ currentAssignment.organization.ministry.abbreviation[locale] }}
                     </div>
                 </div>
                 <div id="card-text__wrapper">
                     <div id="job-title">{{ currentAssignment.title }}</div>
-                    <div id="job-company">{{ currentAssignment.organization.name }}</div>
+                    <div id="job-company">{{ currentAssignment.organization.name[locale] }}</div>
                     <div id="job-description" v-if="currentAssignment.description !== ''">
                         "{{ currentAssignment.description }}"
                     </div>
@@ -22,18 +22,18 @@
 
         <!-- Previous assignments -->
         <div id="previous-assignments" v-if="previousAssignments.length > 0">
-            <div id="previous-assignments__label">{{ previousAssignmentsText }}</div>
+            <div id="previous-assignments__label">{{ strings.previous_assignments }}</div>
             <div id="previous-assignments__card">
                 <div class="assignment" v-for="(assignment, ai) in previousAssignments" :key="ai" @click="onClickPreviousAssignment(ai)">
                     <div class="assignment-title">{{ assignment.title }}</div>
-                    <div class="assignment-company">{{ assignment.organization.name }}</div>
+                    <div class="assignment-company">{{ assignment.organization.name[locale] }}</div>
                 </div>
             </div>
         </div>
 
         <!-- No assignments -->
         <div id="no-assignments" v-if="currentAssignment === null && previousAssignments.length === 0">
-            {{ noAssignmentsText }}
+            {{ strings.no_assignments }}
         </div>
         
         <!-- View previous assignment dialog -->
@@ -43,35 +43,35 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="dialog-content">
-                    <h3 class="dialog-title">{{ assignmentText }}</h3>
+                    <h3 class="dialog-title">{{ strings.assignment }}</h3>
                     <div class="dialog-text">
                         <div class="details compact bordered mb-0">
                             <div class="detail">
-                                <div class="key">{{ ministryText }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.ministry.name }}</div>
+                                <div class="key">{{ strings.ministry }}</div>
+                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.ministry.name[locale] }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ organizationText }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.name }}</div>
+                                <div class="key">{{ strings.organization }}</div>
+                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.name[locale] }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ departmentText }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].department.name }}</div>
+                                <div class="key">{{ strings.department }}</div>
+                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].department.name[locale] }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ employmentTypeText }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].type.label }}</div>
+                                <div class="key">{{ strings.employment_type }}</div>
+                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].type.label[locale] }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ functionText }}</div>
+                                <div class="key">{{ strings.function }}</div>
                                 <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].title }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ durationText }}</div>
+                                <div class="key">{{ strings.duration }}</div>
                                 <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].start_date+" t/m "+previousAssignments[this.dialogs.view_prev.index].end_date }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ descriptionText }}</div>
+                                <div class="key">{{ strings.description }}</div>
                                 <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].description }}</div>
                             </div>
                         </div>
@@ -87,17 +87,8 @@
     export default {
         props: [
             "assignments",
-            "currentAssignmentText",
-            "previousAssignmentsText",
-            "noAssignmentsText",
-            "assignmentText",
-            "ministryText",
-            "organizationText",
-            "departmentText",
-            "employmentTypeText",
-            "functionText",
-            "durationText",
-            "descriptionText",
+            "locale",
+            "strings",
         ],
         data: () => ({
             tag: "[profile-assignment-list]",
@@ -114,16 +105,8 @@
             initialize() {
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" assignments: ", this.assignments);
-                console.log(this.tag+" current assignment text: ", this.currentAssignmentText);
-                console.log(this.tag+" previous assignments text: ", this.previousAssignmentsText);
-                console.log(this.tag+" no assignments text: ", this.noAssignmentsText);
-                console.log(this.tag+" ministry text: ", this.ministryText);
-                console.log(this.tag+" organization text: ", this.organizationText);
-                console.log(this.tag+" department text: ", this.departmentText);
-                console.log(this.tag+" employment type text: ", this.employmentTypeText);
-                console.log(this.tag+" function text: ", this.functionText);
-                console.log(this.tag+" duration text: ", this.durationText);
-                console.log(this.tag+" description text: ", this.descriptionText);
+                console.log(this.tag+" locale: ", this.locale);
+                console.log(this.tag+" strings: ", this.strings);
                 this.initializeData();
             },
             initializeData() {

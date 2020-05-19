@@ -43,7 +43,7 @@
                     <span class="project-overlay"></span>
                     <span class="project-text">
                         <h3 class="project-title">{{ project.title }}</h3>
-                        <h4 class="project-category">{{ project.category.label }}</h4>
+                        <h4 class="project-category">{{ project.category.label[locale] }}</h4>
                     </span>
                     <span class="project-indicators">
                         <span class="project-indicators__left">
@@ -108,6 +108,7 @@
             "statuses",
             "categories",
             "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[project-overview]",
@@ -162,14 +163,14 @@
             generateCategoryOptions() {
                 if (this.categories !== undefined && this.categories !== null && this.categories.length > 0) {
                     for (let i = 0; i < this.categories.length; i++) {
-                        this.categoryOptions.push(this.categories[i].label);
+                        this.categoryOptions.push(this.categories[i].label[this.locale]);
                     }
                 }
             },
             generateStatusOptions() {
                 if (this.statuses !== undefined && this.statuses !== null && this.statuses.length > 0) {
                     for (let i = 0; i < this.statuses.length; i++) {
-                        this.statusOptions.push(this.statuses[i].label);
+                        this.statusOptions.push(this.statuses[i].label[this.locale]);
                     }
                 }
             },
@@ -191,15 +192,15 @@
                         let project = this.mutableProjects[i];
                         // Filter on search query
                         if (this.filters.search_query !== "") {
-                            let in_title = project.title.toLowerCase().includes(this.filters.search_query);
-                            let in_desc = project.description.toLowerCase().includes(this.filters.search_query);
+                            let in_title = project.title[this.locale].toLowerCase().includes(this.filters.search_query);
+                            let in_desc = project.description[this.locale].toLowerCase().includes(this.filters.search_query);
                             if (!in_title && !in_desc) continue;
                         }
                         // Filter on selected status
                         if (this.filters.selected_statuses.length > 0) {
                             let matches = false;
                             for (let i = 0; i < this.filters.selected_statuses.length; i++) {
-                                if (project.status.label === this.filters.selected_statuses[i]) {
+                                if (project.status.label[this.locale] === this.filters.selected_statuses[i]) {
                                     matches = true;
                                     break;
                                 }
@@ -210,7 +211,7 @@
                         if (this.filters.selected_categories.length > 0) {
                             let matches = false;
                             for (let i = 0; i < this.filters.selected_categories.length; i++) {
-                                if (project.category.label === this.filters.selected_categories[i]) {
+                                if (project.category.label[this.locale] === this.filters.selected_categories[i]) {
                                     matches = true;
                                     break;
                                 }

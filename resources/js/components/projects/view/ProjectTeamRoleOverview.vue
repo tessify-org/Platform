@@ -46,8 +46,12 @@
                             <div class="val">{{ mutableRoles[dialogs.view.index].name }}</div>
                         </div>
                         <div class="detail">
-                            <div class="key">{{ strings.form_description }}</div>
-                            <div class="val">{{ mutableRoles[dialogs.view.index].description }}</div>
+                            <div class="key">{{ strings.form_description+" "+strings.nl }}</div>
+                            <div class="val">{{ mutableRoles[dialogs.view.index].description.nl }}</div>
+                        </div>
+                        <div class="detail">
+                            <div class="key">{{ strings.form_description+" "+strings.en }}</div>
+                            <div class="val">{{ mutableRoles[dialogs.view.index].description.en }}</div>
                         </div>
                         <div class="detail">
                             <div class="key">{{ strings.form_positions }}</div>
@@ -92,10 +96,28 @@
                     </div>
                     <!-- Form -->
                     <div class="dialog-text">
-                        <!-- Name -->
-                        <v-text-field :label="strings.form_name" v-model="dialogs.create.form.name"></v-text-field>
+                        <!-- Name fields -->
+                        <div class="form-field">
+                            <v-text-field 
+                                :label="strings.form_name" 
+                                v-model="dialogs.create.form.name">
+                            </v-text-field>
+                        </div>
                         <!-- Description -->
-                        <v-textarea :label="strings.form_description" v-model="dialogs.create.form.description"></v-textarea>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-textarea 
+                                    :label="strings.form_description + '('+strings.nl+')'" 
+                                    v-model="dialogs.create.form.description.nl">
+                                </v-textarea>
+                            </div>
+                            <div class="form-field">
+                                <v-textarea 
+                                    :label="strings.form_description+' ('+strings.en+')'" 
+                                    v-model="dialogs.create.form.description.en">
+                                </v-textarea>
+                            </div>
+                        </div>
                         <!-- Positions -->
                         <v-text-field type="number" :label="strings.form_positions" v-model="dialogs.create.form.positions"></v-text-field>
                     </div>
@@ -139,10 +161,28 @@
                     </div>
                     <!-- Form -->
                     <div class="dialog-text">
-                        <!-- Name -->
-                        <v-text-field :label="strings.form_name" v-model="dialogs.edit.form.name"></v-text-field>
+                        <!-- Name fields -->
+                        <div class="form-field">
+                            <v-text-field 
+                                :label="strings.form_name" 
+                                v-model="dialogs.edit.form.name">
+                            </v-text-field>
+                        </div>
                         <!-- Description -->
-                        <v-textarea :label="strings.form_description" v-model="dialogs.edit.form.description"></v-textarea>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-textarea 
+                                    :label="strings.form_description + '('+strings.nl+')'" 
+                                    v-model="dialogs.edit.form.description.nl">
+                                </v-textarea>
+                            </div>
+                            <div class="form-field">
+                                <v-textarea 
+                                    :label="strings.form_description+' ('+strings.en+')'" 
+                                    v-model="dialogs.edit.form.description.en">
+                                </v-textarea>
+                            </div>
+                        </div>
                         <!-- Positions -->
                         <v-text-field type="number" :label="strings.form_positions" v-model="dialogs.edit.form.positions"></v-text-field>
                     </div>
@@ -217,6 +257,7 @@
             "roles",
             "strings",
             "apiEndpoints",
+            "locale",
         ],
         data: () => ({
             tag: "[project-team-role-overview]",
@@ -232,7 +273,10 @@
                     errors: [],
                     form: {
                         name: "",
-                        description: "",
+                        description: {
+                            nl: "",
+                            en: "",
+                        },
                         positions: 1,
                     },
                 },
@@ -243,7 +287,10 @@
                     loading: false,
                     form: {
                         name: "",
-                        description: "",
+                        description: {
+                            nl: "",
+                            en: "",
+                        },
                         positions: 1,
                     },
                 },
@@ -265,6 +312,7 @@
                 console.log(this.tag+" roles: ", this.roles);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" api endpoints: ", this.apiEndpoints);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {
@@ -284,7 +332,8 @@
                 let payload = new FormData();
                 payload.append("project_id", this.project.id);
                 payload.append("name", this.dialogs.create.form.name);
-                payload.append("description", this.dialogs.create.form.description);
+                payload.append("description_nl", this.dialogs.create.form.description.nl);
+                payload.append("description_en", this.dialogs.create.form.description.en);
                 payload.append("positions", this.dialogs.create.form.positions);
 
                 this.axios.post(this.apiEndpoints.create, payload)
@@ -296,7 +345,8 @@
                             this.mutableRoles.push(response.data.role);
                             this.dialogs.create.show = false;
                             this.dialogs.create.form.name = "";
-                            this.dialogs.create.form.description = "";
+                            this.dialogs.create.form.description.nl = "";
+                            this.dialogs.create.form.description.en = "";
                             this.dialogs.create.form.positions = 1;
                         }
                     }.bind(this))
@@ -327,7 +377,8 @@
                 let payload = new FormData();
                 payload.append("project_id", this.project.id);
                 payload.append("name", this.dialogs.create.form.name);
-                payload.append("description", this.dialogs.create.form.description);
+                payload.append("description_nl", this.dialogs.create.form.description.nl);
+                payload.append("description_en", this.dialogs.create.form.description.en);
                 payload.append("positions", this.dialogs.create.form.positions);
 
                 this.axios.post(this.apiEndpoints.create, payload)
@@ -338,8 +389,10 @@
                         if (response.data.status === "success") {
                             this.mutableRoles.push(response.data.role);
                             this.dialogs.create.show = false;
-                            this.dialogs.create.form.name = "";
-                            this.dialogs.create.form.description = "";
+                            this.dialogs.create.form.name.nl = "";
+                            this.dialogs.create.form.name.en = "";
+                            this.dialogs.create.form.description.nl = "";
+                            this.dialogs.create.form.description.en = "";
                             this.dialogs.create.form.positions = 1;
                         }
                     }.bind(this))
@@ -354,7 +407,8 @@
                 if (this.dialogs.view.show) this.dialogs.view.show = false;
                 this.dialogs.edit.index = index;
                 this.dialogs.edit.form.name = this.mutableRoles[index].name;
-                this.dialogs.edit.form.description = this.mutableRoles[index].description;
+                this.dialogs.edit.form.description.nl = this.mutableRoles[index].description.nl;
+                this.dialogs.edit.form.description.en = this.mutableRoles[index].description.en;
                 this.dialogs.edit.form.positions = this.mutableRoles[index].positions;
                 this.dialogs.edit.show = true;
             },
@@ -368,7 +422,8 @@
                 let payload = new FormData();
                 payload.append("team_role_id", this.mutableRoles[this.dialogs.edit.index].id);
                 payload.append("name", this.dialogs.edit.form.name);
-                payload.append("description", this.dialogs.edit.form.description);
+                payload.append("description_nl", this.dialogs.edit.form.description.nl);
+                payload.append("description_en", this.dialogs.edit.form.description.en);
                 payload.append("positions", this.dialogs.edit.form.positions);
 
                 this.axios.post(this.apiEndpoints.update, payload)
@@ -379,7 +434,8 @@
                         if (response.data.status === "success") {
                             this.dialogs.edit.show = false;
                             this.mutableRoles[this.dialogs.edit.index].name = this.dialogs.edit.form.name;
-                            this.mutableRoles[this.dialogs.edit.index].description = this.dialogs.edit.form.description;
+                            this.mutableRoles[this.dialogs.edit.index].description.nl = this.dialogs.edit.form.description.nl;
+                            this.mutableRoles[this.dialogs.edit.index].description.en = this.dialogs.edit.form.description.en;
                             this.mutableRoles[this.dialogs.edit.index].positions = this.dialogs.edit.form.positions;
                         }
                     }.bind(this))
@@ -425,7 +481,7 @@
         },
         mounted() {
             this.initialize();
-        }
+        },
     }
 </script>
 

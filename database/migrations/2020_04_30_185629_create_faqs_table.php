@@ -17,8 +17,8 @@ class CreateFaqsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('faq_category_id')->nullable();
             $table->string('slug');
-            $table->string('question');
-            $table->text('answer');
+            $table->json('question');
+            $table->json('answer');
             $table->timestamps();
         });
     }

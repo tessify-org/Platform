@@ -2,7 +2,7 @@
     <div id="profile-skill-list">
         <div id="skills" v-if="mutableSkills.length > 0">
             <div class="skill" v-for="(skill, si) in mutableSkills" :key="si">
-                <div class="skill-name">{{ skill.name }}</div>
+                <div class="skill-name">{{ skill.name[locale] }}</div>
                 <div class="skill-mastery">{{ skill.pivot.mastery }}</div>
             </div>
         </div>
@@ -17,6 +17,7 @@
         props: [
             "skills",
             "noSkillsText",
+            "locale",
         ],
         data: () => ({
             tag: "[profile-skill-list]",
@@ -27,6 +28,7 @@
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" skills: ", this.skills);
                 console.log(this.tag+" no skills text: ", this.noSkillsText);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {

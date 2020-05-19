@@ -20,7 +20,7 @@
                         <v-checkbox
                             v-model="mutableStatuses[si].selected"
                             :value="status.id"
-                            :label="status.label"
+                            :label="status.label[locale]"
                             class="mt-0" hide-details
                             @change="onCheckboxValueChanged(si)">
                         </v-checkbox>
@@ -42,6 +42,7 @@
             "title",
             "hint",
             "noRecordsText",
+            "locale",
         ],
         data: () => ({
             tag: "[task-dashboard-sidebar-statuses]",
@@ -59,6 +60,7 @@
                 console.log(this.tag+" title: ", this.title);
                 console.log(this.tag+" hint: ", this.hint);
                 console.log(this.tag+" no records text: ", this.noRecordsText);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {

@@ -37,7 +37,7 @@
         </div>
 
         <!-- View required skill dialog -->
-        <v-dialog v-model="dialogs.view.show" width="500">
+        <v-dialog v-model="dialogs.view.show" width="750">
             <div class="dialog" v-if="this.dialogs.view.index !== null">
                 <div class="dialog__close-button" @click="dialogs.view.show = false">
                     <i class="fas fa-times"></i>
@@ -54,9 +54,13 @@
                                 <div class="key">{{ strings.view_required_mastery }}</div>
                                 <div class="val">{{ mutableSkills[this.dialogs.view.index].required_mastery }} / 10</div>
                             </div>
-                            <div class="detail" v-if="mutableSkills[this.dialogs.view.index].description !== '' && mutableSkills[this.dialogs.view.index].description !== null">
-                                <div class="key">{{ strings.view_description }}</div>
-                                <div class="val">{{ mutableSkills[this.dialogs.view.index].description }}</div>
+                            <div class="detail" v-if="mutableSkills[this.dialogs.view.index].description.en !== '' && mutableSkills[this.dialogs.view.index].description.en !== null">
+                                <div class="key">{{ strings.view_description + " (" + strings.en + ")" }}</div>
+                                <div class="val">{{ mutableSkills[this.dialogs.view.index].description.en }}</div>
+                            </div>
+                            <div class="detail" v-if="mutableSkills[this.dialogs.view.index].description.nl !== '' && mutableSkills[this.dialogs.view.index].description.nl !== null">
+                                <div class="key">{{ strings.view_description + " (" + strings.nl + ")" }}</div>
+                                <div class="val">{{ mutableSkills[this.dialogs.view.index].description.nl }}</div>
                             </div>
                         </div>
                     </div>
@@ -77,8 +81,8 @@
         </v-dialog>
 
         <!-- Add required skill dialog -->
-        <v-dialog v-model="dialogs.add.show" width="500">
-            <div class="dialog">
+        <v-dialog v-model="dialogs.add.show" width="750">
+            <div id="add-skill-dialog" class="dialog">
                 <!-- Close button -->
                 <div class="dialog__close-button" @click="dialogs.add.show = false">
                     <i class="fas fa-times"></i>
@@ -110,11 +114,19 @@
                         </v-select>
                     </div>
                     <!-- Description -->
-                    <div class="form-field">
-                        <v-textarea
-                            :label="strings.form_description"
-                            v-model="dialogs.add.form.description">
-                        </v-textarea>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <v-textarea
+                                :label="strings.form_description+' '+strings.en"
+                                v-model="dialogs.add.form.description.en">
+                            </v-textarea>
+                        </div>
+                        <div class="form-field">
+                            <v-textarea
+                                :label="strings.form_description+' '+strings.nl"
+                                v-model="dialogs.add.form.description.nl">
+                            </v-textarea>
+                        </div>
                     </div>
                 </div>
                 <!-- Controls -->
@@ -145,8 +157,8 @@
         </v-dialog>
 
         <!-- Edit required skill dialog -->
-        <v-dialog v-model="dialogs.edit.show" width="500">
-            <div class="dialog">
+        <v-dialog v-model="dialogs.edit.show" width="750">
+            <div id="edit-skill-dialog" class="dialog">
                 <div class="dialog__close-button" @click="dialogs.edit.show = false">
                     <i class="fas fa-times"></i>
                 </div>
@@ -176,11 +188,19 @@
                         </v-select>
                     </div>
                     <!-- Description -->
-                    <div class="form-field">
-                        <v-textarea
-                            :label="strings.form_description"
-                            v-model="dialogs.edit.form.description">
-                        </v-textarea>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <v-textarea
+                                :label="strings.form_description+' '+strings.en"
+                                v-model="dialogs.edit.form.description.en">
+                            </v-textarea>
+                        </div>
+                        <div class="form-field">
+                            <v-textarea
+                                :label="strings.form_description+' '+strings.nl"
+                                v-model="dialogs.edit.form.description.nl">
+                            </v-textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="dialog-controls">
@@ -251,6 +271,7 @@
             "skills",
             "strings",
             "oldInput",
+            "locale",
         ],
         data: () => ({
             tag: "[required-skills-field]",
@@ -269,7 +290,10 @@
                     form: {
                         skill: "",
                         required_mastery: 1,
-                        description: "",
+                        description: {
+                            en: "",
+                            nl: "",
+                        },
                     }
                 },
                 edit: {
@@ -279,7 +303,10 @@
                     form: {
                         skill: "",
                         required_mastery: 1,
-                        description: "",
+                        description: {
+                            nl: "",
+                            en: "",
+                        },
                     }
                 },
                 delete: {
@@ -308,6 +335,7 @@
                 console.log(this.tag+" skills: ", this.skills);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" old input: ", this.oldInput);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
                 this.generateSkillOptions();
                 this.generateMasteryOptions();
@@ -316,8 +344,11 @@
                 if (this.task !== undefined && this.task !== null && this.task.skills !== undefined && this.task.skills !== null && this.task.skills.length > 0) {
                     for (let i = 0; i < this.task.skills.length; i++) {
                         this.mutableSkills.push({
-                            skill: this.task.skills[i].name,
-                            description: this.task.skills[i].pivot.description,
+                            skill: this.task.skills[i].name[this.locale],
+                            description: {
+                                nl: this.task.skills[i].pivot.description.nl,
+                                en: this.task.skills[i].pivot.description.en,
+                            },
                             required_mastery: this.task.skills[i].pivot.required_mastery,
                         });
                     }
@@ -337,7 +368,7 @@
             generateSkillOptions() {
                 if (this.skills !== undefined && this.skills !== null && this.skills.length > 0) {
                     for (let i = 0; i < this.skills.length; i++) {
-                        this.skillOptions.push(this.skills[i].name);
+                        this.skillOptions.push(this.skills[i].name[this.locale]);
                     }
                 }
             },
@@ -347,7 +378,10 @@
             onClickConfirmAdd() {
                 this.mutableSkills.push({
                     skill: this.dialogs.add.form.skill,
-                    description: this.dialogs.add.form.description,
+                    description: {
+                        nl: this.dialogs.add.form.description.nl,
+                        en: this.dialogs.add.form.description.en,
+                    },
                     required_mastery: this.dialogs.add.form.required_mastery,
                 });
                 this.dialogs.add.show = false;
@@ -360,13 +394,15 @@
                 if (this.dialogs.view.show) this.dialogs.view.show = false;
                 this.dialogs.edit.index = index;
                 this.dialogs.edit.form.skill = this.mutableSkills[index].skill;
-                this.dialogs.edit.form.description = this.mutableSkills[index].description;
+                this.dialogs.edit.form.description.nl = this.mutableSkills[index].description.en;
+                this.dialogs.edit.form.description.en = this.mutableSkills[index].description.nl;
                 this.dialogs.edit.form.required_mastery = this.mutableSkills[index].required_mastery; 
                 this.dialogs.edit.show = true;
             },
             onClickConfirmEdit() {
                 this.mutableSkills[this.dialogs.edit.index].skill = this.dialogs.edit.form.skill;
-                this.mutableSkills[this.dialogs.edit.index].description = this.dialogs.edit.form.description;
+                this.mutableSkills[this.dialogs.edit.index].description.en = this.dialogs.edit.form.description.en;
+                this.mutableSkills[this.dialogs.edit.index].description.nl = this.dialogs.edit.form.description.nl;
                 this.mutableSkills[this.dialogs.edit.index].required_mastery = this.dialogs.edit.form.required_mastery;
                 this.dialogs.edit.show = false;
             },
@@ -474,5 +510,9 @@
             align-items: center;
             justify-content: flex-end;
         }
+    }
+    #add-skill-dialog, #edit-skill-dialog {
+        z-index: 99999;
+        position: relative;
     }
 </style>

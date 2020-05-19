@@ -2,11 +2,11 @@
     <div id="profile-task-list">
         <div id="tasks" v-if="mutableTasks.length > 0">
             <a class="task" v-for="(task, ti) in mutableTasks" :key="ti" :href="task.view_href">
-                <span class="task-title">{{ task.title }}</span>
+                <span class="task-title">{{ task.title[locale] }}</span>
             </a>
         </div>
         <div id="no-tasks" v-if="mutableTasks.length === 0">
-            Geen lopende werkpakketten gevonden
+            {{ noRecordsText }}
         </div>
     </div>
 </template>
@@ -15,6 +15,8 @@
     export default {
         props: [
             "tasks",
+            "locale",
+            "noRecordsText",
         ],
         data: () => ({
             tag: "[profile-task-list]",
@@ -24,6 +26,8 @@
             initialize() {
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" tasks: ", this.tasks);
+                console.log(this.tag+" locale: ", this.locale);
+                console.log(this.tag+" no records text: ", this.noRecordsText);
                 this.initializeData();
             },
             initializeData() {

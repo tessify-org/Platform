@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Faq extends Model
@@ -15,6 +16,10 @@ class Faq extends Model
         "user_id",
         "faq_category_id",
         "slug",
+        "question",
+        "answer",
+    ];
+    public $translatable = [
         "question",
         "answer",
     ];
@@ -34,7 +39,7 @@ class Faq extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function category()

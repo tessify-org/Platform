@@ -2,12 +2,12 @@
     <div id="profile-project-list">
         <div id="projects" v-if="mutableProjects.length > 0">
             <a class="project" v-for="(project, pi) in mutableProjects" :key="pi" :href="project.view_href">
-                <span class="project-title">{{ project.title }}</span>
+                <span class="project-title">{{ project.title[locale] }}</span>
                 <span class="project-role">-</span>
             </a>
         </div>
         <div id="no-projects" v-if="mutableProjects.length === 0">
-            Nog niet betrokken bij projecten
+            {{ noRecordsText }}
         </div>
     </div>
 </template>
@@ -16,6 +16,8 @@
     export default {
         props: [
             "projects",
+            "locale",
+            "noRecordsText",
         ],
         data: () => ({
             tag: "[profile-project-list]",
@@ -25,6 +27,8 @@
             initialize() {
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" projects: ", this.projects);
+                console.log(this.tag+" locale: ", this.locale);
+                console.log(this.tag+" no records text: ", this.noRecordsText);
                 this.initializeData();
             },
             initializeData() {

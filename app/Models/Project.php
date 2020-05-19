@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Overtrue\LaravelSubscribe\Traits\Subscribable;
 
@@ -12,6 +13,7 @@ class Project extends Model
     use Sluggable;
     use Searchable;
     use Subscribable;
+    use HasTranslations;
 
     protected $table = "projects";
     protected $guarded = ["id", "created_at", "updated_at"];
@@ -24,6 +26,7 @@ class Project extends Model
         "organization_id",
         "organization_department_id",
         "work_method_id",
+        "slug",
         "title",
         "slogan",
         "description",
@@ -43,6 +46,10 @@ class Project extends Model
         "has_tasks" => "boolean",
         "has_deadline" => "boolean",
     ];
+    public $translatable = [
+        "slogan",
+        "description",
+    ];
     
     //
     // Slug configuration
@@ -50,7 +57,7 @@ class Project extends Model
 
     public function sluggable()
     {
-        return ["slug" => ["source" => 'title']];
+        return ["slug" => ["source" => "title"]];
     }
 
     //
@@ -59,7 +66,7 @@ class Project extends Model
 
     public function author()
     {
-        return $this->belongsTo(\App\Models\User::class, "author_id", "id");
+        return $this->belongsTo(User::class, "author_id", "id");
     }
 
     public function ministry()

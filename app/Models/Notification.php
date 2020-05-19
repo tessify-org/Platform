@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Uuid;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Notification extends Model
 {
+    use HasTranslations;
+
     protected $table = "notifications";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
@@ -22,6 +25,10 @@ class Notification extends Model
     ];
     protected $dates = [
         "read_on",
+    ];
+    public $translatable = [
+        "title",
+        "description",
     ];
 
     //
@@ -42,6 +49,6 @@ class Notification extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 }

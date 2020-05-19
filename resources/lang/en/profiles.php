@@ -86,6 +86,10 @@ return [
     
     "profile_skills_no_skills" => "No skills have been added yet",
 
+    "profile_tasks_no_tasks" => "No tasks found",
+
+    "profile_projects_no_projects" => "No projects found",
+
     //
     // Update profile
     //
@@ -101,6 +105,7 @@ return [
     "update_profile_publicly_display_email" => "Publicly display email",
     "update_profile_phone" => "Phone number",
     "update_profile_avatar" => "Profile picture",
+    "update_profile_header_bg" => "Header background image",
     "update_profile_go_back" => "Go back",
     "update_profile_save_changes" => "Save changes",
     "update_profile_assignments_label" => "Assignments",
@@ -138,6 +143,7 @@ return [
     "update_profile_assignments_delete_dialog_text" => "Are you sure you want to delete this assignment?",
     "update_profile_assignments_delete_dialog_cancel" => "No, cancel",
     "update_profile_assignments_delete_dialog_submit" => "Yes, delete assignment",
+    "update_profile_assignments_no_organizations" => "No organizations found",
     "update_profile_skills_label" => "Skills",
     "update_profile_skills_no_records" => "No skills have been added yet",
     "update_profile_skills_add_button" => "Add a skill",
@@ -148,6 +154,7 @@ return [
     "update_profile_skills_view_dialog_skill" => "Skill",
     "update_profile_skills_view_dialog_mastery" => "Mastery",
     "update_profile_skills_view_dialog_description" => "Description",
+    "update_profile_skills_form_description_hint" => "Describe your experiences developing this skill.",
     "update_profile_skills_view_dialog_edit" => "Update",
     "update_profile_skills_view_dialog_delete" => "Delete",
     "update_profile_skills_create_dialog_title" => "Add skill",

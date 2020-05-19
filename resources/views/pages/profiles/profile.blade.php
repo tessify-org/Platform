@@ -191,23 +191,12 @@
                             @endif
                             
                             <!-- Assignments -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_assignments")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_assignments")</h3>
                             <div class="content-card mb elevation-1">
                                 <profile-assignment-list 
                                     :assignments="{{ json_encode($assignments) }}"
-                                    current-assignment-text="@lang('profiles.profile_assignments_current_assignment')"
-                                    previous-assignments-text="@lang('profiles.profile_assignments_previous_assignments')"
-                                    no-assignments-text="@lang('profiles.profile_assignments_no_assignments')"
-                                    assignment-text="@lang('profiles.profile_assignments_assignment')"
-                                    ministry-text="@lang('profiles.profile_assignments_ministry')"
-                                    organization-text="@lang('profiles.profile_assignments_organization')"
-                                    department-text="@lang('profiles.profile_assignments_department')"
-                                    employment-type-text="@lang('profiles.profile_assignments_employment_type')"
-                                    function-text="@lang('profiles.profile_assignments_function')"
-                                    duration-text="@lang('profiles.profile_assignments_duration')"
-                                    description-text="@lang('profiles.profile_assignments_description')">
+                                    :strings="{{ $assignmentListStrings->toJson() }}"
+                                    locale="{{ app()->getLocale() }}">
                                 </profile-assignment-list>
                             </div>
 
@@ -266,7 +255,8 @@
                             <div class="content-card mb elevation-1">
                                 <profile-skill-list 
                                     :skills="{{ $user->skills->toJson() }}"
-                                    no-skills-text="@lang('profiles.profile_no_skills')">
+                                    no-skills-text="@lang('profiles.profile_no_skills')"
+                                    locale="{{ app()->getLocale() }}">
                                 </profile-skill-list>
                             </div>
 
@@ -292,7 +282,9 @@
                             </h3>
                             <div class="content-card mb elevation-1">
                                 <profile-project-list 
-                                    :projects="{{ $projects->toJson() }}">
+                                    :projects="{{ $projects->toJson() }}"
+                                    locale="{{ app()->getLocale() }}"
+                                    no-records-text="@lang('profiles.profile_projects_no_projects')">
                                 </profile-project-list>
                             </div>
 
@@ -302,7 +294,9 @@
                             </h3>
                             <div class="content-card elevation-1">
                                 <profile-task-list 
-                                    :tasks="{{ $tasks->toJson() }}">
+                                    :tasks="{{ $tasks->toJson() }}"
+                                    locale="{{ app()->getLocale() }}"
+                                    no-records-text="@lang('profiles.profile_tasks_no_tasks')">
                                 </profile-task-list>
                             </div>
 

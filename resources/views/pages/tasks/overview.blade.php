@@ -43,6 +43,7 @@
 
                         <!-- Status -->
                         <task-dashboard-sidebar-statuses
+                            locale="{{ app()->getLocale() }}"
                             :statuses="{{ $statuses->toJson() }}"
                             title="@lang('tasks.overview_sidebar_statuses')"
                             hint="@lang('tasks.overview_sidebar_search_hint')"
@@ -51,6 +52,7 @@
 
                         <!-- Categories -->
                         <task-dashboard-sidebar-categories
+                            locale="{{ app()->getLocale() }}"
                             :categories="{{ $categories->toJson() }}"
                             title="@lang('tasks.overview_sidebar_categories')"
                             hint="@lang('tasks.overview_sidebar_categories_hint')"
@@ -59,6 +61,7 @@
 
                         <!-- Skills -->
                         <task-dashboard-sidebar-skills
+                            locale="{{ app()->getLocale() }}"
                             :skills="{{ $skills->toJson() }}"
                             title="@lang('tasks.overview_sidebar_skills')"
                             hint="@lang('tasks.overview_sidebar_skills_hint')"
@@ -67,6 +70,7 @@
 
                         <!-- Seniorities -->
                         <task-dashboard-sidebar-seniorities
+                            locale="{{ app()->getLocale() }}"
                             :seniorities="{{ $seniorities->toJson() }}"
                             title="@lang('tasks.overview_sidebar_seniorities')"
                             hint="@lang('tasks.overview_sidebar_seniorities_hint')"
@@ -85,6 +89,7 @@
                         <!-- Task overview -->
                         <task-dashboard-overview
                             :tasks="{{ $tasks->toJson() }}"
+                            locale="{{ app()->getLocale() }}"
                             description-text="@lang('tasks.overview_description')"
                             skills-text="@lang('tasks.overview_skills')"
                             complexity-text="@lang('tasks.overview_complexity')"
