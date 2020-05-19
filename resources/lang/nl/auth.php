@@ -12,6 +12,9 @@
 
 return [
       
+    'failed' => 'Inloggegevens zijn ongeldig.',
+    'throttle' => 'Te veel login pogingen, probeer het nogmaals in :seconds seconden.',
+
     //
     // Middleware
     //
