@@ -16,9 +16,9 @@ class CreateMinistriesTable extends Migration
         Schema::create('ministries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('slug');
-            $table->string('name');
-            $table->string('abbreviation');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('abbreviation');
+            $table->json('description')->nullable();
             $table->string('website_url')->nullable();
             $table->string('logo_url')->nullable();
             $table->timestamps();

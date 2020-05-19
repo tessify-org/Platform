@@ -13,7 +13,7 @@ class IsAuthenticated
         {
             session()->put("redirect_after_login", $request->url());
 
-            flash(__('tessify-core::auth.middleware_login_required'))->error();
+            flash(__('auth.middleware_login_required'))->error();
             return redirect()->route("auth.login");
         }
     

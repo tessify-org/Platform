@@ -15,9 +15,9 @@ class CreateOrganizationTypesTable extends Migration
     {
         Schema::create('organization_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('label');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('label');
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

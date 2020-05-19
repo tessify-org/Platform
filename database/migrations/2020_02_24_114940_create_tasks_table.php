@@ -24,8 +24,8 @@ class CreateTasksTable extends Migration
             $table->unsignedInteger('task_category_id');
             $table->unsignedInteger('task_seniority_id');
             $table->string('slug');
-            $table->string('title');
-            $table->text('description');
+            $table->json('title');
+            $table->json('description');
             $table->unsignedInteger('complexity')->default(1);
             $table->unsignedInteger('estimated_hours');
             $table->unsignedInteger('realized_hours')->default(0);

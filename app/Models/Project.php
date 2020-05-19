@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Overtrue\LaravelSubscribe\Traits\Subscribable;
 
@@ -12,6 +13,7 @@ class Project extends Model
     use Sluggable;
     use Searchable;
     use Subscribable;
+    use HasTranslations;
 
     protected $table = "projects";
     protected $guarded = ["id", "created_at", "updated_at"];
@@ -42,6 +44,11 @@ class Project extends Model
     protected $casts = [
         "has_tasks" => "boolean",
         "has_deadline" => "boolean",
+    ];
+    public $translatable = [
+        "title",
+        "slogan",
+        "description",
     ];
     
     //

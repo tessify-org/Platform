@@ -2,26 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class TaskStatus extends Model
+class SkillTask extends Pivot
 {
     use HasTranslations;
 
-    protected $table = "task_statuses";
+    protected $table = "skill_task";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
-        "name",
-        "label",
+        "skill_id",
+        "task_id",
+        "required_mastery",
+        "description",
     ];
     public $translatable = [
-        "label",
+        "description",
     ];
 
     //
     // Relationships
     //
+
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
 
     public function task()
     {

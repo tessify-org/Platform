@@ -18,9 +18,9 @@ class CreateOrganizationsTable extends Migration
             $table->unsignedInteger('organization_type_id')->nullable();
             $table->unsignedInteger('ministry_id')->nullable();
             $table->string('slug');
-            $table->string('name');
-            $table->string('abbreviation')->nullable();
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('abbreviation')->nullable();
+            $table->json('description')->nullable();
             $table->string('website_url')->nullable();
             $table->string('logo_url')->nullable();
             $table->timestamps();
