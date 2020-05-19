@@ -7,20 +7,20 @@
                 <div class="task elevation-1">
                     <div class="task-content">
                         <!-- Category -->
-                        <div class="task-category">{{ task.category.name }}</div>
+                        <div class="task-category">{{ task.category.name[locale] }}</div>
                         <!-- Title -->
-                        <h3 class="task-title">{{ task.title }}</h3>
+                        <h3 class="task-title">{{ task.title[locale] }}</h3>
                         <!-- Description -->
                         <div class="task-description">
                             <div class="task-description__label">{{ descriptionText }}</div>
-                            <div class="task-description__text">{{ task.description.substring(0,250)+".." }}</div>
+                            <div class="task-description__text">{{ task.description[locale].substring(0,250)+".." }}</div>
                         </div>
                         <!-- Skills -->
                         <div class="task-skills" v-if="task.skills.length > 0">
                             <div class="task-skills__label">{{ skillsText }}</div>
                             <div class="task-skills__list">
                                 <div class="task-skill" v-for="(skill, si) in task.skills" :key="si">
-                                    {{ skill.name }}
+                                    {{ skill.name[locale] }}
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="task-footer__left">
                             <!-- Status -->
                             <div class="task-status" :class="task.status.name">
-                                {{ task.status.label }}
+                                {{ task.status.label[locale] }}
                             </div>
                         </div>
                         <div class="task-footer__right">
@@ -78,6 +78,7 @@
             "complexityText",
             "viewText",
             "noTasksText",
+            "locale",
         ],
         data: () => ({
             tag: "[task-dashboard-overview]",
@@ -126,7 +127,8 @@
                 console.log(this.tag+" complexity text: ", this.complexityText);
                 console.log(this.tag+" view text: ", this.viewText);
                 console.log(this.tag+" no tasks text: ", this.noTasksText);
-                
+                console.log(this.tag+" locale: ", this.locale);
+
                 this.initializeData();
                 this.startListening();
 

@@ -20,7 +20,7 @@
                         <v-checkbox
                             v-model="mutableSeniorities[ci].selected"
                             :value="seniority.id"
-                            :label="seniority.label"
+                            :label="seniority.label[locale]"
                             class="mt-0" hide-details
                             @change="onCheckboxValueChanged(ci)">
                         </v-checkbox>
@@ -42,6 +42,7 @@
             "title",
             "hint",
             "noRecordsText",
+            "locale",
         ],
         data: () => ({
             tag: "[task-dashboard-sidebar-seniorities]",
@@ -58,6 +59,7 @@
                 console.log(this.tag+" seniorities: ", this.seniorities);
                 console.log(this.tag+" title: ", this.title);
                 console.log(this.tag+" no records text: ", this.noRecordsText);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {
