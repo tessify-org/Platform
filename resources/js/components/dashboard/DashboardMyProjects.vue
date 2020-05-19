@@ -3,9 +3,12 @@
 
         <div id="my-projects__list" v-if="mutableProjects.length > 0">
             <a class="my-project" v-for="(project, ti) in mutableProjects" :key="ti" :href="project.view_href">
-                <span class="my-project__title">{{ project.title }}</span>
-                <span class="my-project__status">{{ project.status.label }}</span>
-                <!-- <div class="my-task__" -->
+                <span class="my-project__title">
+                    {{ project.title[locale] }}
+                </span>
+                <span class="my-project__status">
+                    {{ project.status.label[locale] }}
+                </span>
             </a>
         </div>
 
@@ -19,6 +22,7 @@
 <script>
     export default {
         props: [
+            "locale",
             "projects",
             "noRecordsText",
         ],
@@ -29,7 +33,9 @@
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
+                console.log(this.tag+" locale: ", this.locale);
                 console.log(this.tag+" projects: ", this.projects);
+                console.log(this.tag+" no records text: ", this.noRecordsText);
                 this.initializeData();
             },
             initializeData() {
