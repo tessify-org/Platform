@@ -33,8 +33,6 @@ class UserSeeder extends Seeder
             "last_name" => "Verheijen",
             "email" => "nick.verheijen@minbzk.nl",
             "password" => bcrypt("engeland"),
-            "avatar_url" => "storage/images/users/avatars/nick.jpeg",
-            "header_bg_url" => "storage/images/users/headers/nick.png",
             "headline" => "This is the way. I have spoken.",
             "interests" => "I like turtles.",
             "is_admin" => true,
@@ -119,6 +117,8 @@ class UserSeeder extends Seeder
             "end_date" => now()->format("Y-m-d"),
         ]);
 
+        app("users")->generateAvatar($nick);
+
         // 
         // More admin accounts
         // 
@@ -130,8 +130,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Corona2020!"),
             "is_admin" => true,
         ]);
-
-        Users::generateAvatar($victor);
+        
+        app("users")->generateAvatar($victor);
 
         $winko = User::create([
             "first_name" => "Winko",
@@ -141,7 +141,7 @@ class UserSeeder extends Seeder
             "is_admin" => true,
         ]);
 
-        Users::generateAvatar($winko);
+        app("users")->generateAvatar($winko);
         
         $ramon = User::create([
             "first_name" => "Ramon",
@@ -150,8 +150,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Erkers2020"),
             "is_admin" => true,
         ]);
-
-        Users::generateAvatar($ramon);
+        
+        app("users")->generateAvatar($ramon);
 
         //
         // Dummy users
