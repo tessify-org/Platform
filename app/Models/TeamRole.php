@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class TeamRole extends Model
 {
     use Sluggable;
+    use HasTranslations;
     
     protected $table = "team_roles";
     protected $guarded = ["id", "created_at", "updated_at"];
@@ -17,6 +19,9 @@ class TeamRole extends Model
         "name",
         "description",
         "positions",
+    ];
+    public $translatable = [
+        "description",
     ];
 
     //

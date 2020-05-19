@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class OrganizationDepartment extends Model
 {
     use Sluggable;
+    use HasTranslations;
 
     protected $table = "organization_departments";
     protected $guarded = ["id", "created_at", "updated_at"];
@@ -18,6 +20,10 @@ class OrganizationDepartment extends Model
         "description",
         "website_url",
         "header_image_url",
+    ];
+    public $translatable = [
+        "name",
+        "description",
     ];
     
     //

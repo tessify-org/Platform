@@ -11,7 +11,7 @@ class IsGuest
     {
         if (Auth::check())
         {
-            flash(__('tessify-core::auth.middleware_guest_required'))->error();
+            flash(__('auth.middleware_guest_required'))->error();
             return redirect()->route("home");
         }
     

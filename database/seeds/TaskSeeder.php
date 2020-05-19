@@ -31,15 +31,24 @@ class TaskSeeder extends Seeder
 
         $open = TaskStatus::create([
             "name" => "open",
-            "label" => "Open",
+            "label" => [
+                "nl" => "Open",
+                "en" => "Open",
+            ],
         ]);
         $progress = TaskStatus::create([
             "name" => "in_progress",
-            "label" => "In progress",
+            "label" => [
+                "nl" => "Bezig",
+                "en" => "In progress",
+            ],
         ]);
         $completed = TaskStatus::create([
             "name" => "completed",
-            "label" => "Completed",
+            "label" => [
+                "nl" => "Voltooid",
+                "en" => "Completed",
+            ],
         ]);
 
         $statuses = [$open, $progress, $completed];
@@ -49,16 +58,28 @@ class TaskSeeder extends Seeder
         //
 
         $programming = TaskCategory::create([
-            "name" => "Programmeren",
+            "name" => [
+                "nl" => "Programmeren",
+                "en" => "Programming",
+            ],
         ]);
         $spellcheck = TaskCategory::create([
-            "name" => "Spellcheck",
+            "name" => [
+                "nl" => "Spellcheck",
+                "en" => "Spellcheck",
+            ],
         ]);
         $review = TaskCategory::create([
-            "name" => "Reviewen van stuk",
+            "name" => [
+                "nl" => "Reviewen van stuk",
+                "en" => "Document Review",
+            ],
         ]);
         $translate = TaskCategory::create([
-            "name" => "Vertalen",
+            "name" => [
+                "nl" => "Vertalen",
+                "en" => "Translate",
+            ],
         ]);
 
         $categories = [$programming, $spellcheck, $review, $translate];
@@ -69,19 +90,31 @@ class TaskSeeder extends Seeder
 
         $junior = TaskSeniority::create([
             'name' => 'junior',
-            'label' => 'Junior',
+            'label' => [
+                'nl' => 'Junior',
+                'en' => 'Junior',
+            ],
         ]);
         $medior = TaskSeniority::create([
             "name" => "medior",
-            "label" => "Medior",
+            "label" => [
+                "nl" => "Medior",
+                "en" => "Medior",
+            ],
         ]);
         $senior = TaskSeniority::create([
             "name" => "senior",
-            "label" => "Senior",
+            "label" => [
+                "nl" => "Senior",
+                "en" => "Senior",
+            ],
         ]);
         $expert = TaskSeniority::create([
             "name" => "expert",
-            "label" => "Expert",
+            "label" => [
+                "nl" => "Expert",
+                "en" => "Expert",
+            ],
         ]);
 
         $seniorities = [$junior, $medior, $senior, $expert];
@@ -90,51 +123,51 @@ class TaskSeeder extends Seeder
         // Create tasks
         //
 
-        // $users = User::all();
-        // $skills = Skill::all();
-        // $ministries = Ministry::all();
+        $users = User::all();
+        $skills = Skill::all();
+        $ministries = Ministry::all();
 
-        // foreach (Project::all() as $project)
-        // {
-        //     for ($i = 0; $i < rand(2, 5); $i++)
-        //     {
-        //         $status = $statuses[rand(0, (count($statuses) - 1))];
-        //         $category = $categories[rand(0, (count($categories) - 1))];
-        //         $seniority = $seniorities[rand(0, (count($seniorities) - 1))];
+        foreach (Project::all() as $project)
+        {
+            for ($i = 0; $i < rand(2, 5); $i++)
+            {
+                $status = $statuses[rand(0, (count($statuses) - 1))];
+                $category = $categories[rand(0, (count($categories) - 1))];
+                $seniority = $seniorities[rand(0, (count($seniorities) - 1))];
 
                 
-        //         $ministry = $ministries->random();
-        //         $organization = $ministry->organizations->get(0);
+                $ministry = $ministries->random();
+                $organization = $ministry->organizations->get(0);
                 
-        //         $ministry_id = $ministry->id;
-        //         $organization_id = is_null($organization) ? null : $organization->id;
-        //         if (rand(1,2) == 2)
-        //         {
-        //             $ministry_id = null;
-        //             $organization_id = null;
-        //         }
+                $ministry_id = $ministry->id;
+                $organization_id = is_null($organization) ? null : $organization->id;
+                if (rand(1,2) == 2)
+                {
+                    $ministry_id = null;
+                    $organization_id = null;
+                }
 
-        //         $task = factory(Task::class)->create([
-        //             "author_id" => $users->random()->id,
-        //             "project_id" => $project->id,
-        //             "task_status_id" => $status->id,
-        //             "task_category_id" => $category->id,
-        //             "task_seniority_id" => $seniority->id,
-        //             "ministry_id" => $ministry_id,
-        //             "organization_id" => $organization_id,
-        //             "realized_hours" => $status->name == "completed" ? rand(1, 10) : 0,
-        //         ]);
+                $task = factory(Task::class)->create([
+                    "author_id" => $users->random()->id,
+                    "project_id" => $project->id,
+                    "task_status_id" => $status->id,
+                    "task_category_id" => $category->id,
+                    "task_seniority_id" => $seniority->id,
+                    "ministry_id" => $ministry_id,
+                    "organization_id" => $organization_id,
+                    "realized_hours" => $status->name == "completed" ? rand(1, 10) : 0,
+                ]);
 
-        //         if ($status->name == "in_progress" or $status->name == "completed")
-        //         {
-        //             $user = $users->random();
-        //             $task->users()->attach([$user->id]);
-        //         }
+                if ($status->name == "in_progress" or $status->name == "completed")
+                {
+                    $user = $users->random();
+                    $task->users()->attach([$user->id]);
+                }
 
-        //         $skill_ids = [];
-        //         foreach ($skills->shuffle()->take(3) as $skill) $skill_ids[] = $skill->id;
-        //         $task->skills()->attach($skill_ids);
-        //     }
-        // }
+                $skill_ids = [];
+                foreach ($skills->shuffle()->take(3) as $skill) $skill_ids[] = $skill->id;
+                $task->skills()->attach($skill_ids);
+            }
+        }
     }
 }

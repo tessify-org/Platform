@@ -24,25 +24,47 @@
                         </div>
 
                         <!-- Title -->
-                        <div class="form-field">
-                            <v-text-field
-                                name="title"
-                                :label="strings.title+'*'"
-                                v-model="form.title"
-                                :errors="hasErrors('title')"
-                                :error-messages="getErrors('title')">
-                            </v-text-field>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-text-field
+                                    name="title_nl"
+                                    :label="strings.title+'* '+strings.nl"
+                                    v-model="form.title.nl"
+                                    :errors="hasErrors('title_nl')"
+                                    :error-messages="getErrors('title_nl')">
+                                </v-text-field>
+                            </div>
+                            <div class="form-field">
+                                <v-text-field
+                                    name="title_en"
+                                    :label="strings.title+'* '+strings.en"
+                                    v-model="form.title.en"
+                                    :errors="hasErrors('title_en')"
+                                    :error-messages="getErrors('title_nl')">
+                                </v-text-field>
+                            </div>
                         </div>
 
                         <!-- Description -->
-                        <div class="form-field">
-                            <v-textarea
-                                name="description"
-                                :label="strings.description+'*'"
-                                v-model="form.description"
-                                :errors="hasErrors('description')"
-                                :error-messages="getErrors('description')">
-                            </v-textarea>
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <v-textarea
+                                    name="description_nl"
+                                    :label="strings.description+' '+strings.nl+'*'"
+                                    v-model="form.description.nl"
+                                    :errors="hasErrors('description_nl')"
+                                    :error-messages="getErrors('description_nl')">
+                                </v-textarea>
+                            </div>
+                            <div class="form-field">
+                                <v-textarea
+                                    name="description_en"
+                                    :label="strings.description+' '+strings.en+'*'"
+                                    v-model="form.description.en"
+                                    :errors="hasErrors('description_en')"
+                                    :error-messages="getErrors('description_en')">
+                                </v-textarea>
+                            </div>
                         </div>
 
                         <!-- Tags -->
@@ -189,7 +211,8 @@
                                 name="required_skills"
                                 v-model="form.required_skills"
                                 :label-text="strings.required_skills"
-                                :strings="strings.required_skills_strings">
+                                :strings="strings.required_skills_strings"
+                                :locale="locale">
                             </required-skills-field>
                         </div>
 
@@ -309,6 +332,7 @@
             "tags",
             "backHref",
             "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[task-form]",
@@ -330,8 +354,14 @@
                 ministry_id: null,
                 organization_id: null,
                 department: "",
-                title: "",
-                description: "",
+                title: {
+                    nl: "",
+                    en: "",
+                },
+                description: {
+                    nl: "",
+                    en: "",
+                },
                 complexity: 1,
                 estimated_hours: 0,
                 realized_hours: 0,
@@ -348,7 +378,7 @@
             },
             isCompleted() {
                 let status = this.getStatusById(this.form.task_status_id);
-                return status && status.name === "completed";
+                return status && status.name.en === "completed";
             },
             encodedTags() {
                 return JSON.stringify(this.form.tags);
@@ -391,6 +421,7 @@
                 console.log(this.tag+" tags: ", this.tags);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" back href: ", this.backHref);
+                console.log(this.tag+" locale: ", this.locale);
                 this.generateMinistryOptions();
                 this.generateProjectOptions();
                 this.generateComplexityOptions();
@@ -405,12 +436,15 @@
                 if (this.ministries !== undefined && this.ministries !== null && this.ministries.length > 0) {
                     for (let i = 0; i < this.ministries.length; i++) {
                         this.ministryOptions.push({
-                            text: this.ministries[i].name,
+                            text: this.ministries[i].name[this.locale],
                             value: this.ministries[i].id,
                         });
                     }
                 } else {
-                    this.ministryOptions.push({ text: "Geen ministeries gevonden", value: 0 });
+                    this.ministryOptions.push({
+                        text: this.strings.no_ministries, 
+                        value: 0 
+                    });
                 }
             },
             generateOrganizationOptions() {
@@ -419,7 +453,7 @@
                     for (let i = 0; i < this.organizations.length; i++) {
                         if (this.organizations[i].ministry_id === this.form.ministry_id) {
                             this.organizationOptions.push({
-                                text: this.organizations[i].name,
+                                text: this.organizations[i].name[this.locale],
                                 value: this.organizations[i].id,
                             });
                         }
@@ -431,22 +465,28 @@
                 if (this.form.organization_id > 0 && this.departments !== undefined && this.departments !== null && this.departments.length > 0) {
                     for (let i = 0; i < this.departments.length; i++) {
                         if (this.departments[i].organization_id === this.form.organization_id) {
-                            this.departmentOptions.push(this.departments[i].name);
+                            this.departmentOptions.push(this.departments[i].name[this.locale]);
                         }
                     }
                 }
             },
             generateProjectOptions() {
                 if (this.projects !== undefined && this.projects !== null && this.projects.length > 0) {
-                    this.projectOptions.push({ text: "Niet associeren met een project", value: 0 });
+                    this.projectOptions.push({ 
+                        text: this.strings.dont_associate_with_project, 
+                        value: 0
+                    });
                     for (let i = 0; i < this.projects.length; i++) {
                         this.projectOptions.push({
-                            text: this.projects[i].title,
+                            text: this.projects[i].title[this.locale],
                             value: this.projects[i].id,
                         });
                     }
                 } else {
-                    this.projectOptions.push({ text: "Geen projecten gevonden", value: 0 });
+                    this.projectOptions.push({
+                        text: this.strings.no_projects, 
+                        value: 0
+                    });
                 }
             },
             generateComplexityOptions() {
@@ -459,13 +499,9 @@
             },
             generateSeniorityOptions() {
                 if (this.seniorities !== undefined && this.seniorities !== null && this.seniorities.length > 0) {
-                    this.seniorityOptions.push({
-                        text: this.selectSeniorityText,
-                        value: 0
-                    });
                     for (let i = 0; i < this.seniorities.length; i++) {
                         this.seniorityOptions.push({
-                            text: this.seniorities[i].label,
+                            text: this.seniorities[i].label[this.locale],
                             value: this.seniorities[i].id,
                         });
                     }
@@ -479,7 +515,7 @@
             generateCategoryOptions() {
                 if (this.categories !== undefined && this.categories !== null && this.categories.length > 0) {
                     for (let i = 0; i < this.categories.length; i++) {
-                        this.categoryOptions.push(this.categories[i].name);
+                        this.categoryOptions.push(this.categories[i].name[this.locale]);
                     }
                 }
             },
@@ -492,7 +528,7 @@
                 if (this.statuses !== undefined && this.statuses !== null && this.statuses.length > 0) {
                     for (let i = 0; i < this.statuses.length; i++) {
                         this.statusOptions.push({
-                            text: this.statuses[i].label,
+                            text: this.statuses[i].label[this.locale],
                             value: this.statuses[i].id,
                         });
                     }
@@ -518,13 +554,15 @@
                     this.form.project_id = this.task.project_id;
                     this.form.ministry_id = this.task.ministry_id;
                     this.form.organization_id = this.task.organization_id;
-                    if (this.task.department) this.form.department = this.task.department.name;
+                    if (this.task.department) this.form.department = this.task.department.name[this.locale];
                     this.form.task_status_id = this.task.task_status_id;
-                    this.form.task_category = this.task.category.name;
+                    this.form.task_category = this.task.category.name[this.locale];
                     this.form.task_seniority_id = this.task.task_seniority_id;
-                    this.form.title = this.task.title;
+                    this.form.title.nl = this.task.title.nl;
+                    this.form.title.en = this.task.title.en;
+                    this.form.description.nl = this.task.description.nl;
+                    this.form.description.en = this.task.description.en;
                     this.form.complexity = this.task.complexity;
-                    this.form.description = this.task.description;
                     this.form.estimated_hours = this.task.estimated_hours;
                     this.form.realized_hours = this.task.realized_hours;
                     this.form.urgency = this.task.urgency;
@@ -551,8 +589,10 @@
                     if (this.oldInput.task_status_id !== null) this.form.task_status_id = parseInt(this.oldInput.task_status_id);
                     if (this.oldInput.task_category !== null) this.form.task_category = this.oldInput.task_category;
                     if (this.oldInput.task_seniority_id !== null) this.form.task_seniority_id = parseInt(this.oldInput.task_seniority_id);
-                    if (this.oldInput.title !== null) this.form.title = this.oldInput.title;
-                    if (this.oldInput.description !== null) this.form.description = this.oldInput.description;
+                    if (this.oldInput.title_en !== null) this.form.title.en = this.oldInput.title_en;
+                    if (this.oldInput.title_nl !== null) this.form.title.nl = this.oldInput.title_nl;
+                    if (this.oldInput.description_en !== null) this.form.description.en = this.oldInput.description_en;
+                    if (this.oldInput.description_nl !== null) this.form.description.nl = this.oldInput.description_nl;
                     if (this.oldInput.complexity !== null) this.form.complexity = parseInt(this.oldInput.complexity);
                     if (this.oldInput.estimated_hours !== null) this.form.estimated_hours = this.oldInput.estimated_hours;
                     if (this.oldInput.realized_hours !== null) this.form.realized_hours = this.oldInput.realized_hours;

@@ -122,6 +122,7 @@ class SkillService implements ModelServiceContract
                 {
                     $taskSkill = clone $skill;
                     $taskSkill->pivot = $pivot;
+                    $taskSkill->pivot->description = json_decode($taskSkill->pivot->description);
                     
                     $out[] = $taskSkill;
                 }
@@ -151,7 +152,12 @@ class SkillService implements ModelServiceContract
         if ($skill) return $skill;
 
         // If we've reached this point we couldn't find the skill, so let's create one
-        return $this->create(["name" => $name]);
+        return $this->create([
+            "name" => [
+                "en" => $name,
+                "nl" => $name,
+            ],
+        ]);
     }
 
     public function create($data)

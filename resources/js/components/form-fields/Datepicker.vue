@@ -1,5 +1,5 @@
 <template>
-    <div class="date-picker">
+    <div class="date-picker" :class="{ 'on-top': onTop }">
         
         <!-- Input -->
         <v-text-field 
@@ -28,7 +28,8 @@
             "label",
             "value",
             "hint",
-            "options"
+            "options",
+            "top",
         ],
         data(){
             return {
@@ -40,7 +41,10 @@
         computed: {
             hasHint() {
                 return this.hint !== undefined && this.hint !== null && this.hint !== "";
-            }
+            },
+            onTop() {
+                return this.top !== undefined;
+            },
         },
         watch: {
             mutableValue: function() {
@@ -91,7 +95,9 @@
 <style lang="scss">
     .date-picker {
         width: 100%;
-        z-index: 999;
+        &.on-top {
+            z-index: 999;
+        }
         .date-picker__label {
             font-size: 12px;
             color: hsl(0, 0%, 35%);

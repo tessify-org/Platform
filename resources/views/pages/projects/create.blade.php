@@ -30,6 +30,7 @@
                     :old-input="{{ $oldInput->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
                     back-href="{{ route('projects') }}"
+                    locale="{{ app()->getLocale() }}"
                     create-resource-api-endpoint="{{ route('api.projects.resources.create.post') }}"
                     update-resource-api-endpoint="{{ route('api.projects.resources.update.post') }}"
                     delete-resource-api-endpoint="{{ route('api.projects.resources.delete.post') }}">

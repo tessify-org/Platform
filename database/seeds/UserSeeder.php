@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         DB::table("users")->delete();
         DB::table("user_follower")->delete();
         DB::table("subscriptions")->delete();
-
+        
         //
         // My account
         //
@@ -40,29 +40,59 @@ class UserSeeder extends Seeder
             "is_admin" => true,
         ]);
         
+        Users::generateAvatar($nick);
+
         // Skills
-        $php = Skill::where("name", "PHP")->first();
-        $mysql = Skill::where("name", "MySQL")->first();
-        $html = Skill::where("name", "HTML")->first();
-        $css = Skill::where("name", "CSS")->first();
-        $c = Skill::where("name", "C")->first();
-        $cpp = Skill::where("name", "C++")->first();
-        $cs = Skill::where("name", "C#")->first();
-        $net = Skill::where("name", ".NET")->first();
-        $python = Skill::where("name", "Python")->first();
-        $nick->skills()->attach($php->id, ["mastery" => 8, "description" => "Always room for improvement"]);
-        $nick->skills()->attach($mysql->id, ["mastery" => 7, "description" => "Don't ask me to write a join statement please"]);
-        $nick->skills()->attach($html->id, ["mastery" => 10, "description" => "Good at creating skeletons"]);
-        $nick->skills()->attach($css->id, ["mastery" => 8, "description" => "Always room for improvement"]);
-        $nick->skills()->attach($c->id, ["mastery" => 3, "description" => "Always room for improvement"]);
-        $nick->skills()->attach($cpp->id, ["mastery" => 5, "description" => "I can write a basic CLI program"]);
-        $nick->skills()->attach($cs->id, ["mastery" => 6, "description" => "Intermediate"]);
-        $nick->skills()->attach($net->id, ["mastery" => 5, "description" => "8 months of experience"]);
-        $nick->skills()->attach($python->id, ["mastery" => 8, "description" => "I can charm the cobra"]);
+        $php = Skill::where("name->en", "PHP")->first();
+        $mysql = Skill::where("name->en", "MySQL")->first();
+        $html = Skill::where("name->en", "HTML")->first();
+        $css = Skill::where("name->en", "CSS")->first();
+        $c = Skill::where("name->en", "C")->first();
+        $cpp = Skill::where("name->en", "C++")->first();
+        $cs = Skill::where("name->en", "C#")->first();
+        $net = Skill::where("name->en", ".NET")->first();
+        $python = Skill::where("name->en", "Python")->first();
+
+        $nick->skills()->attach($php->id, [
+            "mastery" => 8, 
+            "description" => "Always room for improvement"
+        ]);
+        $nick->skills()->attach($mysql->id, [
+            "mastery" => 7, 
+            "description" => "Don't ask me to write a join statement please"
+        ]);
+        $nick->skills()->attach($html->id, [
+            "mastery" => 10, 
+            "description" => "Good at creating skeletons"
+        ]);
+        $nick->skills()->attach($css->id, [
+            "mastery" => 8, 
+            "description" => "Always room for improvement"
+        ]);
+        $nick->skills()->attach($c->id, [
+            "mastery" => 3, 
+            "description" => "Always room for improvement"
+        ]);
+        $nick->skills()->attach($cpp->id, [
+            "mastery" => 5, 
+            "description" => "I can write a basic CLI program"
+        ]);
+        $nick->skills()->attach($cs->id, [
+            "mastery" => 6, 
+            "description" => "Intermediate"
+        ]);
+        $nick->skills()->attach($net->id, [
+            "mastery" => 5, 
+            "description" => "8 months of experience"
+        ]);
+        $nick->skills()->attach($python->id, [
+            "mastery" => 8, 
+            "description" => "I can charm the cobra"
+        ]);
         
         // Assignments
         $traineeship = AssignmentType::where("name", "traineeship")->first();
-        $ssc = Organization::where("name", "Shared Service Center ICT")->first();
+        $ssc = Organization::where("name->en", "Shared Service Center ICT")->first();
         $assignment = Assignment::create([
             "user_id" => $nick->id,
             "assignment_type_id" => $traineeship->id,
@@ -92,15 +122,6 @@ class UserSeeder extends Seeder
         // 
         // More admin accounts
         // 
-
-        // $nick2 = User::create([
-        //     "first_name" => "Nick",
-        //     "last_name" => "Verheijen de Tweede",
-        //     "email" => "verheijen.webdevelopment@gmail.com",
-        //     "password" => bcrypt("engeland"),
-        //     "is_admin" => true,
-        // ]);
-        // Users::generateAvatar($nick2);
         
         $victor = User::create([
             "first_name" => "Victor",
@@ -109,7 +130,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Corona2020!"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($victor);
+
+        Users::generateAvatar($victor);
 
         $winko = User::create([
             "first_name" => "Winko",
@@ -118,7 +140,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("engeland"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($winko);
+
+        Users::generateAvatar($winko);
         
         $ramon = User::create([
             "first_name" => "Ramon",
@@ -127,7 +150,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Erkers2020"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($ramon);
+
+        Users::generateAvatar($ramon);
 
         //
         // Dummy users

@@ -138,7 +138,7 @@ class ProjectService implements ModelServiceContract
         $phase_id = null;
         if ($request->has("project_phase") && $request->project_phase !== "")
         {
-            $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
+            $phase_id = ProjectPhases::findOrCreateByLabel($request->project_phase)->id;
         }
 
         // Compose all of the data we know will be part of the new project
@@ -148,8 +148,14 @@ class ProjectService implements ModelServiceContract
             "project_category_id" => $category->id,
             "project_phase_id" => $phase_id,
             "title" => $request->title,
-            "slogan" => $request->slogan,
-            "description" => $request->description,
+            "slogan" => [
+                "nl" => $request->slogan_nl,
+                "en" => $request->slogan_en,
+            ],
+            "description" => [
+                "nl" => $request->description_nl,
+                "en" => $request->description_en,
+            ],
             "starts_at" => $starts_at,
             "ends_at" => $ends_at,
             "has_tasks" => $request->has_tasks == "true" ? true : false,
@@ -217,7 +223,7 @@ class ProjectService implements ModelServiceContract
         $phase_id = null;
         if ($request->has("project_phase") && $request->project_phase !== "")
         {
-            $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
+            $phase_id = ProjectPhases::findOrCreateByLabel($request->project_phase)->id;
         }
 
         // Process ownership relationships
@@ -257,8 +263,14 @@ class ProjectService implements ModelServiceContract
         $project->project_category_id = $category->id;
         $project->project_phase_id = $phase_id;
         $project->title = $request->title;
-        $project->slogan = $request->slogan;
-        $project->description = $request->description;
+        $project->slogan = [
+            "en" => $request->slogan_en,
+            "nl" => $request->slogan_nl,
+        ];
+        $project->description = [
+            "en" => $request->description_en,
+            "nl" => $request->description_nl,
+        ];
         $project->starts_at = $starts_at;
         $project->ends_at = $ends_at;
         $project->project_code = $request->project_code;

@@ -218,13 +218,18 @@ return [
     "form_skills_title" => "Vereiste vaardigheden",
     "form_skills_description" => "Welke vaardigheden heeft iemand nodig om dit werkpakket te kunnen uitvoeren?",
     "form_ministry" => "Ministerie",
+    "form_no_ministries" => "Geen ministeries gevonden",
     "form_organization" => "Organisatie",
+    "form_no_organizations" => "Geen organisaties gevonden",
     "form_department" => "Departement",
     "form_formatting_title" => "Opmaak",
     "form_formatting_description" => "Hoe wordt dit werkpakket weergegeven",
     "form_header_image" => "Header achtergrond plaatje",
     "form_has_deadline" => "Heeft een deadline",
     "form_ends_at" => "Einddatum",
+    "form_project" => "Project",
+    "form_no_projects" => "Geen projecten gevonden",
+    "form_dont_associate_project" => "Niet associeren met een project",
 
     //
     // Delete

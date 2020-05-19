@@ -1,14 +1,19 @@
 <template>
     <div id="dashboard-my-tasks">
 
+        <!-- List -->
         <div id="my-tasks__list" v-if="mutableTasks.length > 0">
             <a class="my-task" v-for="(task, ti) in mutableTasks" :key="ti" :href="task.view_href">
-                <span class="my-task__title">{{ task.title }}</span>
-                <span class="my-task__status">{{ task.status.label }}</span>
-                <!-- <div class="my-task__" -->
+                <span class="my-task__title">
+                    {{ task.title[locale] }}
+                </span>
+                <span class="my-task__status">
+                    {{ task.status.label[locale] }}
+                </span>
             </a>
         </div>
 
+        <!-- Empty -->
         <div id="my-tasks__empty" v-if="mutableTasks.length === 0">
             {{ noRecordsText }}
         </div>
@@ -20,6 +25,7 @@
     export default {
         props: [
             "tasks",
+            "locale",
             "noRecordsText",
         ],
         data: () => ({
@@ -30,7 +36,8 @@
             initialize() {
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" tasks: ", this.tasks);
-                // console.log(this.tag+" ");
+                console.log(this.tag+" locale: ", this.locale);
+                console.log(this.tag+" no records text: ", this.noRecordsText);
                 this.initializeData();
             },
             initializeData() {

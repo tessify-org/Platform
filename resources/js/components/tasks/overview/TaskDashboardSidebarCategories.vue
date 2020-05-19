@@ -20,7 +20,7 @@
                         <v-checkbox
                             v-model="mutableCategories[ci].selected"
                             :value="category.id"
-                            :label="category.name"
+                            :label="category.name[locale]"
                             class="mt-0" hide-details
                             @change="onCheckboxValueChanged(ci)">
                         </v-checkbox>
@@ -41,6 +41,7 @@
             "categories",
             "title",
             "hint",
+            "locale",
             "noRecordsText",
         ],
         data: () => ({
@@ -58,6 +59,7 @@
                 console.log(this.tag+" categories: ", this.categories);
                 console.log(this.tag+" title: ", this.title);
                 console.log(this.tag+" hint: ", this.hint);
+                console.log(this.tag+" locale: ", this.locale);
                 console.log(this.tag+" no records text: ", this.noRecordsText);
                 this.initializeData();
             },

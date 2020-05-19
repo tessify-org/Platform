@@ -71,7 +71,10 @@ class OrganizationDepartmentService implements ModelServiceContract
 
         return OrganizationDepartment::create([
             "organization_id" => $organization->id,
-            "name" => $name,
+            "name" => [
+                "nl" => $name,
+                "en" => $name,
+            ],
         ]);
     }
 

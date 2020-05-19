@@ -15,9 +15,9 @@ class CreateWorkMethodsTable extends Migration
     {
         Schema::create('work_methods', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('label');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('label');
+            $table->json('description')->nullable();
             $table->text('external_url')->nullable();
             $table->timestamps();
         });

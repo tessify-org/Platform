@@ -16,6 +16,7 @@ class CreateProjectPhasesTable extends Migration
         Schema::create('project_phases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->json('label');
             $table->timestamps();
         });
     }

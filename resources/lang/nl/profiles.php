@@ -82,6 +82,10 @@ return [
     
     "profile_skills_no_skills" => "Nog geen skills toegevoegd",
 
+    "profile_tasks_no_tasks" => "Geen lopende werkpakketten gevonden",
+
+    "profile_projects_no_projects" => "Geen lopende projecten gevonden",
+    
     //
     // Update profile
     //
@@ -97,6 +101,7 @@ return [
     "update_profile_publicly_display_email" => "E-mailadres publiekelijk weergeven",
     "update_profile_phone" => "Telefoon nummer",
     "update_profile_avatar" => "Profielfoto",
+    "update_profile_header_bg" => "Header achetergrond plaatje",
     "update_profile_go_back" => "Ga terug",
     "update_profile_save_changes" => "Wijzigingen opslaan",
     "update_profile_assignments_label" => "Aanstellingen",
@@ -134,12 +139,14 @@ return [
     "update_profile_assignments_delete_dialog_text" => "Weet je zeker dat je deze aanstelling wilt verwijderen?",
     "update_profile_assignments_delete_dialog_cancel" => "Nee, annuleren",
     "update_profile_assignments_delete_dialog_submit" => "Ja, verwijder aanstelling",
+    "update_profile_assignments_no_organizations" => "Geen organisaties gevonden",
     "update_profile_skills_label" => "Vaardigheden",
     "update_profile_skills_no_records" => "Er zijn nog geen vaardigheden toegevoegd",
     "update_profile_skills_add_button" => "Vaardigheid toevoegen",
     "update_profile_skills_form_skill" => "Vaardigheid",
     "update_profile_skills_form_mastery" => "Beheersing",
     "update_profile_skills_form_description" => "Beschrijving",
+    "update_profile_skills_form_description_hint" => "Beschrijf je ervaring met het opdoen van deze vaardigheid.",
     "update_profile_skills_view_dialog_title" => "Bekijk vaardigheid",
     "update_profile_skills_view_dialog_skill" => "Vaardigheid",
     "update_profile_skills_view_dialog_mastery" => "Beheersing",

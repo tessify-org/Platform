@@ -34,6 +34,7 @@
 
                 <!-- Projects -->
                 <project-overview
+                    locale="{{ app()->getLocale() }}"
                     :projects="{{ $projects->toJson() }}"
                     :statuses="{{ $statuses->toJson() }}"
                     :categories="{{ $categories->toJson() }}"

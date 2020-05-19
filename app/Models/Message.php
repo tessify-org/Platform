@@ -47,17 +47,17 @@ class Message extends Model
 
     public function sender()
     {
-        return $this->belongsTo(\App\Models\User::class, "sender_id", "id");
+        return $this->belongsTo(User::class, "sender_id", "id");
     }
 
     public function receiver()
     {
-        return $this->belongsTo(\App\Models\User::class, "receiver_id", "id");
+        return $this->belongsTo(User::class, "receiver_id", "id");
     }
 
     public function replyTo()
     {
-        return $this->belongsTo(\App\Models\Message::class, "reply_to_id", "id");
+        return $this->belongsTo(Message::class, "reply_to_id", "id");
     }
 
     //

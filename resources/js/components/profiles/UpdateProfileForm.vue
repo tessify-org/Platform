@@ -8,7 +8,7 @@
             <div class="form-fields">
                 <div class="form-field double">
                     <v-text-field 
-                        :label="firstNameText"
+                        :label="strings.first_name"
                         v-model="form.first_name" 
                         name="first_name"
                         :error="hasErrors('first_name')"
@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-field double">
                     <v-text-field 
-                        :label="lastNameText"
+                        :label="strings.last_name"
                         v-model="form.last_name" 
                         name="last_name"
                         :error="hasErrors('last_name')"
@@ -30,7 +30,7 @@
             <div class="form-fields">
                 <div class="form-field">
                     <v-text-field 
-                        :label="emailText"
+                        :label="strings.email"
                         v-model="form.email" 
                         name="email"
                         :error="hasErrors('email')"
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-field">
                     <v-checkbox
-                        :label="publiclyDisplayEmailText"
+                        :label="strings.publicly_display_email"
                         v-model="form.publicly_display_email" 
                         :error="hasErrors('publicly_display_email')"
                         :error-messages="getErrors('publicly_display_email')">
@@ -51,7 +51,7 @@
             <!-- Phone number -->
             <div class="form-field">
                 <v-text-field 
-                    :label="phoneText"
+                    :label="strings.phone"
                     v-model="form.phone" 
                     name="phone"
                     :error="hasErrors('phone')"
@@ -62,7 +62,7 @@
             <!-- Avatar & Header bg-->
             <div class="form-fields">
                 <div class="image-field">
-                    <div class="image-field__label">{{ avatarText }}</div>
+                    <div class="image-field__label">{{ strings.avatar }}</div>
                     <div class="image-field__image-wrapper">
                         <img class="image-field__image" :src="upload_avatar.avatar_url">
                     </div>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="image-field">
-                    <div class="image-field__label">Header background</div>
+                    <div class="image-field__label">{{ strings.header_bg }}</div>
                     <div class="image-field__image-wrapper">
                         <img class="image-field__image" :src="upload_header_image.header_image_url">
                     </div>
@@ -84,7 +84,7 @@
             <!-- Headline -->
             <div class="form-field">
                 <v-text-field
-                    :label="headlineText"
+                    :label="strings.headline"
                     v-model="form.headline"
                     name="headline"
                     :errors="hasErrors('headline')"
@@ -95,7 +95,7 @@
             <!-- Interests -->
             <div class="form-field">
                 <v-textarea
-                    :label="interestsText"
+                    :label="strings.interests"
                     v-model="form.interests"
                     name="interests"
                     :errors="hasErrors('interests')"
@@ -113,44 +113,9 @@
                     :organizations="organizations"
                     :organization-locations="organizationLocations"
                     :departments="departments"
-                    :create-api-endpoint="createAssignmentApiEndpoint"
-                    :update-api-endpoint="updateAssignmentApiEndpoint"
-                    :delete-api-endpoint="deleteAssignmentApiEndpoint"
-                    :label-text="assignmentsLabelText"
-                    :no-records-text="assignmentsNoRecordsText"
-                    :add-button-text="assignmentsAddButtonText"
-                    :form-title-text="assignmentsFormTitleText"
-                    :form-description-text="assignmentsFormDescriptionText"
-                    :form-type-text="assignmentsFormTypeText"
-                    :form-organization-text="assignmentsFormOrganizationText"
-                    :form-department-text="assignmentsFormDepartmentText"
-                    :form-location-text="assignmentsFormLocationText"
-                    :form-current-function-text="assignmentsFormCurrentFunctionText"
-                    :form-start-date-text="assignmentsFormStartDateText"
-                    :form-end-date-text="assignmentsFormEndDateText"
-                    :form-present-text="assignmentsFormPresentText"
-                    :form-until-present-text="assignmentsFormUntilPresentText"
-                    :create-dialog-title-text="assignmentsCreateDialogTitleText"
-                    :create-dialog-cancel-text="assignmentsCreateDialogCancelText"
-                    :create-dialog-submit-text="assignmentsCreateDialogSubmitText"
-                    :view-dialog-title-text="assignmentsViewDialogTitleText"
-                    :view-dialog-ministry-text="assignmentsViewDialogMinistryText"
-                    :view-dialog-organization-text="assignmentsViewDialogOrganizationText"
-                    :view-dialog-department-text="assignmentsViewDialogDepartmentText"
-                    :view-dialog-location-text="assignmentsViewDialogLocationText"
-                    :view-dialog-assignment-type-text="assignmentsViewDialogAssignmentTypeText"
-                    :view-dialog-function-text="assignmentsViewDialogFunctionText"
-                    :view-dialog-duration-text="assignmentsViewDialogDurationText"
-                    :view-dialog-description-text="assignmentsViewDialogDescriptionText"
-                    :view-dialog-edit-text="assignmentsViewDialogEditText"
-                    :view-dialog-delete-text="assignmentsViewDialogDeleteText"
-                    :update-dialog-title-text="assignmentsUpdateDialogTitleText"
-                    :update-dialog-cancel-text="assignmentsUpdateDialogCancelText"
-                    :update-dialog-submit-text="assignmentsUpdateDialogSubmitText"
-                    :delete-dialog-title-text="assignmentsDeleteDialogTitleText"
-                    :delete-dialog-text="assignmentsDeleteDialogText"
-                    :delete-dialog-cancel-text="assignmentsDeleteDialogCancelText"
-                    :delete-dialog-submit-text="assignmentsDeleteDialogSubmitText">
+                    :api-endpoints="apiEndpoints"
+                    :strings="strings.assignments"
+                    :locale="locale">
                 </profile-assignments-field>
             </div>
 
@@ -161,28 +126,8 @@
                     v-model="form.skills"
                     :user="user"
                     :skills="skills"
-                    :label-text="skillsLabelText"
-                    :no-records-text="skillsNoRecordsText"
-                    :add-button-text="skillsAddButtonText"
-                    :form-skill-text="skillsFormSkillText"
-                    :form-mastery-text="skillsFormMasteryText"
-                    :form-description-text="skillsFormDescriptionText"
-                    :view-dialog-title-text="skillsViewDialogTitleText"
-                    :view-dialog-skill-text="skillsViewDialogSkillText"
-                    :view-dialog-mastery-text="skillsViewDialogMasteryText"
-                    :view-dialog-description-text="skillsViewDialogDescriptionText"
-                    :view-dialog-edit-text="skillsViewDialogEditText"
-                    :view-dialog-delete-text="skillsViewDialogDeleteText"
-                    :create-dialog-title-text="skillsCreateDialogTitleText"
-                    :create-dialog-cancel-text="skillsCreateDialogCancelText"
-                    :create-dialog-submit-text="skillsCreateDialogSubmitText"
-                    :update-dialog-title-text="skillsUpdateDialogTitleText"
-                    :update-dialog-cancel-text="skillsUpdateDialogCancelText"
-                    :update-dialog-submit-text="skillsUpdateDialogSubmitText"
-                    :delete-dialog-title-text="skillsDeleteDialogTitleText"
-                    :delete-dialog-text="skillsDeleteDialogText"
-                    :delete-dialog-cancel-text="skillsDeleteDialogCancelText"
-                    :delete-dialog-submit-text="skillsDeleteDialogSubmitText">
+                    :strings="strings.skills"
+                    :locale="locale">
                 </profile-skills-field>
             </div>
 
@@ -193,13 +138,13 @@
             <div class="form-controls__left">
                 <v-btn :href="backHref" outlined>
                     <i class="fas fa-arrow-left"></i>
-                    {{ backText }}
+                    {{ strings.back }}
                 </v-btn>
             </div>
             <div class="form-controls__right">
                 <v-btn color="success" type="submit" depressed>
                     <i class="far fa-save"></i>
-                    {{ saveText }}
+                    {{ strings.save }}
                 </v-btn>
             </div>
         </div>
@@ -218,80 +163,10 @@
             "departments",
             "errors",
             "oldInput",
-            "firstNameText",
-            "lastNameText",
-            "headlineText",
-            "emailText",
-            "publiclyDisplayEmailText",
-            "phoneText",
-            "avatarText",
-            "interestsText",
-            "assignmentsText",
+            "strings",
+            "apiEndpoints",
+            "locale",
             "backHref",
-            "backText",
-            "saveText",
-            "createAssignmentApiEndpoint",
-            "updateAssignmentApiEndpoint",
-            "deleteAssignmentApiEndpoint",
-            "uploadAvatarApiEndpoint",
-            "uploadHeaderImageApiEndpoint",
-            "assignmentsLabelText",
-            "assignmentsNoRecordsText",
-            "assignmentsAddButtonText",
-            "assignmentsFormTitleText",
-            "assignmentsFormDescriptionText",
-            "assignmentsFormTypeText",
-            "assignmentsFormOrganizationText",
-            "assignmentsFormDepartmentText",
-            "assignmentsFormLocationText",
-            "assignmentsFormCurrentFunctionText",
-            "assignmentsFormStartDateText",
-            "assignmentsFormPresentText",
-            "assignmentsFormEndDateText",
-            "assignmentsFormUntilPresentText",
-            "assignmentsCreateDialogTitleText",
-            "assignmentsCreateDialogCancelText",
-            "assignmentsCreateDialogSubmitText",
-            "assignmentsViewDialogTitleText",
-            "assignmentsViewDialogMinistryText",
-            "assignmentsViewDialogOrganizationText",
-            "assignmentsViewDialogDepartmentText",
-            "assignmentsViewDialogLocationText",
-            "assignmentsViewDialogAssignmentTypeText",
-            "assignmentsViewDialogFunctionText",
-            "assignmentsViewDialogDurationText",
-            "assignmentsViewDialogDescriptionText",
-            "assignmentsViewDialogEditText",
-            "assignmentsViewDialogDeleteText",
-            "assignmentsUpdateDialogTitleText",
-            "assignmentsUpdateDialogCancelText",
-            "assignmentsUpdateDialogSubmitText",
-            "assignmentsDeleteDialogTitleText",
-            "assignmentsDeleteDialogText",
-            "assignmentsDeleteDialogCancelText",
-            "assignmentsDeleteDialogSubmitText",
-            "skillsLabelText",
-            "skillsNoRecordsText",
-            "skillsAddButtonText",
-            "skillsFormSkillText",
-            "skillsFormMasteryText",
-            "skillsFormDescriptionText",
-            "skillsViewDialogTitleText",
-            "skillsViewDialogSkillText",
-            "skillsViewDialogMasteryText",
-            "skillsViewDialogDescriptionText",
-            "skillsViewDialogEditText",
-            "skillsViewDialogDeleteText",
-            "skillsCreateDialogTitleText",
-            "skillsCreateDialogCancelText",
-            "skillsCreateDialogSubmitText",
-            "skillsUpdateDialogTitleText",
-            "skillsUpdateDialogCancelText",
-            "skillsUpdateDialogSubmitText",
-            "skillsDeleteDialogTitleText",
-            "skillsDeleteDialogText",
-            "skillsDeleteDialogCancelText",
-            "skillsDeleteDialogSubmitText",
         ],
         data: () => ({
             tag: "[update-profile-form]",
@@ -330,60 +205,9 @@
                 console.log(this.tag+" departments: ", this.departments);
                 console.log(this.tag+" errors: ", this.errors);
                 console.log(this.tag+" old input: ", this.oldInput);
-                console.log(this.tag+" first name text: ", this.firstNameText);
-                console.log(this.tag+" last name text: ", this.lastNameText);
-                console.log(this.tag+" headline text: ", this.headlineText);
-                console.log(this.tag+" interests text: ", this.interestsText);
-                console.log(this.tag+" email text: ", this.emailText);
-                console.log(this.tag+" publicly display email text: ", this.publiclyDisplayEmailText);
-                console.log(this.tag+" phone text: ", this.phoneText);
-                console.log(this.tag+" avatar text: ", this.avatarText);
-                console.log(this.tag+" interests text: ", this.interestsText);
-                console.log(this.tag+" assignments text: ", this.assignmentsText);
-                console.log(this.tag+" back href: ", this.backHref);
-                console.log(this.tag+" back text: ", this.backText);
-                console.log(this.tag+" save text: ", this.saveText);
-                console.log(this.tag+" create assignment api endpoint: ", this.createAssignmentApiEndpoint);
-                console.log(this.tag+" update assignment api endpoint: ", this.updateAssignmentApiEndpoint);
-                console.log(this.tag+" delete assignment api endpoint: ", this.deleteAssignmentApiEndpoint);
-                console.log(this.tag+" assignments label text: ", this.assignmentsLabelText);
-                console.log(this.tag+" assignments no records text: ", this.assignmentsNoRecordsText);
-                console.log(this.tag+" assignments add button text: ", this.assignmentsAddButtonText);
-                console.log(this.tag+" assignments label text: ", this.assignmentsLabelText);
-                console.log(this.tag+" assignments no records text: ", this.assignmentsNoRecordsText);
-                console.log(this.tag+" assignments add button text: ", this.assignmentsAddButtonText);
-                console.log(this.tag+" assignments form title text: ", this.assignmentsFormTitleText);
-                console.log(this.tag+" assignments form description text: ", this.assignmentsFormDescriptionText);
-                console.log(this.tag+" assignments form type text: ", this.assignmentsFormTypeText);
-                console.log(this.tag+" assignments form organization text: ", this.assignmentsFormOrganizationText);
-                console.log(this.tag+" assignments form department text: ", this.assignmentsFormDepartmentText);
-                console.log(this.tag+" assignments form location text: ", this.assignmentsFormLocationText);
-                console.log(this.tag+" assignments form current function text: ", this.assignmentsFormCurrentFunctionText);
-                console.log(this.tag+" assignments form start date text: ", this.assignmentsFormStartDateText);
-                console.log(this.tag+" assignments form present text: ", this.assignmentsFormPresentText);
-                console.log(this.tag+" assignments form end date text: ", this.assignmentsFormEndDateText);
-                console.log(this.tag+" assignments form until present text: ", this.assignmentsFormUntilPresentText);
-                console.log(this.tag+" assignments create dialog title text: ", this.assignmentsCreateDialogTitleText);
-                console.log(this.tag+" assignments create dialog cancel text: ", this.assignmentsCreateDialogCancelText);
-                console.log(this.tag+" assignments create dialog submit text: ", this.assignmentsCreateDialogSubmitText);
-                console.log(this.tag+" assignments view dialog title text: ", this.assignmentsViewDialogTitleText);
-                console.log(this.tag+" assignments view dialog ministry text: ", this.assignmentsViewDialogMinistryText);
-                console.log(this.tag+" assignments view dialog organization text: ", this.assignmentsViewDialogOrganizationText);
-                console.log(this.tag+" assignments view dialog department text: ", this.assignmentsViewDialogDepartmentText);
-                console.log(this.tag+" assignments view dialog location text: ", this.assignmentsViewDialogLocationText);
-                console.log(this.tag+" assignments view dialog assignment type text: ", this.assignmentsViewDialogAssignmentTypeText);
-                console.log(this.tag+" assignments view dialog function text: ", this.assignmentsViewDialogFunctionText);
-                console.log(this.tag+" assignments view dialog duration text: ", this.assignmentsViewDialogDurationText);
-                console.log(this.tag+" assignments view dialog descripion text: ", this.assignmentsViewDialogDescriptionText);
-                console.log(this.tag+" assignments view dialog edit text: ", this.assignmentsViewDialogEditText);
-                console.log(this.tag+" assignments view dialog delete text: ", this.assignmentsViewDialogDeleteText);
-                console.log(this.tag+" assignments update dialog title text: ", this.assignmentsUpdateDialogTitleText);
-                console.log(this.tag+" assignments update dialog cancel text: ", this.assignmentsUpdateDialogCancelText);
-                console.log(this.tag+" assignments update dialog submit text: ", this.assignmentsUpdateDialogSubmitText);
-                console.log(this.tag+" assignments delete dialog title text: ", this.assignmentsDeleteDialogTitleText);
-                console.log(this.tag+" assignments delete dialog text: ", this.assignmentsDeleteDialogText);
-                console.log(this.tag+" assignments delete dialog cancel text: ", this.assignmentsDeleteDialogCancelText);
-                console.log(this.tag+" assignments delete dialog submit text: ", this.assignmentsDeleteDialogSubmitText);
+                console.log(this.tag+" api endpoints: ", this.apiEndpoints);
+                console.log(this.tag+" strings: ", this.strings);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {
@@ -440,7 +264,7 @@
                 
                 let headers = { headers: { 'Content-Type': 'multipart/form-data' } };
 
-                this.axios.post(this.uploadAvatarApiEndpoint, payload, headers)
+                this.axios.post(this.apiEndpoints.upload_avatar, payload, headers)
                     .then(function(response) {
                         console.log(this.tag+" request succeeded, response: ", response);
                         this.upload_avatar.avatar_url = response.data.image_url;
@@ -462,7 +286,7 @@
                 
                 let headers = { headers: { 'Content-Type': 'multipart/form-data' } };
 
-                this.axios.post(this.uploadHeaderImageApiEndpoint, payload, headers)
+                this.axios.post(this.apiEndpoints.upload_header, payload, headers)
                     .then(function(response) {
                         console.log(this.tag+" request succeeded, response: ", response);
                         this.upload_header_image.header_image_url = response.data.image_url;

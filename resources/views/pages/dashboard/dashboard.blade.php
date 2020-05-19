@@ -172,6 +172,7 @@
                         <div class="content-card mb elevation-1">
                             <dashboard-my-tasks
                                 :tasks="{{ $myTasks->toJson() }}"
+                                locale="{{ app()->getLocale() }}"
                                 no-records-text="@lang('dashboard.tasks_empty')">
                             </dashboard-my-tasks>
                         </div>
@@ -182,6 +183,7 @@
                         <div class="content-card mb elevation-1">
                             <dashboard-my-projects
                                 :projects="{{ $myProjects->toJson() }}"
+                                locale="{{ app()->getLocale() }}"
                                 no-records-text="@lang('dashboard.projects_empty')">
                             </dashboard-my-projects>
                         </div>

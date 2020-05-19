@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Overtrue\LaravelSubscribe\Traits\Subscribable;
 
@@ -12,6 +13,7 @@ class Ministry extends Model
     use Sluggable;
     use Searchable;
     use Subscribable;
+    use HasTranslations;
 
     protected $table = "ministries";
     protected $guarded = ["id", "created_at", "updated_at"];
@@ -22,6 +24,11 @@ class Ministry extends Model
         "description",
         "website_url",
         "logo_url",
+    ];
+    public $translatable = [
+        "name",
+        "abbreviation",
+        "description",
     ];
 
     //

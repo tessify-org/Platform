@@ -18,7 +18,7 @@ class CreateSkillTaskTable extends Migration
             $table->unsignedInteger('skill_id');
             $table->unsignedInteger('task_id');
             $table->unsignedInteger('required_mastery')->default(1);
-            $table->text('description')->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

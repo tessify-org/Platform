@@ -17,8 +17,8 @@ class CreateNotificationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('uuid');
             $table->unsignedInteger('user_id');
-            $table->string('title');
-            $table->text('description')->nullable();
+            $table->json('title');
+            $table->json('description')->nullable();
             $table->boolean('read')->default(false);
             $table->datetime('read_on')->nullable();
             $table->timestamps();

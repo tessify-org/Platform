@@ -15,8 +15,8 @@ class CreateTaskCategoriesTable extends Migration
     {
         Schema::create('task_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

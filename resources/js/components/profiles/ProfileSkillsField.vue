@@ -2,7 +2,7 @@
     <div id="profile-skills-field">
         
         <!-- Label -->
-        <div id="profile-skills-field__label">{{ labelText }}</div>
+        <div id="profile-skills-field__label">{{ strings.label }}</div>
 
         <!-- Skills -->
         <div id="profile-skills-field__skills" v-if="mutableSkills.length > 0">
@@ -29,14 +29,14 @@
 
         <!-- No skills -->
         <div id="profile-skills-field__no-records" v-if="mutableSkills.length === 0">
-            {{ noRecordsText }}
+            {{ strings.no_records }}
         </div>
 
         <!-- Actions -->
         <div id="profile-skills-field__actions">
             <v-btn color="primary" depressed small @click="onClickAdd">
                 <i class="fas fa-plus"></i>
-                {{ addButtonText }}
+                {{ strings.add_button }}
             </v-btn>
         </div>
 
@@ -47,19 +47,19 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="dialog-content">
-                    <h3 class="dialog-title">{{ viewDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.view_dialog_title }}</h3>
                     <div class="dialog-text">
                         <div class="details bordered mb-0">
                             <div class="detail">
-                                <div class="key">{{ viewDialogSkillText }}</div>
+                                <div class="key">{{ strings.view_dialog_skill }}</div>
                                 <div class="val">{{ mutableSkills[this.dialogs.view.index].skill }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">{{ viewDialogMasteryText }}</div>
+                                <div class="key">{{ strings.view_dialog_mastery }}</div>
                                 <div class="val">{{ mutableSkills[this.dialogs.view.index].mastery }} / 10</div>
                             </div>
                             <div class="detail" v-if="mutableSkills[this.dialogs.view.index].description !== '' && mutableSkills[this.dialogs.view.index].description !== null">
-                                <div class="key">{{ viewDialogDescriptionText }}</div>
+                                <div class="key">{{ strings.view_dialog_description }}</div>
                                 <div class="val">{{ mutableSkills[this.dialogs.view.index].description }}</div>
                             </div>
                         </div>
@@ -69,11 +69,11 @@
                     <div class="dialog-controls__right">
                         <v-btn depressed color="warning" @click="onClickEdit(dialogs.view.index)">
                             <i class="fas fa-edit"></i>
-                            {{ viewDialogEditText }}
+                            {{ strings.view_dialog_edit }}
                         </v-btn>
                         <v-btn depressed dark color="red" @click="onClickDelete(dialogs.view.index)">
                             <i class="fas fa-trash-alt"></i>
-                            {{ viewDialogDeleteText }}
+                            {{ strings.view_dialog_delete }}
                         </v-btn>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
         </v-dialog>
 
         <!-- Add skill dialog -->
-        <v-dialog v-model="dialogs.add.show" width="500">
+        <v-dialog v-model="dialogs.add.show" width="750">
             <div class="dialog">
                 <!-- Close button -->
                 <div class="dialog__close-button" @click="dialogs.add.show = false">
@@ -90,7 +90,7 @@
                 <!-- Content -->
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ createDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.create_dialog_title }}</h3>
                     <!-- Errors -->
                     <div class="dialog-errors" v-if="dialogs.add.errors.length > 0">
                         <div class="dialog-error" v-for="(error, ei) in dialogs.add.errors" :key="ei">
@@ -100,7 +100,7 @@
                     <!-- Skill -->
                     <div class="form-field">
                         <v-combobox
-                            :label="formSkillText"
+                            :label="strings.form_skill"
                             :items="skillOptions"
                             v-model="dialogs.add.form.skill">
                         </v-combobox>
@@ -108,7 +108,7 @@
                     <!-- Mastery -->
                     <div class="form-field">
                         <v-select
-                            :label="formMasteryText"
+                            :label="strings.form_mastery"
                             :items="masteryOptions"
                             v-model="dialogs.add.form.mastery">
                         </v-select>
@@ -116,8 +116,8 @@
                     <!-- Description -->
                     <div class="form-field">
                         <v-textarea
-                            :label="formDescriptionText"
-                            placeholder="Beschrijf je ervaring met deze vaardigheid."
+                            :label="strings.form_description"
+                            :placeholder="strings.form_description_hint"
                             v-model="dialogs.add.form.description">
                         </v-textarea>
                     </div>
@@ -128,7 +128,7 @@
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.add.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ createDialogCancelText }}
+                            {{ strings.create_dialog_cancel }}
                         </v-btn>
                     </div>
                     <!-- Confirm delete -->
@@ -141,7 +141,7 @@
                             :dark="!confirmAddDisabled"
                             :disabled="confirmAddDisabled">
                             <i class="far fa-save"></i>
-                            {{ createDialogSubmitText }}
+                            {{ strings.create_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -150,14 +150,14 @@
         </v-dialog>
 
         <!-- Edit skill dialog -->
-        <v-dialog v-model="dialogs.edit.show" width="500">
+        <v-dialog v-model="dialogs.edit.show" width="750">
             <div class="dialog">
                 <div class="dialog__close-button" @click="dialogs.edit.show = false">
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ updateDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.update_dialog_title }}</h3>
                     <!-- Errors -->
                     <div class="dialog-errors" v-if="dialogs.edit.errors.length > 0">
                         <div class="dialog-error" v-for="(error, ei) in dialogs.edit.errors" :key="ei">
@@ -167,7 +167,7 @@
                     <!-- Skill -->
                     <div class="form-field">
                         <v-combobox
-                            :label="formSkillText"
+                            :label="strings.form_skill"
                             :items="skillOptions"
                             v-model="dialogs.edit.form.skill">
                         </v-combobox>
@@ -175,7 +175,7 @@
                     <!-- Mastery -->
                     <div class="form-field">
                         <v-select
-                            :label="formMasteryText"
+                            :label="strings.form_mastery"
                             :items="masteryOptions"
                             v-model="dialogs.edit.form.mastery">
                         </v-select>
@@ -183,8 +183,8 @@
                     <!-- Description -->
                     <div class="form-field">
                         <v-textarea
-                            :label="formDescriptionText"
-                            placeholder="Beschrijf je ervaring met deze vaardigheid."
+                            :label="strings.form_description"
+                            :placeholder="strings.form_description_hint"
                             v-model="dialogs.edit.form.description">
                         </v-textarea>
                     </div>
@@ -193,7 +193,7 @@
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.edit.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ updateDialogCancelText }}
+                            {{ strings.update_dialog_cancel }}
                         </v-btn>
                     </div>
                     <div class="dialog-controls__right">
@@ -204,7 +204,7 @@
                             :dark="!confirmEditDisabled"
                             :disabled="confirmEditDisabled">
                             <i class="far fa-save"></i>
-                            {{ updateDialogSubmitText }}
+                            {{ strings.update_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -219,23 +219,23 @@
                 </div>
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ deleteDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.delete_dialog_title }}</h3>
                     <!-- Text -->
-                    <div class="dialog-text">{{ deleteDialogText }}</div>
+                    <div class="dialog-text">{{ strings.delete_dialog_text }}</div>
                 </div>
                 <div class="dialog-controls">
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.delete.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ deleteDialogCancelText }}
+                            {{ strings.delete_dialog_cancel }}
                         </v-btn>
                     </div>
                     <div class="dialog-controls__right">
                         <v-btn 
-                            depressed dark color="danger"
+                            depressed dark color="red"
                             @click="onClickConfirmDelete">
                             <i class="fas fa-trash-alt"></i>
-                            {{ deleteDialogSubmitText }}
+                            {{ strings.delete_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -256,28 +256,8 @@
             "user",
             "skills",
             "oldInput",
-            "labelText",
-            "noRecordsText",
-            "addButtonText",
-            "formSkillText",
-            "formMasteryText",
-            "formDescriptionText",
-            "viewDialogTitleText",
-            "viewDialogEditText",
-            "viewDialogDeleteText",
-            "viewDialogSkillText",
-            "viewDialogMasteryText",
-            "viewDialogDescriptionText",
-            "createDialogTitleText",
-            "createDialogCancelText",
-            "createDialogSubmitText",
-            "updateDialogTitleText",
-            "updateDialogCancelText",
-            "updateDialogSubmitText",
-            "deleteDialogTitleText",
-            "deleteDialogText",
-            "deleteDialogCancelText",
-            "deleteDialogSubmitText",
+            "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[profile-skills-field]",
@@ -315,6 +295,24 @@
                 },
             }
         }),
+        watch: {
+            "dialogs.add.form.skill.nl": function() {
+                for (let i = 0; i < this.skills.length; i++) {
+                    if (this.skills[i].name.nl === this.dialogs.add.form.skill.nl) {
+                        this.dialogs.add.form.skill.en = this.skills[i].name.en;
+                        break;
+                    }
+                }
+            },
+            "dialogs.update.form.skill.nl": function() {
+                for (let i = 0; i < this.skills.length; i++) {
+                    if (this.skills[i].name.nl === this.dialogs.update.form.skill.nl) {
+                        this.dialogs.update.form.skill.en = this.skills[i].name.en;
+                        break;
+                    }
+                }
+            },
+        },
         computed: {
             confirmAddDisabled() {
                 return this.dialogs.add.form.skill === "";
@@ -334,28 +332,8 @@
                 console.log(this.tag+" user: ", this.user);
                 console.log(this.tag+" skills: ", this.skills);
                 console.log(this.tag+" old input: ", this.oldInput);
-                console.log(this.tag+" label text: ", this.labelText);
-                console.log(this.tag+" no records text: ", this.noRecordsText);
-                console.log(this.tag+" add button text: ", this.addButtonText);
-                console.log(this.tag+" form skill text: ", this.formSkillText);
-                console.log(this.tag+" form mastery text: ", this.formMasteryText);
-                console.log(this.tag+" form description text: ", this.formDescriptionText);
-                console.log(this.tag+" view dialog title text: ", this.viewDialogTitleText);
-                console.log(this.tag+" view dialog skill text: ", this.viewDialogSkillText);
-                console.log(this.tag+" view dialog mastery text: ", this.viewDialogMasteryText);
-                console.log(this.tag+" view dialog description text: ", this.viewDialogDescriptionText);
-                console.log(this.tag+" view dialog edit text: ", this.viewDialogEditText);
-                console.log(this.tag+" view dialog delete text: ", this.viewDialogDeleteText);
-                console.log(this.tag+" create dialog title text: ", this.createDialogTitleText);
-                console.log(this.tag+" create dialog cancel text: ", this.createDialogCancelText);
-                console.log(this.tag+" create dialog submit text: ", this.createDialogSubmitText);
-                console.log(this.tag+" update dialog title text: ", this.updateDialogTitleText);
-                console.log(this.tag+" update dialog cancel text: ", this.updateDialogCancelText);
-                console.log(this.tag+" update dialog submit text: ", this.updateDialogSubmitText);
-                console.log(this.tag+" delete dialog title text: ", this.deleteDialogTitleText);
-                console.log(this.tag+" delete dialog text: ", this.deleteDialogText);
-                console.log(this.tag+" delete dialog cancel text: ", this.deleteDialogCancelText);
-                console.log(this.tag+" delete dialog submit text: ", this.deleteDialogSubmitText);
+                console.log(this.tag+" strings: ", this.strings);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
                 this.generateSkillOptions();
                 this.generateMasteryOptions();
@@ -364,7 +342,7 @@
                 if (this.user !== undefined && this.user !== null && this.user.skills !== undefined && this.user.skills !== null && this.user.skills.length > 0) {
                     for (let i = 0; i < this.user.skills.length; i++) {
                         this.mutableSkills.push({
-                            skill: this.user.skills[i].name,
+                            skill: this.user.skills[i].name[this.locale],
                             mastery: this.user.skills[i].pivot.mastery,
                             description: this.user.skills[i].pivot.description,
                         });
@@ -385,7 +363,7 @@
             generateSkillOptions() {
                 if (this.skills !== undefined && this.skills !== null && this.skills.length > 0) {
                     for (let i = 0; i < this.skills.length; i++) {
-                        this.skillOptions.push(this.skills[i].name);
+                        this.skillOptions.push(this.skills[i].name[this.locale]);
                     }
                 }
             },

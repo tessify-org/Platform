@@ -15,8 +15,8 @@ class CreateTaskSenioritiesTable extends Migration
     {
         Schema::create('task_seniorities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('label');
+            $table->json('name');
+            $table->json('label');
             $table->timestamps();
         });
     }
