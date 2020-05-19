@@ -2,7 +2,7 @@
     <div id="profile-assignments-field">
 
         <!-- Label -->
-        <div id="profile-assignments-field__label">{{ labelText }}</div>
+        <div id="profile-assignments-field__label">{{ strings.label }}</div>
 
         <!-- Assignments -->
         <div id="profile-assignments-field__assignments" v-if="mutableAssignments.length > 0">
@@ -13,8 +13,8 @@
                     </span>
                     {{ assignment.title }}
                 </div>
-                <div class="assignment-organization">{{ assignment.organization.abbreviation }}</div>
-                <div class="assignment-department">{{ assignment.department.name }}</div>
+                <div class="assignment-organization">{{ assignment.organization.abbreviation[locale] }}</div>
+                <div class="assignment-department">{{ assignment.department.name[locale] }}</div>
                 <div class="assignment-actions">
                     <div class="assignment-action view" @click="onClickView(ai)">
                         <i class="fas fa-eye"></i>
@@ -31,14 +31,14 @@
 
         <!-- No assignments -->
         <div id="profile-assignments-field__no-assignments" v-if="mutableAssignments.length === 0">
-            {{ noRecordsText }}
+            {{ strings.no_records }}
         </div>
 
         <!-- Actions -->
         <div id="profile-assignments-field__actions">
             <v-btn color="primary" small depressed @click="onClickAdd">
                 <i class="fas fa-plus"></i>
-                {{ addButtonText }}
+                {{ strings.add_button }}
             </v-btn>
         </div>
 
@@ -52,22 +52,22 @@
                 <!-- Content -->
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ viewDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.view_dialog_title }}</h3>
                     <!-- Details -->
                     <div class="details compact bordered mb-0">
                         <!-- Ministry -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogMinistryText }}</div>
-                            <div class="val">{{ mutableAssignments[dialogs.view.index].organization.ministry.name }}</div>
+                            <div class="key">{{ strings.view_dialog_ministry }}</div>
+                            <div class="val">{{ mutableAssignments[dialogs.view.index].organization.ministry.name[this.locale] }}</div>
                         </div>
                         <!-- Organization -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogOrganizationText }}</div>
-                            <div class="val">{{ mutableAssignments[dialogs.view.index].organization.name }}</div>
+                            <div class="key">{{ strings.view_dialog_organization }}</div>
+                            <div class="val">{{ mutableAssignments[dialogs.view.index].organization.name[this.locale] }}</div>
                         </div>
                         <!-- Location -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogLocationText }}</div>
+                            <div class="key">{{ strings.view_dialog_location }}</div>
                             <div class="key">
                                 <span class="building-name" v-if="mutableAssignments[dialogs.view.index].location.building_name !== null">
                                     {{ mutableAssignments[dialogs.view.index].location.building_name }} - 
@@ -77,26 +77,26 @@
                         </div>
                         <!-- Department -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogDepartmentText }}</div>
-                            <div class="val">{{ mutableAssignments[dialogs.view.index].department.name }}</div>
+                            <div class="key">{{ strings.view_dialog_department }}</div>
+                            <div class="val">{{ mutableAssignments[dialogs.view.index].department.name[this.locale] }}</div>
                         </div>
                         <!-- Assignment type -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogAssignmentTypeText }}</div>
-                            <div class="val">{{ mutableAssignments[dialogs.view.index].type.label }}</div>
+                            <div class="key">{{ strings.view_dialog_assignment_type }}</div>
+                            <div class="val">{{ mutableAssignments[dialogs.view.index].type.label[this.locale] }}</div>
                         </div>
                         <!-- Function name -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogFunctionText }}</div>
+                            <div class="key">{{ strings.view_dialog_function }}</div>
                             <div class="val">{{ mutableAssignments[dialogs.view.index].title }}</div>
                         </div>
                         <!-- Duration -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogDurationText }}</div>
+                            <div class="key">{{ strings.view_dialog_duration }}</div>
                             <div class="val">
                                 {{ mutableAssignments[dialogs.view.index].start_date }}
                                 <span class="duration-second-part" v-if="mutableAssignments[dialogs.view.index].current">
-                                    - {{ formPresentText }}
+                                    - {{ strings.form_present }}
                                 </span>
                                 <span class="duration-second-part" v-if="!mutableAssignments[dialogs.view.index].current">
                                     - {{ mutableAssignments[dialogs.view.index].end_date }}
@@ -105,7 +105,7 @@
                         </div>
                         <!-- Description -->
                         <div class="detail">
-                            <div class="key">{{ viewDialogDescriptionText }}</div>
+                            <div class="key">{{ strings.view_dialog_description }}</div>
                             <div class="val">{{ mutableAssignments[dialogs.view.index].description }}</div>
                         </div>
                     </div>
@@ -116,12 +116,12 @@
                         <!-- Edit -->
                         <v-btn depressed color="warning" @click="onClickEdit(dialogs.view.index)">
                             <i class="fas fa-edit"></i>
-                            {{ viewDialogEditText }}
+                            {{ strings.view_dialog_edit }}
                         </v-btn>
                         <!-- Delete -->
                         <v-btn depressed dark color="red" @click="onClickDelete(dialogs.view.index)">
                             <i class="fas fa-trash-alt"></i>
-                            {{ viewDialogDeleteText }}
+                            {{ strings.view_dialog_delete }}
                         </v-btn>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                 <!-- Content -->
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ createDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.create_dialog_title }}</h3>
                     <!-- Errors -->
                     <div class="dialog-errors" v-if="dialogs.add.errors.length > 0">
                         <div class="dialog-error" v-for="(error, ei) in dialogs.add.errors" :key="ei">
@@ -148,21 +148,21 @@
                     <!-- Title -->
                     <div class="form-field">
                         <v-text-field
-                            :label="formTitleText"
+                            :label="strings.form_title"
                             v-model="dialogs.add.form.title">
                         </v-text-field>
                     </div>
                     <!-- Description -->
                     <div class="form-field">
                         <v-textarea
-                            :label="formDescriptionText"
+                            :label="strings.form_description"
                             v-model="dialogs.add.form.description">
                         </v-textarea>
                     </div>
                     <!-- Assignment type -->
                     <div class="form-field">
                         <v-select
-                            :label="formTypeText"
+                            :label="strings.form_type"
                             v-model="dialogs.add.form.assignment_type_id"
                             :items="assignmentTypeOptions">
                         </v-select>
@@ -170,7 +170,7 @@
                     <!-- Organization -->
                     <div class="form-field">
                         <v-combobox
-                            :label="formOrganizationText"
+                            :label="strings.form_organization"
                             v-model="dialogs.add.form.organization"
                             :items="organizationOptions">
                         </v-combobox>
@@ -178,7 +178,7 @@
                     <!-- Department -->
                     <div class="form-field" v-if="dialogs.add.form.organization !== ''">
                         <v-combobox
-                            :label="formDepartmentText"
+                            :label="strings.form_department"
                             v-model="dialogs.add.form.department"
                             :items="dialogs.add.organizationDepartmentOptions">
                         </v-combobox>
@@ -186,7 +186,7 @@
                     <!-- Location -->
                     <div class="form-field" v-if="dialogs.add.form.organization !== '' && addSelectedOrganizationHasLocations">
                         <v-select
-                            :label="formLocationText"
+                            :label="strings.form_location"
                             v-model="dialogs.add.form.organization_location_id"
                             :items="dialogs.add.organizationLocationOptions">
                         </v-select>
@@ -194,7 +194,7 @@
                     <!-- Current -->
                     <div class="form-field">
                         <v-checkbox
-                            :label="formCurrentFunctionText"
+                            :label="strings.form_current_function"
                             v-model="dialogs.add.form.current">
                         </v-checkbox>
                     </div>
@@ -203,19 +203,19 @@
                         <div class="form-field">
                             <datepicker
                                 name="start_date"
-                                :label="formStartDateText"
+                                :label="strings.form_start_date"
                                 v-model="dialogs.add.form.start_date">
                             </datepicker>
                         </div>
                         <div class="form-field" v-if="dialogs.add.form.current">
-                            {{ formPresentText }}
+                            {{ strings.form_present }}
                         </div>
                         <div class="form-field" v-if="!dialogs.add.form.current">
                             <datepicker
                                 name="end_date"
-                                :label="formEndDateText"
+                                :label="strings.form_end_date"
                                 v-model="dialogs.add.form.end_date"
-                                :placeholder="formUntilPresentText">
+                                :placeholder="strings.form_until_present">
                             </datepicker>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.add.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ createDialogCancelText }}
+                            {{ strings.create_dialog_cancel }}
                         </v-btn>
                     </div>
                     <!-- Confirm delete -->
@@ -239,7 +239,7 @@
                             :dark="!confirmAddDisabled"
                             :disabled="confirmAddDisabled">
                             <i class="far fa-save"></i>
-                            {{ createDialogSubmitText }}
+                            {{ strings.create_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                 <!-- Content -->
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ updateDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.update_dialog_title }}</h3>
                     <!-- Errors -->
                     <div class="dialog-errors" v-if="dialogs.edit.errors.length > 0">
                         <div class="dialog-error" v-for="(error, ei) in dialogs.edit.errors" :key="ei">
@@ -266,21 +266,21 @@
                     <!-- Title -->
                     <div class="form-field">
                         <v-text-field
-                            :label="formTitleText"
+                            :label="strings.form_title"
                             v-model="dialogs.edit.form.title">
                         </v-text-field>
                     </div>
                     <!-- Description -->
                     <div class="form-field">
                         <v-textarea
-                            :label="formDescriptionText"
+                            :label="strings.form_description"
                             v-model="dialogs.edit.form.description">
                         </v-textarea>
                     </div>
                     <!-- Assignment type -->
                     <div class="form-field">
                         <v-select
-                            :label="formTypeText"
+                            :label="strings.form_type"
                             v-model="dialogs.edit.form.assignment_type_id"
                             :items="assignmentTypeOptions">
                         </v-select>
@@ -288,7 +288,7 @@
                     <!-- Organization -->
                     <div class="form-field">
                         <v-combobox
-                            :label="formOrganizationText"
+                            :label="strings.form_organization"
                             v-model="dialogs.edit.form.organization"
                             :items="organizationOptions">
                         </v-combobox>
@@ -296,7 +296,7 @@
                     <!-- Department -->
                     <div class="form-field" v-if="dialogs.edit.form.organization !== ''">
                         <v-combobox
-                            :label="formDepartmentText"
+                            :label="strings.form_department"
                             v-model="dialogs.edit.form.department"
                             :items="dialogs.edit.organizationDepartmentOptions">
                         </v-combobox>
@@ -304,7 +304,7 @@
                     <!-- Location -->
                     <div class="form-field" v-if="dialogs.edit.form.organization !== '' && editSelectedOrganizationHasLocations">
                         <v-select
-                            :label="formLocationText"
+                            :label="strings.form_location"
                             v-model="dialogs.edit.form.organization_location_id"
                             :items="dialogs.edit.organizationLocationOptions">
                         </v-select>
@@ -312,7 +312,7 @@
                     <!-- Current -->
                     <div class="form-field">
                         <v-checkbox
-                            :label="formCurrentFunctionText"
+                            :label="strings.form_current_assignment"
                             v-model="dialogs.edit.form.current">
                         </v-checkbox>
                     </div>
@@ -321,19 +321,19 @@
                         <div class="form-field">
                             <datepicker
                                 name="start_date"
-                                :label="formStartDateText"
+                                :label="strings.form_start_date"
                                 v-model="dialogs.edit.form.start_date">
                             </datepicker>
                         </div>
                         <div class="form-field" v-if="dialogs.edit.form.current">
-                            {{ formPresentText }}
+                            {{ strings.form_present }}
                         </div>
                         <div class="form-field" v-if="!dialogs.edit.form.current">
                             <datepicker
                                 name="end_date"
-                                :label="formEndDateText"
+                                :label="strings.form_end_date"
                                 v-model="dialogs.edit.form.end_date"
-                                :placeholder="formUntilPresentText">
+                                :placeholder="strings.form_until_present">
                             </datepicker>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.edit.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ updateDialogCancelText }}
+                            {{ strings.update_dialog_cancel }}
                         </v-btn>
                     </div>
                     <!-- Confirm delete -->
@@ -357,7 +357,7 @@
                             :dark="!confirmUpdateDisabled"
                             :disabled="confirmUpdateDisabled">
                             <i class="far fa-save"></i>
-                            {{ updateDialogSubmitText }}
+                            {{ strings.update_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -374,16 +374,16 @@
                 <!-- Content -->
                 <div class="dialog-content">
                     <!-- Title -->
-                    <h3 class="dialog-title">{{ deleteDialogTitleText }}</h3>
+                    <h3 class="dialog-title">{{ strings.delete_dialog_title }}</h3>
                     <!-- Text -->
-                    <div class="dialog-text">{{ deleteDialogText }}</div>
+                    <div class="dialog-text">{{ strings.delete_dialog_text }}</div>
                 </div>
                 <!-- Controls -->
                 <div class="dialog-controls">
                     <div class="dialog-controls__left">
                         <v-btn text @click="dialogs.delete.show = false">
                             <i class="fas fa-arrow-left"></i>
-                            {{ deleteDialogCancelText }}
+                            {{ strings.delete_dialog_cancel }}
                         </v-btn>
                     </div>
                     <div class="dialog-controls__right">
@@ -393,7 +393,7 @@
                             :disabled="dialogs.delete.loading"
                             @click="onClickConfirmDelete">
                             <i class="fas fa-trash-alt"></i>
-                            {{ deleteDialogSubmitText }}
+                            {{ strings.delete_dialog_submit }}
                         </v-btn>
                     </div>
                 </div>
@@ -413,44 +413,9 @@
             "organizations",
             "organizationLocations",
             "departments",
-            "createApiEndpoint",
-            "updateApiEndpoint",
-            "deleteApiEndpoint",
-            "labelText",
-            "noRecordsText",
-            "addButtonText",
-            "formTitleText",
-            "formDescriptionText",
-            "formTypeText",
-            "formOrganizationText",
-            "formDepartmentText",
-            "formLocationText",
-            "formCurrentFunctionText",
-            "formStartDateText",
-            "formPresentText",
-            "formEndDateText",
-            "formUntilPresentText",
-            "createDialogTitleText",
-            "createDialogCancelText",
-            "createDialogSubmitText",
-            "viewDialogTitleText",
-            "viewDialogMinistryText",
-            "viewDialogOrganizationText",
-            "viewDialogDepartmentText",
-            "viewDialogLocationText",
-            "viewDialogAssignmentTypeText",
-            "viewDialogFunctionText",
-            "viewDialogDurationText",
-            "viewDialogDescriptionText",
-            "viewDialogEditText",
-            "viewDialogDeleteText",
-            "updateDialogTitleText",
-            "updateDialogCancelText",
-            "updateDialogSubmitText",
-            "deleteDialogTitleText",
-            "deleteDialogText",
-            "deleteDialogCancelText",
-            "deleteDialogSubmitText",
+            "apiEndpoints",
+            "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[profile-assignments-field]",
@@ -597,44 +562,9 @@
                 console.log(this.tag+" organizations: ", this.organizations);
                 console.log(this.tag+" organization locations: ", this.organizationLocations);
                 console.log(this.tag+" departments: ", this.departments);
-                console.log(this.tag+" create api endpoint: ", this.createApiEndpoint);
-                console.log(this.tag+" update api endpoint: ", this.updateApiEndpoint);
-                console.log(this.tag+" delete api endpoint: ", this.deleteApiEndpoint);
-                console.log(this.tag+" label text: ", this.labelText);
-                console.log(this.tag+" no records text: ", this.noRecordsText);
-                console.log(this.tag+" add button text: ", this.addButtonText);
-                console.log(this.tag+" form title text: ", this.formTitleText);
-                console.log(this.tag+" form description text: ", this.formDescriptionText);
-                console.log(this.tag+" form type text: ", this.formTypeText);
-                console.log(this.tag+" form organization text: ", this.formOrganizationText);
-                console.log(this.tag+" form department text: ", this.formDepartmentText);
-                console.log(this.tag+" form location text: ", this.formLocationText);
-                console.log(this.tag+" form current function text: ", this.formCurrentFunctionText);
-                console.log(this.tag+" form start date text: ", this.formStartDateText);
-                console.log(this.tag+" form present text: ", this.formPresentText);
-                console.log(this.tag+" form end date text: ", this.formEndDateText);
-                console.log(this.tag+" form until present text: ", this.formUntilPresentText);
-                console.log(this.tag+" create dialog title text: ", this.createDialogTitle);
-                console.log(this.tag+" create dialog cancel text: ", this.createDialogCancelText);
-                console.log(this.tag+" create dialog submit text: ", this.createDialogSubmitText);
-                console.log(this.tag+" view dialog title text: ", this.viewDialogTitleText);
-                console.log(this.tag+" view dialog ministry text: ", this.viewDialogMinistryText);
-                console.log(this.tag+" view dialog organization text: ", this.viewDialogOrganizationText);
-                console.log(this.tag+" view dialog department text: ", this.viewDialogDepartmentText);
-                console.log(this.tag+" view dialog location text: ", this.viewDialogLocationText);
-                console.log(this.tag+" view dialog assignment type text: ", this.viewDialogAssignmentTypeText);
-                console.log(this.tag+" view dialog function text: ", this.viewDialogFunctionText);
-                console.log(this.tag+" view dialog duration text: ", this.viewDialogDurationText);
-                console.log(this.tag+" view dialog description text: ", this.viewDialogDescriptionText);
-                console.log(this.tag+" view dialog edit text: ", this.viewDialogEditText);
-                console.log(this.tag+" view dialog delete text: ", this.viewDialogDeleteText);
-                console.log(this.tag+" update dialog title text: ", this.updateDialogTitle);
-                console.log(this.tag+" update dialog cancel text: ", this.updateDialogCancelText);
-                console.log(this.tag+" update dialog submit text: ", this.updateDialogSubmitText);
-                console.log(this.tag+" delete dialog title text: ", this.deleteDialogTitle);
-                console.log(this.tag+" delete dialog text: ", this.deleteDialogText);
-                console.log(this.tag+" delete dialog cancel text: ", this.deleteDialogCancelText);
-                console.log(this.tag+" delete dialog submit text: ", this.deleteDialogSubmitText);
+                console.log(this.tag+" api endpoints: ", this.apiEndpoints);
+                console.log(this.tag+" strings: ", this.strings);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
                 this.generateOrganizationOptions();
                 this.generateAssignmentTypeOptions();
@@ -644,28 +574,6 @@
                     for (let i = 0; i < this.user.assignments.length; i++) {
                         this.mutableAssignments.push(this.user.assignments[i]);
                     }
-                }
-            },
-            generateAssignmentTypeOptions() {
-                if (this.assignmentTypes !== undefined && this.assignmentTypes !== null && this.assignmentTypes.length > 0) {
-                    for (let i = 0; i < this.assignmentTypes.length; i++) {
-                        this.assignmentTypeOptions.push({
-                            text: this.assignmentTypes[i].label,
-                            value: this.assignmentTypes[i].id,
-                        });
-                    }
-                }
-            },
-            generateOrganizationOptions() {
-                if (this.organizations !== undefined && this.organizations !== null && this.organizations.length > 0) {
-                    for (let i = 0; i < this.organizations.length; i++) {
-                        this.organizationOptions.push(this.organizations[i].name);
-                    }
-                } else {
-                    this.organizationOptions.push({
-                        text: "No organizations found",
-                        value: 0,
-                    });
                 }
             },
             getOrganizationByName(name) {
@@ -682,7 +590,7 @@
                 if (this.assignmentTypes !== undefined && this.assignmentTypes !== null && this.assignmentTypes.length > 0) {
                     for (let i = 0; i < this.assignmentTypes.length; i++) {
                         this.assignmentTypeOptions.push({
-                            text: this.assignmentTypes[i].label,
+                            text: this.assignmentTypes[i].label[this.locale],
                             value: this.assignmentTypes[i].id,
                         });
                     }
@@ -691,41 +599,34 @@
             generateOrganizationOptions() {
                 if (this.organizations !== undefined && this.organizations !== null && this.organizations.length > 0) {
                     for (let i = 0; i < this.organizations.length; i++) {
-                        this.organizationOptions.push(this.organizations[i].name);
+                        this.organizationOptions.push(this.organizations[i].name[this.locale]);
                     }
                 } else {
                     this.organizationOptions.push({
-                        text: "No organizations found",
+                        text: this.strings.no_organizations,
                         value: 0,
                     });
                 }
             },
             generateOrganizationDepartmentOptions(type) {
-                console.log("GENERATING ORG DEPARTMENT OPTIONS");
                 if (this.departments !== undefined && this.departments !== null && this.departments.length > 0) {
                     if (type === "add") {
-                        console.log("ADD");
                         if (this.addSelectedOrganization) {
-                            console.log(this.addSelectedOrganization);
                             this.dialogs.add.organizationDepartmentOptions = [];
                             for (let i = 0; i < this.departments.length; i++) {
                                 if (this.departments[i].organization_id === this.addSelectedOrganization.id) {
-                                    this.dialogs.add.organizationDepartmentOptions.push(this.departments[i].name);
+                                    this.dialogs.add.organizationDepartmentOptions.push(this.departments[i].name[this.locale]);
                                 }
                             }
-                            console.log(this.dialogs.add.organizationDepartmentOptions);
                         }
                     } else {
-                        console.log("EDIT");
                         if (this.editSelectedOrganization) {
-                            console.log(this.editSelectedOrganization);
                             this.dialogs.edit.organizationDepartmentOptions = [];
                             for (let i = 0; i < this.departments.length; i++) {
                                 if (this.departments[i].organization_id === this.editSelectedOrganization.id) {
-                                    this.dialogs.edit.organizationDepartmentOptions.push(this.departments[i].name);
+                                    this.dialogs.edit.organizationDepartmentOptions.push(this.departments[i].name[this.locale]);
                                 }
                             }
-                            console.log(this.dialogs.edit.organizationDepartmentOptions);
                         }
                     }
                 }
@@ -764,7 +665,7 @@
             getOrganizationByName(name) {
                 if (this.organizations !== undefined && this.organizations !== null && this.organizations.length > 0) {
                     for (let i = 0; i < this.organizations.length; i++) {
-                        if (this.organizations[i].name === name) {
+                        if (this.organizations[i].name[this.locale] === name) {
                             return this.organizations[i];
                         }
                     }
@@ -786,7 +687,7 @@
                 payload.append("current", this.dialogs.add.form.current);
                 payload.append("start_date", this.dialogs.add.form.start_date);
                 payload.append("end_date", this.dialogs.add.form.end_date);
-                this.axios.post(this.createApiEndpoint, payload)
+                this.axios.post(this.apiEndpoints.create_assignment, payload)
                     .then(function(response) {
                         this.dialogs.add.loading = false;
                         if (response.data.status === "success") {
@@ -830,10 +731,10 @@
                 this.dialogs.edit.index =  index;
                 this.dialogs.edit.show = true;
                 this.dialogs.edit.form.assignment_type_id = this.mutableAssignments[index].assignment_type_id;
-                this.dialogs.edit.form.organization = this.mutableAssignments[index].organization.name;
+                this.dialogs.edit.form.organization = this.mutableAssignments[index].organization.name[this.locale];
                 this.dialogs.edit.form.organization_department_id = this.mutableAssignments[index].organization_department_id;
                 this.dialogs.edit.form.organization_location_id = this.mutableAssignments[index].organization_location_id;
-                this.dialogs.edit.form.department = this.mutableAssignments[index].department.name;
+                this.dialogs.edit.form.department = this.mutableAssignments[index].department.name[this.locale];
                 this.dialogs.edit.form.title = this.mutableAssignments[index].title;
                 this.dialogs.edit.form.description = this.mutableAssignments[index].description;
                 this.dialogs.edit.form.current = this.mutableAssignments[index].current;
@@ -855,7 +756,7 @@
                 payload.append("current", this.dialogs.edit.form.current);
                 payload.append("start_date", this.dialogs.edit.form.start_date);
                 payload.append("end_date", this.dialogs.edit.form.end_date);
-                this.axios.post(this.updateApiEndpoint, payload)
+                this.axios.post(this.apiEndpoints.update_assignment, payload)
                     .then(function(response) {
                         this.dialogs.add.loading = false;
                         if (response.data.status === "success") {
@@ -892,7 +793,7 @@
                 this.dialogs.delete.loading = true;
                 let payload = new FormData();
                 payload.append("assignment_id", this.mutableAssignments[this.dialogs.delete.index].id);
-                this.axios.post(this.deleteApiEndpoint, payload)
+                this.axios.post(this.apiEndpoints.delete_assignment, payload)
                     .then(function(response) {
                         this.dialogs.delete.loading = false;
                         this.mutableAssignments.splice(this.dialogs.delete.index, 1);

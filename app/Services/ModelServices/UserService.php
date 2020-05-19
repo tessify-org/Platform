@@ -209,8 +209,6 @@ class UserService implements ModelServiceContract
         $user->email = $request->email;
         $user->publicly_display_email = $request->publicly_display_email == "true" ? true : false;
         $user->phone = $request->phone;
-        // if ($request->hasFile("avatar")) $user->avatar_url = Uploader::upload($request->file("avatar"), "images/users/avatars");
-        // if ($request->hasFile("header_bg")) $user->header_bg_url = Uploader::upload($request->file("header_bg"), "images/users/headers");
         $user->save();
 
         // Process skills

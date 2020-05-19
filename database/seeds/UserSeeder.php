@@ -40,6 +40,8 @@ class UserSeeder extends Seeder
             "is_admin" => true,
         ]);
         
+        Users::generateAvatar($nick);
+
         // Skills
         $php = Skill::where("name->en", "PHP")->first();
         $mysql = Skill::where("name->en", "MySQL")->first();
@@ -120,15 +122,6 @@ class UserSeeder extends Seeder
         // 
         // More admin accounts
         // 
-
-        // $nick2 = User::create([
-        //     "first_name" => "Nick",
-        //     "last_name" => "Verheijen de Tweede",
-        //     "email" => "verheijen.webdevelopment@gmail.com",
-        //     "password" => bcrypt("engeland"),
-        //     "is_admin" => true,
-        // ]);
-        // Users::generateAvatar($nick2);
         
         $victor = User::create([
             "first_name" => "Victor",
@@ -137,7 +130,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Corona2020!"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($victor);
+
+        Users::generateAvatar($victor);
 
         $winko = User::create([
             "first_name" => "Winko",
@@ -146,7 +140,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("engeland"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($winko);
+
+        Users::generateAvatar($winko);
         
         $ramon = User::create([
             "first_name" => "Ramon",
@@ -155,7 +150,8 @@ class UserSeeder extends Seeder
             "password" => bcrypt("Erkers2020"),
             "is_admin" => true,
         ]);
-        // Users::generateAvatar($ramon);
+
+        Users::generateAvatar($ramon);
 
         //
         // Dummy users
