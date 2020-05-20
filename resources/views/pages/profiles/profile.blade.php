@@ -241,7 +241,7 @@
                             </div> -->
                             
                             <!-- Comments -->
-                            <div class="content-box elevation-1">
+                            <!-- <div class="content-box elevation-1">
                                 <comments
                                     :user="{{ $user->toJson() }}"
                                     :comments="{{ $comments->toJson() }}"
@@ -263,7 +263,7 @@
                                     delete-cancel-text="@lang('comments.delete_cancel')"
                                     delete-submit-text="@lang('comments.delete_submit')">
                                 </comments>
-                            </div>
+                            </div> -->
 
                         </div>
                         <div id="profile-content__right">
