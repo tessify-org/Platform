@@ -35,7 +35,7 @@ class User extends Authenticatable
         'header_bg_url',
         'phone',
         'headline',
-        'interests',
+        'about_me',
         'reputation_points',
         'is_admin',
         'recovery_code',
@@ -173,6 +173,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
     
+    public function interests()
+    {
+        return $this->morphToMany(Tag::class, "taggable");
+    }
+
     //
     // Accessors
     //
@@ -211,7 +216,7 @@ class User extends Authenticatable
 
         if ($this->currentAssignment)
         {
-            $out .= $this->currentAssignment->title." bij ".$this->currentAssignment->organization->name;
+            $out .= $this->currentAssignment->title." ".__("profiles.profile_at")." ".$this->currentAssignment->organization->name;
             if ($this->currentAssignment->organization->ministry)
             {
                 $out .= ", ".$this->currentAssignment->organization->ministry->abbreviation;   

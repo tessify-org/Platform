@@ -2525,11 +2525,10 @@ i {
 }
 
 .page-title {
-  font-size: 4em;
+  font-size: 5em;
   line-height: 1em;
   font-weight: 600;
   margin: 0 0 50px 0;
-  text-transform: uppercase;
 }
 
 .page-title.centered {
@@ -4090,11 +4089,11 @@ i {
 }
 
 #profile #profile-header #profile-header__content #profile-header__title {
-  font-size: 4em;
+  margin: 0;
+  font-size: 5em;
   font-weight: 600;
+  line-height: 1em;
   text-align: center;
-  text-transform: uppercase;
-  margin: 0 0 0 0;
 }
 
 #profile #profile-header #profile-header__content #profile-header__subtitle {
@@ -4160,6 +4159,43 @@ i {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__text {
+  margin: 0 0 15px 0;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__interests #about-me__interests-label {
+  font-size: 0.9em;
+  margin: 0 0 5px 0;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__interests #about-me__interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 -5px -10px -5px;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__interests #about-me__interests-list .interest-wrapper {
+  box-sizing: border-box;
+  padding: 0 5px 10px 5px;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__interests #about-me__interests-list .interest-wrapper .interest {
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  box-sizing: border-box;
+  background-color: #333333;
+}
+
+#profile #profile-content__wrapper #profile-content #profile-content__left #about-me #about-me__interests #about-me__interests-missing {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
 }
 
 #profile #profile-content__wrapper #profile-content #profile-content__right {

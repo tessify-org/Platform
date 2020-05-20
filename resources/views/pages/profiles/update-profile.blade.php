@@ -24,6 +24,7 @@
                     :organizations="{{ $organizations->toJson() }}"
                     :organization-locations="{{ $organizationLocations->toJson() }}"
                     :departments="{{ $departments->toJson() }}"
+                    :tags="{{ $tags->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :api-endpoints="{{ $apiEndpoints->toJson() }}"

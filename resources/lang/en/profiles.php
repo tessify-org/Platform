@@ -47,6 +47,7 @@ return [
     "profile_created_at" => "Registered on",
     "profile_updated_at" => "Last changed on",
     "profile_update_button" => "Update your profile",
+    "profile_at" => "at",
 
     "profile_email_request_button" => "Request accesss",
     "profile_email_request_sent" => "Request sent",
@@ -58,7 +59,10 @@ return [
     "profile_email_request_rejected" => "Request has been rejected",
 
     "profile_personal_info" => "Personal information",
+    "profile_about" => "About me",
+    "profile_about_missing" => "This user has not written anything about themselves yet.",
     "profile_interests" => "Interests",
+    "profile_interests_missing" => "This user has not added any interests yet.",
     "profile_assignments" => "Assignments",
     "profile_reviews" => "Reviews",
     "profile_reactions" => "Reactions",
@@ -100,6 +104,8 @@ return [
     "update_profile_last_name" => "Last name",
     "update_profile_headline" => "Headline",
     "update_profile_assignments" => "Assignments",
+    "update_profile_about" => "About me",
+    "update_profile_about_hint" => "Tell your colleagues about yourself, who are you and what makes you happy?",
     "update_profile_interests" => "Interests",
     "update_profile_email" => "Email",
     "update_profile_publicly_display_email" => "Publicly display email",

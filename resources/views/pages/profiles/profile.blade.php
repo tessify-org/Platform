@@ -100,9 +100,7 @@
                         <div id="profile-content__left">
 
                             <!-- Personal information -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_personal_info")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_personal_info")</h3>
                             <div class="content-card mb elevation-1">
                                 <div class="details mb-0">
                                     <!-- Name -->
@@ -177,15 +175,39 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Interests -->
+                            
+                            <!-- About me & interests -->
                             @if ($user->interests !== null and $user->interests !== "")
-                                <h3 class="content-card__title">
-                                    @lang("profiles.profile_interests")
-                                </h3>
+                                <h3 class="content-card__title">@lang("profiles.profile_about")</h3>
                                 <div class="content-card mb elevation-1">
                                     <div class="content-card__content">
-                                        {!! nl2br($user->interests) !!}
+                                        <div id="about-me">
+                                            <div id="about-me__text">
+                                                @if (!is_null($user->about_me))
+                                                    {!! nl2br($user->about_me) !!}
+                                                @else
+                                                    <span class="italic">@lang("profiles.profile_about_missing")</span>
+                                                @endif
+                                            </div>
+                                            <div id="about-me__interests">
+                                                <div id="about-me__interests-label">@lang("profiles.profile_interests")</div>
+                                                @if ($user->interests->count())
+                                                    <div id="about-me__interests-list">
+                                                        @foreach ($user->interests as $tag)
+                                                            <div class="interest-wrapper">
+                                                                <div class="interest">
+                                                                    {{ $tag->name }}
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <div id="about-me__interests-missing">
+                                                        @lang("profiles.profile_interests_missing")
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             @endif
@@ -201,9 +223,7 @@
                             </div>
 
                             <!-- Reviews -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_reviews")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_reviews")</h3>
                             <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
                                     Coming soon..

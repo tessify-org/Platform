@@ -92,15 +92,29 @@
                 </v-text-field>
             </div>
 
-            <!-- Interests -->
+            <!-- About me -->
             <div class="form-field">
                 <v-textarea
-                    :label="strings.interests"
+                    name="about_me"
+                    :label="strings.about"
+                    v-model="form.about_me"
+                    :placeholder="strings.about_hint"
+                    :errors="hasErrors('about_me')"
+                    :error-messages="getErrors('about_me')">
+                </v-textarea>
+            </div>
+
+            <!-- Interests -->
+            <div class="form-field">
+                <v-select
+                    multiple
                     v-model="form.interests"
-                    name="interests"
+                    :items="tagOptions"
+                    :label="strings.interests"
                     :errors="hasErrors('interests')"
                     :error-messages="getErrors('interests')">
-                </v-textarea>
+                </v-select>
+                <input type="hidden" name="interests" :value="encodedTagIds">
             </div>
 
             <!-- Current assignment -->
@@ -161,6 +175,7 @@
             "organizations",
             "organizationLocations",
             "departments",
+            "tags",
             "errors",
             "oldInput",
             "strings",
@@ -170,6 +185,7 @@
         ],
         data: () => ({
             tag: "[update-profile-form]",
+            tagOptions: [],
             form: {
                 first_name: "",
                 last_name: "",
@@ -177,7 +193,8 @@
                 publicly_display_email: false,
                 phone: "",
                 headline: "",
-                interests: "",
+                about_me: "",
+                interests: [],
                 current_assignment_id: 0,
             },
             upload_avatar: {
@@ -193,6 +210,9 @@
             currentAssignmentId() {
                 return 0;
             },
+            encodedTagIds() {
+                return JSON.stringify(this.form.interests);
+            },
         },
         methods: {
             initialize() {
@@ -203,12 +223,24 @@
                 console.log(this.tag+" organizations: ", this.organizations);
                 console.log(this.tag+" organization locations: ", this.organizationLocations);
                 console.log(this.tag+" departments: ", this.departments);
+                console.log(this.tag+" tags: ", this.tags);
                 console.log(this.tag+" errors: ", this.errors);
                 console.log(this.tag+" old input: ", this.oldInput);
                 console.log(this.tag+" api endpoints: ", this.apiEndpoints);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" locale: ", this.locale);
+                this.generateTagOptions();
                 this.initializeData();
+            },
+            generateTagOptions() {
+                if (this.tags !== undefined && this.tags !== null && this.tags.length > 0) {
+                    for (let i = 0; i < this.tags.length; i++) {
+                        this.tagOptions.push({
+                            text: this.tags[i].name,
+                            value: this.tags[i].id,
+                        });
+                    }
+                }
             },
             initializeData() {
                 if (this.user !== undefined && this.user !== null) {

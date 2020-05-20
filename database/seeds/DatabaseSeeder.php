@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GovernmentSeeder::class);
         $this->call(SkillSeeder::class);
+        $this->call(TagSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ProjectSeeder::class);
         $this->call(TaskSeeder::class);
         $this->call(MessageSeeder::class);
         $this->call(NotificationSeeder::class);
         $this->call(SubscriptionSeeder::class);
-        $this->call(TagSeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(WhitelistedDomainSeeder::class);
     }

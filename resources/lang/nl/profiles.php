@@ -43,6 +43,7 @@ return [
     "profile_created_at" => "Geregistreerd op",
     "profile_updated_at" => "Laatst gewijzigd op",
     "profile_update_button" => "Profiel aanpassen",
+    "profile_at" => "bij",
     
     "profile_email_request_button" => "Vraag om toestemming",
     "profile_email_request_sent" => "Verzoek gestuurd",
@@ -54,7 +55,10 @@ return [
     "profile_email_request_rejected" => "Verzoek is afgewezen",
     
     "profile_personal_info" => "Persoonsgegevens",
+    "profile_about" => "Over mij",
+    "profile_about_missing" => "Deze persoon heeft not niks over zichzelf geschreven.",
     "profile_interests" => "Interesses",
+    "profile_interests_missing" => "Er zijn nog geen interesses toegevoegd.",
     "profile_assignments" => "Aanstellingen",
     "profile_reviews" => "Recensies",
     "profile_reactions" => "Reacties",
@@ -96,6 +100,8 @@ return [
     "update_profile_last_name" => "Achternaam",
     "update_profile_headline" => "Kopregel",
     "update_profile_assignments" => "Aanstellingen",
+    "update_profile_about" => "Over mij",
+    "update_profile_about_hint" => "Vertel je collega's wat over jezelf, wie ben je en waar wordt je blij van?",
     "update_profile_interests" => "Interesses",
     "update_profile_email" => "E-mailadres",
     "update_profile_publicly_display_email" => "E-mailadres publiekelijk weergeven",

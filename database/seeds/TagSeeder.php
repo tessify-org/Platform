@@ -17,7 +17,7 @@ class TagSeeder extends Seeder
         DB::table("tags")->delete();
         DB::table("taggables")->delete();
 
-        // factory(Tag::class, 20)->create();
+        factory(Tag::class, 10)->create();
 
         // $tags = Tag::all();
 

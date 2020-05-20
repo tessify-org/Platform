@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Tag;
 use App\Models\User;
-
 use App\Models\Skill;
 use App\Models\Assignment;
 use App\Models\AssignmentType;
@@ -34,11 +34,15 @@ class UserSeeder extends Seeder
             "email" => "nick.verheijen@minbzk.nl",
             "password" => bcrypt("engeland"),
             "headline" => "This is the way. I have spoken.",
-            "interests" => "I like turtles.",
+            "about_me" => "I like turtles.",
             "is_admin" => true,
         ]);
         
         Users::generateAvatar($nick);
+
+        $tags = Tag::all();
+        $tag_ids = [$tags->random()->id, $tags->random()->id, $tags->random()->id];
+        $nick->interests()->attach($tag_ids);
 
         // Skills
         $php = Skill::where("name->en", "PHP")->first();

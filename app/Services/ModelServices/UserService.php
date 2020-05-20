@@ -205,11 +205,18 @@ class UserService implements ModelServiceContract
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->headline = $request->headline;
-        $user->interests = $request->interests;
+        $user->about_me = $request->about_me;
         $user->email = $request->email;
         $user->publicly_display_email = $request->publicly_display_email == "true" ? true : false;
         $user->phone = $request->phone;
         $user->save();
+
+        // Process interests (tag ids)
+        $tag_ids = json_decode($request->interests);
+        if (is_array($tag_ids) and count($tag_ids))
+        {
+            $user->interests()->sync($tag_ids);
+        }
 
         // Process skills
         if ($request->skills !== "[]")

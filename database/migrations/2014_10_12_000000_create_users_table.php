@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('header_bg_url')->default('storage/images/users/headers/default.jpeg');
             $table->string('phone')->nullable();
             $table->string('headline')->nullable();
-            $table->text('interests')->nullable();
+            $table->text('about_me')->nullable();
             $table->unsignedInteger('reputation_points')->default(0);
             $table->boolean('is_admin')->default(false);
             $table->string('recovery_code')->nullable();

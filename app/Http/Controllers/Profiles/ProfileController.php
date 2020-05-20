@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profiles;
 
 use Auth;
+use Tags;
 use Users;
 use Tasks;
 use Skills;
@@ -80,6 +81,7 @@ class ProfileController extends Controller
             "organizations" => Organizations::getAll(),
             "departments" => OrganizationDepartments::getAll(),
             "organizationLocations" => OrganizationLocations::getAll(),
+            "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "first_name" => old("first_name"),
                 "last_name" => old("last_name"),
@@ -108,6 +110,8 @@ class ProfileController extends Controller
                 "avatar" => __("profiles.update_profile_avatar"),
                 "header_bg" => __("profiles.update_profile_header_bg"),
                 "assignments" => __("profiles.update_profile_assignments"),
+                "about" => __("profiles.update_profile_about"),
+                "about_hint" => __("profiles.update_profile_about_hint"),
                 "interests" => __("profiles.update_profile_interests"),
                 "back" => __("profiles.update_profile_go_back"),
                 "save" => __("profiles.update_profile_save_changes"),
