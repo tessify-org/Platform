@@ -72,7 +72,7 @@ return [
     "messages_outbox" => "Outbox",
     "messages_send" => "Verstuur bericht",
     "messages_read" => "Bericht lezen",
-    "bug_report_submitted" => "Bug report is verzonden",
+    "feedback_submitted" => "Feedback is verzonden",
     "review_requests" => "Mijn review verzoeken",
     "reviews" => "Mijn reviews",
     "review" => "Mijn review",

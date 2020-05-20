@@ -64,6 +64,6 @@ return [
     // Emails
     //
 
-    "email_closing_text" => "Met vriendelijke groeten,\nDe Tessify Staff.",
+    "email_closing_text" => "Met vriendelijke groeten,\nDe HNNW Staff.",
 
 ];

@@ -302,9 +302,9 @@ Breadcrumbs::for("dashboard", function($t) {
 });
 
 // Bug reports
-Breadcrumbs::for("bug-report-submitted", function($t) {
+Breadcrumbs::for("feedback-submitted", function($t) {
     $t->parent("home");
-    $t->push(__("breadcrumbs.bug_report_submitted"), route("home"));
+    $t->push(__("breadcrumbs.feedback_submitted"), route("home"));
 });
 
 // Review requests

@@ -944,8 +944,8 @@ i {
     position: relative;
     background-color: hsl(0, 0%, 100%);
     .dialog__close-button {
-        top: 15px;
-        right: 10px;
+        top: 25px;
+        right: 20px;
         z-index: 100;
         padding: 0 15px;
         font-size: 1.1em;
@@ -969,6 +969,9 @@ i {
             margin: 0 0 30px 0;
             &.centered {
                 text-align: center;
+            }
+            &.no-margin {
+                margin: 0;
             }
             &.less-margin {
                 margin: 0 0 15px 0;
