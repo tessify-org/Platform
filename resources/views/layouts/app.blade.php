@@ -40,7 +40,7 @@
                             active-locale="{{ $activeLocale }}"
                             :locales="{{ json_encode($locales) }}"
                             endpoint="{{ route('api.locale.set-active.post') }}"
-                            :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                            :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                         </locale-switcher>
                     </div>
 
@@ -202,7 +202,7 @@
                                 <topnav-unread-notifications 
                                     href="{{ route('notifications') }}"
                                     count="{{ $numUnreadNotifications }}"
-                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                                    :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                                 </topnav-unread-notifications>
                             </div>
                             <!-- Unread messages -->
@@ -210,7 +210,7 @@
                                 <topnav-unread-messages 
                                     count="{{ $numUnreadMessages }}"
                                     href="{{ route('messages') }}"
-                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                                    :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                                 </topnav-unread-messages>
                             </div>
                         </div>

@@ -14,7 +14,7 @@
                 @lang("homepage.header_title")
             </h1>
             <h2 class="page-subtitle">
-                @lang("homepage.header_subtitle")
+                {!! nl2br(__("homepage.header_subtitle")) !!}
             </h2>
         </div>
         <div id="homepage-header__overlay"></div>

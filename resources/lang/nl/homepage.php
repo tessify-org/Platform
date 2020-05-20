@@ -14,7 +14,7 @@ return [
 
     // Header
     "header_title" => "Het Nieuwe <sup style='margin-left: -10px; margin-right: 5px;'>2</sup> Werken",
-    "header_subtitle" => "Hoe werk jij?",
+    "header_subtitle" => "Wij stimuleren en dagen onze medewerkers uit om zich te ontwikkelen en bij te scholen.\nDaarom hebben wij een platform ontwikkeld om uitdagende opdrachten en bijbehorende cursussen aan te gaan.\nWelke uitdaging ga jij aan?",
     
     // CTA
     "cta_title" => "Er zijn al :num_jobs klussen aangemeld",

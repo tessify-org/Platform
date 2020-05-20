@@ -103,27 +103,27 @@ $rijkshuisstijl-blue-dark: #0a2942;
     &.home {
         #topnav__wrapper {
             background-color: transparent;
-            #topnav {
-                #topnav-links__wrapper {
-                    #topnav-links {
-                        .topnav-link__wrapper {
-                            .topnav-link {
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-                #topnav-search__wrapper {
-                    #topnav-search-button {
-                        #topnav-search-button__icon {
-                            color: rgba(255, 255, 255, 0.75);
-                            &:hover {
-                                color: rgba(255, 255, 255, 1);
-                            }
-                        }
-                    }
-                }
-            }
+            // #topnav {
+            //     #topnav-links__wrapper {
+            //         #topnav-links {
+            //             .topnav-link__wrapper {
+            //                 .topnav-link {
+            //                     color: #fff;
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     #topnav-search__wrapper {
+            //         #topnav-search-button {
+            //             #topnav-search-button__icon {
+            //                 color: rgba(255, 255, 255, 0.75);
+            //                 &:hover {
+            //                     color: rgba(255, 255, 255, 1);
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
     #topnav__wrapper {
