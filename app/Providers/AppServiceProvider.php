@@ -51,6 +51,7 @@ use App\Services\ModelServices\ReviewService;
 use App\Services\ModelServices\WhitelistedDomainService;
 use App\Services\ModelServices\FaqService;
 use App\Services\ModelServices\FaqCategoryService;
+use App\Services\ModelServices\FeedbackService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -261,6 +262,10 @@ class AppServiceProvider extends ServiceProvider
             return new FaqCategoryService;
         });
 
+        $this->app->singleton("feedback", function() {
+            return new FeedbackService;
+        });
+
         //
         // Utilities
         //
@@ -305,6 +310,24 @@ class AppServiceProvider extends ServiceProvider
             $view->with("activeLocale", app()->getLocale());
             $view->with("numUnreadNotifications", app("notifications")->numUnread());
             $view->with("numUnreadMessages", app("messages")->numUnread());
+            $view->with("feedbackStrings", collect([
+                "title" => __("feedback.dialog_title"),
+                "general" => __("feedback.dialog_general_tab"),
+                "gebruikerspanel" => __("feedback.dialog_gebruikerspanel_tab"),
+                "type" => __("feedback.dialog_type"),
+                "type_feedback" => __("feedback.dialog_type_feedback"),
+                "type_bug" => __("feedback.dialog_type_bug"),
+                "subject" => __("feedback.dialog_subject"),
+                "page_url" => __("feedback.dialog_page_url"),
+                "severity" => __("feedback.dialog_severity"),
+                "severity_low" => __("feedback.dialog_severity_low"),
+                "severity_medium" => __("feedback.dialog_severity_medium"),
+                "severity_high" => __("feedback.dialog_severity_high"),
+                "description" => __("feedback.dialog_description"),
+                "description_bug" => __("feedback.dialog_description_bug"),
+                "cancel" => __("feedback.dialog_cancel"),
+                "submit" => __("feedback.dialog_submit"),
+            ]));
         });
 
         View::composer("layouts.admin", function($view) {

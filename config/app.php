@@ -271,6 +271,7 @@ return [
         'ViewEmailRequests' => App\Facades\ViewEmailRequestsFacade::class,
         'WhitelistedDomains' => App\Facades\WhitelistedDomainsFacade::class,
         'WorkMethods' => App\Facades\WorkMethodsFacade::class,
+        'Feedback' => App\Facades\FeedbackFacade::class,
 
     ],
 

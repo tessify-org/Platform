@@ -2010,18 +2010,6 @@ input[type=number] {
   background-color: transparent;
 }
 
-#app.home #topnav__wrapper #topnav #topnav-links__wrapper #topnav-links .topnav-link__wrapper .topnav-link {
-  color: #fff;
-}
-
-#app.home #topnav__wrapper #topnav #topnav-search__wrapper #topnav-search-button #topnav-search-button__icon {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-#app.home #topnav__wrapper #topnav #topnav-search__wrapper #topnav-search-button #topnav-search-button__icon:hover {
-  color: white;
-}
-
 #app #topnav__wrapper {
   height: 80px;
   z-index: 999;
@@ -2907,8 +2895,8 @@ i {
 }
 
 .dialog .dialog__close-button {
-  top: 15px;
-  right: 10px;
+  top: 25px;
+  right: 20px;
   z-index: 100;
   padding: 0 15px;
   font-size: 1.1em;
@@ -2939,6 +2927,10 @@ i {
 
 .dialog .dialog-content .dialog-title.centered {
   text-align: center;
+}
+
+.dialog .dialog-content .dialog-title.no-margin {
+  margin: 0;
 }
 
 .dialog .dialog-content .dialog-title.less-margin {
@@ -3356,7 +3348,7 @@ i {
 
 #homepage-header {
   width: 100%;
-  height: 600px;
+  height: 750px;
   overflow: hidden;
   margin-top: -80px;
   position: relative;
@@ -3371,7 +3363,7 @@ i {
   height: 100%;
   display: flex;
   margin: 0 auto;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   align-items: center;
   flex-direction: column;
@@ -3384,14 +3376,22 @@ i {
 }
 
 #homepage-header #homepage-header__content .page-title {
-  margin: 0 0 5px 0;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
+  font-size: 5em;
+  font-weight: 500;
+  line-height: 1em;
+  margin: 0 0 35px 0;
+  text-align: center;
+  text-transform: none;
+  font-family: "RoSerifBold", serif;
 }
 
 #homepage-header #homepage-header__content .page-subtitle {
-  margin: 0;
-  font-size: 2.2em;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
+  font-weight: 300;
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 1.4em;
+  margin: 0 0 50px 0;
+  font-family: "RoSansRegular", sans-serif;
 }
 
 #homepage-header #homepage-header__overlay {
@@ -3401,7 +3401,7 @@ i {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(255, 255, 255, 0.65);
 }
 
 #homepage-header #homepage-header__bg {
@@ -3689,11 +3689,13 @@ i {
   color: #fff;
   height: 50px;
   padding: 0 20px;
+  margin-top: 75px;
   line-height: 50px;
+  border-radius: 3px;
   text-decoration: none;
   display: inline-block;
-  background-color: #333;
   box-sizing: border-box;
+  background-color: #123552;
 }
 
 #homepage #homepage-second-cta #second-cta #second-cta__left #second-cta__button .svg-inline--fa {
@@ -3762,6 +3764,7 @@ i {
   color: #000;
   padding: 0 20px;
   line-height: 50px;
+  border-radius: 3px;
   text-decoration: none;
   box-sizing: border-box;
   border: 1px solid #333333;

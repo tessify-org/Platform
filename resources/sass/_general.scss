@@ -103,27 +103,27 @@ $rijkshuisstijl-blue-dark: #0a2942;
     &.home {
         #topnav__wrapper {
             background-color: transparent;
-            #topnav {
-                #topnav-links__wrapper {
-                    #topnav-links {
-                        .topnav-link__wrapper {
-                            .topnav-link {
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-                #topnav-search__wrapper {
-                    #topnav-search-button {
-                        #topnav-search-button__icon {
-                            color: rgba(255, 255, 255, 0.75);
-                            &:hover {
-                                color: rgba(255, 255, 255, 1);
-                            }
-                        }
-                    }
-                }
-            }
+            // #topnav {
+            //     #topnav-links__wrapper {
+            //         #topnav-links {
+            //             .topnav-link__wrapper {
+            //                 .topnav-link {
+            //                     color: #fff;
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     #topnav-search__wrapper {
+            //         #topnav-search-button {
+            //             #topnav-search-button__icon {
+            //                 color: rgba(255, 255, 255, 0.75);
+            //                 &:hover {
+            //                     color: rgba(255, 255, 255, 1);
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
     #topnav__wrapper {
@@ -944,8 +944,8 @@ i {
     position: relative;
     background-color: hsl(0, 0%, 100%);
     .dialog__close-button {
-        top: 15px;
-        right: 10px;
+        top: 25px;
+        right: 20px;
         z-index: 100;
         padding: 0 15px;
         font-size: 1.1em;
@@ -969,6 +969,9 @@ i {
             margin: 0 0 30px 0;
             &.centered {
                 text-align: center;
+            }
+            &.no-margin {
+                margin: 0;
             }
             &.less-margin {
                 margin: 0 0 15px 0;

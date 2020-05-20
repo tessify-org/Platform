@@ -40,7 +40,7 @@
                             active-locale="{{ $activeLocale }}"
                             :locales="{{ json_encode($locales) }}"
                             endpoint="{{ route('api.locale.set-active.post') }}"
-                            :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                            :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                         </locale-switcher>
                     </div>
 
@@ -202,7 +202,7 @@
                                 <topnav-unread-notifications 
                                     href="{{ route('notifications') }}"
                                     count="{{ $numUnreadNotifications }}"
-                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                                    :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                                 </topnav-unread-notifications>
                             </div>
                             <!-- Unread messages -->
@@ -210,7 +210,7 @@
                                 <topnav-unread-messages 
                                     count="{{ $numUnreadMessages }}"
                                     href="{{ route('messages') }}"
-                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
+                                    :light="{{ Request::is('/') ? json_encode(false) : json_encode(false) }}">
                                 </topnav-unread-messages>
                             </div>
                         </div>
@@ -378,22 +378,16 @@
             </footer>
             
             <!-- Bug report -->
-            <div id="bug-report-button__wrapper">
-                <bug-report-button
-                    url="{{ url()->current() }}"
-                    dialog-title-text="@lang('bugreports.dialog_title')"
-                    cancel-text="@lang('bugreports.dialog_cancel')"
-                    submit-text="@lang('bugreports.dialog_submit')"
-                    form-action="{{ route('submit-bug-report.post') }}"
-                    csrf-token="{{ csrf_token() }}"
-                    url-label-text="@lang('bugreports.dialog_form_url_label')"
-                    severity-label-text="@lang('bugreports.dialog_form_severity_label')"
-                    low-severity-text="@lang('bugreports.severity_low')"
-                    medium-severity-text="@lang('bugreports.severity_medium')"
-                    high-severity-text="@lang('bugreports.severity_high')"
-                    report-label-text="@lang('bugreports.dialog_form_report_label')">
-                </bug-report-button>
-            </div>
+            @if (auth()->check())
+                <div id="bug-report-button__wrapper">
+                    <feedback-button
+                        url="{{ url()->current() }}"
+                        csrf-token="{{ csrf_token() }}"
+                        form-action="{{ route('feedback.post') }}"
+                        :strings="{{ $feedbackStrings->toJson() }}">
+                    </feedback-button>
+                </div>
+            @endif
 
         </v-app>
 

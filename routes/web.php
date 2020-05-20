@@ -33,6 +33,9 @@ Route::post("contact", "ContactController@postContact")->name("contact.post");
 Route::post("switch-locales", "Translation\LocaleController@postSwitchLocale")->name("switch-locale.post");
 Route::post("submit-bug-report", "System\BugReportController@postSubmitReport")->name("submit-bug-report.post");
 
+// Feedback button endpoint
+Route::post("feedback", "System\FeedbackController@postFeedback")->name("feedback.post");
+
 // Guest only endpoints
 Route::group(["middleware" => "guest"], function() {
     

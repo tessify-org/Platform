@@ -64,6 +64,6 @@ return [
     // Emails
     //
 
-    "email_closing_text" => "Sincerely,\nThe Tessify Staff.",
+    "email_closing_text" => "Sincerely,\nThe HNNW Staff.",
 
 ];

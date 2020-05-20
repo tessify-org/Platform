@@ -2010,18 +2010,6 @@ input[type=number] {
   background-color: transparent;
 }
 
-#app.home #topnav__wrapper #topnav #topnav-links__wrapper #topnav-links .topnav-link__wrapper .topnav-link {
-  color: #fff;
-}
-
-#app.home #topnav__wrapper #topnav #topnav-search__wrapper #topnav-search-button #topnav-search-button__icon {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-#app.home #topnav__wrapper #topnav #topnav-search__wrapper #topnav-search-button #topnav-search-button__icon:hover {
-  color: white;
-}
-
 #app #topnav__wrapper {
   height: 80px;
   z-index: 999;
@@ -2907,8 +2895,8 @@ i {
 }
 
 .dialog .dialog__close-button {
-  top: 15px;
-  right: 10px;
+  top: 25px;
+  right: 20px;
   z-index: 100;
   padding: 0 15px;
   font-size: 1.1em;
@@ -2939,6 +2927,10 @@ i {
 
 .dialog .dialog-content .dialog-title.centered {
   text-align: center;
+}
+
+.dialog .dialog-content .dialog-title.no-margin {
+  margin: 0;
 }
 
 .dialog .dialog-content .dialog-title.less-margin {
