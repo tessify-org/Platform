@@ -2058,11 +2058,11 @@ input[type=number] {
   transition: all 0.3s;
   text-decoration: none;
   box-sizing: border-box;
-  background-color: #123552;
+  background-color: #154273;
 }
 
 #app #topnav__wrapper #topnav #topnav-logo__wrapper #topnav-logo:hover {
-  background-color: #0a2942;
+  background-color: #0d3764;
 }
 
 #app #topnav__wrapper #topnav #topnav-locale__wrapper {
@@ -2344,7 +2344,7 @@ input[type=number] {
 }
 
 #breadcrumbs-wrapper {
-  background-color: #123552;
+  background-color: #154273;
 }
 
 #breadcrumbs-wrapper #breadcrumbs {
@@ -3517,7 +3517,7 @@ i {
   border-radius: 3px;
   box-sizing: border-box;
   margin: -280px auto 0 auto;
-  background-color: #123552;
+  background-color: #154273;
 }
 
 #homepage #homepage-cta #homepage-cta__title {
@@ -3695,7 +3695,7 @@ i {
   text-decoration: none;
   display: inline-block;
   box-sizing: border-box;
-  background-color: #123552;
+  background-color: #154273;
 }
 
 #homepage #homepage-second-cta #second-cta #second-cta__left #second-cta__button .svg-inline--fa {
