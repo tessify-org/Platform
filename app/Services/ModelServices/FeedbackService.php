@@ -3,15 +3,12 @@
 namespace App\Services\ModelServices;
 
 use Auth;
-use Mail;
 use App\Models\Feedback;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
 use App\Http\Requests\System\FeedbackRequest;
 use App\Jobs\System\Feedback\SendFeedbackEmail;
 use App\Jobs\System\Feedback\SendGebruikerspanelFeedbackEmail;
-use App\Mail\System\Feedback\FeedbackReceivedMail;
-use App\Mail\System\Feedback\GebruikerspanelFeedbackReceivedMail;
 
 class FeedbackService implements ModelServiceContract
 {
@@ -47,8 +44,7 @@ class FeedbackService implements ModelServiceContract
             $emails = collect(config("platform.feedback.gebruikerspanel.emails"));
             foreach ($emails as $email)
             {
-                Mail::to($email)->send(new GebruikerspanelFeedbackReceivedMail(auth()->user(), $feedback));
-                // SendGebruikerspanelFeedbackEmail::dispatch($email, $feedback)->onQueue("emails");
+                SendGebruikerspanelFeedbackEmail::dispatch($email, $feedback)->onQueue("emails");
             }
         }
 
@@ -57,8 +53,7 @@ class FeedbackService implements ModelServiceContract
             $emails = config("platform.feedback.general.emails");
             foreach ($emails as $email)
             {
-                Mail::to($email)->send(new FeedbackReceivedMail(auth()->user(), $feedback));    
-                // SendFeedbackEmail::dispatch($email, $feedback)->onQueue("emails");
+                SendFeedbackEmail::dispatch($email, $feedback)->onQueue("emails");
             }
         }
 
