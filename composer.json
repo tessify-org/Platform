@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laracasts/flash": "^3.1",
         "laravel/framework": "^7.0",
+        "laravel/horizon": "^4.3",
         "laravel/tinker": "^2.0",
         "laravolt/avatar": "^3.2",
         "overtrue/laravel-follow": "^2.1",
