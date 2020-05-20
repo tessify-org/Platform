@@ -2907,8 +2907,8 @@ i {
 }
 
 .dialog .dialog__close-button {
-  top: 15px;
-  right: 10px;
+  top: 25px;
+  right: 20px;
   z-index: 100;
   padding: 0 15px;
   font-size: 1.1em;
@@ -2939,6 +2939,10 @@ i {
 
 .dialog .dialog-content .dialog-title.centered {
   text-align: center;
+}
+
+.dialog .dialog-content .dialog-title.no-margin {
+  margin: 0;
 }
 
 .dialog .dialog-content .dialog-title.less-margin {
