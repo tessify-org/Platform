@@ -52,6 +52,10 @@ use App\Services\ModelServices\WhitelistedDomainService;
 use App\Services\ModelServices\FaqService;
 use App\Services\ModelServices\FaqCategoryService;
 use App\Services\ModelServices\FeedbackService;
+use App\Services\ModelServices\GroupService;
+use App\Services\ModelServices\GroupRoleService;
+use App\Services\ModelServices\GroupMemberService;
+use App\Services\ModelServices\GroupMemberApplicationService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -237,7 +241,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton("tags", function() {
             return new TagService;
         });
-
+        
         $this->app->singleton("feed-activities", function() {
             return new FeedActivityService;
         });
@@ -264,6 +268,22 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton("feedback", function() {
             return new FeedbackService;
+        });
+
+        $this->app->singleton("groups", function() {
+            return new GroupService;
+        });
+
+        $this->app->singleton("group-roles", function() {
+            return new GroupRoleService;
+        });
+
+        $this->app->singleton("group-members", function() {
+            return new GroupMemberService;
+        });
+
+        $this->app->singleton("group-member-applications", function() {
+            return new GroupMemberApplicationService;
         });
 
         //
