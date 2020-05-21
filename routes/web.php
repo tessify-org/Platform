@@ -309,6 +309,48 @@ Route::group(["middleware" => "auth"], function() {
         });
         
         // Groups
+        Route::group(["prefix" => "groepen"], function() {
+
+            // Overview
+            Route::get("/", "Community\Groups\GroupController@getOverview")->name("groups");
+
+            // Create
+            Route::get("starten", "Community\Groups\GroupController@getCreate")->name("groups.create");
+            Route::post("starten", "Community\Groups\GroupController@postCreate")->name("groups.create.post");
+
+            // View
+            Route::get("{slug}", "Community\Groups\GroupController@getView")->name("group");
+
+            // Update
+            Route::get("{slug}/aanpassen", "Community\Groups\GroupController@getUpdate")->name("group.update");
+            Route::post("{slug}/aanpassen", "Community\Groups\GroupController@postUpdate")->name("group.update.post");
+
+            // Delete
+            Route::get("{slug}/verwijderen", "Community\Groups\GroupController@getDelete")->name("group.delete");
+            Route::post("{slug}/verwijderen", "Community\Groups\GroupController@postDelete")->name("group.delete.post");
+
+            // Roles
+            Route::get("{slug}/rollen", "Community\Groups\GroupRoleController@getOverview")->name("group.roles");
+            
+            // Roles --> API Endpoints
+            Route::post("{slug}/rollen/create", "Community\Groups\GroupRoleController@postCreate")->name("group.roles.create.post");
+            Route::post("{slug}/rollen/update", "Community\Groups\GroupRoleController@postUpdate")->name("group.roles.update.post");
+            Route::post("{slug}/rollen/delete", "Community\Groups\GroupRoleController@postDelete")->name("group.roles.delete.post");
+
+            // Members
+            Route::get("{slug}/members", "Community\Groups\GroupMemberController@getOverview")->name("group.members");
+            
+            // Members --> API Endpoints
+            Route::post("{slug}/kick", "Community\Groups\GroupMemberController@postKick")->name("group.members.kick.post");
+
+            // Applications
+            Route::get("{slug}/aanmeldingen", "Community\Groups\GroupApplicationController@getOverview")->name("group.applications");
+            
+            // Applications --> API Endpoints
+            Route::post("{slug}/aanmeldingen/accepteren", "Community\Groups\GroupApplicationController@postAccept")->name("group.applications.accept.post");
+            Route::post("{slug}/aanmeldingen/afwijzen", "Community\Groups\GroupApplicationController@postReject")->name("group.applications.reject.post");
+
+        });
 
         // Forum
 

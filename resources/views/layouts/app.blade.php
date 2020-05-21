@@ -95,15 +95,6 @@
                                         </span>
                                     </a>
                                     <ul class="dropdown">
-                                        <!-- Members -->
-                                        <li class="dropdown-link__wrapper">
-                                            <a class="dropdown-link" href="{{ route('memberlist') }}">
-                                                <span class="dropdown-link__icon"><i class="fas fa-users"></i></span>
-                                                <span class="dropdown-link__text">
-                                                    @lang("layouts.members_link")
-                                                </span>
-                                            </a>
-                                        </li>
                                         <!-- Ministries -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('ministries') }}">
@@ -119,6 +110,24 @@
                                                 <span class="dropdown-link__icon"><i class="fas fa-building"></i></span>
                                                 <span class="dropdown-link__text">
                                                     @lang("layouts.organizations_link")
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <!-- Groups -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('groups') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-users"></i></span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("layouts.groups_link")
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <!-- Members -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('memberlist') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-users"></i></span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("layouts.members_link")
                                                 </span>
                                             </a>
                                         </li>
