@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Group::class, function (Faker $faker) {
     return [
-        'title' => ucfirst(strtolower($faker->word)),
+        'name' => ucfirst(strtolower($faker->word)),
         'description' => $faker->paragraphs(3, true),
     ];
 });

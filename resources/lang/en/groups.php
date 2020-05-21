@@ -1,0 +1,85 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Group Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are for all group pages & elements
+    |
+    */
+    
+    "group_not_found" => "Group could not be found.",
+    "created" => "Succesfully created the group!",
+    "updated" => "Succesfully updated the group!",
+    "deleted" => "Succesfully deleted the group!",
+    "subscribed" => "You are now following this group!",
+    "unsubscribed" => "You are no longer following this group.",
+
+    "form_name" => "Name",
+    "form_slogan" => "Slogan",
+    "form_description" => "Description",
+    "form_tags" => "Tags",
+    "form_header_image" => "Header image",
+    "form_avatar_image" => "Avatar image",
+
+    "overview_title" => "Groups",
+    "overview_subtitle" => "Form inter organizational groups with a common goal.",
+    "overview_create" => "Create a new group",
+    "overview_no_records" => "No groups have been added to the platform yet.",
+
+    "view_title" => "Group",
+    "view_subscribe" => "Follow group",
+    "view_unsubscribe" => "Unfollow group",
+    "view_description" => "Description",
+    "view_share_group" => "Share with your network",
+    "view_join" => "Apply",
+    "view_leave" => "Leave",
+    "view_founder" => "Founder",
+    "view_links" => "Links",
+    "view_link_members" => "Members",
+    "view_link_roles" => "Roles",
+    "view_link_applications" => "Applications",
+    "view_link_polls" => "Polls",
+    "view_link_forum" => "Forum",
+
+    "create_title" => "Create a new group",
+    "create_cancel" => "Cancel",
+    "create_submit" => "Save group",
+
+    "update_title" => "Update group",
+    "update_cancel" => "Cancel",
+    "update_submit" => "Save changes",
+
+    "delete_title" => "Delete group",
+    "delete_cancel" => "No, go back to group",
+    "delete_submit" => "Yes, delete group",
+
+    "members_title" => "Group members",
+    "members_no_records" => "This group has no members yet.",
+    "members_kick" => "Kick",
+    "members_kick_dialog_title" => "Kick group member",
+    "members_kick_dialog_text" => "Are you sure you want to kick :name from the group?",
+    "members_kick_dialog_cancel" => "No, go back",
+    "members_kick_dialog_submit" => "Yes, kick from group",
+
+    "roles_title" => "Roles & Permissions",
+    "roles_no_records" => "No roles have been defined yet.",
+    "roles_form_name" => "Name",
+    "roles_form_description" => "Description",
+    "roles_create_dialog_title" => "Create a new role",
+    "roles_create_dialog_cancel" => "Cancel",
+    "roles_create_dialog_submit" => "Save",
+    "roles_update_dialog_title" => "Update role",
+    "roles_update_dialog_cancel" => "Cancel",
+    "roles_update_dialog_submit" => "Save changes",
+    "roles_delete_dialog_title" => "Delete role",
+    "roles_delete_dialog_text" => "Are you sure you want to delete the :name role?",
+    "roles_delete_dialog_cancel" => "No, cancel",
+    "roles_delete_dialog_submit" => "Yes, delete",
+
+    "default_founder_description" => "This person formed the group.",
+
+];

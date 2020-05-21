@@ -27,4 +27,13 @@ return [
     "apply_for_team_deny_application_exists" => "You already have an outstanding application that's awaiting processing.",
     "leave_team_deny" => "You can only leave this team if you're a part of it.",
 
+    // Group policy specific
+
+    "manage_group_roles_deny" => "You don't have permission to manage this group's roles.",
+    "manage_group_members_deny" => "You don't have permission to manage this group's members.",
+    "manage_group_applications_deny" => "You don't have permission to manage this group's member applications.",
+    "apply_for_group_deny_founder" => "You can't apply for this group as you are it's founder.",
+    "apply_for_group_deny_team_member" => "You can't apply for this group as you are already a member.",
+    "apply_for_group_deny_application_exists" => "You can't apply for this group as you've already submitted an application.",
+
 ];

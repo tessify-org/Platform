@@ -63,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         "App\Models\Task" => "App\Policies\TaskPolicy",
         "App\Models\Project" => "App\Policies\ProjectPolicy",
         "App\Models\TeamMemberApplication" => "App\Policies\TeamMemberApplicationPolicy",
+        "App\Models\Group" => "App\Policies\GroupPolicy",
     ];
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Groups;
+namespace App\Http\Requests\Community\Groups\Members;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateGroupRequest extends FormRequest
+class KickGroupMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class CreateGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            "title" => "required",
-            "description_nl" => "required",
-            "description_en" => "nullable",
+            "group_member_id" => "required|exists:group_members,id",
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Groups;
+namespace App\Http\Requests\Community\Groups;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGroupRequest extends FormRequest
+class CreateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class UpdateGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            "group_id" => "required|exists:groups,id",
             "name" => "required",
+            "slogan_nl" => "nullable",
+            "slogan_en" => "nullable",
             "description_nl" => "required",
             "description_en" => "nullable",
+            "tags" => "nullable",
         ];
     }
 }

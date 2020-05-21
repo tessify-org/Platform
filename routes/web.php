@@ -321,9 +321,21 @@ Route::group(["middleware" => "auth"], function() {
             // View
             Route::get("{slug}", "Community\Groups\GroupController@getView")->name("group");
 
+            // Subscribe & unsubscribe
+            Route::get("{slug}/subscribe", "Community\Groups\GroupController@getSubscribe")->name("group.subscribe");
+            Route::get("{slug}/unsubscribe", "Community\Groups\GroupController@getUnsubscribe")->name("group.unsubscribe");
+
+            // Apply for team
+            Route::get("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@getApply")->name("group.apply");
+            Route::post("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@postApply")->name("group.apply.post");
+
+            // Leave team
+            Route::get("{slug}/verlaten", "Community\Groups\GroupMemberController@getLeave")->name("group.leave");
+            Route::post("{slug}/verlaten", "Community\Groups\GroupMemberController@postLeave")->name("group.leave.post");
+
             // Update
-            Route::get("{slug}/aanpassen", "Community\Groups\GroupController@getUpdate")->name("group.update");
-            Route::post("{slug}/aanpassen", "Community\Groups\GroupController@postUpdate")->name("group.update.post");
+            Route::get("{slug}/aanpassen", "Community\Groups\GroupController@getEdit")->name("group.edit");
+            Route::post("{slug}/aanpassen", "Community\Groups\GroupController@postEdit")->name("group.edit.post");
 
             // Delete
             Route::get("{slug}/verwijderen", "Community\Groups\GroupController@getDelete")->name("group.delete");

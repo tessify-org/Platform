@@ -6,11 +6,13 @@ use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Overtrue\LaravelSubscribe\Traits\Subscribable;
 
 class Group extends Model
 {
     use Sluggable;
     use Searchable;
+    use Subscribable;
     use HasTranslations;
 
     protected $table = "groups";
@@ -18,13 +20,15 @@ class Group extends Model
     protected $fillable = [
         "founder_id",
         "slug",
-        "title",
+        "name",
+        "slogan",
         "description",
         "header_image_url",
         "avatar_image_url",
     ];
     public $translatable = [
-        "description"
+        "slogan",
+        "description",
     ];
 
     //
@@ -58,5 +62,10 @@ class Group extends Model
     public function applications()
     {
         return $this->hasMany(GroupMemberApplication::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, "taggable");
     }
 }

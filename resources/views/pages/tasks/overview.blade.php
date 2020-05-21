@@ -6,6 +6,7 @@
 
 @section("content")
     <div id="task-overview">
+
         <!-- Header -->
         <div id="task-overview__header">
             <div id="task-overview__header-overlay"></div>
@@ -24,6 +25,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- Content -->
         <div id="task-overview__content" class="content-section__wrapper">
             <div class="content-section pt50">

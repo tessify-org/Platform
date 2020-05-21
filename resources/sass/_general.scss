@@ -555,6 +555,75 @@ $rijkshuisstijl-blue-dark: #0d3764;
     }
 }
 
+#page-header {
+    height: 400px;
+    position: relative;
+    &.narrow {
+        height: 300px;
+    }
+    #page-header__bg {
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-size: cover;
+        background-color: #ddd;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    #page-header__bg-overlay {
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+    #page-header__content {
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        #page-header__title {
+            font-size: 5em;
+            line-height: 1em;
+            font-weight: 600;
+            margin: 0 0 50px 0;
+            text-align: center;
+            &.no-margin {
+                margin: 0;
+            }
+        }
+        #page-header__subtitle {
+            font-size: 2.2em;
+            font-weight: 300;
+            text-align: center;
+            margin: -50px 0 0 0;
+            font-family: 'RoSerifRegular', serif;
+        }
+        #page-header__actions {
+            display: flex;
+            margin: 50px 0 0 0;
+            flex-direction: row;
+            justify-content: center;
+            .page-header__action {
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
+
+
 //
 // Vuetify hacks
 //
@@ -999,6 +1068,9 @@ i {
             margin: 0 0 15px 0;
             &.centered {
                 text-align: center;
+            }
+            &.no-margin {
+                margin: 0;
             }
         }
         .dialog-image__wrapper {

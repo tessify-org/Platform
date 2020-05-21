@@ -382,13 +382,13 @@ Breadcrumbs::for("group", function($t, $group) {
     $t->parent("groups");
     $t->push($group->name, route("group", $group->slug));
 });
-Breadcrumbs::for("group.edit", function($t) {
+Breadcrumbs::for("group.edit", function($t, $group) {
     $t->parent("group", $group);
-    $t->push(__("breadcrumbs.groups_edit"), route("group.edit", $group->slug));
+    $t->push(__("breadcrumbs.group_edit"), route("group.edit", $group->slug));
 });
 Breadcrumbs::for("group.delete", function($t, $group) {
     $t->parent("group", $group);
-    $t->push(__("breadcrumbs.groups_delete"), route("group.delete", $group->slug)); 
+    $t->push(__("breadcrumbs.group_delete"), route("group.delete", $group->slug)); 
 });
 Breadcrumbs::for("group.roles", function($t, $group) {
     $t->parent("group", $group);

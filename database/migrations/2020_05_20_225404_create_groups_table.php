@@ -17,7 +17,8 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->unsignedInteger('founder_id');
             $table->string('slug');
-            $table->string('title');
+            $table->string('name');
+            $table->json('slogan')->nullable();
             $table->json('description');
             $table->string('header_image_url')->default('storage/images/groups/headers/default.jpg');
             $table->string('avatar_image_url')->default('storage/images/groups/avatars/default.jpg');

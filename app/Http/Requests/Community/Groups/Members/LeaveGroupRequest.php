@@ -23,8 +23,6 @@ class KickGroupMemberRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "group_member_id" => "required|exists:group_members,id",
-        ];
+        return [];
     }
 }

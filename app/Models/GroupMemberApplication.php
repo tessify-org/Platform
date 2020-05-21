@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
-use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
-use Cviebrock\EloquentSluggable\Sluggable;
 
-class Group extends Model
-{
-    use Sluggable;
-    use Searchable;
-    use HasTranslations;
-    
-    protected $table = "groups";
+class GroupMemberApplication extends Model
+{    
+    protected $table = "group_member_applications";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
         "user_id",
