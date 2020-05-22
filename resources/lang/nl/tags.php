@@ -21,4 +21,6 @@ return [
     "view_tasks" => "Geassocieerde werkpakketten",
     "view_no_tasks" => "Er zijn nog geen werkpakketten geassocieerd met deze tag.",
 
+    "not_found" => "Tag niet gevonden",
+
 ];

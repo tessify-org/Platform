@@ -46,6 +46,11 @@ class CreateTaskRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the validation messages per rule
+     * 
+     * @return array
+     */
     public function messages()
     {
         return [

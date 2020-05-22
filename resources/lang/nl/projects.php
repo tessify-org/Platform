@@ -230,6 +230,10 @@ return [
     "form_tags" => "Tags",
     "form_optional" => "Optioneel",
 
+    "description_nl_required" => "Nederlandse beschrijving is verplicht",
+    "description_en_required" => "Engelse beschrijving is verplicht",
+    "ministry_invalid" => "Ongeldig ministerie opgegeven",
+
     //
     // Delete project
     //

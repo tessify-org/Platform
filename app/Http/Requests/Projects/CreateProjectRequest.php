@@ -47,4 +47,18 @@ class CreateProjectRequest extends FormRequest
             "tags" => "nullable",
         ];
     }
+
+    /**
+     * Get the validation messages per rule
+     * 
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            "description_nl.required" => __("projects.description_nl_required"),
+            "description_en.required" => __("projects.description_en_required"),
+            "ministry_id.exists" => __("projects.ministry_invalid"),
+        ];
+    }
 }

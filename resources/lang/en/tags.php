@@ -19,6 +19,8 @@ return [
     "view_projects" => "Associated projects",
     "view_no_projects" => "No projects have been associated with this tag yet.",
     "view_tasks" => "Associated tasks",
-    "view_no_tasks" => "No tasks have been associated with this tag yet."
+    "view_no_tasks" => "No tasks have been associated with this tag yet.",
+
+    "not_found" => "No tags could be found",
 
 ];

@@ -47,4 +47,16 @@ class UpdateProjectRequest extends FormRequest
             "tags" => "nullable",
         ];
     }
+
+    /**
+     * Get the validation messages per rule
+     * 
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+
+        ];
+    }
 }
