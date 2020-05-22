@@ -199,7 +199,7 @@ return [
     "form_ownership_title" => "Eigenaarschap",
     "form_ownership_description" => "Welke entiteiten zijn eigenaar van dit project?",
     "form_formatting_title" => "Opmaak",
-    "form_formatting_description" => "Make your project stand out",
+    "form_formatting_description" => "Vormgeving",
 
     "form_title" => "Titel",
     "form_title_hint" => "Geef je project een naam!",
@@ -207,7 +207,7 @@ return [
     "form_slogan_hint" => "Omschrijf het project in 1 zin",
     "form_description" => "Projectomschrijving",
     "form_description_hint" => "1. Project omschrijving inclusief doel\n2. Wat is het product dat je wil toetsen?\n3. Wat gaat je helpen?\n4. Wie is de doelgroep/ontvange?\n5. Hoe de verbeteringen te meten?",
-    "form_header_image" => "Header plaatje",
+    "form_header_image" => "Afbeelding",
     "form_roles" => "Team rollen",
     "form_resources" => "Hulpmiddelen",
     "form_category" => "Categorie",
