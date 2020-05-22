@@ -230,6 +230,12 @@ return [
     "form_no_projects" => "No projects found",
     "form_dont_associate_project" => "Don't associate with a project",
 
+    "title_nl_required" => "Dutch title is required",
+    "title_en_required" => "English title is required",
+    "description_nl_required" => "Dutch description is required",
+    "description_en_required" => "English description is required",
+    "category_required" => "Category is required",
+
     //
     // Delete
     //

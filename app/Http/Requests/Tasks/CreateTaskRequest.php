@@ -45,4 +45,15 @@ class CreateTaskRequest extends FormRequest
             "header_image" => "nullable|image",
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "title_nl.required" => __("tasks.title_nl_required"),
+            "title_en.required" => __("tasks.title_en_required"),
+            "description_nl.required" => __("tasks.description_nl_required"),
+            "description_en.required" => __("tasks.description_en_required"),
+            "task_category.required" => __("tasks.category_required"),
+        ];
+    }
 }
