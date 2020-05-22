@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Groups\Roles;
+namespace App\Http\Requests\Community\Groups\Roles;
 
 use Illuminate\Foundation\Http\FormRequest;
 

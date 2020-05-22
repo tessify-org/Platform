@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Groups\Roles;
+namespace App\Http\Requests\Community\Groups\Roles;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,8 @@ class CreateGroupRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required",
+            "name_nl" => "required",
+            "name_en" => "nullable",
             "description_nl" => "nullable",
             "description_en" => "nullable",
         ];

@@ -23,6 +23,12 @@ class GroupSeeder extends Seeder
 
         $moi = User::find(1);
         $toi = User::find(2);
+        $three = User::find(3);
+        $four = User::find(4);
+
+        //
+        // Group #1
+        //
 
         $group_one = Group::create([
             "founder_id" => $moi->id,
@@ -37,27 +43,31 @@ class GroupSeeder extends Seeder
             ],
         ]);
 
-        $group_one_role_one = GroupRole::create([
-            "group_id" => $group_one->id,
-            "name" => "Founder",
-        ]);
-
-        $group_one_member_founder = GroupMember::create([
-            "user_id" => $moi->id,
-            "group_id" => $group_one->id,
-            "group_role_id" => $group_one_role_one->id,
-        ]);
-
+        $group_one_roles = app("group-roles")->createDefaultRoles($group_one);
+        
+        $group_one_founder = app("group-members")->join($group_one, $moi, $group_one_roles["founder"]);
+        
         $group_one_member_application = GroupMemberApplication::create([
             "user_id" => $toi->id,
             "group_id" => $group_one->id,
             "motivation" => "Hoor er graag bij weetje",
         ]);
 
-        $group_one_role_two = GroupRole::create([
+        $group_one_member_application_two = GroupMemberApplication::create([
+            "user_id" => $three->id,
             "group_id" => $group_one->id,
-            "name" => "Second in command",
+            "motivation" => "Hoor er graag bij weetje",
         ]);
+        
+        $group_one_member_application_three = GroupMemberApplication::create([
+            "user_id" => $four->id,
+            "group_id" => $group_one->id,
+            "motivation" => "Hoor er graag bij weetje",
+        ]);
+
+        //
+        // Group #2
+        //
 
         $group_two = Group::create([
             "founder_id" => $moi->id,
@@ -68,9 +78,8 @@ class GroupSeeder extends Seeder
             ],
         ]);
 
-        $group_two_role_one = GroupRole::create([
-            "group_id" => $group_two->id,
-            "name" => "Founder",
-        ]);
+        $group_two_roles = app("group-roles")->createDefaultRoles($group_two);
+
+        $group_two_founder = app("group-members")->join($group_two, $moi, $group_two_roles["founder"]);
     }
 }

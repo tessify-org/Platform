@@ -359,8 +359,8 @@ Route::group(["middleware" => "auth"], function() {
             Route::get("{slug}/aanmeldingen", "Community\Groups\GroupApplicationController@getOverview")->name("group.applications");
             
             // Applications --> API Endpoints
-            Route::post("{slug}/aanmeldingen/accepteren", "Community\Groups\GroupApplicationController@postAccept")->name("group.applications.accept.post");
-            Route::post("{slug}/aanmeldingen/afwijzen", "Community\Groups\GroupApplicationController@postReject")->name("group.applications.reject.post");
+            Route::post("{slug}/aanmeldingen/accepteren/{uuid?}", "Community\Groups\GroupApplicationController@postAccept")->name("group.applications.accept.post");
+            Route::post("{slug}/aanmeldingen/afwijzen/{uuid?}", "Community\Groups\GroupApplicationController@postReject")->name("group.applications.reject.post");
 
         });
 

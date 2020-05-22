@@ -15,9 +15,16 @@ class GroupRole extends Model
         "group_id",
         "name",
         "description",
+        "deleteable",
+        "default",
+    ];
+    protected $casts = [
+        "deleteable" => "boolean",
+        "default" => "boolean",
     ];
     public $translatable = [
-        "description"
+        "name",
+        "description",
     ];
 
     //

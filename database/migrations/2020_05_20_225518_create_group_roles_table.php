@@ -16,8 +16,10 @@ class CreateGroupRolesTable extends Migration
         Schema::create('group_roles', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('group_id');
-            $table->string('name');
+            $table->json('name');
             $table->json('description')->nullable();
+            $table->boolean('deleteable')->default(true);
+            $table->boolean('default')->default(false);
             $table->timestamps();
         });
     }

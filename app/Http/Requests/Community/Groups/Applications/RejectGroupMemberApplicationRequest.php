@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Groups\Applications;
+namespace App\Http\Requests\Community\Groups\Applications;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class RejectGroupMemberApplicationRequest extends FormRequest
     public function rules()
     {
         return [
-            "group_member_application_id" => "required|exists:group_member_applications,id",
+            "uuid" => "required|exists:group_member_applications,uuid",
         ];
     }
 }

@@ -44,7 +44,8 @@
                                 :members="{{ $members->toJson() }}"
                                 :strings="{{ $strings->toJson() }}"
                                 :api-endpoints="{{ $apiEndpoints->toJson() }}"
-                                :can-manage="{{ json_encode(auth()->user()->can('manage-group-members', $group)) }}">
+                                :can-manage="{{ json_encode(auth()->user()->can('manage-group-members', $group)) }}"
+                                locale="{{ app()->getLocale() }}">
                             </group-member-overview>
 
                         </div>

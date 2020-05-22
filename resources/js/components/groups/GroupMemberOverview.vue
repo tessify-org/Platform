@@ -10,7 +10,7 @@
                         {{ member.user.formatted_name }}
                     </a>        
                 </div>
-                <div class="group-member__role">{{ member.role.name }}</div>
+                <div class="group-member__role">{{ member.role.name[locale] }}</div>
                 <div class="group-member__actions" v-if="canManage && member.role.name === 'Founder'">
                     <div class="action kick" @click="onClickKick(mi)">
                         {{ strings.kick }}
@@ -74,6 +74,7 @@
             "strings",
             "apiEndpoints",
             "canManage",
+            "locale",
         ],
         data: () => ({
             tag: "[group-member-overview]",
@@ -197,7 +198,9 @@
                         &:first-child {
                             margin: 0;
                         }
-                        .action-icon {}
+                        .action-icon {
+                            
+                        }
                         .action-text {
                             padding: 0 0 0 5px;
                         }
@@ -207,7 +210,6 @@
         }
         #group-member-overview__no-records {
             padding: 25px;
-            text-align: center;
             box-sizing: border-box;
         }
     }

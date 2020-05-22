@@ -15,6 +15,7 @@ class CreateGroupMemberApplicationsTable extends Migration
     {
         Schema::create('group_member_applications', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('group_id');
             $table->text('motivation');

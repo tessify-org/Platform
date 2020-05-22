@@ -12,11 +12,14 @@ return [
     */
 
     "group_not_found" => "Groep kon niet worden gevonden",
+    "application_not_found" => "Aanmelding kon niet worden gevonden",
     "created" => "Groep is aangemaakt!",
     "updated" => "Groep is met succes gewijzigd",
     "deleted" => "Groep is met succes verwijderd",
     "subscribed" => "Je volgt nu deze groep!",
     "unsubscribed" => "Je volgt deze groep niet meer.",
+    "application_accepted" => "Aanmelding is geaccepteerd.",
+    "application_rejected" => "Aanmelding is afgewezen.",
 
     "form_name" => "Naam",
     "form_slogan" => "Slogan",
@@ -67,8 +70,15 @@ return [
 
     "roles_title" => "Rollen & toestemmingen",
     "roles_no_records" => "Er zijn nog geen rollen gedefineerd.",
+    "roles_add_button" => "Rol toevoegen",
     "roles_form_name" => "Naam",
     "roles_form_description" => "Beschrijving",
+    "roles_view_dialog_title" => "Rol",
+    "roles_view_dialog_name" => "Naam",
+    "roles_view_dialog_description" => "Beschrijving",
+    "roles_view_dialog_date" => "Toegevoegd op",
+    "roles_view_dialog_update" => "Aanpassen",
+    "roles_view_dialog_delete" => "Verwijderen",
     "roles_create_dialog_title" => "Rol toevoegen",
     "roles_create_dialog_cancel" => "Annuleren",
     "roles_create_dialog_submit" => "Opslaan",
@@ -79,6 +89,20 @@ return [
     "roles_delete_dialog_text" => "Weet je zeker dat je de :name rol wilt verwijderen?",
     "roles_delete_dialog_cancel" => "Nee, annuleren",
     "roles_delete_dialog_submit" => "Ja, verwijder",
+
+    "applications_title" => "Aanmeldingen",
+    "applications_no_records" => "Er zijn momenteel geen openstaande aanmeldingen",
+    "applications_view_dialog_title" => "Aanmelding",
+    "applications_view_dialog_user" => "Gebruiker",
+    "applications_view_dialog_motivation" => "Motivatie",
+    "applications_view_dialog_date" => "Geplaatst op",
+    "applications_view_dialog_cancel" => "Annuleren",
+    "applications_view_dialog_accept" => "Accepteren",
+    "applications_view_dialog_reject" => "Afwijzen",
+    "applications_accepted_dialog_title" => "Geaccepteerd",
+    "applications_accepted_dialog_text" => "De aanmelding is geaccepteerd en de gebruiker is nu een groepslid!",
+    "applications_rejected_dialog_title" => "Afgewezen",
+    "applications_rejected_dialog_text" => "De aanmelding is afgewezen.",
 
     "default_founder_description" => "Deze persoon heeft de groep opgericht.",
 

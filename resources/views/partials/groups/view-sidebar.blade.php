@@ -33,7 +33,7 @@
                 <i class="fas fa-user-tag"></i>
             </span>
             <span class="group-link__text">
-                @lang("groups.view_link_roles") ({{ $group->num_roles }})
+                @lang("groups.view_link_roles") <group-role-counter count="{{ $group->num_roles }}"></group-role-counter>
             </span>
         </a>
         <!-- Group applications -->
@@ -42,7 +42,7 @@
                 <i class="fas fa-user-plus"></i>
             </span>
             <span class="group-link__text">
-                @lang("groups.view_link_applications") ({{ $group->num_outstanding_applications }})
+                @lang("groups.view_link_applications") <group-application-counter count="{{ $group->num_outstanding_applications }}"></group-application-counter>
             </span>
         </a>
         <!-- Polls -->

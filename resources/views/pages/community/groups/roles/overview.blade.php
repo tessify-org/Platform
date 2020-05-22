@@ -44,7 +44,8 @@
                                 :roles="{{ $roles->toJson() }}"
                                 :strings="{{ $strings->toJson() }}"
                                 :api-endpoints="{{ $apiEndpoints->toJson() }}"
-                                :can-manage="{{ json_encode(auth()->user()->can('manage-group-roles', $group)) }}">
+                                :can-manage="{{ json_encode(auth()->user()->can('manage-group-roles', $group)) }}"
+                                locale="{{ app()->getLocale() }}">
                             </group-role-overview>
 
                         </div>

@@ -7,6 +7,7 @@ use Users;
 use GroupRoles;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\GroupRole;
 use App\Models\GroupMember;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -120,5 +121,18 @@ class GroupMemberService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function join(Group $group, User $user = null, GroupRole $role = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        if (is_null($role)) $role = GroupRoles::getDefaultRole($group);
+        
+        return GroupMember::create([
+            "user_id" => $user->id,
+            "group_id" => $group->id,
+            "group_role_id" => $role->id,
+        ]);
     }
 }

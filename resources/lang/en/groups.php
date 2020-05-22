@@ -12,11 +12,14 @@ return [
     */
     
     "group_not_found" => "Group could not be found.",
+    "application_not_found" => "Application could not be found",
     "created" => "Succesfully created the group!",
     "updated" => "Succesfully updated the group!",
     "deleted" => "Succesfully deleted the group!",
     "subscribed" => "You are now following this group!",
     "unsubscribed" => "You are no longer following this group.",
+    "application_accepted" => "Application has been accepted.",
+    "application_rejected" => "Application has been rejected.",
 
     "form_name" => "Name",
     "form_slogan" => "Slogan",
@@ -67,8 +70,15 @@ return [
 
     "roles_title" => "Roles & Permissions",
     "roles_no_records" => "No roles have been defined yet.",
+    "roles_add_button" => "Add role",
     "roles_form_name" => "Name",
     "roles_form_description" => "Description",
+    "roles_view_dialog_title" => "Role",
+    "roles_view_dialog_name" => "Name",
+    "roles_view_dialog_description" => "Description",
+    "roles_view_dialog_date" => "Added on",
+    "roles_view_dialog_update" => "Update",
+    "roles_view_dialog_delete" => "Delete",
     "roles_create_dialog_title" => "Create a new role",
     "roles_create_dialog_cancel" => "Cancel",
     "roles_create_dialog_submit" => "Save",
@@ -79,6 +89,20 @@ return [
     "roles_delete_dialog_text" => "Are you sure you want to delete the :name role?",
     "roles_delete_dialog_cancel" => "No, cancel",
     "roles_delete_dialog_submit" => "Yes, delete",
+
+    "applications_title" => "Applications",
+    "applications_no_records" => "There are no outstanding applications at the moment.",
+    "applications_view_dialog_title" => "Group application",
+    "applications_view_dialog_user" => "User",
+    "applications_view_dialog_motivation" => "Motivation",
+    "applications_view_dialog_date" => "Submitted on",
+    "applications_view_dialog_cancel" => "Cancel",
+    "applications_view_dialog_accept" => "Accept",
+    "applications_view_dialog_reject" => "Reject",
+    "applications_accepted_dialog_title" => "Accepted",
+    "applications_accepted_dialog_text" => "The application has been accepted and the user is now a member of the group!",
+    "applications_rejected_dialog_title" => "Rejected",
+    "applications_rejected_dialog_text" => "The application has been rejected!",
 
     "default_founder_description" => "This person formed the group.",
 
