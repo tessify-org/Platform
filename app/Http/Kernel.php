@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SetActiveLocale::class,
             \App\Http\Middleware\IsBanned::class,
             \App\Http\Middleware\CheckForOldBrowsers::class,
+            \Spatie\Csp\AddCspHeaders::class,
         ],
 
         'api' => [
