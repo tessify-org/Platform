@@ -4,6 +4,7 @@ namespace App\Services\ModelServices;
 
 use Auth;
 use Tags;
+use Uploader;
 use GroupRoles;
 use GroupMembers;
 use GroupMemberApplications;
@@ -83,8 +84,8 @@ class GroupService implements ModelServiceContract
         // Grab the logged in user
         $user = auth()->user();
 
-        // Create the group
-        $group = Group::create([
+        // Data to create the group with
+        $data = [
             "founder_id" => $user->id,
             "name" => request("name"),
             "slogan" => [
@@ -95,7 +96,18 @@ class GroupService implements ModelServiceContract
                 "nl" => request("description_nl"),
                 "en" => request("description_en"),
             ],
-        ]);
+        ];
+
+        // Upload image if one was provided
+        if ($request->hasFile("header_image"))
+        {
+            $image_url = Uploader::upload($request->file("header_image"), "images/groups/headers");
+            $data["header_image_url"] = $image_url;
+            $data["avatar_image_url"] = $image_url;
+        }
+
+        // Create the group
+        $group = Group::create($data);
 
         // Process the received tags
         $group = $this->processGroupTags($group, request("tags"));
@@ -133,6 +145,12 @@ class GroupService implements ModelServiceContract
             "en" => request("description_en"),
             "nl" => request("description_nl"),
         ];
+        if ($request->hasFile("header_image"))
+        {
+            $image_url = Uploader::upload($request->file("header_image"), "images/groups/headers");
+            $group->header_image_url = $image_url;
+            $group->avatar_image_url = $image_url;
+        }
         $group->save();
 
         // Process the received tags

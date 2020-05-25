@@ -70,11 +70,14 @@
 
         <!-- Header & avatar image -->
         <div class="form-fields">
-            <div class="form-field">
-                
-            </div>
-            <div class="form-field">
-
+            <div class="image-field">
+                <div class="image-field__label">{{ strings.header_image }}</div>
+                <div class="image-field__image-wrapper">
+                    <img class="image-field__image" :src="form.header_image_url">
+                </div>
+                <div class="image-field__input">
+                    <input type="file" name="header_image">
+                </div>
             </div>
         </div>
 
@@ -106,6 +109,8 @@
             "oldInput",
             "backHref",
             "tags",
+            "apiEndpoints",
+            "defaultImages",
         ],
         data: () => ({
             tag: "[group-form]",
@@ -120,8 +125,12 @@
                     nl: "",
                     en: "",
                 },
+                header_image_url: "",
                 tags: [],
             },
+            upload_header: {
+                loading: false,
+            }
         }),
         computed: {
             encodedTags() {
@@ -136,6 +145,8 @@
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" old input: ", this.oldInput);
                 console.log(this.tag+" tags: ", this.tags);
+                console.log(this.tag+" api endpoints: ", this.apiEndpoints);
+                console.log(this.tag+" default images: ", this.defaultImages);
                 this.generateTagOptions();
                 this.initializeData();
             },
@@ -147,12 +158,16 @@
                 }
             },
             initializeData() {
+                if (this.defaultImages !== undefined && this.defaultImages.header !== undefined && this.defaultImages.header !== null && this.defaultImages.header !== "") {
+                    this.form.header_image_url = this.defaultImages.header;
+                }
                 if (this.group !== undefined && this.group !== null) {
                     this.form.name = this.group.name;
                     this.form.slogan.nl = this.group.slogan.nl;
                     this.form.slogan.en = this.group.slogan.en;
                     this.form.description.en = this.group.description.en;
                     this.form.description.nl = this.group.description.nl;
+                    this.form.header_image_url = this.group.header_image_url;
                     if (this.group.tags !== undefined && this.group.tags !== null && this.group.tags.length > 0) {
                         for (let i = 0; i < this.group.tags.length; i++) {
                             this.form.tags.push(this.group.tags[i].name);
@@ -181,6 +196,66 @@
                     return this.errors[field];
                 }
                 return [];
+            },
+            onAvatarUpload(e) {
+                console.log(this.tag+" avatar selected", e);
+
+                // Start loading
+                this.upload_avatar.loading = true;
+
+                // Compose payload
+                let payload = new FormData();
+                payload.append("image", this.$refs.avatar.files[0]);
+
+                // Compose headers
+                let headers = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+                // Send API request
+                this.axios.post(this.apiEndpoints.upload_avatar, payload, headers)
+
+                    // Request succeeded
+                    .then(function(response) {
+                        console.log(this.tag+" request succeeded, response: ", response);
+                        this.upload_avatar.avatar_url = response.data.image_url;
+                        this.upload_avatar.loading = false;
+                    }.bind(this))
+
+                    // Request failed
+                    .catch(function(error) {
+                        console.warn(this.tag+" request failed, error: ", error);
+                        this.upload_avatar.loading = false;
+                    }.bind(this));
+                
+            },
+            onHeaderImageUpload(e) {
+                console.log(this.tag+" avatar selected", e);
+
+                // Start loading
+                this.upload_header.loading = true;
+
+                // Compose payload
+                let payload = new FormData();
+                payload.append("image", this.$refs.header.files[0]);
+
+                // Compose headers
+                let headers = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+                // Send API request
+                this.axios.post(this.apiEndpoints.upload_avatar, payload, headers)
+
+                    // Request succeeded
+                    .then(function(response) {
+                        console.log(this.tag+" request succeeded, response: ", response);
+                        this.upload_avatar.avatar_url = response.data.image_url;
+                        this.upload_header.loading = false;
+                    }.bind(this))
+
+                    // Request failed
+                    .catch(function(error) {
+                        console.warn(this.tag+" request failed, error: ", error);
+                        this.upload_header.loading = false;
+                    }.bind(this));
+                
             },
         },
         mounted() {

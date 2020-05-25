@@ -25,15 +25,17 @@
             <!-- Feedback -->
             @include("partials.feedback")
 
-            <form action="{{ route('groups.create.post') }}" method="post">
+            <form action="{{ route('groups.create.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <group-form
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
-                    back-href="{{ route('groups') }}"
-                    :tags="{{ $tags->toJson() }}">
+                    :tags="{{ $tags->toJson() }}"
+                    :api-endpoints="{{ $apiEndpoints->toJson() }}"
+                    :default-images="{{ $defaultImages->toJson() }}"
+                    back-href="{{ route('groups') }}">
                 </group-form>
 
             </form>

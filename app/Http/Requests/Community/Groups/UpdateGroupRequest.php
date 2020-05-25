@@ -30,6 +30,7 @@ class UpdateGroupRequest extends FormRequest
             "description_nl" => "required",
             "description_en" => "nullable",
             "tags" => "nullable",
+            "header_image" => "nullable|image",
         ];
     }
 }

@@ -82,10 +82,18 @@ class GroupController extends Controller
                 "slogan" => __("groups.form_slogan"),
                 "description" => __("groups.form_description"),
                 "tags" => __("groups.form_tags"),
+                "header_image" => __("groups.form_header_image"),
+                "avatar_image" => __("groups.form_avatar_image"),
                 "cancel" => __("groups.create_cancel"),
                 "submit" => __("groups.create_submit"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
+            ]),
+            "apiEndpoints" => collect([
+                "upload"
+            ]),
+            "defaultImages" => collect([
+                "header" => asset("storage/images/groups/headers/default.jpg"),
             ]),
         ]);
     }
@@ -107,6 +115,8 @@ class GroupController extends Controller
             return redirect()->route("groups");
         }
 
+        $group->header_image_url = asset($group->header_image_url);
+
         return view("pages.community.groups.edit", [
             "group" => $group,
             "tags" => Tags::getAll(),
@@ -123,6 +133,8 @@ class GroupController extends Controller
                 "slogan" => __("groups.form_slogan"),
                 "description" => __("groups.form_description"),
                 "tags" => __("groups.form_tags"),
+                "header_image" => __("groups.form_header_image"),
+                "avatar_image" => __("groups.form_avatar_image"),
                 "cancel" => __("groups.update_cancel"),
                 "submit" => __("groups.update_submit"),
                 "en" => __("general.en"),
