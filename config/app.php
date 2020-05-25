@@ -273,6 +273,10 @@ return [
         'WhitelistedDomains' => App\Facades\WhitelistedDomainsFacade::class,
         'WorkMethods' => App\Facades\WorkMethodsFacade::class,
         'Feedback' => App\Facades\FeedbackFacade::class,
+        'Groups' => App\Facades\GroupsFacade::class,
+        'GroupRoles' => App\Facades\GroupRolesFacade::class,
+        'GroupMembers' => App\Facades\GroupMembersFacade::class,
+        'GroupMemberApplications' => App\Facades\GroupMemberApplicationsFacade::class,
 
     ],
 

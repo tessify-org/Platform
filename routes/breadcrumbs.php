@@ -369,6 +369,48 @@ Breadcrumbs::for("organizations.department", function($t, $organization, $depart
     $t->push($department->name, route("organizations.department", ["slug" => $organization->slug, "departmentSlug" => $department->slug]));
 });
 
+// Community > Groups
+Breadcrumbs::for("groups", function($t) {
+    $t->parent("community");
+    $t->push(__("breadcrumbs.groups"), route("groups"));
+});
+Breadcrumbs::for("groups.create", function($t) {
+    $t->parent("groups");
+    $t->push(__("breadcrumbs.groups_create"), route("groups.create"));
+});
+Breadcrumbs::for("group", function($t, $group) {
+    $t->parent("groups");
+    $t->push($group->name, route("group", $group->slug));
+});
+Breadcrumbs::for("group.edit", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_edit"), route("group.edit", $group->slug));
+});
+Breadcrumbs::for("group.delete", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_delete"), route("group.delete", $group->slug)); 
+});
+Breadcrumbs::for("group.roles", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_roles"), route("group.roles", $group->slug));
+});
+Breadcrumbs::for("group.members", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_members"), route("group.members", $group->slug));
+});
+Breadcrumbs::for("group.applications", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_applications"), route("group.applications", $group->slug)); 
+});
+Breadcrumbs::for("group.polls", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_polls"), route("group.polls", $group->slug));
+});
+Breadcrumbs::for("group.forum", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_forum"), route("group.forum", $group->slug));
+});
+
 // Static pages
 Breadcrumbs::for("dont-use-ie", function($t) {
     $t->parent("home");

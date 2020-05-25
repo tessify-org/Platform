@@ -178,6 +178,21 @@ class User extends Authenticatable
         return $this->morphToMany(Tag::class, "taggable");
     }
 
+    public function groupMembers()
+    {
+        return $this->hasMany(GroupMember::class);
+    }
+
+    public function groupMemberApplications()
+    {
+        return $this->hasMany(GroupMemberApplication::class);
+    }
+
+    public function foundedGroups()
+    {
+        return $this->hasMany(Group::class, "founder_id", "id");
+    }
+
     //
     // Accessors
     //

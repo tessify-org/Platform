@@ -309,6 +309,67 @@ Route::group(["middleware" => "auth"], function() {
         });
         
         // Groups
+        Route::group(["prefix" => "groepen"], function() {
+
+            // Overview
+            Route::get("/", "Community\Groups\GroupController@getOverview")->name("groups");
+
+            // Create
+            Route::get("starten", "Community\Groups\GroupController@getCreate")->name("groups.create");
+            Route::post("starten", "Community\Groups\GroupController@postCreate")->name("groups.create.post");
+
+            // View
+            Route::get("{slug}", "Community\Groups\GroupController@getView")->name("group");
+
+            // Subscribe & unsubscribe
+            Route::get("{slug}/subscribe", "Community\Groups\GroupController@getSubscribe")->name("group.subscribe");
+            Route::get("{slug}/unsubscribe", "Community\Groups\GroupController@getUnsubscribe")->name("group.unsubscribe");
+
+            // Leave team
+            Route::get("{slug}/verlaten", "Community\Groups\GroupMemberController@getLeave")->name("group.leave");
+            Route::post("{slug}/verlaten", "Community\Groups\GroupMemberController@postLeave")->name("group.leave.post");
+
+            // Update
+            Route::get("{slug}/aanpassen", "Community\Groups\GroupController@getEdit")->name("group.edit");
+            Route::post("{slug}/aanpassen", "Community\Groups\GroupController@postEdit")->name("group.edit.post");
+
+            // Delete
+            Route::get("{slug}/verwijderen", "Community\Groups\GroupController@getDelete")->name("group.delete");
+            Route::post("{slug}/verwijderen", "Community\Groups\GroupController@postDelete")->name("group.delete.post");
+
+            // Roles
+            Route::get("{slug}/rollen", "Community\Groups\GroupRoleController@getOverview")->name("group.roles");
+            
+            // Roles --> API Endpoints
+            Route::post("{slug}/rollen/create", "Community\Groups\GroupRoleController@postCreate")->name("group.roles.create.post");
+            Route::post("{slug}/rollen/update", "Community\Groups\GroupRoleController@postUpdate")->name("group.roles.update.post");
+            Route::post("{slug}/rollen/delete", "Community\Groups\GroupRoleController@postDelete")->name("group.roles.delete.post");
+
+            // Members
+            Route::get("{slug}/members", "Community\Groups\GroupMemberController@getOverview")->name("group.members");
+            
+            // Members --> API Endpoints
+            Route::post("{slug}/kick", "Community\Groups\GroupMemberController@postKick")->name("group.members.kick.post");
+            Route::post("{slug}/update", "Community\Groups\GroupMemberController@postUpdate")->name("group.members.update.post");
+
+            // Apply for team
+            Route::get("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@getApply")->name("group.apply");
+            Route::post("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@postApply")->name("group.apply.post");
+
+            // Applications
+            Route::get("{slug}/aanmeldingen", "Community\Groups\GroupMemberApplicationController@getOverview")->name("group.applications");
+            
+            // Applications --> API Endpoints
+            Route::post("{slug}/aanmeldingen/accepteren/{uuid?}", "Community\Groups\GroupMemberApplicationController@postAccept")->name("group.applications.accept.post");
+            Route::post("{slug}/aanmeldingen/afwijzen/{uuid?}", "Community\Groups\GroupMemberApplicationController@postReject")->name("group.applications.reject.post");
+
+            // Polls
+            Route::get("{slug}/polls", "Community\Groups\GroupController@getPolls")->name("group.polls");
+
+            // Forum
+            Route::get("{slug}/forum", "Community\Groups\GroupController@getForum")->name("group.forum");
+            
+        });
 
         // Forum
 

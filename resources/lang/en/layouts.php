@@ -30,6 +30,7 @@ return [
     "community_link" => "Community",
     "ministries_link" => "Ministries",
     "organizations_link" => "Organizations",
+    "groups_link" => "Groups",
     
     // Footer
     "footer_first_column_title" => "HNNW",

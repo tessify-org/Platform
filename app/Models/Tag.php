@@ -43,4 +43,9 @@ class Tag extends Model
     {
         return $this->morphedByMany(User::class, "taggable");
     }
+    
+    public function groups()
+    {
+        return $this->morphedByMany(Group::class, "taggable");
+    }
 }
