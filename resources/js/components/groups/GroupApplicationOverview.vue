@@ -9,7 +9,7 @@
                     {{ application.user.formatted_name }}
                 </div>
                 <div class="group-application__date">
-                    {{ application.created_at }}
+                    {{ application.formatted_date }}
                 </div>
             </div>
         </div>

@@ -42,6 +42,8 @@ class GroupService implements ModelServiceContract
 
         $instance->is_member = GroupMembers::isMember($instance);
         $instance->is_founder = $instance->founder_id == auth()->user()->id;
+        $instance->has_outstanding_application = GroupMemberApplications::hasOutstandingApplication($instance);
+
         $instance->num_members = GroupMembers::count($instance);
         $instance->num_roles = GroupRoles::count($instance);
         $instance->num_outstanding_applications = GroupMemberApplications::countOutstanding($instance);

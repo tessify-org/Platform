@@ -22,6 +22,8 @@ return [
     "application_rejected" => "Aanmelding is afgewezen.",
     "kicked" => "Groepslid is uit de groep gezet.",
     "updated_member" => "Groepslid is aangepast.",
+    "left" => "Je hebt de groep verlaten.",
+    "join_disabled_outstanding_application" => "Je aanmelding is momenteel in behandeling.",
 
     "form_name" => "Naam",
     "form_slogan" => "Slogan",
@@ -61,6 +63,16 @@ return [
     "delete_title" => "Groep verwijderen",
     "delete_cancel" => "Nee, terug naar groep",
     "delete_submit" => "Ja, verwijderen",
+
+    "leave_title" => "Groep verlaten",
+    "leave_text" => "Weet je zeker dat je deze groep wilt verlaten?",
+    "leave_cancel" => "Nee, ga terug",
+    "leave_submit" => "Ja, verlaat groep",
+    
+    "apply_title" => "Aanmelden voor groep",
+    "apply_motivation" => "Motivatie",
+    "apply_cancel" => "Ga terug",
+    "apply_submit" => "Verstuur aanmelding",
 
     "members_title" => "Groepsleden",
     "members_no_records" => "Deze groep heeft nog geen leden.",
@@ -112,5 +124,9 @@ return [
     "applications_rejected_dialog_text" => "De aanmelding is afgewezen.",
 
     "default_founder_description" => "Deze persoon heeft de groep opgericht.",
+    
+    "polls_title" => "Polls",
+    
+    "forum_title" => "Forum",
 
 ];

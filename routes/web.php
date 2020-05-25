@@ -325,10 +325,6 @@ Route::group(["middleware" => "auth"], function() {
             Route::get("{slug}/subscribe", "Community\Groups\GroupController@getSubscribe")->name("group.subscribe");
             Route::get("{slug}/unsubscribe", "Community\Groups\GroupController@getUnsubscribe")->name("group.unsubscribe");
 
-            // Apply for team
-            Route::get("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@getApply")->name("group.apply");
-            Route::post("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@postApply")->name("group.apply.post");
-
             // Leave team
             Route::get("{slug}/verlaten", "Community\Groups\GroupMemberController@getLeave")->name("group.leave");
             Route::post("{slug}/verlaten", "Community\Groups\GroupMemberController@postLeave")->name("group.leave.post");
@@ -356,13 +352,23 @@ Route::group(["middleware" => "auth"], function() {
             Route::post("{slug}/kick", "Community\Groups\GroupMemberController@postKick")->name("group.members.kick.post");
             Route::post("{slug}/update", "Community\Groups\GroupMemberController@postUpdate")->name("group.members.update.post");
 
+            // Apply for team
+            Route::get("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@getApply")->name("group.apply");
+            Route::post("{slug}/aanmelden", "Community\Groups\GroupMemberApplicationController@postApply")->name("group.apply.post");
+
             // Applications
-            Route::get("{slug}/aanmeldingen", "Community\Groups\GroupApplicationController@getOverview")->name("group.applications");
+            Route::get("{slug}/aanmeldingen", "Community\Groups\GroupMemberApplicationController@getOverview")->name("group.applications");
             
             // Applications --> API Endpoints
-            Route::post("{slug}/aanmeldingen/accepteren/{uuid?}", "Community\Groups\GroupApplicationController@postAccept")->name("group.applications.accept.post");
-            Route::post("{slug}/aanmeldingen/afwijzen/{uuid?}", "Community\Groups\GroupApplicationController@postReject")->name("group.applications.reject.post");
+            Route::post("{slug}/aanmeldingen/accepteren/{uuid?}", "Community\Groups\GroupMemberApplicationController@postAccept")->name("group.applications.accept.post");
+            Route::post("{slug}/aanmeldingen/afwijzen/{uuid?}", "Community\Groups\GroupMemberApplicationController@postReject")->name("group.applications.reject.post");
 
+            // Polls
+            Route::get("{slug}/polls", "Community\Groups\GroupController@getPolls")->name("group.polls");
+
+            // Forum
+            Route::get("{slug}/forum", "Community\Groups\GroupController@getForum")->name("group.forum");
+            
         });
 
         // Forum

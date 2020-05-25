@@ -91,6 +91,8 @@ return [
     "group_roles" => "Rollen",
     "group_members" => "Groepsleden",
     "group_applications" => "Aanmeldingen",
+    "group_polls" => "Polls",
+    "group_forum" => "Forum",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Administratie dashboard",
     "admin_users" => "Beheer gebruikers",

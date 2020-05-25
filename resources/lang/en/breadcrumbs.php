@@ -92,6 +92,8 @@ return [
     "group_roles" => "Roles",
     "group_members" => "Members",
     "group_applications" => "Applications",
+    "group_polls" => "Polls",
+    "group_forum" => "Forum",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Admin dashboard",
     "admin_users" => "Manage users",

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Groups\Members;
+namespace App\Http\Requests\Community\Groups\Members;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KickGroupMemberRequest extends FormRequest
+class LeaveGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -76,11 +76,26 @@
                                                 @lang("groups.view_leave")
                                             </v-btn>
                                         @else
-                                            <!-- Join button -->
-                                            <v-btn color="primary" href="{{ route('group.apply', $group->slug) }}" depressed block>
-                                                <i class="far fa-thumbs-up"></i>
-                                                @lang("groups.view_join")
-                                            </v-btn>
+                                            @if ($group->has_outstanding_application)
+                                                <!-- Disabled join button -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <div v-on="on">
+                                                            <v-btn color="primary" href="{{ route('group.apply', $group->slug) }}" depressed block disabled>
+                                                                <i class="far fa-thumbs-up"></i>
+                                                                @lang("groups.view_join")
+                                                            </v-btn>
+                                                        </div>
+                                                    </template>
+                                                    <span>@lang("groups.join_disabled_outstanding_application")</span>
+                                                </v-tooltip>
+                                            @else
+                                                <!-- Join button -->
+                                                <v-btn color="primary" href="{{ route('group.apply', $group->slug) }}" depressed block>
+                                                    <i class="far fa-thumbs-up"></i>
+                                                    @lang("groups.view_join")
+                                                </v-btn>
+                                            @endif
                                         @endif
                                     </div>
 

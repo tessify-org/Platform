@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\GroupMemberApplication;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
+use App\Http\Requests\Community\Groups\Applications\ApplyForGroupRequest;
 
 class GroupMemberApplicationService implements ModelServiceContract
 {
@@ -91,6 +92,8 @@ class GroupMemberApplicationService implements ModelServiceContract
 
     public function hasOutstandingApplication(Group $group, User $user = null)
     {
+        if (is_null($user)) $user = auth()->user();
+
         foreach ($this->getAll() as $application)
         {
             if ($application->group_id == $group->id && $application->user_id == $user->id && !$application->processed)
@@ -135,5 +138,14 @@ class GroupMemberApplicationService implements ModelServiceContract
         $application->save();
 
         return $application;
+    }
+
+    public function processApplicationRequest(Group $group, ApplyForGroupRequest $request)
+    {
+        return GroupMemberApplication::create([
+            "group_id" => $group->id,
+            "user_id" => auth()->user()->id,
+            "motivation" => request("motivation"),
+        ]);
     }
 }

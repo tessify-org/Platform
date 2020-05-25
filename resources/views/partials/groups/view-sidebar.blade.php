@@ -46,7 +46,7 @@
             </span>
         </a>
         <!-- Polls -->
-        <a class="group-link @if (isset($page) && $page == 'polls') selected @endif" href="#">
+        <a class="group-link @if (isset($page) && $page == 'polls') selected @endif" href="{{ route('group.polls', $group->slug) }}">
             <span class="group-link__icon">
                 <i class="fas fa-poll"></i>
             </span>
@@ -55,7 +55,7 @@
             </span>
         </a>
         <!-- Forum -->
-        <a class="group-link @if (isset($page) && $page == 'forum') selected @endif" href="#">
+        <a class="group-link @if (isset($page) && $page == 'forum') selected @endif" href="{{ route('group.forum', $group->slug) }}">
             <span class="group-link__icon">
                 <i class="far fa-comments"></i>
             </span>

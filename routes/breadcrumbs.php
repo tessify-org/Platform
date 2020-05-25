@@ -402,6 +402,14 @@ Breadcrumbs::for("group.applications", function($t, $group) {
     $t->parent("group", $group);
     $t->push(__("breadcrumbs.group_applications"), route("group.applications", $group->slug)); 
 });
+Breadcrumbs::for("group.polls", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_polls"), route("group.polls", $group->slug));
+});
+Breadcrumbs::for("group.forum", function($t, $group) {
+    $t->parent("group", $group);
+    $t->push(__("breadcrumbs.group_forum"), route("group.forum", $group->slug));
+});
 
 // Static pages
 Breadcrumbs::for("dont-use-ie", function($t) {

@@ -22,6 +22,8 @@ return [
     "application_rejected" => "Application has been rejected.",
     "kicked" => "Group member has been kicked.",
     "updated_member" => "Group member has been updated.",
+    "left" => "You have left the group.",
+    "join_disabled_outstanding_application" => "Your application is currently under review.",
 
     "form_name" => "Name",
     "form_slogan" => "Slogan",
@@ -61,6 +63,16 @@ return [
     "delete_title" => "Delete group",
     "delete_cancel" => "No, go back to group",
     "delete_submit" => "Yes, delete group",
+
+    "leave_title" => "Leave group",
+    "leave_text" => "Are you sure you want to leave this group?",
+    "leave_cancel" => "Cancel",
+    "leave_submit" => "Yes, leave this group",
+    
+    "apply_title" => "Apply for group",
+    "apply_motivation" => "Motivation",
+    "apply_cancel" => "Cancel",
+    "apply_submit" => "Send application",
 
     "members_title" => "Group members",
     "members_no_records" => "This group has no members yet.",
@@ -112,5 +124,9 @@ return [
     "applications_rejected_dialog_text" => "The application has been rejected!",
 
     "default_founder_description" => "This person formed the group.",
+
+    "polls_title" => "Polls",
+    
+    "forum_title" => "Forum",
 
 ];

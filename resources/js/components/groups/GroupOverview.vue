@@ -51,7 +51,7 @@
             mutableGroups: [],
             paginatedGroups: [],
             pagination: {
-                perPage: 1,
+                perPage: 12,
                 currentPage: 1,
             },
             descLimit: 100,

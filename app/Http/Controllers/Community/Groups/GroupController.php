@@ -174,4 +174,32 @@ class GroupController extends Controller
         flash(__("groups.deleted"))->success();
         return redirect()->route("groups");
     }
+
+    public function getPolls($slug)
+    {
+        $group = Groups::findPreloadedBySlug($slug);
+        if (!$group)
+        {
+            flash(__("groups.group_not_found"))->error();
+            return redirect()->route("groups");
+        }
+
+        return view("pages.community.groups.polls.overview", [
+            "group" => $group
+        ]);
+    }
+
+    public function getForum($slug)
+    {
+        $group = Groups::findPreloadedBySlug($slug);
+        if (!$group)
+        {
+            flash(__("groups.group_not_found"))->error();
+            return redirect()->route("groups");
+        }
+
+        return view("pages.community.groups.forum.overview", [
+            "group" => $group
+        ]);
+    }
 }
