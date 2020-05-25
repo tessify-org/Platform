@@ -232,6 +232,10 @@ return [
     "form_tags" => "Tags",
     "form_optional" => "Optional",
 
+    "description_nl_required" => "Dutch description is required",
+    "description_en_required" => "English description is required",
+    "ministry_invalid" => "Invalid ministry supplied",
+
     //
     // Delete project
     //

@@ -231,6 +231,12 @@ return [
     "form_no_projects" => "Geen projecten gevonden",
     "form_dont_associate_project" => "Niet associeren met een project",
 
+    "title_nl_required" => "Nederlandse titel is verplicht",
+    "title_en_required" => "Engelse titel is verplicht",
+    "description_nl_required" => "Nederlandse beschrijving is verplicht",
+    "description_en_required" => "Engelse beschrijving is verplicht",
+    "category_required" => "Categorie is verplicht",
+
     //
     // Delete
     //
