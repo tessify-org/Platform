@@ -90,7 +90,7 @@
                 </v-btn>
             </div>
             <div class="form-controls__right">
-                <v-btn color="success" type="submit">
+                <v-btn color="success" type="submit" depressed>
                     <i class="fas fa-save"></i>
                     {{ strings.submit }}
                 </v-btn>
