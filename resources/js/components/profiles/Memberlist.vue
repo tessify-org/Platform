@@ -68,7 +68,7 @@
         </div>
 
         <!-- Pagination -->
-        <div id="pagination">
+        <div id="pagination" v-if="numPaginatedPages > 1">
             <v-pagination
                 v-model="pagination.currentPage"
                 :length="numPaginatedPages"
