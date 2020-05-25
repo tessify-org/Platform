@@ -79,7 +79,7 @@ class GroupController extends Controller
             ]),
             "strings" => collect([
                 "name" => __("groups.form_name"),
-                "slogan" => __("groups.form.slogan"),
+                "slogan" => __("groups.form_slogan"),
                 "description" => __("groups.form_description"),
                 "tags" => __("groups.form_tags"),
                 "cancel" => __("groups.create_cancel"),
