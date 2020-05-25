@@ -148,7 +148,7 @@ class GroupController extends Controller
 
     public function getDelete($slug)
     {
-        $group = Groups::findBySlug($slug);
+        $group = Groups::findPreloadedBySlug($slug);
         if (!$group)
         {
             flash(__("groups.group_not_found"))->error();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Groups;
+namespace App\Http\Requests\Community\Groups;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,8 +23,6 @@ class DeleteGroupRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "group_id" => "required|exists:groups,id",
-        ];
+        return [];
     }
 }

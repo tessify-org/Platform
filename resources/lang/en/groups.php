@@ -61,6 +61,7 @@ return [
     "update_submit" => "Save changes",
 
     "delete_title" => "Delete group",
+    "delete_text" => "Are you sure you want to delete this group?",
     "delete_cancel" => "No, go back to group",
     "delete_submit" => "Yes, delete group",
 

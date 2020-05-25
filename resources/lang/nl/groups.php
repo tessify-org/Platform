@@ -61,6 +61,7 @@ return [
     "update_submit" => "Opslaan",
 
     "delete_title" => "Groep verwijderen",
+    "delete_text" => "Weet je zeker dat je deze groep wilt verwijderen?",
     "delete_cancel" => "Nee, terug naar groep",
     "delete_submit" => "Ja, verwijderen",
 
