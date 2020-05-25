@@ -14,17 +14,6 @@
             
             <!-- Content -->
             <div id="community-links" class="card-grid">
-                <!-- Memberlist -->
-                <div class="card-wrapper">
-                    <a class="card elevation-1" href="{{ route('memberlist') }}">
-                        <span class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span class="card-title">
-                            @lang("community.memberlist")
-                        </span>
-                    </a>
-                </div>
                 <!-- Ministries -->
                 <div class="card-wrapper">
                     <a class="card elevation-1" href="{{ route('ministries') }}">
@@ -44,6 +33,28 @@
                         </span>
                         <span class="card-title">
                             @lang("community.organizations")
+                        </span>
+                    </a>
+                </div>
+                <!-- Groups -->
+                <div class="card-wrapper">
+                    <a class="card elevation-1" href="{{ route('groups') }}">
+                        <span class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <span class="card-title">
+                            @lang("community.groups")
+                        </span>
+                    </a>
+                </div>
+                <!-- Memberlist -->
+                <div class="card-wrapper">
+                    <a class="card elevation-1" href="{{ route('memberlist') }}">
+                        <span class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <span class="card-title">
+                            @lang("community.memberlist")
                         </span>
                     </a>
                 </div>

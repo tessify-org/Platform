@@ -15,10 +15,12 @@ class GroupRole extends Model
         "group_id",
         "name",
         "description",
+        "assignable",
         "deleteable",
         "default",
     ];
     protected $casts = [
+        "assignable" => "boolean",
         "deleteable" => "boolean",
         "default" => "boolean",
     ];

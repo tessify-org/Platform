@@ -354,6 +354,7 @@ Route::group(["middleware" => "auth"], function() {
             
             // Members --> API Endpoints
             Route::post("{slug}/kick", "Community\Groups\GroupMemberController@postKick")->name("group.members.kick.post");
+            Route::post("{slug}/update", "Community\Groups\GroupMemberController@postUpdate")->name("group.members.update.post");
 
             // Applications
             Route::get("{slug}/aanmeldingen", "Community\Groups\GroupApplicationController@getOverview")->name("group.applications");

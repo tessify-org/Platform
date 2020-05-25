@@ -44,7 +44,7 @@
                         <!-- Motivation -->
                         <div class="detail">
                             <div class="key">{{ strings.view_dialog_description }}</div>
-                            <div class="val">{{ mutableRoles[this.dialogs.view.index].description[locale] }}</div>
+                            <div class="val" v-html="getViewDescription(mutableRoles[this.dialogs.view.index].description)"></div>
                         </div>
                         <!-- Created at -->
                         <div class="detail">
@@ -424,6 +424,13 @@
                     return this.strings.delete_dialog_text.replace(':name', this.mutableRoles[this.dialogs.delete.index].name[this.locale]);
                 }
                 return "";
+            },
+            getViewDescription(description) {
+                if (description === null) {
+                    return "<i>Missing</i>";
+                } else {
+                    return description[this.locale];
+                }
             },
         },
         mounted() {

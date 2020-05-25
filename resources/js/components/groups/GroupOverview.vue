@@ -5,21 +5,22 @@
         <div id="group-overview__list" v-if="paginatedGroups.length > 0">
             <div class="group-wrapper" v-for="(group, gi) in paginatedGroups" :key="gi">
                 <a class="group elevation-1" :href="group.view_href">
-                    <span class="group-bg" :style="{ backgroundImage: 'url('+group.header_image_url+')' }"></span>
-                    <span class="group-bg-overlay"></span>
+                    <span class="group-image" :style="{ backgroundImage: 'url('+group.header_image_url+')' }">
+                        <span class="group-image-overlay"></span>
+                        <span class="group-indicators">
+                            <span class="group-indicator">
+                                <span class="group-indicator__icon">
+                                    <i class="fas fa-users"></i>
+                                </span>
+                                <span class="group-indicator__count">
+                                    {{ group.members.length }}
+                                </span>
+                            </span>
+                        </span>
+                    </span>
                     <span class="group-text">
                         <h3 class="group-name">{{ group.name }}</h3>
                         <p class="group-description">{{ getGroupDescription(group) }}</p>
-                    </span>
-                    <span class="group-indicators">
-                        <span class="group-indicator">
-                            <span class="group-indicator__icon">
-                                <i class="fas fa-users"></i>
-                            </span>
-                            <span class="group-indicator__count">
-                                {{ group.members.length }}
-                            </span>
-                        </span>
                     </span>
                 </a>
             </div>
@@ -50,7 +51,7 @@
             mutableGroups: [],
             paginatedGroups: [],
             pagination: {
-                perPage: 12,
+                perPage: 1,
                 currentPage: 1,
             },
             descLimit: 100,
@@ -108,87 +109,82 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            justify-content: center;
             margin: 0 -25px -50px -25px;
             .group-wrapper {
                 flex: 0 0 33.33%;
                 box-sizing: border-box;
                 padding: 0 25px 50px 25px;
                 .group {
-                    height: 200px;
                     display: block;
                     overflow: hidden;
                     color: #000000;
                     border-radius: 3px;
                     position: relative;
                     text-decoration: none;
+                    background-color: #fff;
                     &:hover {
                         .group-bg-overlay {
                             background-color: rgba(255, 255, 255, 0.6);
                         }
                     }
-                    .group-bg {
-                        top: 0;
-                        left: 0;
-                        z-index: 1;
+                    .group-image {
                         width: 100%;
-                        height: 100%;
-                        position: absolute;
+                        height: 150px;
+                        display: block;
+                        position: relative;
                         background-size: cover;
                         background-color: #fff;
                         background-repeat: no-repeat;
                         background-position: center center;
-                    }
-                    .group-bg-overlay {
-                        top: 0;
-                        left: 0;
-                        z-index: 2;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        transition: all .3s;
-                        background-color: rgba(255, 255, 255, 0.75);
-                    }
-                    .group-text {
-                        top: 0;
-                        left: 0;
-                        z-index: 3;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        box-sizing: border-box;
-                        padding: 30px 30px 60px 30px;
-                        .group-name {
-                            font-size: 1.4em;
+                        .group-image-overlay {
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            transition: all .3s;
+                            background-color: rgba(0, 0, 0, 0.5);
+                        }
+                        .group-indicators {
+                            left: 0;
+                            bottom: 0;
+                            z-index: 2;
+                            width: 100%;
+                            padding: 25px 25px;
+                            position: absolute;
+                            box-sizing: border-box;
+                            .group-indicator {
+                                display: flex;
+                                flex-direction: row;
+                                color: #fff;
+                                .group-indicator__icon {
+                                    margin: 0 8px 0 0;
+                                }
+                                .group-indicator__text {
+
+                                }
+                                &:last-child {
+                                    margin: 0;
+                                }
+                            }
                         }
                     }
-                    .group-indicators {
-                        left: 0;
-                        bottom: 0;
-                        z-index: 3;
-                        width: 100%;
+                    .group-text {
+                        height: 130px;
                         padding: 30px;
-                        position: absolute;
+                        display: block;
                         box-sizing: border-box;
-                        .group-indicator {
-                            margin: 0 15px 0 0;
-                            display: flex;
-                            flex-direction: row;
-                            .group-indicator__icon {
-                                margin: 0 8px 0 0;
-                            }
-                            .group-indicator__text {
-
-                            }
-                            &:last-child {
-                                margin: 0;
-                            }
+                        .group-name {
+                            font-size: 1.4em;
                         }
                     }
                 }
             }
         }
         #group-overview__pagination {
-
+            margin: 50px 0 0 0;
         }
         #group-overview__no-records {
             text-align: center;

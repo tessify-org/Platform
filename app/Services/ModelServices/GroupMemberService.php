@@ -12,6 +12,7 @@ use App\Models\GroupMember;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
 use App\Http\Requests\Community\Groups\Members\KickGroupMemberRequest;
+use App\Http\Requests\Community\Groups\Members\UpdateGroupMemberRequest;
 
 class GroupMemberService implements ModelServiceContract
 {
@@ -121,6 +122,13 @@ class GroupMemberService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function processUpdateRequest(UpdateGroupMemberRequest $request)
+    {
+        $member = $this->find($request->group_member_id);
+        $member->group_role_id = request("group_role_id");
+        $member->save();
     }
 
     public function join(Group $group, User $user = null, GroupRole $role = null)

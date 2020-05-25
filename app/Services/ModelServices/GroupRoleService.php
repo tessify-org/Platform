@@ -44,6 +44,21 @@ class GroupRoleService implements ModelServiceContract
         return $out;
     }
 
+    public function getAllAssignableForGroup(Group $group)
+    {
+        $out = [];
+
+        foreach ($this->getAll() as $role)
+        {
+            if ($role->group_id == $group->id && $role->assignable)
+            {
+                $out[] = $role;
+            }
+        }
+
+        return $out;
+    }
+
     public function count(Group $group)
     {
         $out = 0;
@@ -72,6 +87,7 @@ class GroupRoleService implements ModelServiceContract
                 "nl" => "Deze persoon heeft de groep gestart.",
                 "en" => "This person started the group.",
             ],
+            "assignable" => false,
             "deleteable" => false,
         ]);
 
@@ -81,6 +97,7 @@ class GroupRoleService implements ModelServiceContract
                 "nl" => "Lid",
                 "en" => "Member",
             ],
+            "assignable" => true,
             "deleteable" => false,
             "default" => true,
         ]);

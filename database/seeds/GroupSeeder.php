@@ -46,7 +46,9 @@ class GroupSeeder extends Seeder
         $group_one_roles = app("group-roles")->createDefaultRoles($group_one);
         
         $group_one_founder = app("group-members")->join($group_one, $moi, $group_one_roles["founder"]);
-        
+        $group_one_member_one = app("group-members")->join($group_one, $toi, $group_one_roles["member"]);
+        $group_one_member_two = app("group-members")->join($group_one, $three, $group_one_roles["member"]);
+
         $group_one_member_application = GroupMemberApplication::create([
             "user_id" => $toi->id,
             "group_id" => $group_one->id,

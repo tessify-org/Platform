@@ -18,6 +18,7 @@ class CreateGroupRolesTable extends Migration
             $table->unsignedInteger('group_id');
             $table->json('name');
             $table->json('description')->nullable();
+            $table->boolean('assignable')->default(true);
             $table->boolean('deleteable')->default(true);
             $table->boolean('default')->default(false);
             $table->timestamps();

@@ -41,6 +41,7 @@
 
                             <!-- Group member overview -->
                             <group-member-overview
+                                :roles="{{ $roles->toJson() }}"
                                 :members="{{ $members->toJson() }}"
                                 :strings="{{ $strings->toJson() }}"
                                 :api-endpoints="{{ $apiEndpoints->toJson() }}"
