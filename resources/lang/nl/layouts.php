@@ -31,7 +31,8 @@ return [
     "ministries_link" => "Ministeries",
     "organizations_link" => "Organisaties",
     "groups_link" => "Groepen",
-    
+    "polls_link" => "Polls",
+
     // Footer
     "footer_first_column_title" => "HNNW",
     "footer_press_link" => "Pers",

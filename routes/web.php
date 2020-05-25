@@ -371,11 +371,30 @@ Route::group(["middleware" => "auth"], function() {
             
         });
 
+        // Polls
+        Route::group(["prefix" => "polls"], function() {
+
+            Route::get("/", "Community\PollController@getOverview")->name("polls");
+            
+            Route::get("toevoegen", "Community\PollController@getCreate")->name("polls.create");
+            Route::post("toevoegen", "Community\PollController@postCreate")->name("polls.create.post");
+            
+            Route::get("{slug}", "Community\PollController@getView")->name("poll");
+
+            Route::get("{slug}/aanpassen", "Community\PollController@getEdit")->name("poll.edit");
+            Route::post("{slug}/aanpassen", "Community\PollController@postEdit")->name("poll.edit.post");
+
+            Route::get("{slug}/verwijderen", "Community\PollController@getDelete")->name("poll.delete");
+            Route::post("{slug}/verwijderen", "Community\PollController@postDelete")->name("poll.delete.post");
+
+            Route::get("{slug}/stemmen", "Community\PollController@getVote")->name("poll.vote");
+            Route::post("{slug}/stemmen", "Community\PollController@postVote")->name("poll.vote.post");
+            
+        });
+        
         // Forum
 
         // Blogs
-
-        // Polls
 
         // etc..
 

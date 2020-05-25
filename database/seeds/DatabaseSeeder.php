@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(WhitelistedDomainSeeder::class);
         $this->call(GroupSeeder::class);
+        $this->call(PollSeeder::class);
     }
 }

@@ -411,6 +411,32 @@ Breadcrumbs::for("group.forum", function($t, $group) {
     $t->push(__("breadcrumbs.group_forum"), route("group.forum", $group->slug));
 });
 
+// Community > Polls
+Breadcrumbs::for("polls", function($t) {
+    $t->parent("community");
+    $t->push(__("breadcrumbs.polls"), route("polls"));
+});
+Breadcrumbs::for("polls.create", function($t) {
+    $t->parent("polls");
+    $t->push(__("breadcrumbs.polls_create"), route("polls.create"));
+});
+Breadcrumbs::for("poll", function($t, $poll) {
+    $t->parent("polls");
+    $t->push(__("breadcrumbs.polls_view"), route("poll", $poll->slug));
+});
+Breadcrumbs::for("poll.edit", function($t, $poll) {
+    $t->parent("poll", $poll);
+    $t->push(__("breadcrumbs.polls_edit"), route("poll.edit", $poll->slug));
+});
+Breadcrumbs::for("poll.delete", function($t, $poll) {
+    $t->parent("poll", $poll);
+    $t->push(__("breadcrumbs.polls_delete", route("poll.delete", $poll->slug)));
+});
+Breadcrumbs::for("poll.vote", function($t, $poll) {
+    $t->parent("poll", $poll);
+    $t->push(__("breadcrumbs.polls_vote"), route("poll.vote", $poll->slug));
+});
+
 // Static pages
 Breadcrumbs::for("dont-use-ie", function($t) {
     $t->parent("home");

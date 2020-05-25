@@ -277,7 +277,13 @@ return [
         'GroupRoles' => App\Facades\GroupRolesFacade::class,
         'GroupMembers' => App\Facades\GroupMembersFacade::class,
         'GroupMemberApplications' => App\Facades\GroupMemberApplicationsFacade::class,
-
+        'Polls' => App\Facades\PollsFacade::class,
+        'PollStatuses' => App\Facades\PollStatusesFacade::class,
+        'PollQuestions' => App\Facades\PollQuestionsFacade::class,
+        'PollQuestionAnswers' => App\Facades\PollQuestionAnswersFacade::class,
+        'PollVotes' => App\Facades\PollVotesFacade::class,
+        'PollVoteAnswers' => App\Facades\PollVoteAnswersFacade::class,
+        
     ],
 
 ];

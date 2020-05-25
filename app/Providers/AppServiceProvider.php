@@ -56,6 +56,12 @@ use App\Services\ModelServices\GroupService;
 use App\Services\ModelServices\GroupRoleService;
 use App\Services\ModelServices\GroupMemberService;
 use App\Services\ModelServices\GroupMemberApplicationService;
+use App\Services\ModelServices\PollService;
+use App\Services\ModelServices\PollStatusService;
+use App\Services\ModelServices\PollQuestionService;
+use App\Services\ModelServices\PollQuestionAnswerService;
+use App\Services\ModelServices\PollVoteService;
+use App\Services\ModelServices\PollVoteAnswerService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -285,6 +291,30 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton("group-member-applications", function() {
             return new GroupMemberApplicationService;
+        });
+
+        $this->app->singleton("polls", function() {
+            return new PollService;
+        });
+
+        $this->app->singleton("poll-questions", function() {
+            return new PollQuestionService;
+        });
+
+        $this->app->singleton("poll-question-answers", function() {
+            return new PollQuestionAnswerService;
+        });
+
+        $this->app->singleton("poll-status", function() {
+            return new PollStatusService;
+        });
+
+        $this->app->singleton("poll-votes", function() {
+            return new PollVoteService;
+        });
+
+        $this->app->singleton("poll-vote-answers", function() {
+            return new PollVoteAnswerService;
         });
 
         //

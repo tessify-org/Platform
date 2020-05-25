@@ -31,6 +31,7 @@ return [
     "ministries_link" => "Ministries",
     "organizations_link" => "Organizations",
     "groups_link" => "Groups",
+    "polls_link" => "Polls",
     
     // Footer
     "footer_first_column_title" => "HNNW",
