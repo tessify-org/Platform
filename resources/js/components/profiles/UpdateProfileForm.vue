@@ -106,14 +106,14 @@
 
             <!-- Interests -->
             <div class="form-field">
-                <v-select
+                <v-combobox
                     multiple
                     v-model="form.interests"
                     :items="tagOptions"
                     :label="strings.interests"
                     :errors="hasErrors('interests')"
                     :error-messages="getErrors('interests')">
-                </v-select>
+                </v-combobox>
                 <input type="hidden" name="interests" :value="encodedTagIds">
             </div>
 
@@ -235,10 +235,7 @@
             generateTagOptions() {
                 if (this.tags !== undefined && this.tags !== null && this.tags.length > 0) {
                     for (let i = 0; i < this.tags.length; i++) {
-                        this.tagOptions.push({
-                            text: this.tags[i].name,
-                            value: this.tags[i].id,
-                        });
+                        this.tagOptions.push(this.tags[i].name);
                     }
                 }
             },
@@ -250,7 +247,6 @@
                     this.form.publicly_display_email = this.user.publicly_display_email;
                     this.form.phone = this.user.phone;
                     this.form.headline = this.user.headline;
-                    this.form.interests = this.user.interests;
                     if (this.user.assignments !== undefined && this.user.assignments !== null && this.user.assignments.length > 0) {
                         for (let i = 0; i < this.user.assignments.length; i++) {
                             if (this.user.assignments[i].current) {
@@ -258,8 +254,13 @@
                             }
                         }
                     }
+                    if (this.user.interests !== undefined && this.user.interests !== null && this.user.interests.length > 0) {
+                        for (let i = 0; i < this.user.interests.length; i++) {
+                            this.form.interests.push(this.user.interests[i].name);
+                        }
+                    }
                     this.upload_avatar.avatar_url = this.user.avatar_url;
-                    this.upload_avatar.header_image_url = this.user.header_bg_url;
+                    this.upload_header_image.header_image_url = this.user.header_bg_url;
                 }
                 if (this.oldInput !== undefined && this.oldInput !== null) {
                     if (this.oldInput.first_name !== null) this.form.first_name = this.oldInput.first_name;

@@ -4,9 +4,9 @@ namespace App\Services\ModelServices;
 
 use DB;
 use Auth;
-use App\Models\User;
 use App\Models\Tag;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\Group;
 use App\Models\Project;
 use App\Traits\ModelServiceGetters;
@@ -79,6 +79,21 @@ class TagService implements ModelServiceContract
         foreach ($this->getTaggables() as $taggable)
         {
             if ($taggable->taggable_type == Group::class && $taggable->taggable_id == $group->id)
+            {
+                $out[] = $this->find($taggable->tag_id);
+            }
+        }
+
+        return $out;
+    }
+
+    public function getAllForUser(User $user)
+    {
+        $out = [];
+
+        foreach ($this->getTaggables() as $taggable)
+        {
+            if ($taggable->taggable_type == User::class && $taggable->taggable_id == $user->id)
             {
                 $out[] = $this->find($taggable->tag_id);
             }

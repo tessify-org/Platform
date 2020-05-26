@@ -107,7 +107,7 @@ return [
     "update_profile_publicly_display_email" => "E-mailadres publiekelijk weergeven",
     "update_profile_phone" => "Telefoon nummer",
     "update_profile_avatar" => "Profielfoto",
-    "update_profile_header_bg" => "Header achetergrond plaatje",
+    "update_profile_header_bg" => "Header achtergrond plaatje",
     "update_profile_go_back" => "Ga terug",
     "update_profile_save_changes" => "Wijzigingen opslaan",
     "update_profile_assignments_label" => "Aanstellingen",

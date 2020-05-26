@@ -4,6 +4,7 @@ namespace App\Services\ModelServices;
 
 use Auth;
 use Uuid;
+use Tags;
 use Skills;
 use Avatar;
 use Projects;
@@ -12,7 +13,6 @@ use Assignments;
 use Carbon\Carbon;
 
 use App\Models\User;
-
 use App\Models\Project;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -65,6 +65,7 @@ class UserService implements ModelServiceContract
         // TODO: load relationships.. not necessary yet
         $instance->skills = Skills::getAllForUser($instance);
         $instance->assignments = Assignments::findAllPreloadedForUser($instance);
+        $instance->interests = Tags::getAllForUser($instance);
 
         // Return the upgraded user
         return $instance;
@@ -212,11 +213,20 @@ class UserService implements ModelServiceContract
         $user->save();
 
         // Process interests (tag ids)
-        $tag_ids = json_decode($request->interests);
-        if (is_array($tag_ids) and count($tag_ids))
+        $tag_ids = [];
+        $tag_names = json_decode($request->interests);
+        if (is_array($tag_names) && count($tag_names))
         {
-            $user->interests()->sync($tag_ids);
+            foreach ($tag_names as $tag_name)
+            {
+                $tag = Tags::findOrCreateByName($tag_name);
+                if ($tag)
+                {
+                    $tag_ids[] = $tag->id;
+                }
+            }
         }
+        $user->interests()->sync($tag_ids);
 
         // Process skills
         if ($request->skills !== "[]")
