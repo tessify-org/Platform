@@ -24,6 +24,8 @@ use App\Events\Users\UserFollowsUser;
 use App\Events\Users\UserUnfollowsUser;
 use App\Http\Requests\Profiles\UpdateProfileRequest;
 
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
+
 class ProfileController extends Controller
 {
     public function getProfile($slug = null)
