@@ -113,21 +113,14 @@ class GroupService implements ModelServiceContract
         // Process the received tags
         $group = $this->processGroupTags($group, request("tags"));
 
-        // Create the founder role
-        $founder = GroupRole::create([
-            "group_id" => $group->id,
-            "name" => "Founder",
-            "description" => [
-                "en" => "",
-                "nl" => "",
-            ],
-        ]);
+        // Create the groups default role
+        $defaultRoles = GroupRoles::createDefaultRoles($group);
 
         // Make the founder a member of the group
         GroupMember::create([
             "user_id" => $user->id,
             "group_id" => $group->id,
-            "group_role_id" => $founder->id,
+            "group_role_id" => $defaultRoles["roles"]->id,
         ]);
 
         // Return the created group
