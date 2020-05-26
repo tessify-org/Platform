@@ -40,25 +40,32 @@ class SearchService
     {
         $model = new User;
 
-        $results = Elasticsearch::search([
-            "index" => $model->getSearchIndex(),
-            "type" => $model->getSearchType(),
-            "body" => [
-                "query" => [
-                    "multi_match" => [
-                        "query" => $query,
-                        "fields" => [
-                            "first_name",
-                            "last_name",
-                            "interests",
-                            "headline",
-                        ],
-                        "type" => "best_fields",
-                        "tie_breaker" => 0.8
+        try
+        {
+            $results = Elasticsearch::search([
+                "index" => $model->getSearchIndex(),
+                "type" => $model->getSearchType(),
+                "body" => [
+                    "query" => [
+                        "multi_match" => [
+                            "query" => $query,
+                            "fields" => [
+                                "first_name",
+                                "last_name",
+                                "interests",
+                                "headline",
+                            ],
+                            "type" => "best_fields",
+                            "tie_breaker" => 0.8
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
+        catch (Missing404Exception $exception)
+        {
+            return [];
+        }
 
         return $results;
     }
@@ -67,22 +74,29 @@ class SearchService
     {
         $model = new Project;
 
-        $results = Elasticsearch::search([
-            "index" => $model->getSearchIndex(),
-            "type" => $model->getSearchType(),
-            "body" => [
-                "query" => [
-                    "multi_match" => [
-                        "query" => $query,
-                        "fields" => [
-
-                        ],
-                        "type" => "best_fields",
-                        "tie_breaker" => 0.8
+        try
+        {
+            $results = Elasticsearch::search([
+                "index" => $model->getSearchIndex(),
+                "type" => $model->getSearchType(),
+                "body" => [
+                    "query" => [
+                        "multi_match" => [
+                            "query" => $query,
+                            "fields" => [
+    
+                            ],
+                            "type" => "best_fields",
+                            "tie_breaker" => 0.8
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
+        catch (Missing404Exception $exception)
+        {
+            return [];
+        }
 
         return $results;
     }
@@ -123,24 +137,32 @@ class SearchService
     {
         $model = new Ministry;
 
-        $results = Elasticsearch::search([
-            "index" => $model->getSearchIndex(),
-            "type" => $model->getSearchType(),
-            "body" => [
-                "query" => [
-                    "multi_match" => [
-                        "query" => $query,
-                        "fields" => [
-                            "name",
-                            "abbreviation",
-                            "description",
-                        ],
-                        "type" => "best_fields",
-                        "tie_breaker" => 0.8
+        try
+        {
+            $results = Elasticsearch::search([
+                "index" => $model->getSearchIndex(),
+                "type" => $model->getSearchType(),
+                "body" => [
+                    "query" => [
+                        "multi_match" => [
+                            "query" => $query,
+                            "fields" => [
+                                "name",
+                                "abbreviation",
+                                "description",
+                            ],
+                            "type" => "best_fields",
+                            "tie_breaker" => 0.8
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
+        catch (Missing404Exception $exception)
+        {
+            return [];
+        }
+
 
         return $results;
     }
@@ -149,24 +171,32 @@ class SearchService
     {
         $model = new Organization;
 
-        $results = Elasticsearch::search([
-            "index" => $model->getSearchIndex(),
-            "type" => $model->getSearchType(),
-            "body" => [
-                "query" => [
-                    "multi_match" => [
-                        "query" => $query,
-                        "fields" => [
-                            "name",
-                            "abbreviation",
-                            "description",
-                        ],
-                        "type" => "best_fields",
-                        "tie_breaker" => 0.8
+        try
+        {
+            $results = Elasticsearch::search([
+                "index" => $model->getSearchIndex(),
+                "type" => $model->getSearchType(),
+                "body" => [
+                    "query" => [
+                        "multi_match" => [
+                            "query" => $query,
+                            "fields" => [
+                                "name",
+                                "abbreviation",
+                                "description",
+                            ],
+                            "type" => "best_fields",
+                            "tie_breaker" => 0.8
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
+        catch (Missing404Exception $exception)
+        {
+            return [];
+        }
+
 
         return $results;
     }
