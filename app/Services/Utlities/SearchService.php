@@ -207,10 +207,9 @@ class SearchService
 
         // Loop through all sets of results
         foreach ($results as $type => $results)
-        {   
-            dd($results);
+        {
             // If the results contained hits
-            if (count($results["hits"]["hits"]))
+            if (array_key_exists("hits", $results) && array_key_exists("hits", $results["hits"]) && count($results["hits"]["hits"]))
             {
                 // Loop through all of the hits
                 foreach ($results["hits"]["hits"] as $hit)
