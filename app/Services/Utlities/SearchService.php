@@ -19,6 +19,8 @@ use App\Models\Organization;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Collection;
 
+use Elasticsearch\Common\Exceptions\Missing404Exception;
+
 class SearchService
 {
     public function search($query)
@@ -89,23 +91,30 @@ class SearchService
     {
         $model = new Task;
 
-        $results = Elasticsearch::search([
-            "index" => $model->getSearchIndex(),
-            "type" => $model->getSearchType(),
-            "body" => [
-                "query" => [
-                    "multi_match" => [
-                        "query" => $query,
-                        "fields" => [
-                            "title",
-                            "description",
-                        ],
-                        "type" => "best_fields",
-                        "tie_breaker" => 0.8
+        try
+        {
+            $results = Elasticsearch::search([
+                "index" => $model->getSearchIndex(),
+                "type" => $model->getSearchType(),
+                "body" => [
+                    "query" => [
+                        "multi_match" => [
+                            "query" => $query,
+                            "fields" => [
+                                "title",
+                                "description",
+                            ],
+                            "type" => "best_fields",
+                            "tie_breaker" => 0.8
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
+        catch (Missing404Exception $exception)
+        {
+            return [];
+        }
 
         return $results;
     }
