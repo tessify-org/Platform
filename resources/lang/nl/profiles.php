@@ -56,7 +56,7 @@ return [
     
     "profile_personal_info" => "Persoonsgegevens",
     "profile_about" => "Over mij",
-    "profile_about_missing" => "Deze persoon heeft not niks over zichzelf geschreven.",
+    "profile_about_missing" => "Deze persoon heeft nog niks over zichzelf geschreven.",
     "profile_interests" => "Interesses",
     "profile_interests_missing" => "Er zijn nog geen interesses toegevoegd.",
     "profile_assignments" => "Aanstellingen",

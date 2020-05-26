@@ -37,6 +37,7 @@ class GroupService implements ModelServiceContract
         $instance->header_image_url = asset($instance->header_image_url);
         $instance->avatar_image_url = asset($instance->avatar_image_url);
 
+        $instance->tags = Tags::getAllForGroup($instance);
         $instance->roles = GroupRoles::getAllForGroup($instance);
         $instance->members = GroupMembers::getAllForGroup($instance);
         $instance->applications = GroupMemberApplications::getAllForGroup($instance);

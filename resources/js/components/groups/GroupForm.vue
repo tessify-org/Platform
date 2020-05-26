@@ -163,8 +163,10 @@
                 }
                 if (this.group !== undefined && this.group !== null) {
                     this.form.name = this.group.name;
-                    this.form.slogan.nl = this.group.slogan.nl;
-                    this.form.slogan.en = this.group.slogan.en;
+                    if (this.group.slogan !== null) {
+                        this.form.slogan.nl = this.group.slogan.nl;
+                        this.form.slogan.en = this.group.slogan.en;
+                    }
                     this.form.description.en = this.group.description.en;
                     this.form.description.nl = this.group.description.nl;
                     this.form.header_image_url = this.group.header_image_url;

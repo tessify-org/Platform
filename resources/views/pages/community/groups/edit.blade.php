@@ -25,7 +25,7 @@
             <!-- Feedback -->
             @include("partials.feedback")
 
-            <form action="{{ route('group.edit.post', $group->slug) }}" method="post">
+            <form action="{{ route('group.edit.post', $group->slug) }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <group-form

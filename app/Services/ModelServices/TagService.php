@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Task;
+use App\Models\Group;
 use App\Models\Project;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -63,6 +64,21 @@ class TagService implements ModelServiceContract
         foreach ($this->getTaggables() as $taggable)
         {
             if ($taggable->taggable_type == Project::class && $taggable->taggable_id == $project->id)
+            {
+                $out[] = $this->find($taggable->tag_id);
+            }
+        }
+
+        return $out;
+    }
+
+    public function getAllForGroup(Group $group)
+    {
+        $out = [];
+
+        foreach ($this->getTaggables() as $taggable)
+        {
+            if ($taggable->taggable_type == Group::class && $taggable->taggable_id == $group->id)
             {
                 $out[] = $this->find($taggable->tag_id);
             }
