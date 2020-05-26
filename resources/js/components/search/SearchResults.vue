@@ -6,12 +6,12 @@
             <div id="search-controls__input">
                 <v-text-field
                     solo hide-details
-                    :placeholder="searchPlaceholderText"
+                    :placeholder="strings.search_placeholder"
                     v-model="form.query">
                 </v-text-field>
             </div>
             <div id="search-controls__num-results" v-if="mutableResults.length > 0">
-                {{ mutableResults.length+" "+resultsText }}
+                {{ numResultsText }}
             </div>
         </div>
 
@@ -22,7 +22,7 @@
                 <a :href="result.entry.view_href" class="search-result" v-if="result.type === 'user'">
                     <div class="search-result__score">{{ result.score }}</div>
                     <div class="search-result__type-wrapper">
-                        <div class="search-result__type">{{ userTypeText }}</div>
+                        <div class="search-result__type">{{ strings.user_type }}</div>
                     </div>
                     <div class="search-result__content">
                         <div class="result-title">{{ result.entry.first_name+" "+result.entry.last_name }}</div>
@@ -33,44 +33,44 @@
                 <a :href="result.entry.view_href" class="search-result" v-if="result.type === 'task'">
                     <div class="search-result__score">{{ result.score }}</div>
                     <div class="search-result__type-wrapper">
-                        <div class="search-result__type">{{ taskTypeText }}</div>
+                        <div class="search-result__type">{{ strings.task_type }}</div>
                     </div>
                     <div class="search-result__content">
                         <div class="result-title">{{ result.entry.title }}</div>
-                        <div class="result-text">{{ result.entry.description }}</div>
+                        <div class="result-text">{{ result.entry.description[locale] }}</div>
                     </div>
                 </a>
                 <!-- Project result -->
                 <a :href="result.entry.view_href" class="search-result" v-if="result.type === 'project'">
                     <div class="search-result__score">{{ result.score }}</div>
                     <div class="search-result__type-wrapper">
-                        <div class="search-result__type">{{ projectTypeText }}</div>
+                        <div class="search-result__type">{{ strings.project_type }}</div>
                     </div>
                     <div class="search-result__content">
                         <div class="result-title">{{ result.entry.title }}</div>
-                        <div class="result-text">{{ result.entry.description }}</div>
+                        <div class="result-text">{{ result.entry.description[locale] }}</div>
                     </div>
                 </a>
                 <!-- Ministry result -->
                 <a :href="result.entry.view_href" class="search-result" v-if="result.type === 'ministry'">
                     <div class="search-result__score">{{ result.score }}</div>
                     <div class="search-result__type-wrapper">
-                        <div class="search-result__type">{{ ministryTypeText }}</div>
+                        <div class="search-result__type">{{ strings.ministry_type }}</div>
                     </div>
                     <div class="search-result__content">
-                        <div class="result-title">{{ result.entry.name }}</div>
-                        <div class="result-text">{{ result.entry.description }}</div>
+                        <div class="result-title">{{ result.entry.name[locale] }}</div>
+                        <div class="result-text">{{ result.entry.description[locale] }}</div>
                     </div>
                 </a>
                 <!-- Organization result -->
                 <a :href="result.entry.view_href" class="search-result" v-if="result.type === 'organization'">
                     <div class="search-result__score">{{ result.score }}</div>
                     <div class="search-result__type-wrapper">
-                        <div class="search-result__type">{{ organizationTypeText }}</div>
+                        <div class="search-result__type">{{ strings.organization_type }}</div>
                     </div>
                     <div class="search-result__content">
-                        <div class="result-title">{{ result.entry.name }}</div>
-                        <div class="result-text">{{ result.entry.description }}</div>
+                        <div class="result-title">{{ result.entry.name[locale] }}</div>
+                        <div class="result-text">{{ result.entry.description[locale] }}</div>
                     </div>
                 </a>
             </div>
@@ -78,10 +78,10 @@
 
         <!-- No results -->
         <div id="no-results" class="elevation-1" v-if="paginatedResults.length === 0 && searched && !loading">
-            {{ noResultsText }}
+            {{ strings.no_results }}
         </div>
         <div id="no-results" class="elevation-1" v-if="paginatedResults.length === 0 && !searched && !loading">
-            {{ enterQueryText }}
+            {{ strings.enter_query }}
         </div>
         
         <!-- Loading -->
@@ -109,15 +109,8 @@
             "results",
             "searchQuery",
             "apiEndpoint",
-            "searchPlaceholderText",
-            "noResultsText",
-            "enterQueryText",
-            "userTypeText",
-            "taskTypeText",
-            "projectTypeText",
-            "ministryTypeText",
-            "organizationTypeText",
-            "resultsText",
+            "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[search-results]",
@@ -141,6 +134,13 @@
             numPaginatedPages() {
                 return Math.ceil(this.filteredResults.length/this.pagination.perPage);
             },
+            numResultsText() {
+                if (this.mutableResults.length == 1) {
+                    return this.mutableResults.length+" "+this.strings.result_found;
+                } else {
+                    return this.mutableResults.length+" "+this.strings.results_found;
+                }
+            },
         },
         watch: {
             "filters": {
@@ -163,8 +163,7 @@
                 console.log(this.tag+" query: ", this.query);
                 console.log(this.tag+" results: ", this.results);
                 console.log(this.tag+" api endpoint: ", this.apiEndpoint);
-                console.log(this.tag+" no results text: ", this.noResultsText);
-                console.log(this.tag+" enter query text: ", this.enterQueryText);
+                console.log(this.tag+" strings: ", this.strings);
                 this.initializeData();
             },
             initializeData() {

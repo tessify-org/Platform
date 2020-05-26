@@ -32,7 +32,7 @@
                     locale="{{ app()->getLocale() }}"
                     back-href="{{ route('profile') }}">
                 </update-profile-form>
-
+                
             </form>
 
         </div>

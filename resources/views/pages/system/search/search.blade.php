@@ -26,15 +26,8 @@
                 api-endpoint="{{ route('api.search.post') }}"
                 search-query="{{ $query }}"
                 tag-overview-href="{{ route('tags') }}"
-                search-placeholder-text="@lang('search.search_placeholder')"
-                no-results-text="@lang('search.no_results')"
-                enter-query-text="@lang('search.enter_query')"
-                user-type-text="@lang('search.user_type')"
-                task-type-text="@lang('search.task_type')"
-                project-type-text="@lang('search.project_type')"
-                ministry-type-text="@lang('search.ministry_type')"
-                organization-type-text="@lang('search.organization_type')"
-                results-text="@lang('search.results')">
+                :strings="{{ $strings->toJson() }}"
+                locale="{{ app()->getLocale() }}">
             </search-results>
 
             <!-- Footer actions -->

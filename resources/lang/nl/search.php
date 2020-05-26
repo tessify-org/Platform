@@ -19,7 +19,8 @@ return [
     "ministry_type" => "Ministerie",
     "organization_type" => "Organisatie",
 
-    "results" => "resultaten gevonden",
+    "results_found" => "resultaten gevonden",
+    "result_found" => "resultaat gevonden",
 
     "view_tags" => "Bekijk beschikbare tags",
 

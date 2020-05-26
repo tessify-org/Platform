@@ -19,7 +19,8 @@ return [
     "ministry_type" => "Ministery",
     "organization_type" => "Organization",
 
-    "results" => "results found",
+    "results_found" => "results found",
+    "result_found" => "result found",
 
     "view_tags" => "View available tags",
 
