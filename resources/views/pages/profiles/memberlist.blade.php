@@ -21,13 +21,8 @@
                 :users="{{ $users->toJson() }}"
                 :ministries="{{ $ministries->toJson() }}"
                 :organizations="{{ $organizations->toJson() }}"
-                name-text="@lang('profiles.memberlist_name')"
-                reputation-text="@lang('profiles.memberlist_reputation')"
-                no-records-text="@lang('profiles.memberlist_no_users')"
-                points-text="@lang('profiles.memberlist_points')"
-                search-text="@lang('profiles.memberlist_search')"
-                ministry-text="@lang('profiles.memberlist_ministry')"
-                organization-text="@lang('profiles.memberlist_organization')">
+                :strings="{{ $strings->toJson() }}"
+                locale="{{ app()->getLocale() }}">
             </memberlist>
 
         </div>

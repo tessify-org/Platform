@@ -5,7 +5,12 @@
         <div id="filters">
             <div id="filters-left">
                 <!-- Search -->
-                <v-text-field solo v-model="filters.searchQuery" hide-details :placeholder="searchText"></v-text-field>
+                <v-text-field 
+                    solo 
+                    hide-details 
+                    v-model="filters.searchQuery" 
+                    :placeholder="strings.search">
+                </v-text-field>
             </div>
             <div id="filters-right">
                 <!-- Ministry -->
@@ -13,7 +18,7 @@
                     <v-combobox
                         solo
                         hide-details
-                        :placeholder="ministryText"
+                        :placeholder="strings.ministry"
                         v-model="filters.ministry"
                         :items="ministryOptions">
                     </v-combobox>
@@ -24,13 +29,13 @@
                         solo
                         hide-details
                         v-model="filters.organization"
-                        :placeholder="organizationText"
+                        :placeholder="strings.organization"
                         :items="organizationOptions">
                     </v-combobox>
                 </div>
                 <!-- Reset -->
                 <div class="filter">
-                    <v-btn class="icon-only" @click="onClickResetFilters">
+                    <v-btn color="white" class="icon-only" @click="onClickResetFilters">
                         <i class="fas fa-sync"></i>
                     </v-btn>
                 </div>
@@ -43,10 +48,10 @@
             <!-- Headings -->
             <div id="memberlist-headings">
                 <div class="memberlist-heading">
-                    {{ nameText }}
+                    {{ strings.name }}
                 </div>
                 <div class="memberlist-heading">
-                    {{ reputationText }}
+                    {{ strings.reputation }}
                 </div>
             </div>
 
@@ -56,7 +61,7 @@
                     {{ user.formatted_name }}
                 </div>
                 <div class="record-reputation">
-                    {{ user.reputation_points+" "+pointsText }}
+                    {{ user.reputation_points+" "+strings.points }}
                 </div>
             </a>
 
@@ -64,16 +69,12 @@
 
         <!-- No users found -->
         <div id="no-users" class="elevation-1" v-if="paginatedUsers.length === 0">
-            {{ noRecordsText }}
+            {{ strings.no_records }}
         </div>
 
         <!-- Pagination -->
         <div id="pagination" v-if="numPaginatedPages > 1">
-            <v-pagination
-                v-model="pagination.currentPage"
-                :length="numPaginatedPages"
-                total-visible="10">
-            </v-pagination>
+            <v-pagination v-model="pagination.currentPage" :length="numPaginatedPages" total-visible="10"></v-pagination>
         </div>
 
     </div>
@@ -85,13 +86,8 @@
             "users",
             "ministries",
             "organizations",
-            "nameText",
-            "reputationText",
-            "noRecordsText",
-            "pointsText",
-            "searchText",
-            "ministryText",
-            "organizationText",
+            "strings",
+            "locale",
         ],
         data: () => ({
             tag: "[memberlist]",
@@ -135,12 +131,8 @@
                 console.log(this.tag+" users: ", this.users);
                 console.log(this.tag+" ministries: ", this.ministries);
                 console.log(this.tag+" organizations: ", this.organizations);
-                console.log(this.tag+" name text: ", this.nameText);
-                console.log(this.tag+" reputation text: ", this.reputationText);
-                console.log(this.tag+" no records text: ", this.noRecordsText);
-                console.log(this.tag+" points text: ", this.pointsText);
-                console.log(this.tag+" search text: ", this.searchText);
-                // console.log(this.tag+" ");
+                console.log(this.tag+" strings: ", this.strings);
+                console.log(this.tag+" locale: ", this.locale);
                 this.generateOrganizationOptions();
                 this.generateMinistryOptions();
                 this.initializeData();
@@ -148,19 +140,20 @@
             generateOrganizationOptions() {
                 this.organizationOptions = [];
                 for (let i = 0; i < this.organizations.length; i++) {
-                    if (this.filters.ministry !== "") {
+                    if (this.filters.ministry !== "" && this.filters.ministry !== null) {
                         let ministry = this.getMinistryByName(this.filters.ministry);
+                        console.log("MINISTRY", ministry);
                         if (ministry && this.organizations[i].ministry_id === ministry.id) {
-                            this.organizationOptions.push(this.organizations[i].name);
+                            this.organizationOptions.push(this.organizations[i].name[this.locale]);
                         }
                     } else {
-                        this.organizationOptions.push(this.organizations[i].name);
+                        this.organizationOptions.push(this.organizations[i].name[this.locale]);
                     }
                 }
             },
             generateMinistryOptions() {
                 for (let i = 0; i < this.ministries.length; i++) {
-                    this.ministryOptions.push(this.ministries[i].name);
+                    this.ministryOptions.push(this.ministries[i].name[this.locale]);
                 }
             },
             initializeData() {
@@ -210,7 +203,7 @@
             },
             getMinistryByName(name) {
                 for (let i = 0; i < this.ministries.length; i++) {
-                    if (this.ministries[i].name === name) {
+                    if (this.ministries[i].name[this.locale] === name) {
                         return this.ministries[i];
                     }
                 }
