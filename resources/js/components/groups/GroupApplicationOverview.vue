@@ -41,12 +41,12 @@
                         <!-- User -->
                         <div class="detail">
                             <div class="key">{{ strings.view_dialog_user }}</div>
-                            <div class="val">{{ mutableApplications[this.dialogs.view.index].user.formatted_name }}</div>
+                            <div class="val">{{ mutableApplications[dialogs.view.index].user.formatted_name }}</div>
                         </div>
                         <!-- Motivation -->
-                        <div class="detail">
+                        <div class="detail" v-if="mutableApplications[dialogs.view.index].motivation !== null && mutableApplications[dialogs.view.index].motivation !== ''">
                             <div class="key">{{ strings.view_dialog_motivation }}</div>
-                            <div class="val">{{ mutableApplications[this.dialogs.view.index].motivation }}</div>
+                            <div class="val">{{ mutableApplications[dialogs.view.index].motivation }}</div>
                         </div>
                         <!-- Date -->
                         <div class="detail">
