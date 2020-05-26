@@ -14,6 +14,12 @@ class PollQuestion extends Model
     protected $fillable = [
         "poll_id",
         "question",
+        "open_question",
+        "allow_multiple_answers",
+    ];
+    protected $casts = [
+        "open_question" => "boolean",
+        "allow_multiple_answers" => "boolean",
     ];
     public $translatable = [
         "question",

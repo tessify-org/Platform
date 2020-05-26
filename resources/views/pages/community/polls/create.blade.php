@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("poll") !!}
+    {!! Breadcrumbs::render("polls.create") !!}
 @stop
 
 @section("content")
@@ -13,6 +13,16 @@
             
             <!-- Feedback -->
             @include("partials.feedback")
+
+            <!-- Form -->
+            <form action="{{ route('polls.create.post') }}" method="post">
+                @csrf
+                <poll-form
+                    :strings="{{ $strings->toJson() }}"
+                    :errors="{{ $errors->toJson() }}"
+                    :old-input="{{ $oldInput->toJson() }}">
+                </poll-form>
+            </form>
             
         </div>
     </div>

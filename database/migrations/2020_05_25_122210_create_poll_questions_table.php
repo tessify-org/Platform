@@ -17,6 +17,8 @@ class CreatePollQuestionsTable extends Migration
             $table->id();
             $table->unsignedInteger('poll_id');
             $table->json('question');
+            $table->boolean('open_question')->default(true);
+            $table->boolean('allow_multiple_answers')->default(false);
             $table->timestamps();
         });
     }

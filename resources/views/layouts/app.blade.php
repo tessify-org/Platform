@@ -114,14 +114,14 @@
                                             </a>
                                         </li>
                                         <!-- Polls -->
-                                        <li class="dropdown-link__wrapper">
+                                        <!-- <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('polls') }}">
                                                 <span class="dropdown-link__icon"><i class="fas fa-poll"></i></span>
                                                 <span class="dropdown-link__text">
                                                     @lang("layouts.polls_link")
                                                 </span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <!-- Groups -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('groups') }}">

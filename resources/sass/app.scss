@@ -4389,8 +4389,26 @@
     }
 }
 
+//
+// View poll
+//
 
+#view-poll {
+    border-radius: 3px;
+    margin: 0 0 30px 0;
+    background-color: #fff;
+    #poll-description {
+        padding: 30px;
+        box-sizing: border-box;
+        #poll-description__label {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        #poll-description__text {
 
+        }
+    }
+}
 
 
 
