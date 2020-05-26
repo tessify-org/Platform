@@ -24,6 +24,7 @@ return [
     "updated_member" => "Group member has been updated.",
     "left" => "You have left the group.",
     "join_disabled_outstanding_application" => "Your application is currently under review.",
+    "applied" => "You have applied to join this group!",
 
     "form_name" => "Name",
     "form_slogan" => "Slogan",

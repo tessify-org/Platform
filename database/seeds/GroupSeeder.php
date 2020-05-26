@@ -72,7 +72,7 @@ class GroupSeeder extends Seeder
         //
 
         $group_two = Group::create([
-            "founder_id" => $moi->id,
+            "founder_id" => $toi->id,
             "name" => "Anti-Awesome",
             "description" => [
                 "nl" => "Wij zijn tegen awesomeheid. Foei.",
@@ -82,6 +82,6 @@ class GroupSeeder extends Seeder
 
         $group_two_roles = app("group-roles")->createDefaultRoles($group_two);
 
-        $group_two_founder = app("group-members")->join($group_two, $moi, $group_two_roles["founder"]);
+        $group_two_founder = app("group-members")->join($group_two, $toi, $group_two_roles["founder"]);
     }
 }

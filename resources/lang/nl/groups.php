@@ -24,6 +24,7 @@ return [
     "updated_member" => "Groepslid is aangepast.",
     "left" => "Je hebt de groep verlaten.",
     "join_disabled_outstanding_application" => "Je aanmelding is momenteel in behandeling.",
+    "applied" => "Je hebt je aangemeld voor deze groep, je aanvraag is in behandeling",
 
     "form_name" => "Naam",
     "form_slogan" => "Slogan",
