@@ -10,7 +10,7 @@
 
             <!-- Title & subtitle -->
             <h1 class="page-title centered">@lang("ministries.title")</h1>
-            <h2 class="page-subtitle centered">@lang("ministries.subtitle")</h2>
+            <!-- <h2 class="page-subtitle centered">@lang("ministries.subtitle")</h2> -->
 
             <!-- Feedback -->
             @include("partials.feedback")
