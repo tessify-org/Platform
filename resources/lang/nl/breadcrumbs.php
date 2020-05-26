@@ -27,6 +27,7 @@ return [
     "tags" => "Tags",
     "memberlist" => "Ledenlijst",
     "settings" => "Instellingen",
+    "settings_change_password" => "Wachtwoord veranderen",
     "profile" => "Profiel van :name",
     "profile_update" => "Profiel aanpassen",
     "dashboard" => "Dashboard",

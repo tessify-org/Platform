@@ -27,6 +27,7 @@ return [
     "tags" => "Tags",
     "memberlist" => "Memberlist",
     "settings" => "Settings",
+    "settings_change_password" => "Change password",
     "profile" => "Profile of :name",
     "profile_update" => "Update profile",
     "get-started" => "Get started",

@@ -20,11 +20,14 @@ use App\Jobs\Auth\SendAccountRecoveryEmail;
 
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\ResetPasswordRequest;
+use App\Http\Requests\Admin\Users\BanUserRequest;
 use App\Http\Requests\Profiles\UpdateProfileRequest;
 use App\Http\Requests\Admin\Users\CreateUserRequest;
 use App\Http\Requests\Admin\Users\UpdateUserRequest;
 use App\Http\Requests\Admin\Users\DeleteUserRequest;
-use App\Http\Requests\Admin\Users\BanUserRequest;
+use App\Http\Requests\Settings\ChangePasswordRequest;
+
+use Illuminate\Validation\ValidationException;
 
 class UserService implements ModelServiceContract
 {
@@ -390,5 +393,24 @@ class UserService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function changePasswordFromRequest(ChangePasswordRequest $request)
+    {
+        // Grab the logged in user
+        $user = auth()->user();
+
+        // Validate the supplied current password
+        if (!app("hash")->check($request->password, $user->password))
+        {
+            // Throw the exception
+            throw ValidationException::withMessages([
+                "password" => __("settings.change_password_incorrect_password"),
+            ]);
+        }
+
+        // Change the password
+        $user->password = bcrypt($request->new_password);
+        $user->save();
     }
 }

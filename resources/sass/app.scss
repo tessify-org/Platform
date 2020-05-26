@@ -4410,10 +4410,44 @@
     }
 }
 
+//
+// Settings overview
+//
 
+#setting-links {
+    width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: #fff;
+    .setting-link {
+        display: flex;
+        color: #000;
+        padding: 15px 20px;
+        transition: all .3s;
+        flex-direction: row;
+        text-decoration: none;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        &:hover {
+            background-color: hsl(0, 0%, 98%);
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+        .setting-link__icon {
+            flex: 0 0 30px;
+        }
+        .setting-link__text {
+            flex: 1;
+        }
+    }
+}
 
-
-
+#change-password-wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
 
 
 

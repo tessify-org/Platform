@@ -294,6 +294,10 @@ Breadcrumbs::for("settings", function($t) {
     $t->parent("home");
     $t->push(__("breadcrumbs.settings"), route("settings"));
 });
+Breadcrumbs::for("settings.change-password", function($t) {
+    $t->parent("settings");
+    $t->push(__("breadcrumbs.settings_change_password"), route("settings.change-password"));
+});
 
 // Dashboard
 Breadcrumbs::for("dashboard", function($t) {

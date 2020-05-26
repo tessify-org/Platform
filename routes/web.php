@@ -101,7 +101,11 @@ Route::group(["middleware" => "auth"], function() {
     Route::get("dashboard", "Dashboard\DashboardController@getDashboard")->name("dashboard");
     
     // Settings
-    Route::get("instellingen", "Settings\SettingsController@getSettings")->name("settings");
+    Route::group(["prefix" => "instellingen"], function() {
+        Route::get("/", "Settings\SettingsController@getSettings")->name("settings");
+        Route::get("wachtwoord-veranderen", "Settings\SettingsController@getChangePassword")->name("settings.change-password");
+        Route::post("wachtwoord-veranderen", "Settings\SettingsController@postChangePassword")->name("settings.change-password.post");
+    });
     
     // Get started
     Route::get("get-started", "Projects\ProjectController@getGetStarted")->name("get-started");
