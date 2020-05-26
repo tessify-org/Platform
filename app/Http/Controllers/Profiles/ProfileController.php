@@ -20,8 +20,8 @@ use OrganizationDepartments;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Events\User\UserFollowsUser;
-use App\Events\User\UserUnfollowsUser;
+use App\Events\Users\UserFollowsUser;
+use App\Events\Users\UserUnfollowsUser;
 use App\Http\Requests\Profiles\UpdateProfileRequest;
 
 class ProfileController extends Controller
