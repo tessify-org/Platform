@@ -208,6 +208,7 @@ class SearchService
         // Loop through all sets of results
         foreach ($results as $type => $results)
         {   
+            dd($results);
             // If the results contained hits
             if (count($results["hits"]["hits"]))
             {
