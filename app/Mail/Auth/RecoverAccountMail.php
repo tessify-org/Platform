@@ -36,7 +36,7 @@ class RecoverAccountMail extends Mailable
                         'titleText' => __('auth.recover_account_email_title'),
                         'buttonText' => __('auth.recover_account_email_button'),
                         'closingText' => nl2br(__('general.email_closing_text')),
-                        'text' => str_replace('\n', '<br>', (__('auth.recover_account_email_text', ['name' => 'henk']))),
+                        'text' => str_replace('\n', '<br>', (__('auth.recover_account_email_text', ['name' => $this->user->formatted_name]))),
                     ]);
     }
 }
