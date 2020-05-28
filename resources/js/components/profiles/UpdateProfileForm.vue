@@ -235,7 +235,9 @@
             generateTagOptions() {
                 if (this.tags !== undefined && this.tags !== null && this.tags.length > 0) {
                     for (let i = 0; i < this.tags.length; i++) {
-                        this.tagOptions.push(this.tags[i].name);
+                        if (!this.tagOptions.includes(this.tags[i].name)) {
+                            this.tagOptions.push(this.tags[i].name);
+                        }
                     }
                 }
             },
