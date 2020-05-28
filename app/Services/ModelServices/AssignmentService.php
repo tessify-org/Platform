@@ -65,8 +65,6 @@ class AssignmentService implements ModelServiceContract
 
     public function createFromApiRequest(ApiCreateRequest $request)
     {
-        dd($request->all());
-
         // Grab current user
         $user = Auth::user();
 
