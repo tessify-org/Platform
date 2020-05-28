@@ -14,8 +14,8 @@ class AssignmentController extends Controller
     public function postCreateAssignment(CreateAssignmentRequest $request)
     {
         $assignment = Assignments::createFromApiRequest($request);
-        $assignment = Assignments::findPreloaded($assignment->id);
-
+        $assignment = Assignments::preload($assignment);
+        
         return response()->json([
             "status" => "success", 
             "assignment" => $assignment

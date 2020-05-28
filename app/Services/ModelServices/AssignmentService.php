@@ -107,7 +107,7 @@ class AssignmentService implements ModelServiceContract
         ]);
 
         // Create and return the assignment
-        return $this->findPreloaded($assignment->id);
+        return $assignment;
     }
 
     public function updateFromApiRequest(ApiUpdateRequest $request)
