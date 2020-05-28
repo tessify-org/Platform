@@ -48,31 +48,35 @@
                         <div class="details compact bordered mb-0">
                             <div class="detail">
                                 <div class="key">{{ strings.ministry }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.ministry.name[locale] }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].organization.ministry.name[locale] }}</div>
+                            </div>
+                            <div class="detail" v-if="previousAssignments[dialogs.view_prev.index].organization.ministry_department">
+                                <div class="key">{{ strings.ministry_department }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].organization.ministry_department.name[locale] }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.organization }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].organization.name[locale] }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].organization.name[locale] }}</div>
                             </div>
-                            <div class="detail">
+                            <div class="detail" v-if="previousAssignments[dialogs.view_prev.index].department">
                                 <div class="key">{{ strings.department }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].department.name[locale] }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].department.name[locale] }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.employment_type }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].type.label[locale] }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].type.label[locale] }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.function }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].title }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].title }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.duration }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].formatted_start_date+" t/m "+previousAssignments[this.dialogs.view_prev.index].formatted_end_date }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].formatted_start_date+" t/m "+previousAssignments[this.dialogs.view_prev.index].formatted_end_date }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.description }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].description }}</div>
+                                <div class="val">{{ previousAssignments[dialogs.view_prev.index].description }}</div>
                             </div>
                         </div>
                     </div>
