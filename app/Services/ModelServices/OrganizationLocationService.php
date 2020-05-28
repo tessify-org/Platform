@@ -43,4 +43,20 @@ class OrganizationLocationService implements ModelServiceContract
 
         return $out;
     }
+
+    public function findOrCreateByAddress(Organization $organization, $address)
+    {
+        foreach ($this->getAll() as $location)
+        {
+            if ($location->organization_id == $organization->id && $location->address == $address)
+            {
+                return $location;
+            }
+        }
+        
+        return OrganizationLocation::create([
+            "organization_id" => $organization->id,
+            "address" => $address,
+        ]);
+    }
 }

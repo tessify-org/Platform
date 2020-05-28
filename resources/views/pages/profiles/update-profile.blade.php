@@ -14,9 +14,11 @@
             <!-- Feedback -->
             @include("partials.feedback")
 
+            <!-- Form -->
             <form action="{{ route('profile.update.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
+                <!-- Update profile form -->
                 <update-profile-form
                     :user="{{ $user->toJson() }}"
                     :skills="{{ $skills->toJson() }}"

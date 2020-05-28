@@ -117,7 +117,7 @@ return [
     "update_profile_assignments_form_description" => "Functieomschrijving",
     "update_profile_assignments_form_type" => "Type aanstelling",
     "update_profile_assignments_form_organization" => "Organisatie",
-    "update_profile_assignments_form_department" => "Departement",
+    "update_profile_assignments_form_department" => "Afdeling",
     "update_profile_assignments_form_location" => "Locatie",
     "update_profile_assignments_form_current_function" => "Huidige functie",
     "update_profile_assignments_form_start_date" => "Start datum",

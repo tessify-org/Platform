@@ -80,7 +80,7 @@
                         }.bind(this)
                     }).data('datepicker');
                     if (this.value != "" && this.value != null) {
-                        let initialDate = new Date(this.value);
+                        let initialDate = new Date(this.value.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
                         this.dp.selectDate(initialDate);
                     }
                 }.bind(this));

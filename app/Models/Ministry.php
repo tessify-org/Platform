@@ -44,6 +44,11 @@ class Ministry extends Model
     // Relationships
     //
 
+    public function ministryDepartments()
+    {
+        return $this->hasMany(MinistryDepartment::class);
+    }
+
     public function organizations()
     {
         return $this->hasMany(Organization::class);
@@ -53,7 +58,7 @@ class Ministry extends Model
     {
         return $this->hasMany(Project::class);
     }
-
+    
     public function tasks()
     {
         return $this->hasMany(Task::class);

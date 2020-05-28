@@ -185,11 +185,11 @@
                     </div>
                     <!-- Location -->
                     <div class="form-field" v-if="dialogs.add.form.organization !== '' && addSelectedOrganizationHasLocations">
-                        <v-select
+                        <v-combobox
                             :label="strings.form_location"
-                            v-model="dialogs.add.form.organization_location_id"
+                            v-model="dialogs.add.form.organization_location"
                             :items="dialogs.add.organizationLocationOptions">
-                        </v-select>
+                        </v-combobox>
                     </div>
                     <!-- Current -->
                     <div class="form-field">
@@ -303,16 +303,16 @@
                     </div>
                     <!-- Location -->
                     <div class="form-field" v-if="dialogs.edit.form.organization !== '' && editSelectedOrganizationHasLocations">
-                        <v-select
+                        <v-combobox
                             :label="strings.form_location"
-                            v-model="dialogs.edit.form.organization_location_id"
+                            v-model="dialogs.edit.form.organization_location"
                             :items="dialogs.edit.organizationLocationOptions">
-                        </v-select>
+                        </v-combobox>
                     </div>
                     <!-- Current -->
                     <div class="form-field">
                         <v-checkbox
-                            :label="strings.form_current_assignment"
+                            :label="strings.form_current_function"
                             v-model="dialogs.edit.form.current">
                         </v-checkbox>
                     </div>
@@ -437,7 +437,7 @@
                     form: {
                         assignment_type_id: 0,
                         organization: "",
-                        organization_location_id: 0,
+                        organization_location: "",
                         department: "",
                         title: "",
                         description: "",
@@ -456,7 +456,7 @@
                     form: {
                         assignment_type_id: 0,
                         organization: "",
-                        organization_location_id: 0,
+                        organization_location: "",
                         department: "",
                         title: "",
                         description: "",
@@ -639,10 +639,8 @@
                             this.dialogs.add.organizationLocationOptions = [];
                             for (let i = 0; i < this.organizationLocations.length; i++) {
                                 if (this.organizationLocations[i].organization_id === this.addSelectedOrganization.id) {
-                                    this.dialogs.add.organizationLocationOptions.push({
-                                        text: this.organizationLocations[i].building_name === null ? this.organizationLocations[i].address : this.organizationLocations[i].building_name+" - "+this.organizationLocations[i].address,
-                                        value: this.organizationLocations[i].id,
-                                    });
+                                    let entry = this.organizationLocations[i].building_name === null ? this.organizationLocations[i].address : this.organizationLocations[i].building_name+" - "+this.organizationLocations[i].address;
+                                    this.dialogs.add.organizationLocationOptions.push(entry);
                                 }
                             }
                         }
@@ -652,10 +650,8 @@
                             this.dialogs.edit.organizationLocationOptions = [];
                             for (let i = 0; i < this.organizationLocations.length; i++) {
                                 if (this.organizationLocations[i].organization_id === this.editSelectedOrganization.id) {
-                                    this.dialogs.edit.organizationLocationOptions.push({
-                                        text: this.organizationLocations[i].building_name === null ? this.organizationLocations[i].address : this.organizationLocations[i].building_name+" - "+this.organizationLocations[i].address,
-                                        value: this.organizationLocations[i].id,
-                                    });
+                                    let entry = this.organizationLocations[i].building_name === null ? this.organizationLocations[i].address : this.organizationLocations[i].building_name+" - "+this.organizationLocations[i].address;
+                                    this.dialogs.edit.organizationLocationOptions.push(entry);
                                 }
                             }
                         }
@@ -680,7 +676,7 @@
                 let payload = new FormData();
                 payload.append("assignment_type_id", this.dialogs.add.form.assignment_type_id);
                 payload.append("organization", this.dialogs.add.form.organization);
-                payload.append("organization_location_id", this.dialogs.add.form.organization_location_id);
+                payload.append("organization_location", this.dialogs.add.form.organization_location);
                 payload.append("department", this.dialogs.add.form.department);
                 payload.append("title", this.dialogs.add.form.title);
                 payload.append("description", this.dialogs.add.form.description);
@@ -706,7 +702,7 @@
                             // Reset the form
                             this.dialogs.add.form.assignment_type_id = 0;
                             this.dialogs.add.form.organization = "";
-                            this.dialogs.add.form.organization_location_id = 0;
+                            this.dialogs.add.form.organization_location = "";
                             this.dialogs.add.form.department = "";
                             this.dialogs.add.form.title = "";
                             this.dialogs.add.form.current = true;
@@ -729,19 +725,19 @@
             onClickEdit(index) {
                 if (this.dialogs.view.show) this.dialogs.view.show = false;
                 this.dialogs.edit.index =  index;
-                this.dialogs.edit.show = true;
+                this.generateOrganizationDepartmentOptions("edit");
+                this.generateOrganizationLocationOptions("edit");
                 this.dialogs.edit.form.assignment_type_id = this.mutableAssignments[index].assignment_type_id;
                 this.dialogs.edit.form.organization = this.mutableAssignments[index].organization.name[this.locale];
                 this.dialogs.edit.form.organization_department_id = this.mutableAssignments[index].organization_department_id;
-                this.dialogs.edit.form.organization_location_id = this.mutableAssignments[index].organization_location_id;
+                this.dialogs.edit.form.organization_location = this.mutableAssignments[index].location.address;
                 this.dialogs.edit.form.department = this.mutableAssignments[index].department.name[this.locale];
                 this.dialogs.edit.form.title = this.mutableAssignments[index].title;
                 this.dialogs.edit.form.description = this.mutableAssignments[index].description;
                 this.dialogs.edit.form.current = this.mutableAssignments[index].current;
-                this.dialogs.edit.form.start_date = this.mutableAssignments[index].start_date;
-                this.dialogs.edit.form.end_date = this.mutableAssignments[index].end_date;
-                this.generateOrganizationDepartmentOptions("edit");
-                this.generateOrganizationLocationOptions("edit");
+                this.dialogs.edit.form.start_date = this.mutableAssignments[index].formatted_start_date;
+                this.dialogs.edit.form.end_date = this.mutableAssignments[index].formatted_end_date;
+                this.dialogs.edit.show = true;
             },
             onClickConfirmEdit() {
                 this.dialogs.edit.loading = true;
@@ -749,7 +745,7 @@
                 payload.append("assignment_id", this.mutableAssignments[this.dialogs.edit.index].id);
                 payload.append("assignment_type_id", this.dialogs.edit.form.assignment_type_id);
                 payload.append("organization", this.dialogs.edit.form.organization);
-                payload.append("organization_location_id", this.dialogs.edit.form.organization_location_id);
+                payload.append("organization_location", this.dialogs.edit.form.organization_location);
                 payload.append("department", this.dialogs.edit.form.department);
                 payload.append("title", this.dialogs.edit.form.title);
                 payload.append("description", this.dialogs.edit.form.description);

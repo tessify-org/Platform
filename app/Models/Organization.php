@@ -20,6 +20,7 @@ class Organization extends Model
     protected $fillable = [
         "organization_type_id",
         "ministry_id",
+        "ministry_department_id",
         "slug",
         "name",
         "abbreviation",
@@ -54,6 +55,11 @@ class Organization extends Model
     public function ministry()
     {
         return $this->belongsTo(Ministry::class);
+    }
+
+    public function ministryDepartment()
+    {
+        return $this->belongsTo(MinistryDepartment::class);
     }
 
     public function locations()

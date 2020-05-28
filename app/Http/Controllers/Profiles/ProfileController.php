@@ -197,7 +197,7 @@ class ProfileController extends Controller
         flash(__('general.saved_changes'))->success();
         return redirect()->route("profile");
     }
-
+    
     public function getFollow($slug)
     {
         // Grab the user we want to follow
@@ -257,7 +257,7 @@ class ProfileController extends Controller
         flash(__("profiles.profile_email_request_sent_message", ["name" => $user->formattedName]))->success();
         return redirect()->route("profile", $user->slug);
     }
-
+    
     public function getAcceptAccessEmailRequest($messageUuid, $requestUuid)
     {
         // Grab the message containing the request
