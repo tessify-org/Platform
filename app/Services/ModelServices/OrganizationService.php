@@ -3,12 +3,14 @@
 namespace App\Services\ModelServices;
 
 use Ministries;
+use MinistryDepartments;
 use OrganizationTypes;
 use OrganizationLocations;
 use OrganizationDepartments;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Ministry;
+use App\Models\MinistryDepartment;
 use App\Models\Organization;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -33,6 +35,7 @@ class OrganizationService implements ModelServiceContract
     public function preload($instance)
     {
         $instance->ministry = Ministries::find($instance->ministry_id);
+        $instance->ministry_department = MinistryDepartments::find($instance->ministry_department_id);
         $instance->type = OrganizationTypes::find($instance->organization_type_id);
         $instance->locations = OrganizationLocations::findAllForOrganization($instance);
         $instance->departments = OrganizationDepartments::findAllForOrganization($instance);
@@ -47,6 +50,21 @@ class OrganizationService implements ModelServiceContract
         foreach ($this->getAll() as $organization)
         {
             if ($organization->ministry_id == $ministry->id)
+            {
+                $out[] = $organization;
+            }
+        }
+
+        return $out;
+    }
+
+    public function findAllForMinistryDepartment(MinistryDepartment $ministryDepartment)
+    {
+        $out = [];
+
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->ministry_department_id == $ministryDepartment->id)
             {
                 $out[] = $organization;
             }

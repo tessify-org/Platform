@@ -240,6 +240,7 @@ return [
         'FeedActivities' => App\Facades\FeedActivitiesFacade::class,
         'Messages' => App\Facades\MessagesFacade::class,
         'Ministries' => App\Facades\MinistriesFacade::class,
+        'MinistryDepartments' => App\Facades\MinistryDepartmentsFacade::class,
         'Newsletters' => App\Facades\NewslettersFacade::class,
         'Notifications' => App\Facades\NotificationsFacade::class,
         'OrganizationDepartments' => App\Facades\OrganizationDepartmentsFacade::class,

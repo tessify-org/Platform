@@ -60,6 +60,11 @@
                             <div class="key">{{ strings.view_dialog_ministry }}</div>
                             <div class="val">{{ mutableAssignments[dialogs.view.index].organization.ministry.name[this.locale] }}</div>
                         </div>
+                        <!-- Ministry department -->
+                        <div class="detail" v-if="mutableAssignments[dialogs.view.index].organization.ministry_department">
+                            <div class="key">{{ strings.view_dialog_ministry_department }}</div>
+                            <div class="val">{{ mutableAssignments[dialogs.view.index].organization.ministry_department.name[this.locale] }}</div>
+                        </div>
                         <!-- Organization -->
                         <div class="detail">
                             <div class="key">{{ strings.view_dialog_organization }}</div>
@@ -68,7 +73,7 @@
                         <!-- Location -->
                         <div class="detail">
                             <div class="key">{{ strings.view_dialog_location }}</div>
-                            <div class="key">
+                            <div class="val">
                                 <span class="building-name" v-if="mutableAssignments[dialogs.view.index].location.building_name !== null">
                                     {{ mutableAssignments[dialogs.view.index].location.building_name }} - 
                                 </span>
@@ -94,12 +99,12 @@
                         <div class="detail">
                             <div class="key">{{ strings.view_dialog_duration }}</div>
                             <div class="val">
-                                {{ mutableAssignments[dialogs.view.index].start_date }}
+                                {{ mutableAssignments[dialogs.view.index].formatted_start_date }}
                                 <span class="duration-second-part" v-if="mutableAssignments[dialogs.view.index].current">
                                     - {{ strings.form_present }}
                                 </span>
                                 <span class="duration-second-part" v-if="!mutableAssignments[dialogs.view.index].current">
-                                    - {{ mutableAssignments[dialogs.view.index].end_date }}
+                                    - {{ mutableAssignments[dialogs.view.index].formatted_end_date }}
                                 </span>
                             </div>
                         </div>

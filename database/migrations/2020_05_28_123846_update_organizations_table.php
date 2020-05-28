@@ -14,7 +14,7 @@ class UpdateOrganizationsTable extends Migration
     public function up()
     {
         Schema::table("organizations", function(Blueprint $table) {
-            $table->unsignedInteger("ministry_department_id");
+            $table->unsignedInteger("ministry_department_id")->nullable();
         });
     }
 

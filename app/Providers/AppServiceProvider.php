@@ -29,6 +29,7 @@ use App\Services\ModelServices\TeamMemberApplicationService;
 use App\Services\ModelServices\AssignmentService;
 use App\Services\ModelServices\AssignmentTypeService;
 use App\Services\ModelServices\MinistryService;
+use App\Services\ModelServices\MinistryDepartmentService;
 use App\Services\ModelServices\OrganizationService;
 use App\Services\ModelServices\OrganizationTypeService;
 use App\Services\ModelServices\OrganizationLocationService;
@@ -188,6 +189,10 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton("ministries", function() {
             return new MinistryService;
+        });
+
+        $this->app->singleton("ministry-departments", function() {
+            return new MinistryDepartmentService;
         });
         
         $this->app->singleton("organizations", function() {

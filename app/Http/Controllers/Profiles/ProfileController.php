@@ -139,6 +139,7 @@ class ProfileController extends Controller
                     "create_dialog_submit" => __("profiles.update_profile_assignments_create_dialog_submit"),
                     "view_dialog_title" => __("profiles.update_profile_assignments_view_dialog_title"),
                     "view_dialog_ministry" => __("profiles.update_profile_assignments_view_dialog_ministry"),
+                    "view_dialog_ministry_department" => __("profiles.update_profile_assignments_view_dialog_ministry_department"),
                     "view_dialog_organization" => __("profiles.update_profile_assignments_view_dialog_organization"),
                     "view_dialog_department" => __("profiles.update_profile_assignments_view_dialog_department"),
                     "view_dialog_location" => __("profiles.update_profile_assignments_view_dialog_location"),
@@ -197,7 +198,7 @@ class ProfileController extends Controller
         flash(__('general.saved_changes'))->success();
         return redirect()->route("profile");
     }
-    
+
     public function getFollow($slug)
     {
         // Grab the user we want to follow

@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class MinistryDepartment extends Model
 {
+    use Sluggable;
+    use HasTranslations;
+
     protected $table = "ministry_departments";
     protected $guarded = [
         "id", "created_at", "updated_at",
@@ -16,8 +21,18 @@ class MinistryDepartment extends Model
         "description",
     ];
     public $translatable = [
-        "description"
+        "name",
+        "description",
     ];
+
+    //
+    // Slug configuration
+    //
+
+    public function sluggable()
+    {
+        return ["slug" => ["source" => "name_nl"]];
+    }
 
     //
     // Relationships
@@ -31,5 +46,14 @@ class MinistryDepartment extends Model
     public function organizations()
     {
         return $this->hasMany(Organization::class);
+    }
+
+    //
+    // Accessors
+    //
+
+    public function getNameNlAttribute()
+    {
+        return $this->name["nl"];
     }
 }
