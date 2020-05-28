@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <!-- Department -->
-                        <div class="detail">
+                        <div class="detail" v-if="mutableAssignments[dialogs.view.index].department">
                             <div class="key">{{ strings.view_dialog_department }}</div>
                             <div class="val">{{ mutableAssignments[dialogs.view.index].department.name[this.locale] }}</div>
                         </div>
