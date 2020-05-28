@@ -13,12 +13,6 @@
                     </span>
                     {{ assignment.title }}
                 </div>
-                <div class="assignment-organization" v-if="assignment.organization && assignment.organization.abbreviation !== null">
-                    {{ assignment.organization.abbreviation[locale] }}
-                </div>
-                <div class="assignment-department" v-if="assignment.department">
-                    {{ assignment.department.name[locale] }}
-                </div>
                 <div class="assignment-actions">
                     <div class="assignment-action view" @click="onClickView(ai)">
                         <i class="fas fa-eye"></i>

@@ -13,6 +13,7 @@ class Assignment extends Model
         "assignment_type_id",
         "organization_id",
         "organization_department_id",
+        "organization_location_id",
         "title",
         "description",
         "order",

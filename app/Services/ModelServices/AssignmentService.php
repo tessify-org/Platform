@@ -92,8 +92,7 @@ class AssignmentService implements ModelServiceContract
         $start_date = Dates::parse($request->start_date, "-")->format("Y-m-d");
         $end_date = $request->end_date == "null" ? null : Dates::parse($request->end_date, "-")->format("Y-m-d");
         
-        // Create and return the assignment
-        return $this->preload(Assignment::create([
+        $assignment = Assignment::create([
             "user_id" => $user->id,
             "assignment_type_id" => intval($request->assignment_type_id),
             "organization_id" => $organization->id,
@@ -105,7 +104,10 @@ class AssignmentService implements ModelServiceContract
             "current" => $current,
             "start_date" => $start_date,
             "end_date" => $end_date
-        ]));
+        ]);
+
+        // Create and return the assignment
+        return $this->findPreloaded($assignment->id);
     }
 
     public function updateFromApiRequest(ApiUpdateRequest $request)
