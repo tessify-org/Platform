@@ -269,9 +269,7 @@
                         <div id="profile-content__right">
 
                             <!-- Skills -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_skills")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_skills")</h3>
                             <div class="content-card mb elevation-1">
                                 <profile-skill-list 
                                     :skills="{{ $user->skills->toJson() }}"
@@ -297,9 +295,7 @@
                             </div>
 
                             <!-- Current projects -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_current_projects")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_current_projects")</h3>
                             <div class="content-card mb elevation-1">
                                 <profile-project-list 
                                     :projects="{{ $projects->toJson() }}"
@@ -309,9 +305,7 @@
                             </div>
 
                             <!-- Current tasks -->
-                            <h3 class="content-card__title">
-                                @lang("profiles.profile_current_tasks")
-                            </h3>
+                            <h3 class="content-card__title">@lang("profiles.profile_current_tasks")</h3>
                             <div class="content-card elevation-1">
                                 <profile-task-list 
                                     :tasks="{{ $tasks->toJson() }}"

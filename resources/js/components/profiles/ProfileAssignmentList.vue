@@ -68,7 +68,7 @@
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.duration }}</div>
-                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].start_date+" t/m "+previousAssignments[this.dialogs.view_prev.index].end_date }}</div>
+                                <div class="val">{{ previousAssignments[this.dialogs.view_prev.index].formatted_start_date+" t/m "+previousAssignments[this.dialogs.view_prev.index].formatted_end_date }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">{{ strings.description }}</div>

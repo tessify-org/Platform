@@ -63,6 +63,7 @@ class ProfileController extends Controller
                 "no_assignments" => __("profiles.profile_assignments_no_assignments"),
                 "assignment" => __("profiles.profile_assignments_assignment"),
                 "ministry" => __("profiles.profile_assignments_ministry"),
+                "ministry_department" => __("profiles.profile_assignments_ministry_department"),
                 "organization" => __("profiles.profile_assignments_organization"),
                 "department" => __("profiles.profile_assignments_department"),
                 "employment_type" => __("profiles.profile_assignments_employment_type"),

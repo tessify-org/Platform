@@ -4219,7 +4219,7 @@ i {
 
 #profile #profile-content__wrapper #profile-content #profile-content__left {
   flex: 3;
-  padding: 0 15px 0 0;
+  padding: 0 25px 0 0;
   box-sizing: border-box;
 }
 
@@ -4281,7 +4281,7 @@ i {
 
 #profile #profile-content__wrapper #profile-content #profile-content__right {
   flex: 2;
-  padding: 0 0 0 15px;
+  padding: 0 0 0 25px;
   box-sizing: border-box;
 }
 
