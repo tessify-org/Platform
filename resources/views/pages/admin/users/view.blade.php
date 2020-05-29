@@ -75,7 +75,17 @@
                             <!-- Interests -->
                             <div class="detail">
                                 <div class="key">@lang("admin.users_view_interests")</div>
-                                <div class="val">{{ $user->interests }}</div>
+                                <div class="val">
+                                    <div class="tags">
+                                        @foreach ($user->interests as $interest)
+                                            <div class="tag-wrapper">
+                                                <div class="tag">
+                                                    {{ $interest->name }}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                             <!-- Reputation points -->
                             <div class="detail">

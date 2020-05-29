@@ -103,7 +103,11 @@
             "createButtonHref": {
                 type: String,
                 default: null
-            }
+            },
+            "locale": {
+                type: String,
+                default: "nl"
+            },
         },
         data: () => ({
             tag: "[record-overview]",
@@ -195,11 +199,13 @@
                 }
             },
             getFieldValue(record, fieldData) {
-                // console.log(this.tag+" getting value", record, fieldData);
                 // If the record contains the field we're trying to get the value of
                 if (record.hasOwnProperty(fieldData["field"]) && record[fieldData["field"]] !== null) {
                     // Retrieve the field's value from the record
                     let value = record[fieldData["field"]];
+                    // if (Array.isArray(value)) {
+                    //     value = value[this.locale];
+                    // }
                     // Type = boolean, return yes or no based on the value
                     if (fieldData.hasOwnProperty("type") && fieldData["type"] === "boolean") {
                         return value === true ? "Yes" : "No";

@@ -18,7 +18,8 @@
                 :paginated="{{ json_encode(true) }}"
                 paginated-per-page="10"
                 create-button-text="@lang('admin.users_overview_create_button')"
-                create-button-href="{{ route('admin.users.create') }}">
+                create-button-href="{{ route('admin.users.create') }}"
+                locale="{{ app()->getLocale() }}">
             </record-overview>
 
         </div>
