@@ -5,11 +5,22 @@
 @stop
 
 @section("content")
-    <div class="content-section__wrapper">
-        <div class="content-section">
+
+    <!-- Header -->
+    <div id="page-header" class="narrow">
+        <div id="page-header__bg" style="background-image: url({{ asset($poll->header_image_url) }})"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__content">
 
             <!-- Title & subtitle -->
-            <h1 class="page-title centered">{{ $poll->title }}</h1>
+            <h1 id="page-header__title" class="no-margin">{{ $poll->title }}</h1>
+            
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-section__wrapper">
+        <div class="content-section">
             
             <!-- Feedback -->
             @include("partials.feedback")
@@ -34,6 +45,14 @@
                             </div>
                         </div>
 
+                        <!-- Shared with --->
+                        <div id="poll-shared-with">
+                            <div id="poll-shared-with__label">@lang("polls.view_shared_with")</div>
+                            <div id="poll-shared-with__text">
+                                @lang("polls.view_shared_with_everyone")
+                            </div>
+                        </div>
+
                         <!-- Description -->
                         <div id="poll-description">
                             <div id="poll-description__label">@lang("polls.view_description")</div>
@@ -41,6 +60,15 @@
                                 {!! nl2br($poll->description) !!}
                             </div>
                         </div>
+
+                        <!-- Draft version -->
+                        @if (!$poll->published)
+                            <div id="poll-draft__wrapper">
+                                <div id="poll-draft">
+                                    @lang("polls.view_draft_version")
+                                </div>
+                            </div>
+                        @endif
                 
                     </div>
                     @if ($poll->has_voted)
@@ -109,10 +137,12 @@
                     @can("update", $poll)
                         @if ($poll->status->name == "Closed" || $poll->status->name == "Gesloten")
                             <v-btn href="{{ route('poll.reopen', $poll->slug) }}" color="primary">
+                                <i class="fas fa-lock-open"></i>
                                 @lang("polls.view_reopen")
                             </v-btn>
                         @else
                             <v-btn href="{{ route('poll.close', $poll->slug) }}" color="red" dark>
+                                <i class="fas fa-lock"></i>
                                 @lang("polls.view_close")
                             </v-btn>
                         @endif

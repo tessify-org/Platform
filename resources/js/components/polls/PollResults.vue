@@ -1,24 +1,28 @@
 <template>
     <div id="poll-results-comp">
 
-        <div class="poll-result" v-for="(result, ri) in mutableResults" :key="ri">
-            <div class="poll-result__title">{{ strings.question+" #"+(ri+1)+". "+result.question.question[locale] }}</div>
-            <div class="poll-result__answers" v-if="!result.question.open_question">
-                <div class="poll-result__answer" v-for="(answer, ai) in result.answers" :key="ai">
-                    <div class="answer-text">
-                        {{ answer.answer.value[locale] }}
-                    </div>
-                    <div class="answer-count">
-                        {{ answer.num_votes }} {{ voteText(answer.num_votes) }}
+        <div id="poll-results" v-if="mutableResults.length > 0">
+            <div class="poll-result" v-for="(result, ri) in mutableResults" :key="ri">
+                <div class="poll-result__title">{{ strings.question+" #"+(ri+1)+". "+result.question.question[locale] }}</div>
+                <div class="poll-result__answers" v-if="!result.question.open_question">
+                    <div class="poll-result__answer" v-for="(answer, ai) in result.answers" :key="ai">
+                        <div class="answer-text">
+                            {{ answer.answer.value[locale] }}
+                        </div>
+                        <div class="answer-count">
+                            {{ answer.num_votes }} {{ voteText(answer.num_votes) }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="poll-result__answers" v-if="result.question.open_question">
-                <div class="poll-result__answer" v-for="(answer, ai) in result.answers" :key="ai">
-                    {{ answer }}
+                <div class="poll-result__answers" v-if="result.question.open_question">
+                    <div class="poll-result__answer" v-for="(answer, ai) in result.answers" :key="ai">
+                        {{ answer }}
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div id="no-results" v-if="mutableResults.length === 0">{{ strings.no_results }}</div>
 
     </div>
 </template>

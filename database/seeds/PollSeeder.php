@@ -34,17 +34,6 @@ class PollSeeder extends Seeder
         //
         // Statuses
         //
-
-        $draft = PollStatus::create([
-            "name" => [
-                "nl" => "Concept-versie",
-                "en" => "Draft-version"
-            ],
-            "description" => [
-                "nl" => "Nog niet gepubliceerd",
-                "en" => "Not yet published",
-            ],
-        ]);
         $open = PollStatus::create([
             "name" => [
                 "nl" => "Open",

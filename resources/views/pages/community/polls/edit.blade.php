@@ -15,13 +15,14 @@
             @include("partials.feedback")
 
             <!-- Form -->
-            <form action="{{ route('poll.edit.post', $poll->slug) }}" method="post">
+            <form action="{{ route('poll.edit.post', $poll->slug) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <poll-form
                     :poll="{{ $poll->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
-                    :old-input="{{ $oldInput->toJson() }}">
+                    :old-input="{{ $oldInput->toJson() }}"
+                    back-href="{{ route('poll', $poll->slug) }}">
                 </poll-form>
             </form>
             

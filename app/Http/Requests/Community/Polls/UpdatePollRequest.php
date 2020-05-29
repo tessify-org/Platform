@@ -24,12 +24,13 @@ class UpdatePollRequest extends FormRequest
     public function rules()
     {
         return [
-            "poll_status_id" => "required|exists:poll_statuses,id",
             "title" => "required",
             "description_nl" => "required",
             "description_en" => "required",
-            "published" => "required",
-            "public" => "required",
+            "draft" => "required",
+            "private" => "required",
+            "questions" => "required",
+            "header_image" => "nullable|image",
         ];
     }
 }

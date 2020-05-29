@@ -14,10 +14,21 @@ class PollController extends Controller
     public function getOverview()
     {
         return view("pages.community.polls.overview", [
-            "polls" => Polls::getAllPreloaded(),
+            "polls" => Polls::getAllPreloadedForOverview(),
+            "myPolls" => Polls::getMyPolls(),
             "strings" => collect([
                 "no_records" => __("polls.overview_no_records"),
-            ])
+            ]),
+            "myPollsStrings" => collect([
+                "title" => __("polls.my_polls_title"),
+                "status" => __("polls.my_polls_status"),
+                "num_votes" => __("polls.my_polls_num_votes"),
+                "privacy" => __("polls.my_polls_privacy"),
+                "public" => __("polls.my_polls_public"),
+                "private" => __("polls.my_polls_private"),
+                "vote" => __("polls.results_vote"),
+                "votes" => __("polls.results_votes"),
+            ]),
         ]);
     }
 
@@ -44,6 +55,7 @@ class PollController extends Controller
                 "question" => __("polls.vote_question"),
                 "vote" => __("polls.results_vote"),
                 "votes" => __("polls.results_votes"),
+                "no_results" => __("polls.results_no_results"),
             ]),
             "oldInput" => collect([
                 "answers" => old("answers"),
@@ -67,6 +79,11 @@ class PollController extends Controller
                 "question_type_open" => __("polls.form_question_type_open"),
                 "question_type_closed" => __("polls.form_question_type_closed"),
                 "answer" => __("polls.form_answer"),
+                "private" => __("polls.form_private"),
+                "draft" => __("polls.form_draft"),
+                "header_image" => __("polls.form_header_image"),
+                "cancel" => __("polls.create_cancel"),
+                "submit" => __("polls.create_submit"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
             ]),
@@ -112,6 +129,11 @@ class PollController extends Controller
                 "question_type_closed" => __("polls.form_question_type_closed"),
                 "question_add_answer" => __("polls.form_question_add_answer"),
                 "answer" => __("polls.form_answer"),
+                "private" => __("polls.form_private"),
+                "draft" => __("polls.form_draft"),
+                "header_image" => __("polls.form_header_image"),
+                "cancel" => __("polls.edit_cancel"),
+                "submit" => __("polls.edit_submit"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
             ]),

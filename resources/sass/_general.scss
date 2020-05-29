@@ -897,7 +897,11 @@ i {
         margin: 0 0 5px 0;
         .image-field__image {
             height: 100px;
+            max-width: 200px;
             border-radius: 3px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
     }
     .image-field__input {

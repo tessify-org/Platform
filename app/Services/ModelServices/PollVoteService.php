@@ -83,4 +83,9 @@ class PollVoteService implements ModelServiceContract
 
         return false;
     }
+
+    public function getNumberOfVotesFor(Poll $poll)
+    {
+        return count($this->getAllForPoll($poll));
+    }
 }

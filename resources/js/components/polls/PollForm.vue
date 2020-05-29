@@ -39,6 +39,37 @@
                     </div>
                 </div>
 
+                <!-- Header bg image -->
+                <div class="image-field">
+                    <div class="image-field__label">{{ strings.header_image }}</div>
+                    <div class="image-field__image-wrapper">
+                        <div class="image-field__image" :style="{ backgroundImage: 'url('+headerImageUrl+')' }"></div>
+                    </div>
+                    <div class="image-field__input">
+                        <input type="file" name="header_image">
+                    </div>
+                </div>
+
+                <!-- Published -->
+                <div class="form-field checkbox">
+                    <v-checkbox
+                        :label="strings.draft"
+                        v-model="form.draft"
+                        hide-details>
+                    </v-checkbox>
+                    <input type="hidden" name="draft" :value="form.draft">
+                </div>
+
+                <!-- Public -->
+                <div class="form-field checkbox">
+                    <v-checkbox
+                        :label="strings.private"
+                        v-model="form.private"
+                        hide-details>
+                    </v-checkbox>
+                    <input type="hidden" name="private" :value="form.private">
+                </div>
+
             </div>
         </div>
 
@@ -55,13 +86,13 @@
                         <div class="question-inputs">
                             <div class="question-input">
                                 <v-text-field
-                                    :label="strings.question+' '+(qi+1)+'.'"
+                                    :label="strings.question+' '+(qi+1)+'. '+strings.nl"
                                     v-model="form.questions[qi].question.nl">
                                 </v-text-field>
                             </div>
                             <div class="question-input">
                                 <v-text-field
-                                    :label="strings.question"
+                                    :label="strings.question+' '+(qi+1)+'. '+strings.en"
                                     v-model="form.questions[qi].question.en">
                                 </v-text-field>
                             </div>
@@ -72,7 +103,7 @@
                             <v-select
                                 :items="questionTypeOptions"
                                 :label="strings.question_type"
-                                v-model="form.questions[qi].type">
+                                v-model="form.questions[qi].type"   >
                             </v-select>
                         </div>
 
@@ -101,6 +132,11 @@
                                             :label="strings.answer+' ('+strings.en+')'"
                                             v-model="form.questions[qi].answers[ai].value.en">
                                         </v-text-field>
+                                    </div>
+                                    <div class="question-answer__remove">
+                                        <div class="remove-button" @click="onClickRemoveAnswer(qi, ai)">
+                                            <i class="fas fa-times"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -133,6 +169,25 @@
             </div>
         </div>
 
+        <!-- Hidden inputs -->
+        <input type="hidden" name="questions" :value="encodedQuestions">
+
+        <!-- Form controls -->
+        <div class="form-controls">
+            <div class="form-controls__left">
+                <v-btn text :href="backHref">
+                    <i class="fas fa-arrow-left"></i>
+                    {{ strings.cancel }}
+                </v-btn>
+            </div>
+            <div class="form-controls__right">
+                <v-btn color="success" type="submit">
+                    <i class="fas fa-save"></i>
+                    {{ strings.submit }}
+                </v-btn>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -143,6 +198,8 @@
             "strings",
             "oldInput",
             "errors",
+            "backHref",
+            "defaultHeaderImageUrl",
         ],
         data: () => ({
             tag: "[poll-form]",
@@ -153,6 +210,8 @@
                     nl: "",
                     en: "",
                 },
+                draft: false,
+                private: false,
                 questions: [],
             },
         }),
@@ -160,6 +219,13 @@
             encodedQuestions() {
                 return JSON.stringify(this.form.questions);
             },
+            headerImageUrl() {
+                if (this.poll !== undefined && this.poll !== null) {
+                    return this.poll.header_image_url;
+                } else {
+                    return this.defaultHeaderImage;
+                }
+            }
         },
         methods: {
             initialize() {
@@ -168,23 +234,23 @@
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" old input: ", this.oldInput);
                 console.log(this.tag+" errors: ", this.errors);
+                console.log(this.tag+" back href: ", this.backHref);
                 this.generateQuestionTypeOptions();
                 this.initializeData();
-            },
-            generateQuestionTypeOptions() {
-                this.questionTypeOptions.push({ text: this.strings.question_type_open, value: "open" });
-                this.questionTypeOptions.push({ text: this.strings.question_type_closed, value: "closed" });
             },
             initializeData() {
                 if (this.poll !== undefined && this.poll !== null) {
                     this.form.title = this.poll.title;
                     this.form.description.nl = this.poll.description.nl;
                     this.form.description.en = this.poll.description.en;
+                    this.form.private = this.poll.public === false ? true : false;
+                    this.form.draft = this.poll.published === false ? true : false;
                     if (this.poll.questions !== undefined && this.poll.questions !== null && this.poll.questions.length > 0) {
                         for (let i = 0; i < this.poll.questions.length; i++) {
                             let answers = [];
                             for (let j = 0; j < this.poll.questions[i].answers.length; j++) {
                                 answers.push({
+                                    id: this.poll.questions[i].answers[j].id,
                                     value: {
                                         nl: this.poll.questions[i].answers[j].value.nl,
                                         en: this.poll.questions[i].answers[j].value.en,
@@ -192,6 +258,7 @@
                                 });
                             }
                             this.form.questions.push({
+                                id: this.poll.questions[i].id,
                                 type: this.poll.questions[i].open_question ? "open" : "closed",
                                 multiple_answers_allowed: this.poll.questions[i].allow_multiple_answers,
                                 question: {
@@ -210,6 +277,10 @@
                     if (this.oldInput.questions !== null) this.form.questions = JSON.parse(this.oldInput.questions);
                 }
             },
+            generateQuestionTypeOptions() {
+                this.questionTypeOptions.push({ text: this.strings.question_type_open, value: "open" });
+                this.questionTypeOptions.push({ text: this.strings.question_type_closed, value: "closed" });
+            },
             hasErrors(field) {
                 if (this.errors !== undefined && this.errors !== null && this.errors.length > 0) {
                     if (this.errors[field] !==  undefined &&  this.errors[field] !== "") {
@@ -226,6 +297,7 @@
             },
             onClickAddQuestion() {
                 this.form.questions.push({
+                    id: null,
                     type: "open",
                     question: {
                         nl: "",
@@ -240,11 +312,15 @@
             },
             onClickAddAnswer(index) {
                 this.form.questions[index].answers.push({
+                    id: null,
                     value: {
                         nl: "",
                         en: "",
                     }
                 });
+            },
+            onClickRemoveAnswer(questionIndex, answerIndex) {
+                this.form.questions[questionIndex].answers.splice(answerIndex, 1);
             },
         },
         mounted() {
@@ -295,6 +371,7 @@
                             padding: 15px;
                             margin: 0 0 15px 0;
                             flex-direction: row;
+                            align-items: center;
                             box-sizing: border-box;
                             background-color: hsl(0, 0%, 100%);
                             &:last-child {
@@ -305,8 +382,15 @@
                                 box-sizing: border-box;
                                 padding: 0 10px 10px 10px;
                             }
-                            .question-answer__delete {
-                                
+                            .question-answer__remove {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                .remove-button {
+                                    cursor: pointer;
+                                    padding: 0 10px;
+                                    box-sizing: border-box;
+                                }
                             }
                         }
                     }

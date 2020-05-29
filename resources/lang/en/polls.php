@@ -20,6 +20,8 @@ return [
     "overview_subtitle" => "Ask your colleagues for their opinion",
     "overview_no_records" => "No polls on the platform at the moment",
     "overview_create" => "Create a new poll",
+    "overview_my_polls" => "My polls",
+    "overview_public_polls" => "Public polls",
 
     "view_title" => "Poll",
     "view_information" => "Information",
@@ -33,6 +35,9 @@ return [
     "view_delete" => "Delete",
     "view_close" => "Close",
     "view_reopen" => "Reopen",
+    "view_shared_with" => "Shared with",
+    "view_shared_with_everyone" => "Everyone",
+    "view_draft_version" => "Draft version",
 
     "form_general" => "General information",
     "form_questions" => "Questions",
@@ -47,6 +52,9 @@ return [
     "form_question_type_closed" => "Closed question",
     "form_question_add_answer" => "Add an answer",
     "form_answer" => "Answer",
+    "form_draft" => "Draft version",
+    "form_private" => "Private",
+    "form_header_image" => "Header image",
 
     "create_title" => "Create a new poll",
     "create_cancel" => "Go back",
@@ -71,5 +79,13 @@ return [
 
     "results_vote" => "vote",
     "results_votes" => "votes",
+    "results_no_results" => "No votes received yet.",
+
+    "my_polls_title" => "Title",
+    "my_polls_status" => "Status",
+    "my_polls_num_votes" => "Number of votes",
+    "my_polls_privacy" => "Privacy",
+    "my_polls_public" => "Public",
+    "my_polls_private" => "Private",
 
 ];

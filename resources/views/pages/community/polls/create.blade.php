@@ -15,12 +15,13 @@
             @include("partials.feedback")
 
             <!-- Form -->
-            <form action="{{ route('polls.create.post') }}" method="post">
+            <form action="{{ route('polls.create.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <poll-form
                     :strings="{{ $strings->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
-                    :old-input="{{ $oldInput->toJson() }}">
+                    :old-input="{{ $oldInput->toJson() }}"
+                    default-header-image-url="{{ asset('storage/images/polls/default.jpg') }}">
                 </poll-form>
             </form>
             
