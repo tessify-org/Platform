@@ -13,18 +13,25 @@ return [
     "updated" => "Poll is aangepast",
     "deleted" => "Poll is verwijderd",
     "voted" => "Bedankt voor het beantwoorden van de poll!",
+    "closed" => "Poll is gesloten",
+    "reopened" => "Poll is heropened",
 
     "overview_title" => "Polls",
     "overview_subtitle" => "Vraag je collega's om hun mening.",
     "overview_no_records" => "Er zijn momenteel geen openstaande polls.",
-    "overview_create" => "Poll toevoegen aan het plaform",
+    "overview_create" => "Poll toevoegen aan het platform",
 
     "view_title" => "Poll",
+    "view_information" => "Informatie",
+    "view_results" => "Resultaten",
     "view_author" => "Auteur",
     "view_description" => "Beschrijving",
     "view_status" => "Status",
+    "view_thanks_for_voting" => "Bedankt voor het stemmen!",
     "view_edit" => "Aanpassen",
     "view_delete" => "Verwijderen",
+    "view_close" => "Sluiten",
+    "view_reopen" => "Heropenen",
     
     "form_general" => "Algemene informatie",
     "form_questions" => "Vragen",
@@ -53,7 +60,11 @@ return [
     "delete_submit" => "Verwijderen",
 
     "vote_title" => "Poll invullen",
-    "vote_cancel" => "Annuleren",
-    "vote_submit" => "Opslaan",
+    "vote_questions" => "Vragen",
+    "vote_no_questions" => "Er zijn nog geen vragen aan deze poll toegevoegd.",
+    "vote_question" => "Vraag",
+    "vote_answer" => "Antwoord",
+    "vote_cancel" => "Terug naar het overzicht",
+    "vote_submit" => "Antwoorden versturen",
 
 ];

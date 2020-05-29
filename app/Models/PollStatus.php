@@ -26,6 +26,6 @@ class PollStatus extends Model
 
     public function poll()
     {
-        return $this->belongsTo(Poll::class);
+        return $this->hasMany(Poll::class);
     }
 }

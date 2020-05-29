@@ -4394,20 +4394,61 @@
 //
 
 #view-poll {
+    padding: 30px;
     border-radius: 3px;
-    margin: 0 0 30px 0;
+    box-sizing: border-box;
     background-color: #fff;
-    #poll-description {
-        padding: 30px;
-        box-sizing: border-box;
-        #poll-description__label {
-            font-weight: 600;
-            font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+    #view-poll__left {
+        flex: 1;
+        #poll-status {
+            margin: 0 0 20px 0;
+            #poll-status__label {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            #poll-status__text {
+                
+            }
         }
-        #poll-description__text {
-
+        #poll-description {
+            #poll-description__label {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            #poll-description__text {
+    
+            }
         }
     }
+    #view-poll__right {
+        flex: 0 0 200px;
+        #thanks-for-voting {
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            justify-content: center;
+            #thanks-for-voting__text {
+                font-size: 1.2em;
+                font-weight: 600;
+                text-align: center;
+            }
+            #thanks-for-voting__image-wrapper {
+                margin-top: 15px;
+                #thanks-for-voting__image {
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
+#view-poll__page-controls {
+    margin: 30px 0 0 0;
+}
+#poll-results {
+    padding: 30px;
+    box-sizing: border-box;
 }
 
 //

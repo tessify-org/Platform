@@ -284,7 +284,6 @@ return [
         'PollQuestions' => App\Facades\PollQuestionsFacade::class,
         'PollQuestionAnswers' => App\Facades\PollQuestionAnswersFacade::class,
         'PollVotes' => App\Facades\PollVotesFacade::class,
-        'PollVoteAnswers' => App\Facades\PollVoteAnswersFacade::class,
         
     ],
 

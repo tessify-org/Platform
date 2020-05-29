@@ -23,4 +23,9 @@ class PollStatusService implements ModelServiceContract
     {
         return $instance;
     }
+
+    public function getByTranslatedName($name, $locale)
+    {
+        return PollStatus::where("name->".$locale, $name)->first();
+    }
 }

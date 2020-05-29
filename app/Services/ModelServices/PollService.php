@@ -2,7 +2,9 @@
 
 namespace App\Services\ModelServices;
 
+use Users;
 use PollVotes;
+use PollStatuses;
 use PollQuestions;
 use App\Models\Poll;
 use App\Traits\ModelServiceGetters;
@@ -29,8 +31,12 @@ class PollService implements ModelServiceContract
     {
         $instance->view_href = route('poll', $instance->slug);
 
+        $instance->user = Users::findPreloaded($instance->user_id);
         $instance->questions = PollQuestions::getAllForPoll($instance);
         $instance->votes = PollVotes::getAllForPoll($instance);
+
+        $instance->is_owner = $this->userOwnsPoll($instance);
+        $instance->has_voted = PollVotes::userHasVoted($instance);
 
         return $instance;
     }
@@ -63,7 +69,7 @@ class PollService implements ModelServiceContract
 
     public function createFromRequest(CreatePollRequest $request)
     {
-
+        
     }
 
     public function updateFromRequest(Poll $poll, UpdatePollRequest $request)
@@ -77,7 +83,51 @@ class PollService implements ModelServiceContract
     }
 
     public function voteFromRequest(Poll $poll, VotePollRequest $request)
-    {
+    {   
+        $answers = json_decode($request->answers);
 
+        $vote = PollVotes::createVoteForPoll($poll, $answers);
+
+        $poll->num_votes += 1;
+        $poll->save();
+
+        return $vote;
+    }
+
+    public function close(Poll $poll)
+    {
+        $status = PollStatuses::getByTranslatedName("Closed", "en");
+        $poll->poll_status_id = $status->id;
+        $poll->save();
+        return $poll;
+    }
+
+    public function reopen(Poll $poll)
+    {
+        $status = PollStatuses::getByTranslatedName("Open", "en");
+        $poll->poll_status_id = $status->id;
+        $poll->save();
+        return $poll;
+    }
+
+    public function userOwnsPoll(Poll $poll, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+        return $poll->user_id == $user->id;
+    }
+
+    public function updateResults(Poll $poll)
+    {
+        $results = [];
+        
+        foreach (PollVotes::getAllForPoll($poll) as $vote)
+        {
+            dd($vote->answers);
+        }
+
+        $poll->results = $results;
+        $poll->save();
+
+        return $poll;
     }
 }

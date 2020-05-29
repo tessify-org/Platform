@@ -69,9 +69,10 @@
                 flex: 0 0 33.33%;
                 .poll {
                     display: block;
-                    color: #000;
+                    color: #000000;
                     overflow: hidden;
                     border-radius: 3px;
+                    text-decoration: none;
                     background-color: #fff;
                     .poll-image__wrapper {
                         display: block;

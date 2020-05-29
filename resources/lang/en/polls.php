@@ -13,6 +13,8 @@ return [
     "updated" => "Poll has been updated",
     "deleted" => "Poll has been deleted",
     "voted" => "Thanks for voting",
+    "closed" => "Poll has been closed",
+    "reopened" => "Poll has been reopened",
 
     "overview_title" => "Polls",
     "overview_subtitle" => "Ask your colleagues for their opinion",
@@ -20,11 +22,16 @@ return [
     "overview_create" => "Create a new poll",
 
     "view_title" => "Poll",
+    "view_information" => "Information",
+    "view_results" => "Results",
     "view_author" => "Author",
     "view_description" => "Description",
     "view_status" => "Status",
+    "view_thanks_for_voting" => "Thanks for voting!",
     "view_edit" => "Edit",
     "view_delete" => "Delete",
+    "view_close" => "Close",
+    "view_reopen" => "Reopen",
 
     "form_general" => "General information",
     "form_questions" => "Questions",
@@ -53,5 +60,11 @@ return [
     "delete_submit" => "Delete",
 
     "vote_title" => "Poll",
+    "vote_questions" => "Questions",
+    "vote_no_questions" => "No questions have been added to this poll!",
+    "vote_question" => "Question",
+    "vote_answer" => "Answer",
+    "vote_cancel" => "Back to overview",
+    "vote_submit" => "Submit your answers",
 
 ];

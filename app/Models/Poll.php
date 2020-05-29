@@ -14,6 +14,7 @@ class Poll extends Model
     protected $table = "polls";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
+        "user_id",
         "poll_status_id",
         "slug",
         "title",
@@ -21,6 +22,7 @@ class Poll extends Model
         "published",
         "public",
         "results",
+        "num_votes",
     ];
     protected $casts = [
         "published" => "boolean",
@@ -43,9 +45,14 @@ class Poll extends Model
     // Relationships
     //
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function status()
     {
-        return $this->belongsTo(PollStatus::class);
+        return $this->belongsTo(PollStatus::class, "poll_status_id", "id");
     }
 
     public function questions()

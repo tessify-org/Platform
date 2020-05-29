@@ -23,7 +23,7 @@ class PollController extends Controller
 
     public function getView($slug)
     {
-        $poll = Polls::findBySlug($slug);
+        $poll = Polls::findPreloadedBySlug($slug);
         if (!$poll)
         {
             flash(__("polls.not_found"))->error();
@@ -32,6 +32,17 @@ class PollController extends Controller
 
         return view("pages.community.polls.view", [
             "poll" => $poll,
+            "strings" => collect([
+                "questions" => __("polls.vote_questions"),
+                "no_questions" => __("polls.vote_no_questions"),
+                "question" => __("polls.vote_question"),
+                "answer" => __("polls.vote_answer"),
+                "cancel" => __("polls.vote_cancel"),
+                "submit" => __("polls.vote_submit"),
+            ]),
+            "oldInput" => collect([
+                "answers" => old("answers"),
+            ]),
         ]);
     }
 
@@ -150,19 +161,19 @@ class PollController extends Controller
         return redirect()->route("polls");
     }
 
-    public function getVote($slug)
-    {
-        $poll = Polls::findBySlug($slug);
-        if (!$poll)
-        {
-            flash(__("polls.not_found"))->error();
-            return redirect()->route("polls");
-        }
+    // public function getVote($slug)
+    // {
+    //     $poll = Polls::findBySlug($slug);
+    //     if (!$poll)
+    //     {
+    //         flash(__("polls.not_found"))->error();
+    //         return redirect()->route("polls");
+    //     }
 
-        return view("pages.community.polls.vote", [
-            "poll" => $poll,
-        ]);
-    }
+    //     return view("pages.community.polls.vote", [
+    //         "poll" => $poll,
+    //     ]);
+    // }
 
     public function postVote(VotePollRequest $request, $slug)
     {
@@ -176,6 +187,36 @@ class PollController extends Controller
         Polls::voteFromRequest($poll, $request);
 
         flash(__("polls.voted"))->success();
+        return redirect()->route("poll", $poll->slug);
+    }
+
+    public function getClose($slug)
+    {
+        $poll = Polls::findBySlug($slug);
+        if (!$poll)
+        {
+            flash(__("polls.not_found"))->error();
+            return redirect()->route("polls");
+        }
+
+        Polls::close($poll);
+
+        flash(__("polls.closed"))->success();
+        return redirect()->route("poll", $poll->slug);
+    }
+
+    public function getReopen($slug)
+    {
+        $poll = Polls::findBySlug($slug);
+        if (!$poll)
+        {
+            flash(__("polls.not_found"))->error();
+            return redirect()->route("polls");
+        }
+
+        Polls::reopen($poll);
+        
+        flash(__("polls.reopened"))->success();
         return redirect()->route("poll", $poll->slug);
     }
 }
