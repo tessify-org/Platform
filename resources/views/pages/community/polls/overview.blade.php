@@ -25,7 +25,7 @@
                     </v-btn>
                 </div>
             </div>
-
+            
         </div>
     </div>
 
@@ -35,8 +35,19 @@
 
             <!-- Feedback -->
             @include("partials.feedback")
+
+            <!-- My polls -->
+            @if ($myPolls->count())
+                <h3 class="content-title">@lang("polls.overview_my_polls")</h3>
+                <my-poll-overview
+                    :polls="{{ $myPolls->toJson() }}"
+                    :strings="{{ $myPollsStrings->toJson() }}"
+                    locale="{{ app()->getLocale() }}">
+                </my-poll-overview>
+            @endif
             
-            <!-- Poll overview -->
+            <!-- Public polls -->
+            <h3 class="content-title">@lang("polls.overview_public_polls")</h3>
             <poll-overview
                 :polls="{{ $polls->toJson() }}"
                 :strings="{{ $strings->toJson() }}"

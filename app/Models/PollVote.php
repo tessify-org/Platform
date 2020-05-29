@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class PollVote extends Model
 {
-    use HasTranslations;
-
     protected $table = "poll_votes";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
         "user_id",
         "poll_id",
+        "answers",
     ];
 
     //
@@ -30,8 +28,21 @@ class PollVote extends Model
         return $this->belongsTo(Poll::class);
     }
 
-    public function voteAnswers()
+    //
+    // Accessors
+    //
+
+    public function getAnswersAttribute($value)
     {
-        return $this->hasMany(PollVoteAnswer::class);
+        return json_decode(unserialize($value));
+    }
+
+    //
+    // Mutators
+    //
+
+    public function setAnswersAttribute($value)
+    {
+        $this->attributes["answers"] = serialize(json_encode($value));
     }
 }

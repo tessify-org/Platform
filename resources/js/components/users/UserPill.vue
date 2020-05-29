@@ -1,7 +1,7 @@
 <template>
-    <div class="user-pill" :class="{ 'elevation-1': withShadow, 'dark': dark }">
+    <div class="user-pill" :class="{ 'elevation-1': (withShadow && !transparent), 'dark': dark, 'transparent': transparent }">
         <div class="user-pill__avatar-wrapper">
-            <div class="user-pill__avatar" :style="{ backgroundImage: 'url('+user.avatar_url+')' }"></div>
+            <div class="user-pill__avatar" :style="{ backgroundImage: 'url('+user.avatar_url+')' }" :class="{ 'elevation-1': (withShadow && transparent) }"></div>
         </div>
         <div class="user-pill__text-wrapper">
             <div class="user-name">{{ user.formatted_name }}</div>
@@ -31,7 +31,11 @@
             dark: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            transparent: {
+                type: Boolean,
+                default: false,
+            },
         },
         data: () => ({
             tag: "[user-pill]",
@@ -84,6 +88,10 @@
         background-color: hsl(0, 0%, 100%);
         &.dark {
             background-color: hsl(0, 0%, 95%);
+        }
+        &.transparent {
+            padding: 0;
+            background-color: transparent;
         }
         .user-pill__avatar-wrapper {
             flex: 0 0 50px;

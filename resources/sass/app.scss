@@ -4390,23 +4390,115 @@
 }
 
 //
-// View poll
+// Polls
 //
 
 #view-poll {
+    padding: 30px;
     border-radius: 3px;
-    margin: 0 0 30px 0;
+    box-sizing: border-box;
     background-color: #fff;
-    #poll-description {
-        padding: 30px;
-        box-sizing: border-box;
-        #poll-description__label {
-            font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    #view-poll__left {
+        flex: 1;
+        #poll-status {
+            margin: 0 0 20px 0;
+            #poll-status__label {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            #poll-status__text {
+                
+            }
+        }
+        #poll-shared-with {
+            margin: 0 0 20px 0;
+            #poll-shared-with__label {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            #poll-shared-with__text {
+    
+            }
+        }
+        #poll-description {
+            #poll-description__label {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            #poll-description__text {
+    
+            }
+        }
+        #poll-draft__wrapper {
+            margin: 25px 0 0 0;
+            display: flex;
+            flex-direction: row;
+            #poll-draft {
+                color: #fff;
+                font-size: .8em;
+                padding: 5px 10px;
+                border-radius: 3px;
+                background-color: #666;
+            }
+        }
+    }
+    #view-poll__right {
+        flex: 0 0 200px;
+        #thanks-for-voting {
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            justify-content: center;
+            #thanks-for-voting__text {
+                font-size: 1.2em;
+                font-weight: 600;
+                text-align: center;
+            }
+            #thanks-for-voting__image-wrapper {
+                margin-top: 15px;
+                #thanks-for-voting__image {
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
+#view-poll__questions {
+    margin: 30px 0 0 0;
+}
+#view-poll__page-controls {
+    margin: 30px 0 0 0;
+}
+#poll-results {
+    padding: 30px;
+    box-sizing: border-box;
+    #poll-num-votes {
+        display: flex;
+        margin: 0 0 15px 0;
+        flex-direction: row;
+        align-items: center;
+        #poll-num-votes__label {
             font-size: 1.2em;
+            font-weight: 600;
+            margin: 0 15px 0 0;
         }
-        #poll-description__text {
+        #poll-num-votes__text {
+            flex: 1;
+        }
+    }
+}
 
-        }
+#delete-poll {
+    width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: #fff;
+    p {
+        text-align: center;
     }
 }
 

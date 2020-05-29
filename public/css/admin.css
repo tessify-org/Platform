@@ -2840,7 +2840,11 @@ i {
 
 .image-field .image-field__image-wrapper .image-field__image {
   height: 100px;
+  max-width: 200px;
   border-radius: 3px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .image-field .image-field__input {

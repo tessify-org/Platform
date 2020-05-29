@@ -2840,7 +2840,11 @@ i {
 
 .image-field .image-field__image-wrapper .image-field__image {
   height: 100px;
+  max-width: 200px;
   border-radius: 3px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .image-field .image-field__input {
@@ -7790,19 +7794,121 @@ i {
 }
 
 #view-poll {
+  padding: 30px;
   border-radius: 3px;
-  margin: 0 0 30px 0;
+  box-sizing: border-box;
   background-color: #fff;
+  display: flex;
+  flex-direction: row;
 }
 
-#view-poll #poll-description {
+#view-poll #view-poll__left {
+  flex: 1;
+}
+
+#view-poll #view-poll__left #poll-status {
+  margin: 0 0 20px 0;
+}
+
+#view-poll #view-poll__left #poll-status #poll-status__label {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+#view-poll #view-poll__left #poll-shared-with {
+  margin: 0 0 20px 0;
+}
+
+#view-poll #view-poll__left #poll-shared-with #poll-shared-with__label {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+#view-poll #view-poll__left #poll-description #poll-description__label {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+#view-poll #view-poll__left #poll-draft__wrapper {
+  margin: 25px 0 0 0;
+  display: flex;
+  flex-direction: row;
+}
+
+#view-poll #view-poll__left #poll-draft__wrapper #poll-draft {
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #666;
+}
+
+#view-poll #view-poll__right {
+  flex: 0 0 200px;
+}
+
+#view-poll #view-poll__right #thanks-for-voting {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#view-poll #view-poll__right #thanks-for-voting #thanks-for-voting__text {
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+}
+
+#view-poll #view-poll__right #thanks-for-voting #thanks-for-voting__image-wrapper {
+  margin-top: 15px;
+}
+
+#view-poll #view-poll__right #thanks-for-voting #thanks-for-voting__image-wrapper #thanks-for-voting__image {
+  width: 150px;
+}
+
+#view-poll__questions {
+  margin: 30px 0 0 0;
+}
+
+#view-poll__page-controls {
+  margin: 30px 0 0 0;
+}
+
+#poll-results {
   padding: 30px;
   box-sizing: border-box;
 }
 
-#view-poll #poll-description #poll-description__label {
-  font-weight: 600;
+#poll-results #poll-num-votes {
+  display: flex;
+  margin: 0 0 15px 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+#poll-results #poll-num-votes #poll-num-votes__label {
   font-size: 1.2em;
+  font-weight: 600;
+  margin: 0 15px 0 0;
+}
+
+#poll-results #poll-num-votes #poll-num-votes__text {
+  flex: 1;
+}
+
+#delete-poll {
+  width: 600px;
+  padding: 30px;
+  margin: 0 auto;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+#delete-poll p {
+  text-align: center;
 }
 
 #setting-links {

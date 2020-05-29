@@ -24,7 +24,6 @@ class VotePollRequest extends FormRequest
     public function rules()
     {
         return [
-            "poll_id" => "required|exists:polls,id",
             "answers" => "required",
         ];
     }

@@ -32,6 +32,21 @@ class PollVoteService implements ModelServiceContract
     {
         $out = [];
 
+        foreach ($this->getAll() as $vote)
+        {
+            if ($vote->poll_id == $poll->id)
+            {
+                $out[] = $vote;
+            }
+        }
+
+        return $out;
+    }
+
+    public function getAllPreloadedForPoll(Poll $poll)
+    {
+        $out = [];
+
         foreach ($this->getAllPreloaded() as $vote)
         {
             if ($vote->poll_id == $poll->id)
@@ -41,5 +56,36 @@ class PollVoteService implements ModelServiceContract
         }
 
         return $out;
+    }
+
+    public function createVoteForPoll(Poll $poll, $answers, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        return PollVote::create([
+            "poll_id" => $poll->id,
+            "user_id" => $user->id,
+            "answers" => $answers,
+        ]);
+    }
+
+    public function userHasVoted(Poll $poll, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        foreach ($this->getAll() as $vote)
+        {
+            if ($vote->poll_id == $poll->id && $vote->user_id == $user->id)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getNumberOfVotesFor(Poll $poll)
+    {
+        return count($this->getAllForPoll($poll));
     }
 }

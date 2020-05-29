@@ -37,4 +37,12 @@ class ProjectStatusService implements ModelServiceContract
 
         return false;
     }
+
+    public function findByTranslatedName($name, $locale)
+    {
+        foreach ($this->getAll() as $status)
+        {
+            dd($status);
+        }
+    }
 }

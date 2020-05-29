@@ -34,17 +34,6 @@ class PollSeeder extends Seeder
         //
         // Statuses
         //
-
-        $draft = PollStatus::create([
-            "name" => [
-                "nl" => "Concept-versie",
-                "en" => "Draft-version"
-            ],
-            "description" => [
-                "nl" => "Nog niet gepubliceerd",
-                "en" => "Not yet published",
-            ],
-        ]);
         $open = PollStatus::create([
             "name" => [
                 "nl" => "Open",
@@ -82,13 +71,20 @@ class PollSeeder extends Seeder
             "public" => true,
         ]);
 
+        //
+        // Test poll -> Question #1 (closed question - single answer)
+        //
+
         $poll_question = PollQuestion::create([
             "poll_id" => $poll->id,
+            "open_question" => false,
+            "allow_multiple_answers" => false,
             "question" => [
-                "en" => "Welke dag is het vandaag?",
-                "nl" => "What day is it today?",
+                "nl" => "Welke dag is het vandaag?",
+                "en" => "What day is it today?",
             ],
         ]);
+
         $poll_question_answer = PollQuestionAnswer::create([
             "poll_question_id" => $poll_question->id,
             "value" => [
@@ -96,6 +92,7 @@ class PollSeeder extends Seeder
                 "nl" => "Maandag",
             ],
         ]);
+        
         $poll_question_answer_two = PollQuestionAnswer::create([
             "poll_question_id" => $poll_question->id,
             "value" => [
@@ -104,33 +101,57 @@ class PollSeeder extends Seeder
             ],
         ]);
 
+        //
+        // Test poll -> Question #2 (closed question - multiple answers)
+        //
+
         $poll_question_two = PollQuestion::create([
             "poll_id" => $poll->id,
+            "open_question" => false,
+            "allow_multiple_answers" => true,
             "question" => [
-                "en" => "Hoeveel katten heb je?",
-                "nl" => "How many cats do you have?",
+                "nl" => "Welke kleuren heeft je kat?",
+                "en" => "Which colors does you cat have?",
             ]
         ]);
+
         $poll_question_two_answer = PollQuestionAnswer::create([
             "poll_question_id" => $poll_question_two->id,
             "value" => [
-                "en" => "No cats!",
-                "nl" => "Geen katten!",
+                "en" => "Blue",
+                "nl" => "Blauw",
             ],
         ]);
+
         $poll_question_two_answer_two = PollQuestionAnswer::create([
             "poll_question_id" => $poll_question_two->id,
             "value" => [
-                "en" => "1 cat",
-                "nl" => "1 kat",
+                "en" => "Black",
+                "nl" => "Zwart",
             ]
         ]);
+
         $poll_question_two_answer_three = PollQuestionAnswer::create([
             "poll_question_id" => $poll_question_two->id,
             "value" => [
-                "en" => "2 cats",
-                "nl" => "2 katten",
+                "en" => "White",
+                "nl" => "Wit",
             ],
         ]);
+
+        //
+        // Test poll -> Question #3 (Open question)
+        //
+
+        $poll_question_three = PollQuestion::create([
+            "poll_id" => $poll->id, 
+            "open_question" => true,
+            "allow_multiple_answers" => false,
+            "question" => [
+                "nl" => "Wat vind je tot nu toe van de app?",
+                "en" => "How do you like the application so far?",
+            ]
+        ]);
+
     }
 }

@@ -378,21 +378,30 @@ Route::group(["middleware" => "auth"], function() {
         // Polls
         Route::group(["prefix" => "polls"], function() {
 
+            // Overview
             Route::get("/", "Community\PollController@getOverview")->name("polls");
             
+            // Add
             Route::get("toevoegen", "Community\PollController@getCreate")->name("polls.create");
             Route::post("toevoegen", "Community\PollController@postCreate")->name("polls.create.post");
             
+            // View
             Route::get("{slug}", "Community\PollController@getView")->name("poll");
-
+            
+            // Edit
             Route::get("{slug}/aanpassen", "Community\PollController@getEdit")->name("poll.edit");
             Route::post("{slug}/aanpassen", "Community\PollController@postEdit")->name("poll.edit.post");
 
+            // Delete
             Route::get("{slug}/verwijderen", "Community\PollController@getDelete")->name("poll.delete");
             Route::post("{slug}/verwijderen", "Community\PollController@postDelete")->name("poll.delete.post");
 
-            Route::get("{slug}/stemmen", "Community\PollController@getVote")->name("poll.vote");
+            // Vote
             Route::post("{slug}/stemmen", "Community\PollController@postVote")->name("poll.vote.post");
+            
+            // Close / Reopen
+            Route::get("{slug}/sluiten", "Community\PollController@getClose")->name("poll.close");
+            Route::get("{slug}/heropenen", "Community\PollController@getReopen")->name("poll.reopen");
             
         });
         

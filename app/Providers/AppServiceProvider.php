@@ -62,7 +62,6 @@ use App\Services\ModelServices\PollStatusService;
 use App\Services\ModelServices\PollQuestionService;
 use App\Services\ModelServices\PollQuestionAnswerService;
 use App\Services\ModelServices\PollVoteService;
-use App\Services\ModelServices\PollVoteAnswerService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -311,16 +310,12 @@ class AppServiceProvider extends ServiceProvider
             return new PollQuestionAnswerService;
         });
 
-        $this->app->singleton("poll-status", function() {
+        $this->app->singleton("poll-statuses", function() {
             return new PollStatusService;
         });
 
         $this->app->singleton("poll-votes", function() {
             return new PollVoteService;
-        });
-
-        $this->app->singleton("poll-vote-answers", function() {
-            return new PollVoteAnswerService;
         });
 
         //

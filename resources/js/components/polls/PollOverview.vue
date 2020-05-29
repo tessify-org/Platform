@@ -5,10 +5,10 @@
         <div id="poll-overview__list" v-if="mutablePolls.length > 0">
             <div class="poll-wrapper" v-for="(poll, pi) in mutablePolls" :key="pi">
                 <a class="poll elevation-1" :href="poll.view_href">
-                    <span class="poll-image__wrapper"></span>
+                    <span class="poll-image__wrapper" :style="{ backgroundImage: 'url('+poll.header_image_url+')' }"></span>
                     <span class="poll-text">
                         <span class="poll-title">{{ poll.title }}</span>
-                        <span class="poll-description">{{ poll.description[locale] }}</span>
+                        <span class="poll-description">{{ poll.description !== null ? poll.description[locale] : '-' }}</span>
                     </span>
                 </a>
             </div>
@@ -60,23 +60,30 @@
 
 <style lang="scss">
     #poll-overview {
+        margin-top: 25px;
         #poll-overview__list {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            justify-content: center;
+            margin: 0 -25px -50px -25px;
             .poll-wrapper {
                 flex: 0 0 33.33%;
+                box-sizing: border-box;
+                padding: 0 25px 50px 25px;
                 .poll {
                     display: block;
-                    color: #000;
+                    color: #000000;
                     overflow: hidden;
                     border-radius: 3px;
+                    text-decoration: none;
                     background-color: #fff;
                     .poll-image__wrapper {
                         display: block;
                         height: 150px;
+                        background-size: cover;
                         background-color: #333;
+                        background-repeat: no-repeat;
+                        background-position: center center;
                     }
                     .poll-text {
                         padding: 25px;

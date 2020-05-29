@@ -434,7 +434,7 @@ Breadcrumbs::for("poll.edit", function($t, $poll) {
 });
 Breadcrumbs::for("poll.delete", function($t, $poll) {
     $t->parent("poll", $poll);
-    $t->push(__("breadcrumbs.polls_delete", route("poll.delete", $poll->slug)));
+    $t->push(__("breadcrumbs.polls_delete"), route("poll.delete", $poll->slug));
 });
 Breadcrumbs::for("poll.vote", function($t, $poll) {
     $t->parent("poll", $poll);
