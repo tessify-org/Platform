@@ -6,6 +6,7 @@ use Users;
 use PollVotes;
 use PollStatuses;
 use PollQuestions;
+use PollQuestionAnswers;
 use App\Models\Poll;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -31,14 +32,54 @@ class PollService implements ModelServiceContract
     {
         $instance->view_href = route('poll', $instance->slug);
 
+        $instance->votes = PollVotes::getAllForPoll($instance);
         $instance->user = Users::findPreloaded($instance->user_id);
         $instance->questions = PollQuestions::getAllForPoll($instance);
-        $instance->votes = PollVotes::getAllForPoll($instance);
 
         $instance->is_owner = $this->userOwnsPoll($instance);
         $instance->has_voted = PollVotes::userHasVoted($instance);
 
+        $instance->results = $this->preloadResults($instance);
+
         return $instance;
+    }
+
+    public function preloadResults(Poll $poll)
+    {
+        $out = [];
+
+        foreach ($poll->results as $question_id => $result)
+        {
+            $question = PollQuestions::find($question_id);
+
+            if ($question->open_question)
+            {
+                $out[] = [
+                    "question" => $question,
+                    "answers" => $result->answers,
+                ];
+            }
+            else
+            {
+                $answers = [];   
+                foreach ((array) $result->answers as $answer_id => $num_votes)
+                {
+                    $answer = PollQuestionAnswers::find($answer_id);
+                    $answers[] = [
+                        "answer" => $answer,
+                        "num_votes" => $num_votes,
+                        "num_votes_percentage" => floor($poll->num_votes / 100 * $num_votes),
+                    ];
+                }
+
+                $out[] = [
+                    "question" => $question,
+                    "answers" => $answers,
+                ];
+            }
+        }
+
+        return $out;
     }
 
     public function findBySlug($slug)
@@ -91,6 +132,8 @@ class PollService implements ModelServiceContract
         $poll->num_votes += 1;
         $poll->save();
 
+        $this->updateResults($poll);
+
         return $vote;
     }
 
@@ -120,9 +163,79 @@ class PollService implements ModelServiceContract
     {
         $results = [];
         
+        // Process all votes
         foreach (PollVotes::getAllForPoll($poll) as $vote)
         {
-            dd($vote->answers);
+            // Process all this vote's answers
+            foreach ($vote->answers as $answer)
+            {
+                // Grab the question we're currently processing
+                $question = PollQuestions::findPreloaded($answer->question_id);
+
+                // Question has an entry results entry
+                if (array_key_exists($question->id, $results))
+                {
+                    if ($question->open_question)
+                    {
+                        $results[$question->id]["answers"][] = $answer->answer;
+                    }
+                    else
+                    {
+                        if (is_array($answer->answer))
+                        {
+                            foreach ($answer->answer as $answer_id)
+                            {
+                                $results[$question->id]["answers"][$answer_id] = $results[$question->id]["answers"][$answer_id] + 1;
+                            }
+                        }
+                        else
+                        {
+                            $results[$question->id]["answers"][$answer->answer] = $results[$question->id]["answers"][$answer->answer] + 1;
+                        }
+                    }
+                }
+                // Question does not have an results array entry yet
+                else
+                {
+                    // Open question
+                    if ($question->open_question)
+                    {
+                        // Collect individual answers
+                        $results[$question->id] = [
+                            "answers" => [
+                                $answer->answer
+                            ]
+                        ];
+                    }
+                    // Closed question
+                    else
+                    {
+                        // Generate array with all possible answers and their vote count
+                        $answers = [];
+                        foreach ($question->answers as $questionAnswer)
+                        {
+                            $answers[$questionAnswer->id] = 0;
+                        }
+
+                        // Populate the array with the vote we're currently processing
+                        if (is_array($answer->answer))
+                        {
+                            foreach ($answer->answer as $answer_id)
+                            {
+                                $answers[$answer_id] += 1;
+                            }
+                        }
+                        else
+                        {
+                            $answers[$answer->answer] += 1;
+                        }
+
+                        $results[$question->id] = [
+                            "answers" => $answers
+                        ];
+                    }
+                }
+            }
         }
 
         $poll->results = $results;

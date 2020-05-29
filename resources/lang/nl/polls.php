@@ -24,6 +24,7 @@ return [
     "view_title" => "Poll",
     "view_information" => "Informatie",
     "view_results" => "Resultaten",
+    "view_num_votes" => "Aantal stemmen",
     "view_author" => "Auteur",
     "view_description" => "Beschrijving",
     "view_status" => "Status",
@@ -45,6 +46,7 @@ return [
     "form_question_type_open" => "Open vraag",
     "form_question_type_closed" => "Gesloten vraag",
     "form_question_add_answer" => "Antwoord toevoegen",
+    "form_answer" => "Antwoord",
 
     "create_title" => "Poll toevoegen",
     "create_cancel" => "Annuleren",
@@ -66,5 +68,8 @@ return [
     "vote_answer" => "Antwoord",
     "vote_cancel" => "Terug naar het overzicht",
     "vote_submit" => "Antwoorden versturen",
+
+    "results_vote" => "stem",
+    "results_votes" => "stemmen",
 
 ];

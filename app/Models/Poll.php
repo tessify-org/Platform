@@ -71,7 +71,7 @@ class Poll extends Model
 
     public function getResultsAttribute($value)
     {
-        return json_decode(unserialize($value));
+        return (array) json_decode($value);
     }
 
     //
@@ -80,6 +80,6 @@ class Poll extends Model
 
     public function setResultsAttribute($value)
     {
-        $this->attributes["results"] = serialize(json_encode($value));
+        $this->attributes["results"] = json_encode($value);
     }
 }

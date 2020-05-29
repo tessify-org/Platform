@@ -15,7 +15,7 @@
             @include("partials.feedback")
 
             <!-- Form -->
-            <form action="{{ route('polls.edit.post', $poll->slug) }}" method="post">
+            <form action="{{ route('poll.edit.post', $poll->slug) }}" method="post">
                 @csrf
                 <poll-form
                     :poll="{{ $poll->toJson() }}"

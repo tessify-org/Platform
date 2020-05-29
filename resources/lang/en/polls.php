@@ -24,6 +24,7 @@ return [
     "view_title" => "Poll",
     "view_information" => "Information",
     "view_results" => "Results",
+    "view_num_votes" => "Number of votes",
     "view_author" => "Author",
     "view_description" => "Description",
     "view_status" => "Status",
@@ -45,6 +46,7 @@ return [
     "form_question_type_open" => "Open question",
     "form_question_type_closed" => "Closed question",
     "form_question_add_answer" => "Add an answer",
+    "form_answer" => "Answer",
 
     "create_title" => "Create a new poll",
     "create_cancel" => "Go back",
@@ -66,5 +68,8 @@ return [
     "vote_answer" => "Answer",
     "vote_cancel" => "Back to overview",
     "vote_submit" => "Submit your answers",
+
+    "results_vote" => "vote",
+    "results_votes" => "votes",
 
 ];

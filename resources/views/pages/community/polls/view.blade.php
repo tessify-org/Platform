@@ -62,7 +62,20 @@
 
                         <!-- Poll results -->
                         <div id="poll-results">
-                            Results go here
+                            
+                            <div id="poll-num-votes">
+                                <div id="poll-num-votes__label">@lang("polls.view_num_votes")</div>
+                                <div id="poll-num-votes__text">
+                                    {{ $poll->num_votes }}
+                                </div>
+                            </div>
+
+                            <poll-results
+                                :results="{{ json_encode($poll->results) }}"
+                                :strings="{{ $resultStrings->toJson() }}"
+                                locale="{{ app()->getLocale() }}">
+                            </poll-results>
+
                         </div>
 
                     </v-tab-item>

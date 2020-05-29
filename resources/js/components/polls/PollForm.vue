@@ -50,13 +50,24 @@
                 <!-- Question list -->
                 <div id="question-list" v-if="form.questions.length > 0">
                     <div class="question" v-for="(question, qi) in form.questions" :key="qi">
-                        <div class="question-number">{{ strings.question }} #{{ qi + 1 }}</div>
-                        <div class="question-input">
-                            <v-text-field
-                                :label="strings.question"
-                                v-model="form.questions[qi].title">
-                            </v-text-field>
+
+                        <!-- Question -->
+                        <div class="question-inputs">
+                            <div class="question-input">
+                                <v-text-field
+                                    :label="strings.question+' '+(qi+1)+'.'"
+                                    v-model="form.questions[qi].question.nl">
+                                </v-text-field>
+                            </div>
+                            <div class="question-input">
+                                <v-text-field
+                                    :label="strings.question"
+                                    v-model="form.questions[qi].question.en">
+                                </v-text-field>
+                            </div>
                         </div>
+
+                        <!-- Type -->
                         <div class="question-type">
                             <v-select
                                 :items="questionTypeOptions"
@@ -64,16 +75,33 @@
                                 v-model="form.questions[qi].type">
                             </v-select>
                         </div>
-                        <div class="question-multiple">
+
+                        <!-- Multiple answers allowed -->
+                        <div class="question-multiple" v-if="form.questions[qi].type === 'closed'">
                             <v-checkbox
                                 :label="strings.question_multiple"
                                 v-model="form.questions[qi].multiple_answers_allowed">
                             </v-checkbox>
                         </div>
+
+                        <!-- Answers -->
                         <div class="question-answers" v-if="form.questions[qi].type === 'closed'">
                             <div class="question-answers__list" v-if="form.questions[qi].answers.length > 0">
                                 <div class="question-answer" v-for="(answer, ai) in form.questions[qi].answers" :key="ai">
-                                    <input type="text" v-model="form.questions[qi].answers[ai].value">
+                                    <div class="question-answer__field">
+                                        <v-text-field
+                                            hide-details
+                                            :label="strings.answer+' ('+strings.nl+')'"
+                                            v-model="form.questions[qi].answers[ai].value.nl">
+                                        </v-text-field>
+                                    </div>
+                                    <div class="question-answer__field">
+                                        <v-text-field
+                                            hide-details
+                                            :label="strings.answer+' ('+strings.en+')'"
+                                            v-model="form.questions[qi].answers[ai].value.en">
+                                        </v-text-field>
+                                    </div>
                                 </div>
                             </div>
                             <div class="question-answers__no-answers" v-if="form.questions[qi].answers.length === 0">
@@ -148,6 +176,33 @@
                 this.questionTypeOptions.push({ text: this.strings.question_type_closed, value: "closed" });
             },
             initializeData() {
+                if (this.poll !== undefined && this.poll !== null) {
+                    this.form.title = this.poll.title;
+                    this.form.description.nl = this.poll.description.nl;
+                    this.form.description.en = this.poll.description.en;
+                    if (this.poll.questions !== undefined && this.poll.questions !== null && this.poll.questions.length > 0) {
+                        for (let i = 0; i < this.poll.questions.length; i++) {
+                            let answers = [];
+                            for (let j = 0; j < this.poll.questions[i].answers.length; j++) {
+                                answers.push({
+                                    value: {
+                                        nl: this.poll.questions[i].answers[j].value.nl,
+                                        en: this.poll.questions[i].answers[j].value.en,
+                                    }
+                                });
+                            }
+                            this.form.questions.push({
+                                type: this.poll.questions[i].open_question ? "open" : "closed",
+                                multiple_answers_allowed: this.poll.questions[i].allow_multiple_answers,
+                                question: {
+                                    nl: this.poll.questions[i].question.nl,
+                                    en: this.poll.questions[i].question.en,
+                                },
+                                answers: answers,
+                            });
+                        }
+                    }
+                }
                 if (this.oldInput !== undefined && this.oldInput !== null) {
                     if (this.oldInput.title !== null) this.form.title = this.oldInput.title;
                     if (this.oldInput.description_nl !== null) this.form.description.nl = this.oldInput.description_nl;
@@ -172,7 +227,10 @@
             onClickAddQuestion() {
                 this.form.questions.push({
                     type: "open",
-                    question: "",
+                    question: {
+                        nl: "",
+                        en: "",
+                    },
                     multiple_answers_allowed: false,
                     answers: [],
                 });
@@ -182,7 +240,10 @@
             },
             onClickAddAnswer(index) {
                 this.form.questions[index].answers.push({
-                    value: "",
+                    value: {
+                        nl: "",
+                        en: "",
+                    }
                 });
             },
         },
@@ -197,7 +258,7 @@
         #question-list {
             .question {
                 padding: 20px;
-                margin: 0 0 15px 0;
+                margin: 0 0 25px 0;
                 border-radius: 3px;
                 box-sizing: border-box;
                 background-color: hsl(0, 0%, 98%);
@@ -209,8 +270,17 @@
                     margin: 0 0 10px 0;
                     color: hsl(0, 0%, 30%);
                 }
+                .question-inputs {
+                    display: flex;
+                    margin: 0 -10px;
+                    flex-direction: row;
+                    .question-input {
+                        flex: 1;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                    }
+                }
                 .question-input {
-
                 }
                 .question-multiple {
                     .v-input--selection-controls {
@@ -220,7 +290,25 @@
                 }
                 .question-answers {
                     .question-answers__list {
-                        
+                        .question-answer {
+                            display: flex;
+                            padding: 15px;
+                            margin: 0 0 15px 0;
+                            flex-direction: row;
+                            box-sizing: border-box;
+                            background-color: hsl(0, 0%, 100%);
+                            &:last-child {
+                                margin: 0;
+                            }
+                            .question-answer__field {
+                                flex: 1;
+                                box-sizing: border-box;
+                                padding: 0 10px 10px 10px;
+                            }
+                            .question-answer__delete {
+                                
+                            }
+                        }
                     }
                     .question-answers__no-answers {
                         padding: 20px;

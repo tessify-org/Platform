@@ -4443,12 +4443,29 @@
         }
     }
 }
+#view-poll__questions {
+    margin: 30px 0 0 0;
+}
 #view-poll__page-controls {
     margin: 30px 0 0 0;
 }
 #poll-results {
     padding: 30px;
     box-sizing: border-box;
+    #poll-num-votes {
+        display: flex;
+        margin: 0 0 15px 0;
+        flex-direction: row;
+        align-items: center;
+        #poll-num-votes__label {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0 15px 0 0;
+        }
+        #poll-num-votes__text {
+            flex: 1;
+        }
+    }
 }
 
 //

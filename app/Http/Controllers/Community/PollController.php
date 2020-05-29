@@ -40,6 +40,11 @@ class PollController extends Controller
                 "cancel" => __("polls.vote_cancel"),
                 "submit" => __("polls.vote_submit"),
             ]),
+            "resultStrings" => collect([
+                "question" => __("polls.vote_question"),
+                "vote" => __("polls.results_vote"),
+                "votes" => __("polls.results_votes"),
+            ]),
             "oldInput" => collect([
                 "answers" => old("answers"),
             ]),
@@ -61,6 +66,7 @@ class PollController extends Controller
                 "question_multiple" => __("polls.form_question_multiple"),
                 "question_type_open" => __("polls.form_question_type_open"),
                 "question_type_closed" => __("polls.form_question_type_closed"),
+                "answer" => __("polls.form_answer"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
             ]),
@@ -83,7 +89,7 @@ class PollController extends Controller
 
     public function getEdit($slug)
     {
-        $poll = Polls::findBySlug($slug);
+        $poll = Polls::findPreloadedBySlug($slug);
         if (!$poll)
         {
             flash(__("polls.not_found"))->error();
@@ -105,6 +111,7 @@ class PollController extends Controller
                 "question_type_open" => __("polls.form_question_type_open"),
                 "question_type_closed" => __("polls.form_question_type_closed"),
                 "question_add_answer" => __("polls.form_question_add_answer"),
+                "answer" => __("polls.form_answer"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
             ]),
