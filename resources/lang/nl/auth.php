@@ -93,8 +93,8 @@ return [
     // Recover account email
     //
 
-    'recover_account_email_subject' => 'Herstel jouw Tessify account!',
-    'recover_account_email_title' => 'Tessify account herstellen',
+    'recover_account_email_subject' => 'Herstel jouw HNNW account!',
+    'recover_account_email_title' => 'HNNW account herstellen',
     'recover_account_email_text' => 'Hey :name! We hebben een verzoek ontvangen om je account te herstellen.\n\nKlik op de knop hieronder om je wachtwoord te resetten.',
     'recover_account_email_button' => 'Reset mijn wachtwoord',
 
