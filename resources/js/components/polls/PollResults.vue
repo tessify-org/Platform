@@ -82,8 +82,8 @@
             .poll-result__answers {
                 background-color: hsl(0, 0%, 100%);
                 .poll-result__answer {
-                    padding: 15px;
                     display: flex;
+                    padding: 10px 15px;
                     flex-direction: row;
                     box-sizing: border-box;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.1);

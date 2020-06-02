@@ -24,11 +24,12 @@ class UpdatePollRequest extends FormRequest
     public function rules()
     {
         return [
+            "parent_type" => "nullable",
+            "parent_id" => "nullable|integer",
             "title" => "required",
             "description_nl" => "required",
             "description_en" => "required",
             "draft" => "required",
-            "private" => "required",
             "questions" => "required",
             "header_image" => "nullable|image",
         ];

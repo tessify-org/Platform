@@ -15,7 +15,9 @@ class UpdatePollsTable extends Migration
     {
         Schema::table("polls", function(Blueprint $table) {
             $table->unsignedInteger("num_votes")->default(0);
-            $table->string('header_image_url')->default('storage/images/polls/default.jpg');
+            $table->string("header_image_url")->default("storage/images/polls/default.jpg");
+            $table->unsignedInteger("pollable_id")->nullable();
+            $table->string("pollable_type")->nullable();
         });
     }
 
@@ -29,6 +31,8 @@ class UpdatePollsTable extends Migration
         Schema::table("polls", function(Blueprint $table) {
             $table->dropColumn("num_votes");
             $table->dropColumn("header_image_url");
+            $table->dropColumn("pollable_type");
+            $table->dropColumn("pollable_id");
         });
     }
 }

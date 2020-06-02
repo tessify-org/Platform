@@ -68,4 +68,9 @@ class Group extends Model
     {
         return $this->morphToMany(Tag::class, "taggable");
     }
+
+    public function polls()
+    {
+        return $this->morphToMany(Poll::class, "pollable");
+    }
 }

@@ -37,19 +37,17 @@
                 <div id="view-poll" @if (!$poll->has_voted && !$poll->is_owner) class="elevation-1" @endif>
                     <div id="view-poll__left">
 
-                        <!-- Status -->
-                        <div id="poll-status">
-                            <div id="poll-status__label">@lang("polls.view_status")</div>
-                            <div id="poll-status__text">
-                                {!! $poll->status->name !!}
-                            </div>
-                        </div>
-
                         <!-- Shared with --->
                         <div id="poll-shared-with">
                             <div id="poll-shared-with__label">@lang("polls.view_shared_with")</div>
                             <div id="poll-shared-with__text">
-                                @lang("polls.view_shared_with_everyone")
+                                @if ($poll->parent)
+                                    @if ($poll->pollable_type == "App\Models\Group")
+                                        <a href="{{ $poll->parent->view_href }}">{{ $poll->parent->name }}</a>
+                                    @endif
+                                @else
+                                    @lang("polls.view_shared_with_everyone")
+                                @endif
                             </div>
                         </div>
 
@@ -66,6 +64,12 @@
                             <div id="poll-draft__wrapper">
                                 <div id="poll-draft">
                                     @lang("polls.view_draft_version")
+                                </div>
+                            </div>
+                        @elseif ($poll->status->name === "Open")
+                            <div id="poll-status__wrapper">
+                                <div id="poll-status" class="{{ strtolower($poll->status->name) }}">
+                                    {{ $poll->status->name }}
                                 </div>
                             </div>
                         @endif
@@ -89,7 +93,7 @@
                     <v-tab-item>
 
                         <!-- Poll results -->
-                        <div id="poll-results">
+                        <div id="poll-results__wrapper">
                             
                             <div id="poll-num-votes">
                                 <div id="poll-num-votes__label">@lang("polls.view_num_votes")</div>

@@ -19,6 +19,7 @@
                 @csrf
                 <poll-form
                     :strings="{{ $strings->toJson() }}"
+                    :groups="{{ $myGroups->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     default-header-image-url="{{ asset('storage/images/polls/default.jpg') }}">

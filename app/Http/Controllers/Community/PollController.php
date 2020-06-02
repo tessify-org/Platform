@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Community;
 
 use Polls;
+use Groups;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Community\Polls\VotePollRequest;
 use App\Http\Requests\Community\Polls\CreatePollRequest;
@@ -66,11 +67,18 @@ class PollController extends Controller
     public function getCreate()
     {
         return view("pages.community.polls.create", [
+            "myGroups" => Groups::getMyGroups(),
             "strings" => collect([
                 "general" => __("polls.form_general"),
                 "questions" => __("polls.form_questions"),
                 "no_questions" => __("polls.form_no_questions"),
                 "add_question" => __("polls.form_add_question"),
+                "parent" => __("polls.form_parent"),
+                "no_parent" => __("polls.form_no_parent"),
+                "group" => __("polls.form_group"),
+                "parent_group" => __("polls.form_parent_group"),
+                "no_parent_groups" => __("polls.form_no_parent_groups"),
+                "select_parent_group" => __("polls.form_select_parent_group"),
                 "title" => __("polls.form_title"),
                 "description" => __("polls.form_description"),
                 "question" => __("polls.form_question"),
@@ -78,9 +86,12 @@ class PollController extends Controller
                 "question_multiple" => __("polls.form_question_multiple"),
                 "question_type_open" => __("polls.form_question_type_open"),
                 "question_type_closed" => __("polls.form_question_type_closed"),
+                "question_add_answer" => __("polls.form_question_add_answer"),
+                "question_answers" => __("polls.form_question_answers"),
                 "answer" => __("polls.form_answer"),
                 "private" => __("polls.form_private"),
                 "draft" => __("polls.form_draft"),
+                "draft_help" => __("polls.form_draft_help"),
                 "header_image" => __("polls.form_header_image"),
                 "cancel" => __("polls.create_cancel"),
                 "submit" => __("polls.create_submit"),
@@ -103,7 +114,7 @@ class PollController extends Controller
         flash(__("polls.created"))->success();
         return redirect()->route("poll", $poll->slug);
     }
-
+    
     public function getEdit($slug)
     {
         $poll = Polls::findPreloadedBySlug($slug);
@@ -115,11 +126,19 @@ class PollController extends Controller
 
         return view("pages.community.polls.edit", [
             "poll" => $poll,
+            "myGroups" => Groups::getMyGroups(),
             "strings" => collect([
                 "general" => __("polls.form_general"),
                 "questions" => __("polls.form_questions"),
                 "no_questions" => __("polls.form_no_questions"),
                 "add_question" => __("polls.form_add_question"),
+                "publishing" => __("polls.form_publishing"),
+                "parent" => __("polls.form_parent"),
+                "no_parent" => __("polls.form_no_parent"),
+                "group" => __("polls.form_group"),
+                "parent_group" => __("polls.form_parent_group"),
+                "no_parent_groups" => __("polls.form_no_parent_groups"),
+                "select_parent_group" => __("polls.form_select_parent_group"),
                 "title" => __("polls.form_title"),
                 "description" => __("polls.form_description"),
                 "question" => __("polls.form_question"),
@@ -128,9 +147,11 @@ class PollController extends Controller
                 "question_type_open" => __("polls.form_question_type_open"),
                 "question_type_closed" => __("polls.form_question_type_closed"),
                 "question_add_answer" => __("polls.form_question_add_answer"),
+                "question_answers" => __("polls.form_question_answers"),
                 "answer" => __("polls.form_answer"),
                 "private" => __("polls.form_private"),
                 "draft" => __("polls.form_draft"),
+                "draft_help" => __("polls.form_draft_help"),
                 "header_image" => __("polls.form_header_image"),
                 "cancel" => __("polls.edit_cancel"),
                 "submit" => __("polls.edit_submit"),
@@ -198,7 +219,7 @@ class PollController extends Controller
     //         flash(__("polls.not_found"))->error();
     //         return redirect()->route("polls");
     //     }
-
+    // 
     //     return view("pages.community.polls.vote", [
     //         "poll" => $poll,
     //     ]);

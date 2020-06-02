@@ -1,6 +1,59 @@
 <template>
     <div id="poll-form">
 
+        <!-- Publication information -->
+        <h2 class="content-card__title">{{ strings.publishing }}</h2>
+        <div class="content-card elevation-1 mb">
+            <div class="content-card__content">
+                
+                <!-- Parent type -->
+                <div class="form-field">
+                    <v-select
+                        :label="strings.parent"
+                        v-model="form.parent_type"
+                        :items="parentOptions">
+                    </v-select>
+                    <input type="hidden" name="parent_type" :value="form.parent_type">
+                </div>
+
+                <!-- Parent group -->
+                <div class="form-field" v-if="form.parent_type === 'group'">
+                    <v-select
+                        :label="strings.parent_group"
+                        v-model="form.parent_id"
+                        :items="groupOptions"
+                        :error="!hasSelectedGroup">
+                    </v-select>
+                </div>
+                <input type="hidden" name="parent_id" :value="form.parent_id">
+
+                <!-- Draft version -->
+                <div class="form-field checkbox">
+                    <div id="draft-checkbox">
+                        <div id="draft-checkbox__input">
+                            <v-checkbox
+                                :label="strings.draft"
+                                v-model="form.draft"
+                                hide-details>
+                            </v-checkbox>
+                        </div>
+                        <div id="draft-checkbox__info">
+                            <v-tooltip right>
+                                <template v-slot:activator="{ on }">
+                                    <span v-on="on">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                </template>
+                                <span>{{ strings.draft_help }}</span>
+                            </v-tooltip>
+                        </div>
+                    </div>
+                    <input type="hidden" name="draft" :value="form.draft">
+                </div>
+
+            </div>
+        </div>
+
         <!-- General information -->
         <h2 class="content-card__title">{{ strings.general }}</h2>
         <div class="content-card elevation-1 mb">
@@ -40,7 +93,7 @@
                 </div>
 
                 <!-- Header bg image -->
-                <div class="image-field">
+                <div class="image-field no-margin">
                     <div class="image-field__label">{{ strings.header_image }}</div>
                     <div class="image-field__image-wrapper">
                         <div class="image-field__image" :style="{ backgroundImage: 'url('+headerImageUrl+')' }"></div>
@@ -50,29 +103,9 @@
                     </div>
                 </div>
 
-                <!-- Published -->
-                <div class="form-field checkbox">
-                    <v-checkbox
-                        :label="strings.draft"
-                        v-model="form.draft"
-                        hide-details>
-                    </v-checkbox>
-                    <input type="hidden" name="draft" :value="form.draft">
-                </div>
-
-                <!-- Public -->
-                <div class="form-field checkbox">
-                    <v-checkbox
-                        :label="strings.private"
-                        v-model="form.private"
-                        hide-details>
-                    </v-checkbox>
-                    <input type="hidden" name="private" :value="form.private">
-                </div>
-
             </div>
         </div>
-
+        
         <!-- Questions -->
         <h2 class="content-card__title">{{ strings.questions }}</h2>
         <div class="content-card elevation-1 mb">
@@ -117,6 +150,7 @@
 
                         <!-- Answers -->
                         <div class="question-answers" v-if="form.questions[qi].type === 'closed'">
+                            <div class="question-answers__label">{{ strings.question_answers }}</div>
                             <div class="question-answers__list" v-if="form.questions[qi].answers.length > 0">
                                 <div class="question-answer" v-for="(answer, ai) in form.questions[qi].answers" :key="ai">
                                     <div class="question-answer__field">
@@ -146,10 +180,11 @@
                             <div class="question-answers__add-button">
                                 <v-btn text small color="primary" @click="onClickAddAnswer(qi)">
                                     <i class="fas fa-plus"></i>
-                                    {{ strings.add_answer }}
+                                    {{ strings.question_add_answer }}
                                 </v-btn>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -168,10 +203,10 @@
 
             </div>
         </div>
-
+        
         <!-- Hidden inputs -->
         <input type="hidden" name="questions" :value="encodedQuestions">
-
+        
         <!-- Form controls -->
         <div class="form-controls">
             <div class="form-controls__left">
@@ -181,7 +216,7 @@
                 </v-btn>
             </div>
             <div class="form-controls__right">
-                <v-btn color="success" type="submit">
+                <v-btn color="success" type="submit" :disabled="submitDisabled">
                     <i class="fas fa-save"></i>
                     {{ strings.submit }}
                 </v-btn>
@@ -195,6 +230,7 @@
     export default {
         props: [
             "poll",
+            "groups",
             "strings",
             "oldInput",
             "errors",
@@ -203,8 +239,12 @@
         ],
         data: () => ({
             tag: "[poll-form]",
+            parentOptions: [],
+            groupOptions: [],
             questionTypeOptions: [],
             form: {
+                parent_type: "",
+                parent_id: 0,
                 title: "",
                 description: {
                     nl: "",
@@ -225,17 +265,26 @@
                 } else {
                     return this.defaultHeaderImage;
                 }
-            }
+            },
+            hasSelectedGroup() {
+                return this.form.parent_type !== "" && this.form.parent_id > 0;
+            },
+            submitDisabled() {
+                return (this.form.parent_type !== "" && this.form.parent_id === 0) || this.form.questions.length === 0;
+            },
         },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
                 console.log(this.tag+" poll: ", this.poll);
+                console.log(this.tag+" groups: ", this.groups);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" old input: ", this.oldInput);
                 console.log(this.tag+" errors: ", this.errors);
                 console.log(this.tag+" back href: ", this.backHref);
                 this.generateQuestionTypeOptions();
+                this.generateParentOptions();
+                this.generateGroupOptions();
                 this.initializeData();
             },
             initializeData() {
@@ -245,6 +294,12 @@
                     this.form.description.en = this.poll.description.en;
                     this.form.private = this.poll.public === false ? true : false;
                     this.form.draft = this.poll.published === false ? true : false;
+                    if (this.poll.parent !== undefined && this.poll.parent !== null) {
+                        if (this.poll.pollable_type === "App\\Models\\Group") {
+                            this.form.parent_type = "group";
+                            this.form.parent_id = this.poll.parent.id;
+                        }
+                    }
                     if (this.poll.questions !== undefined && this.poll.questions !== null && this.poll.questions.length > 0) {
                         for (let i = 0; i < this.poll.questions.length; i++) {
                             let answers = [];
@@ -275,6 +330,29 @@
                     if (this.oldInput.description_nl !== null) this.form.description.nl = this.oldInput.description_nl;
                     if (this.oldInput.description_en !== null) this.form.description.en = this.oldInput.description_en;
                     if (this.oldInput.questions !== null) this.form.questions = JSON.parse(this.oldInput.questions);
+                }
+            },
+            generateParentOptions() {
+                this.parentOptions.push({ text: this.strings.no_parent, value: "" });
+                this.parentOptions.push({ text: this.strings.group, value: "group" });
+            },
+            generateGroupOptions() {
+                if (this.groups !== undefined && this.groups !== null && this.groups.length > 0) {
+                    this.groupOptions.push({
+                        text: this.strings.select_parent_group,
+                        value: 0,
+                    });
+                    for (let i = 0; i < this.groups.length; i++) {
+                        this.groupOptions.push({
+                            text: this.groups[i].name,
+                            value: this.groups[i].id,
+                        });
+                    }
+                } else {
+                    this.groupOptions.push({
+                        text: this.strings.no_parent_groups,
+                        value: 0
+                    });
                 }
             },
             generateQuestionTypeOptions() {
@@ -365,6 +443,11 @@
                     }
                 }
                 .question-answers {
+                    .question-answers__label {
+                        font-size: .9em;
+                        margin: 0 0 5px 0;
+                        color: hsl(0, 0%, 45);
+                    }
                     .question-answers__list {
                         .question-answer {
                             display: flex;
@@ -418,6 +501,17 @@
             margin: 15px 0 0 0;
             flex-direction: row;
             justify-content: flex-end;
+        }
+    }
+    #draft-checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        #draft-checkbox__input {
+            margin: 0 10px 0 0;
+        }
+        #draft-checkbox__info {
+            padding: 1px 0 0 0;
         }
     }
 </style>

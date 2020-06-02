@@ -80,6 +80,23 @@ class GroupService implements ModelServiceContract
         return false;
     }
 
+    public function getMyGroups(User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        $out = [];
+
+        foreach ($this->getAll() as $group)
+        {
+            if (GroupMembers::isMember($group, $user))
+            {
+                $out[] = $group;
+            }
+        }
+
+        return collect($out);
+    }
+
     public function createFromRequest(CreateGroupRequest $request)
     {
         // Grab the logged in user

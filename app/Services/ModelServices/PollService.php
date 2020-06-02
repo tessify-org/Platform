@@ -3,6 +3,7 @@
 namespace App\Services\ModelServices;
 
 use Users;
+use Groups;
 use Uploader;
 use PollVotes;
 use PollStatuses;
@@ -27,15 +28,19 @@ class PollService implements ModelServiceContract
     private $records;
     private $preloadedRecords;
     
+    private $validParentTypes;
+    
     public function __construct()
     {
         $this->model = "App\Models\Poll";
+        $this->validParentTypes = ["group"];
     }
     
     public function preload($instance)
     {
         $instance->view_href = route('poll', $instance->slug);
 
+        $instance->parent = $this->findParent($instance);
         $instance->status = PollStatuses::find($instance->poll_status_id);
         $instance->votes = PollVotes::getAllForPoll($instance);
         $instance->user = Users::findPreloaded($instance->user_id);
@@ -152,12 +157,28 @@ class PollService implements ModelServiceContract
         return false;
     }
 
+    public function findParent(Poll $poll)
+    {
+        if ($poll->pollable_type != "" && $poll->pollable_id > 0)
+        {
+            switch ($poll->pollable_type)
+            {
+                case "App\\Models\\Group":
+                    return Groups::findPreloaded($poll->pollable_id);
+                break;
+            }
+        }
+        
+        return false;
+    }
+
     public function createFromRequest(CreatePollRequest $request)
     {
         // Determine the poll's status
         $status = PollStatus::where("name->en", "Open")->first();
         if (!$status) PollStatus::all()->first();
 
+        // Compose data we'll use to create the Poll object
         $data = [
             "user_id" => auth()->user()->id,
             "poll_status_id" => $status->id,
@@ -166,13 +187,30 @@ class PollService implements ModelServiceContract
                 "nl" => $request->description_nl,
                 "en" => $request->description_en,
             ],
-            "public" => $request->private == "true" ? false : true,
             "published" => $request->draft == "true" ? false : true,
         ];
 
+        // Upload & add the header image if one was uploaded
         if ($request->hasFile("header_image"))
         {
             $data["header_image_url"] = Uploader::upload($request->header_image, "images/polls");
+        }
+
+        // Add the parent if a valid one was provided
+        if (in_array($request->parent_type, $this->validParentTypes) and $request->parent_id > 0)
+        {
+            switch ($request->parent_type)
+            {
+                case "group":
+                    $group = Groups::find($request->parent_id);
+                    if ($group)
+                    {
+                        $data["pollable_type"] = "App\Models\Group";
+                        $data["pollable_id"] = $group->id;
+                        $data["public"] = false;
+                    }
+                break;
+            }
         }
 
         // Create the poll
@@ -195,10 +233,37 @@ class PollService implements ModelServiceContract
         ];
         $poll->public = $request->private == "true" ? false : true;
         $poll->published = $request->draft == "true" ? false : true;
+
+        // Update parent
+        if (in_array($request->parent_type, $this->validParentTypes) && $request->parent_id > 0)
+        {
+            switch ($request->parent_type)
+            {
+                case "group":
+                    $group = Groups::find($request->parent_id);
+                    if ($group)
+                    {
+                        $poll->pollable_type = "App\Models\Group";
+                        $poll->pollable_id = $group->id;
+                        $poll->public = false;
+                    }
+                break;
+            }
+        }
+        else
+        {
+            $poll->pollable_type = null;
+            $poll->pollable_id = 0;
+            $poll->public = true;
+        }
+
+        // Update header image if one was uploaded
         if ($request->hasFile("header_image"))
         {
             $poll->header_image_url = Uploader::upload($request->header_image, "images/polls");
         }
+
+        // Save changes
         $poll->save();
 
         // Update the poll's questions

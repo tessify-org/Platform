@@ -19,6 +19,7 @@
                 @csrf
                 <poll-form
                     :poll="{{ $poll->toJson() }}"
+                    :groups="{{ $myGroups->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"

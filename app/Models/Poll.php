@@ -14,11 +14,14 @@ class Poll extends Model
     protected $table = "polls";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
+        "pollable_type",
+        "pollable_id",
         "user_id",
         "poll_status_id",
         "slug",
         "title",
         "description",
+        "header_image_url",
         "published",
         "public",
         "results",
@@ -63,6 +66,11 @@ class Poll extends Model
     public function votes()
     {
         return $this->hasMany(PollVote::class);
+    }
+
+    public function pollable()
+    {
+        return $this->morphTo();
     }
 
     //
