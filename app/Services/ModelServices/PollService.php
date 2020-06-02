@@ -9,12 +9,16 @@ use PollVotes;
 use PollStatuses;
 use PollQuestions;
 use PollQuestionAnswers;
+
+use App\Models\Group;
 use App\Models\Poll;
 use App\Models\PollStatus;
 use App\Models\PollQuestion;
 use App\Models\PollQuestionAnswer;
+
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
+
 use App\Http\Requests\Community\Polls\VotePollRequest;
 use App\Http\Requests\Community\Polls\CreatePollRequest;
 use App\Http\Requests\Community\Polls\UpdatePollRequest;
@@ -128,6 +132,21 @@ class PollService implements ModelServiceContract
             }
         }
 
+        return collect($out);
+    }
+
+    public function getAllForGroup(Group $group)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $poll)
+        {
+            if ($poll->pollable_type == get_class($group) && $poll->pollable_id == $group->id)
+            {
+                $out[] = $poll;
+            }
+        }
+        
         return collect($out);
     }
 

@@ -128,6 +128,9 @@ return [
     "default_founder_description" => "Deze persoon heeft de groep opgericht.",
     
     "polls_title" => "Polls",
+    "polls_no_records" => "Er zijn momenteel geen openstaande polls voor deze groep.",
+    "polls_voted" => "Gestemd",
+    "polls_not_voted" => "Nog niet gestemd",
     
     "forum_title" => "Forum",
 

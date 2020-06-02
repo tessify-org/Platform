@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Community\Groups;
 
 use Tags;
+use Polls;
 use Groups;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Community\Groups\CreateGroupRequest;
 use App\Http\Requests\Community\Groups\UpdateGroupRequest;
@@ -197,7 +199,13 @@ class GroupController extends Controller
         }
 
         return view("pages.community.groups.polls.overview", [
-            "group" => $group
+            "group" => $group,
+            "polls" => Polls::getAllForGroup($group),
+            "strings" => collect([
+                "no_records" => __("groups.polls_no_records"),
+                "voted" => __("groups.polls_voted"),
+                "not_voted" => __("groups.polls_not_voted"),
+            ]),
         ]);
     }
 

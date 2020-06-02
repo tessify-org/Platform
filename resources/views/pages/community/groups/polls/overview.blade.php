@@ -37,9 +37,10 @@
                         </div>
 
                         <!-- Content -->
-                        <div id="group-content">
-                            Coming soon..
-                        </div>
+                        <group-poll-overview
+                            :polls="{{ $polls->toJson() }}"
+                            :strings="{{ $strings->toJson() }}">
+                        </group-poll-overview>
 
                     </div>
 

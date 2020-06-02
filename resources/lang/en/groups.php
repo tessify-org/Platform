@@ -128,6 +128,9 @@ return [
     "default_founder_description" => "This person formed the group.",
 
     "polls_title" => "Polls",
+    "poll_no_records" => "There are currently no open polls for this group.",
+    "polls_voted" => "Voted",
+    "polls_not_voted" => "Not voted yet",
     
     "forum_title" => "Forum",
 
