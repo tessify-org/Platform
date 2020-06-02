@@ -15,7 +15,7 @@
         </div>
 
         <!-- No records -->
-        <div id="poll-overview__no-records" v-if="mutablePolls.length === 0">
+        <div id="poll-overview__no-records" class="elevation-1" v-if="mutablePolls.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -103,7 +103,10 @@
             }
         }
         #poll-overview__no-records {
-
+            padding: 15px;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #fff;
         }
         #poll-overview__pagination {
 
