@@ -137,7 +137,7 @@ class GroupService implements ModelServiceContract
         GroupMember::create([
             "user_id" => $user->id,
             "group_id" => $group->id,
-            "group_role_id" => $defaultRoles["roles"]->id,
+            "group_role_id" => $defaultRoles["founder"]->id,
         ]);
 
         // Return the created group
