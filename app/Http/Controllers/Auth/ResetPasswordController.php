@@ -29,6 +29,14 @@ class ResetPasswordController extends Controller
         return view("pages.auth.reset-password", [
             "email" => $email,
             "code" => $code,
+            "strings" => collect([
+                "email" => __("auth.reset_password_form_email"),
+                "code" => __("auth.reset_password_form_code"),
+                "password" => __("auth.reset_password_form_password"),
+                "password_confirmation" => __("auth.reset_password_form_password_confirmation"),
+                "back" => __("auth.reset_password_form_back"),
+                "submit" => __("auth.reset_password_form_submit"),
+            ])
         ]);
     }
 

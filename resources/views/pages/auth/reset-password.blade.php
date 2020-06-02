@@ -21,13 +21,8 @@
                         code="{{ $code }}"
                         email="{{ $email }}"
                         :errors="{{ $errors->toJson() }}"
-                        email-label-text="@('auth.reset_password_form_email')"
-                        code-label-text="@('auth.reset_password_form_code')"
-                        password-label-text="@('auth.reset_password_form_password')"
-                        password-confirmation-label-text="@('auth.reset_password_form_password_confirmation')"
-                        back-href="{{ route('auth.login') }}"
-                        back-button-text="@('auth.reset_password_form_back')"
-                        submit-button-text="@('auth.reset_password_form_submit')">
+                        :strings="{{ $strings->toJson() }}"
+                        back-href="{{ route('auth.login') }}">
                     </reset-password-form>
 
                 </form>
