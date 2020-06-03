@@ -406,6 +406,23 @@ Route::group(["middleware" => "auth"], function() {
         });
         
         // Forum
+        Route::group(["prefix" => "forum"], function() {
+
+            // Overview
+            Route::get("{slug?}", "Community\ForumController@getOverview")->name("forum");
+            
+            // Create subforum
+            Route::get("{slug?}/subforum-toevoegen", "Community\ForumController@getCreateSubforum")->name("forum.create-subforum");
+            Route::post("{slug?}/subforum-toevoegen", "Community\ForumController@postCreateSubforum")->name("forum.create-subforum.post");
+
+            // View thread
+            Route::get("{slug?}/{threadSlug}", "Community\ForumController@getViewThread")->name("forum.thread");
+
+            // Reply to thread
+            Route::get("{slug?}/{threadSlug}/reply", "Community\ForumController@getReplyToThread")->name("forum.thread.reply");
+            Route::post("{slug?}/{threadSlug}/reply", "Community\ForumController@postReplyToThread")->name("forum.thread.reply.post");
+            
+        });
 
         // Blogs
 

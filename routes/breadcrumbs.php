@@ -441,6 +441,24 @@ Breadcrumbs::for("poll.vote", function($t, $poll) {
     $t->push(__("breadcrumbs.polls_vote"), route("poll.vote", $poll->slug));
 });
 
+// Community > Forum
+Breadcrumbs::for("forum", function($t, $forum) {
+    if ($forum->parentForum) {
+        $t->parent("forum", $forum->parentForum);
+    } else {
+        $t->parent("community");
+    }
+    $t->push($forum->title, route("forum"));
+});
+Breadcrumbs::for("forum.thread", function($t, $thread) {
+    $t->parent("forum", $thread->forum);
+    $t->push($thread->title, route('forum.thread', ['slug' => $thread->forum->slug, 'threadSlug' => $thread->slug]));
+});
+Breadcrumbs::for("forum.thread.reply", function($t, $thread) {
+    $t->parent("forum.thread", $thread);
+    $t->push(__("breadcrumbs.forum_thread_reply"), route("forum.thread.reply", ["slug" => $thread->forum->slug, "threadSlug" => $thread->slug]));
+});
+
 // Static pages
 Breadcrumbs::for("dont-use-ie", function($t) {
     $t->parent("home");

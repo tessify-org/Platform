@@ -73,4 +73,9 @@ class Group extends Model
     {
         return $this->morphToMany(Poll::class, "pollable");
     }
+
+    public function forum()
+    {
+        return $this->morphOne(Forum::class, "forumable");
+    }
 }

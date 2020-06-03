@@ -62,6 +62,9 @@ use App\Services\ModelServices\PollStatusService;
 use App\Services\ModelServices\PollQuestionService;
 use App\Services\ModelServices\PollQuestionAnswerService;
 use App\Services\ModelServices\PollVoteService;
+use App\Services\ModelServices\ForumService;
+use App\Services\ModelServices\ForumThreadService;
+use App\Services\ModelServices\ForumThreadPostService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -316,6 +319,18 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton("poll-votes", function() {
             return new PollVoteService;
+        });
+
+        $this->app->singleton("forums", function() {
+            return new ForumService;
+        });
+        
+        $this->app->singleton("forum-threads", function() {
+            return new ForumThreadService;
+        });
+
+        $this->app->singleton("forum-thread-posts", function() {
+            return new ForumThreadPostService;
         });
 
         //

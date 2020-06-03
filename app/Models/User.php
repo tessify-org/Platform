@@ -193,6 +193,16 @@ class User extends Authenticatable
         return $this->hasMany(Group::class, "founder_id", "id");
     }
 
+    public function forumThreads()
+    {
+        return $this->hasMany(ForumThread::class);
+    }
+
+    public function forumThreadPosts()
+    {
+        return $this->hasMany(ForumThreadPost::class);
+    }
+
     //
     // Accessors
     //

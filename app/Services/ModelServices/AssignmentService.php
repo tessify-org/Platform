@@ -9,6 +9,7 @@ use Organizations;
 use OrganizationTypes;
 use OrganizationLocations;
 use OrganizationDepartments;
+
 use App\Models\User;
 use App\Models\Assignment;
 use App\Traits\ModelServiceGetters;

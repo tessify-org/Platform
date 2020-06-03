@@ -284,6 +284,9 @@ return [
         'PollQuestions' => App\Facades\PollQuestionsFacade::class,
         'PollQuestionAnswers' => App\Facades\PollQuestionAnswersFacade::class,
         'PollVotes' => App\Facades\PollVotesFacade::class,
+        'Forums' => App\Facades\ForumsFacade::class,
+        'ForumThreads' => App\Facades\ForumThreadsFacade::class,
+        'ForumThreadPosts' => App\Facades\ForumThreadPostsFacade::class,
         
     ],
 

@@ -101,6 +101,7 @@ return [
     "polls_edit" => "Update poll",
     "polls_delete" => "Delete poll",
     "polls_vote" => "Vote on poll",
+    "forum_thread_reply" => "Reply",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Admin dashboard",
     "admin_users" => "Manage users",

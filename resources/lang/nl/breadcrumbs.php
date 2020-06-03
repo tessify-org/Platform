@@ -100,6 +100,7 @@ return [
     "polls_edit" => "Poll aanpassen",
     "polls_delete" => "Poll verwijderen",
     "polls_vote" => "Stemmen op poll",
+    "forum_thread_reply" => "Reageren",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Administratie dashboard",
     "admin_users" => "Beheer gebruikers",

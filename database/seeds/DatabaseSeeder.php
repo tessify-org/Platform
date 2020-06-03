@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WhitelistedDomainSeeder::class);
         $this->call(GroupSeeder::class);
         $this->call(PollSeeder::class);
+        $this->call(ForumSeeder::class);
     }
 }
