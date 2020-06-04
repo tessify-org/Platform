@@ -1,24 +1,37 @@
 @extends("layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("forum") !!}
+    {!! Breadcrumbs::render("forum", $forum) !!}
 @stop
 
 @section("content")
 
     <!-- Header -->
-    <div id="page-header">
+    <div id="page-header" class="narrow">
         <div id="page-header__bg"></div>
         <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
 
             <!-- Title & subtitle -->
-            <h1 id="page-header__title">@lang("forums.general_overview_title")</h1>
+            @if ($forum->hasParent())
+                <h1 id="page-header__title">{{ $forum->parentForum->title }}</h1>
+                <h2 id="page-header__subtitle">{{ $forum->title }}</h2>
+            @else
+                <h1 id="page-header__title">{{ $forum->title }}</h1>
+            @endif
 
             <!-- Actions -->
             <div id="page-header__actions">
                 <div class="page-header__action">
-                    <v-btn color="primary" href="{{ route('forum.subforum.create') }}">
+                    <!-- Create thread -->
+                    <v-btn color="primary" href="{{ route('forum.create-thread', $forum->slug) }}">
+                        <i class="fas fa-plus"></i>
+                        @lang("forums.general_overview_create_thread")
+                    </v-btn>
+                </div>
+                <div class="page-header__action">
+                    <!-- Create subforum -->
+                    <v-btn color="primary" href="{{ route('forum.create-subforum', $forum->slug) }}">
                         <i class="fas fa-plus"></i>
                         @lang("forums.general_overview_create_subforum")
                     </v-btn>
@@ -35,23 +48,52 @@
             <!-- Feedback -->
             @include("partials.feedback")
 
-            <!-- My polls -->
-            @if ($myPolls->count())
-                <h3 class="content-title">@lang("polls.overview_my_polls")</h3>
-                <my-poll-overview
-                    :polls="{{ $myPolls->toJson() }}"
-                    :strings="{{ $myPollsStrings->toJson() }}"
-                    locale="{{ app()->getLocale() }}">
-                </my-poll-overview>
-            @endif
-            
-            <!-- Public polls -->
-            <h3 class="content-title">@lang("polls.overview_public_polls")</h3>
-            <poll-overview
-                :polls="{{ $polls->toJson() }}"
-                :strings="{{ $strings->toJson() }}"
-                locale="{{ app()->getLocale() }}">
-            </poll-overview>
+            <!-- Forum -->
+            <div id="forum-overview">
+
+                <!-- Subforums -->
+                @if ($forum->subforums->count())
+                    <div id="forum-overview__subforums">
+                        <h2 id="forum-overview__subforums-title">@lang("forums.overview_subforums")</h2>
+                        <div id="forum-overview__subforums-list" class="elevation-1">
+                            @foreach ($forum->subforums as $subforum)
+                                <a href="{{ route('forum', $subforum->slug) }}" class="subforums-list__entry">
+                                    <span class="subforum-text">
+                                        <span class="subforum-title">{{ $subforum->title }}</span>
+                                        <span class="subforum-description">{{ $subforum->description }}</span>
+                                    </span>
+                                    <span class="subforum-created-at">{{ $subforum->created_at }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Threads -->
+                <div id="forum-overview__threads">
+                    <h2 id="forum-overview__threads-title">@lang("forums.overview_threads")</h2>
+                    @if ($forum->threads->count())
+                        <div id="forum-overview__threads-list" class="elevation-1">
+                            @foreach ($forum->threads as $thread)
+                                <a href="{{ route('forum.thread', ['slug' => $forum->slug, 'threadSlug' => $thread->slug]) }}" class="threads-list__entry">
+                                    @if ($thread->sticky)
+                                        <span class="thread-icon">
+                                            <i class="fas fa-thumbtack"></i>
+                                        </span>
+                                    @endif
+                                    <span class="thread-title">{{ $thread->title }}</span>
+                                    <span class="thread-created-at">{{ $thread->created_at }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <div id="forum-overview__no-threads" class="elevation-1">
+                            @lang("forums.overview_no_threads")
+                        </div>
+                    @endif
+                </div>
+
+            </div>
             
         </div>
     </div>

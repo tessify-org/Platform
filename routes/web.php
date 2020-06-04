@@ -409,19 +409,37 @@ Route::group(["middleware" => "auth"], function() {
         Route::group(["prefix" => "forum"], function() {
 
             // Overview
-            Route::get("{slug?}", "Community\ForumController@getOverview")->name("forum");
+            Route::get("{slug?}", "Community\Forums\ForumController@getOverview")->name("forum");
             
             // Create subforum
-            Route::get("{slug?}/subforum-toevoegen", "Community\ForumController@getCreateSubforum")->name("forum.create-subforum");
-            Route::post("{slug?}/subforum-toevoegen", "Community\ForumController@postCreateSubforum")->name("forum.create-subforum.post");
+            Route::get("{slug}/subforum-toevoegen", "Community\Forums\ForumController@getCreateSubforum")->name("forum.create-subforum");
+            Route::post("{slug}/subforum-toevoegen", "Community\Forums\ForumController@postCreateSubforum")->name("forum.create-subforum.post");
+
+            // Create thread
+            Route::get("{slug}/thread-toevoegen", "Community\Forums\ForumThreadController@getCreate")->name("forum.create-thread");
+            Route::post("{slug}/thread-toevoegen", "Community\Forums\ForumThreadController@postCreate")->name("forum.create-thread.post");
 
             // View thread
-            Route::get("{slug?}/{threadSlug}", "Community\ForumController@getViewThread")->name("forum.thread");
+            Route::get("{slug}/{threadSlug}", "Community\Forums\ForumThreadController@getView")->name("forum.thread");
+
+            // Update thread
+            Route::get("{slug}/{threadSlug}/aanpassen", "Community\Forums\ForumThreadController@getUpdate")->name("forum.thread.update");
+            Route::post("{slug}/{threadSlug}/aanpassen", "Community\Forums\ForumThreadController@postUpdate")->name("forum.thread.update.post");
+
+            // Delete thread
+            Route::get("{slug}/{threadSlug}/verwijderen", "Community\Forums\ForumThreadController@getDelete")->name("forum.thread.delete");
+            Route::post("{slug}/{threadSlug}/verwijderen", "Community\Forums\ForumThreadController@postDelete")->name("forum.thread.delete.post");
 
             // Reply to thread
-            Route::get("{slug?}/{threadSlug}/reply", "Community\ForumController@getReplyToThread")->name("forum.thread.reply");
-            Route::post("{slug?}/{threadSlug}/reply", "Community\ForumController@postReplyToThread")->name("forum.thread.reply.post");
+            Route::post("{slug}/thread/{threadSlug}/reply", "Community\Forums\ForumThreadController@postReplyToThread")->name("forum.thread.reply.post");
             
+            // Update post
+            Route::get("{slug}/thread/{threadSlug}/{uuid}/aanpassen", "Community\Forums\ForumThreadPostController@getUpdate")->name("forum.thread.post.update");
+            Route::post("{slug}/thread/{threadSlug}/{uuid}/aanpassen", "Community\Forums\ForumThreadPostController@postUpdate")->name("forum.thread.post.update.post");
+
+            // Delete post
+            Route::get("{slug}/thread/{threadSlug}/{uuid}/verwijderen", "Community\Forums\ForumThreadPostController@getDelete")->name("forum.thread.post.delete");
+            Route::post("{slug}/thread/{threadSlug}/{uuid}/verwijderen", "Community\Forums\ForumThreadPostController@postDelete")->name("forum.thread.post.delete.post");
         });
 
         // Blogs

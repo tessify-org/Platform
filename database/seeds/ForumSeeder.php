@@ -28,9 +28,16 @@ class ForumSeeder extends Seeder
 
         // Generate general forum
         $general = Forum::create([
-            "title" => "General forum",
+            "title" => "Algemeen forum",
             "editable" => false,
             "deletable" => false,
+        ]);
+
+        // Create random subforum
+        $subforum = Forum::create([
+            "parent_forum_id" => $general->id,
+            "title" => "Test subforum",
+            "description" => "Lorem ipsum",
         ]);
         
         // Create rules thread

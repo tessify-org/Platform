@@ -30,6 +30,7 @@ return [
     "community_link" => "Community",
     "ministries_link" => "Ministries",
     "organizations_link" => "Organizations",
+    "forum_link" => "Forum",
     "groups_link" => "Groups",
     "polls_link" => "Polls",
     

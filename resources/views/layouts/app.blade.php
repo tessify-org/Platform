@@ -114,6 +114,17 @@
                                                 </span>
                                             </a>
                                         </li>
+                                        <!-- Forum -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('forum') }}">
+                                                <span class="dropdown-link__icon">
+                                                    <i class="fas fa-comments"></i>
+                                                </span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("layouts.forum_link")
+                                                </span>
+                                            </a>
+                                        </li>
                                         <!-- Polls -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('polls') }}">

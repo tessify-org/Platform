@@ -28,6 +28,7 @@ return [
     "admin_link" => "Administratie",
     "logout_link" => "Uitloggen",
     "community_link" => "Community",
+    "forum_link" => "Forum",
     "ministries_link" => "Ministeries",
     "organizations_link" => "Organisaties",
     "groups_link" => "Groepen",

@@ -2469,6 +2469,14 @@ input[type=number] {
   height: 300px;
 }
 
+#page-header.narrow #page-header__content #page-header__subtitle {
+  margin: -50px 0 30px 0;
+}
+
+#page-header.narrow #page-header__content #page-header__actions {
+  margin: 0;
+}
+
 #page-header #page-header__bg {
   top: 0;
   left: 0;

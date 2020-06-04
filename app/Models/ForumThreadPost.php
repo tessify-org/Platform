@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumThreadPost extends Model
@@ -12,9 +13,22 @@ class ForumThreadPost extends Model
         "forum_thread_id",
         "forum_thread_post_id",
         "user_id",
+        "uuid",
         "message",
     ];
 
+    //
+    // Uuid
+    //
+    
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid = (string) Uuid::generate(4);
+        });
+    }
+    
     //
     // Relationships
     //

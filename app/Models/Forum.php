@@ -38,19 +38,38 @@ class Forum extends Model
     //
     // Relationships
     //
+
+    public function forumable()
+    {
+        return $this->morpthTo();
+    }
     
     public function parentForum()
     {
         return $this->belongsTo(Forum::class, "parent_forum_id", "id");
     }
 
-    public function childForums()
+    public function subforums()
     {
-        return $this->hasMany(Forum::class, "id", "parent_forum_id");
+        return $this->hasMany(Forum::class, "parent_forum_id", "id");
     }
 
-    public function forumable()
+    public function threads()
     {
-        return $this->morpthTo();
+        return $this->hasMany(ForumThread::class);
+    }
+
+    //
+    // Helper methods
+    //
+
+    public function isGeneralForum()
+    {
+        return $this->parent_forum_id == 0 && $this->forumable_type == "" && $this->forumable_id == 0;
+    }
+
+    public function hasParent()
+    {
+        return $this->parent_forum_id > 0;
     }
 }

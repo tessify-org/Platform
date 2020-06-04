@@ -94,6 +94,10 @@ class ForumService implements ModelServiceContract
 
     public function createSubforumFromRequest(Forum $forum, CreateSubforumRequest $request)
     {
-
+        return Forum::create([
+            "forum_id" => $forum->id,
+            "title" => $request->title,
+            "description" => $request->description,
+        ]);
     }
 }

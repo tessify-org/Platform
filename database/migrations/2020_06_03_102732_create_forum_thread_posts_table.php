@@ -18,6 +18,7 @@ class CreateForumThreadPostsTable extends Migration
             $table->unsignedInteger('forum_thread_id');
             $table->unsignedInteger('forum_thread_post_id')->nullable();
             $table->unsignedInteger('user_id');
+            $table->string('uuid');
             $table->text('message');
             $table->timestamps();
         });

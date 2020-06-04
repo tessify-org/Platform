@@ -458,6 +458,18 @@ Breadcrumbs::for("forum.thread.reply", function($t, $thread) {
     $t->parent("forum.thread", $thread);
     $t->push(__("breadcrumbs.forum_thread_reply"), route("forum.thread.reply", ["slug" => $thread->forum->slug, "threadSlug" => $thread->slug]));
 });
+Breadcrumbs::for("forum.thread.update", function($t, $thread) {
+    $t->parent("forum.thread", $thread);
+    $t->push(__("breadcrumbs.forum_thread_update"), route("forum.thread.update", ["slug" => $thread->forum->slug, "threadSlug" => $thread->slug]));
+});
+Breadcrumbs::for("forum.thread.delete", function($t, $thread) {
+    $t->parent("forum.thread", $thread);
+    $t->push(__("breadcrumbs.forum_thread_delete"), route("forum.thread.delete", ["slug" => $thread->forum->slug, "threadSlug" => $thread->slug]));
+});
+Breadcrumbs::for("forum.create-subforum", function($t, $forum) {
+    $t->parent("forum", $forum);
+    $t->push(__("breadcrumbs.forum_subforum_create"), route("forum.create-subform", ["slug" => $forum->slug]));
+});
 
 // Static pages
 Breadcrumbs::for("dont-use-ie", function($t) {
