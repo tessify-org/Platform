@@ -11,9 +11,13 @@ return [
     "general_forum_not_found" => "Algemeen forum kon niet worden opgehaald",
     "forum_not_found" => "Forum kon niet worden gevonden",
     "subforum_not_found" => "Subforum kon niet worden gevonden",
+    "subforum_not_editable" => "Subforum kan niet worden aangepast",
+    "subforum_not_deletable" => "Subforum kan niet worden verwijderd",
     "thread_not_found" => "Thread kon niet worden gevonden",
 
     "created_subforum" => "Subforum toegevoegd",
+    "updated_subforum" => "Subforum is aangepast",
+    "deleted_subforum" => "Subforum is verwijderd",
     "created_thread" => "Thread toegevoegd",
     "updated_thread" => "Thread is aangepast",
     "deleted_thread" => "Thread is verwijderd",
@@ -29,9 +33,18 @@ return [
     "overview_threads" => "Threads",
     "overview_no_threads" => "Er zijn nog geen threads aangemaakt.",
 
-    "subforums_create_title" => "Create a new subforum",
+    "subforums_create_title" => "Subforum toevoegen",
     "subforums_create_cancel" => "Annuleren",
     "subforums_create_submit" => "Opslaan",
+
+    "subforums_update_title" => "Subforum aanpassen",
+    "subforums_update_cancel" => "Annuleren",
+    "subforums_update_submit" => "Opslaan",
+
+    "subforums_delete_title" => "Subforum verwijderen",
+    "subforums_delete_text" => "Weet je zeker dat je dit subforum wilt verwijderen?",
+    "subforums_delete_cancel" => "Annuleren",
+    "subforums_delete_submit" => "Verwijderen",
     
     "subforums_form_title" => "Titel",
     "subforums_form_description" => "Korte omschrijving",

@@ -415,6 +415,14 @@ Route::group(["middleware" => "auth"], function() {
             Route::get("{slug}/subforum-toevoegen", "Community\Forums\ForumController@getCreateSubforum")->name("forum.create-subforum");
             Route::post("{slug}/subforum-toevoegen", "Community\Forums\ForumController@postCreateSubforum")->name("forum.create-subforum.post");
 
+            // Update subforum
+            Route::get("{slug}/subforum-aanpassen", "Community\Forums\ForumController@getUpdateSubforum")->name("forum.update-subforum");
+            Route::post("{slug}/subforum-aanpassen", "Community\Forums\ForumController@postUpdateSubforum")->name("forum.update-subforum.post");
+
+            // Delete subforum
+            Route::get("{slug}/subforum-verwijderen", "Community\Forums\ForumController@getDeleteSubforum")->name("forum.delete-subforum");
+            Route::post("{slug}/subforum-verwijderen", "Community\Forums\ForumController@postDeleteSubforum")->name("forum.delete-subforum.post");
+
             // Create thread
             Route::get("{slug}/thread-toevoegen", "Community\Forums\ForumThreadController@getCreate")->name("forum.create-thread");
             Route::post("{slug}/thread-toevoegen", "Community\Forums\ForumThreadController@postCreate")->name("forum.create-thread.post");

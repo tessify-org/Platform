@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("forum.create-subforum", $forum) !!}
+    {!! Breadcrumbs::render("forum.update-subforum", $forum) !!}
 @stop
 
 @section("content")
@@ -13,7 +13,7 @@
         <div id="page-header__content">
 
             <!-- Title & subtitle -->
-            <h1 id="page-header__title">@lang("forums.subforums_create_title")</h1>
+            <h1 id="page-header__title">@lang("forums.subforums_update_title")</h1>
             <h2 id="page-header__subtitle">{{ $forum->title }}</h2>
 
         </div>
@@ -30,6 +30,7 @@
             <form action="{{ route('forum.create-subforum.post', ['slug' => $forum->slug]) }}" method="post">
                 @csrf
                 <forum-subforum-form
+                    :forum="{{ $forum->toJson() }}"
                     :strings="{{ $strings->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :errors="{{ $errors->toJson() }}"

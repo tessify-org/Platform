@@ -468,7 +468,15 @@ Breadcrumbs::for("forum.thread.delete", function($t, $thread) {
 });
 Breadcrumbs::for("forum.create-subforum", function($t, $forum) {
     $t->parent("forum", $forum);
-    $t->push(__("breadcrumbs.forum_subforum_create"), route("forum.create-subform", ["slug" => $forum->slug]));
+    $t->push(__("breadcrumbs.forum_subforum_create"), route("forum.create-subforum", ["slug" => $forum->slug]));
+});
+Breadcrumbs::for("forum.update-subforum", function($t, $forum) {
+    $t->parent("forum", $forum);
+    $t->push(__("breadcrumbs.forum_subforum_update"), route("forum.update-subforum", ["slug" => $forum->slug]));
+});
+Breadcrumbs::for("forum.delete-subforum", function($t, $forum) {
+    $t->parent("forum", $forum);
+    $t->push(__("breadcrumbs.forum_subforum_delete"), route("forum.delete-subforum", ["slug" => $forum->slug]));
 });
 
 // Static pages

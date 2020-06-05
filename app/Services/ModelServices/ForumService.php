@@ -9,6 +9,8 @@ use App\Models\Forum;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
 use App\Http\Requests\Community\Forums\CreateSubforumRequest;
+use App\Http\Requests\Community\Forums\UpdateSubforumRequest;
+use App\Http\Requests\Community\Forums\DeleteSubforumRequest;
 
 class ForumService implements ModelServiceContract
 {
@@ -95,9 +97,23 @@ class ForumService implements ModelServiceContract
     public function createSubforumFromRequest(Forum $forum, CreateSubforumRequest $request)
     {
         return Forum::create([
-            "forum_id" => $forum->id,
+            "parent_forum_id" => $forum->id,
             "title" => $request->title,
             "description" => $request->description,
         ]);
+    }
+
+    public function updateSubforumFromRequest(Forum $forum, UpdateSubforumRequest $request)
+    {
+        $forum->title = $request->title;
+        $forum->description = $request->description;
+        $forum->save();
+
+        return $forum;
+    }
+
+    public function deleteSubforumFromRequest(Forum $forum)
+    {
+        $forum->delete();
     }
 }

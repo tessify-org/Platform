@@ -22,20 +22,34 @@
 
             <!-- Actions -->
             <div id="page-header__actions">
+                <!-- Create thread -->
                 <div class="page-header__action">
-                    <!-- Create thread -->
                     <v-btn color="primary" href="{{ route('forum.create-thread', $forum->slug) }}">
                         <i class="fas fa-plus"></i>
                         @lang("forums.general_overview_create_thread")
                     </v-btn>
                 </div>
+                <!-- Create subforum -->
                 <div class="page-header__action">
-                    <!-- Create subforum -->
                     <v-btn color="primary" href="{{ route('forum.create-subforum', $forum->slug) }}">
                         <i class="fas fa-plus"></i>
                         @lang("forums.general_overview_create_subforum")
                     </v-btn>
                 </div>
+                @if ($forum->hasParent())
+                    <!-- Edit -->
+                    <div class="page-header__action">
+                        <v-btn color="warning" href="{{ route('forum.update-subforum', $forum->slug) }}" class="icon-only">
+                            <i class="fas fa-edit"></i>
+                        </v-btn>
+                    </div>
+                    <!-- Delete -->
+                    <div class="page-header__action">
+                        <v-btn color="red" dark href="{{ route('forum.delete-subforum', $forum->slug) }}" class="icon-only">
+                            <i class="fas fa-trash"></i>
+                        </v-btn>
+                    </div>
+                @endif
             </div>
             
         </div>

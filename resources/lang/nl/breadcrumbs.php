@@ -102,6 +102,8 @@ return [
     "polls_vote" => "Stemmen op poll",
     "forum_thread_reply" => "Reageren",
     "forum_subforum_create" => "Subforum toevoegen",
+    "forum_subforum_update" => "Subforum aanpassen",
+    "forum_subforum_delete" => "Subforum verwijderen",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Administratie dashboard",
     "admin_users" => "Beheer gebruikers",

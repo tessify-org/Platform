@@ -103,6 +103,8 @@ return [
     "polls_vote" => "Vote on poll",
     "forum_thread_reply" => "Reply",
     "forum_subforum_create" => "Create subforum",
+    "forum_subforum_update" => "Update subforum",
+    "forum_subforum_delete" => "Delete subforum",
     "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Admin dashboard",
     "admin_users" => "Manage users",

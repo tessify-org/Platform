@@ -11,9 +11,13 @@ return [
     "general_forum_not_found" => "General forum could not be retrieved",
     "forum_not_found" => "Forum could not be found",
     "subforum_not_found" => "Subforum could not be found",
+    "subforum_not_editable" => "Subforum is not editable",
+    "subforum_not_deletable" => "Subforum is not deletable",
     "thread_not_found" => "Thread could not be found",
 
     "created_subforum" => "Subforum has been created!",
+    "updated_subforum" => "Subforum has been updated!",
+    "deleted_subforum" => "Subforum has been deleted!",
     "created_thread" => "Thread has been created",
     "updated_thread" => "Thread has been updated",
     "deleted_thread" => "Thread has been deleted",
@@ -33,6 +37,15 @@ return [
     "subforums_create_cancel" => "Cancel",
     "subforums_create_submit" => "Save",
     
+    "subforums_update_title" => "Update subforum",
+    "subforums_update_cancel" => "Cancel",
+    "subforums_update_submit" => "Save changes",
+
+    "subforums_delete_title" => "Delete subforum",
+    "subforums_delete_text" => "Are you sure you want to delete this subforum?",
+    "subforums_delete_cancel" => "Cancel",
+    "subforums_delete_submit" => "Delete",
+
     "subforums_form_title" => "Title",
     "subforums_form_description" => "Description",
 
