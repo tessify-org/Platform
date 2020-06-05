@@ -290,7 +290,7 @@ class GroupForumController extends Controller
 
         $thread = ForumThreads::createFromRequest($forum, $request);
 
-        flash(__("groups.forum_thread_created"))->success();
+        flash(__("groups.forum_created_thread"))->success();
         return redirect()->route("group.forum.thread", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug]);
     }
 
