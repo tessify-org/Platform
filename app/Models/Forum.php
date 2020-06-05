@@ -41,7 +41,7 @@ class Forum extends Model
 
     public function forumable()
     {
-        return $this->morpthTo();
+        return $this->morphTo();
     }
     
     public function parentForum()

@@ -28,8 +28,18 @@ class ForumThreadPostService implements ModelServiceContract
         $instance->user = Users::findPreloaded($instance->user_id);
         $instance->formatted_created_at = $instance->created_at->format("d-m-Y H:i:s");
 
-        $instance->update_href = route('forum.thread.post.update', ['slug' => $instance->forumThread->forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
-        $instance->delete_href = route('forum.thread.post.delete', ['slug' => $instance->forumThread->forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
+        $forum = $instance->forumThread->forum;
+
+        if ($forum->forumable_type == "App\\Models\\Group")
+        {
+            $instance->update_href = route('group.forum.update-post', ['slug' => $forum->forumable->slug, 'forumSlug' => $forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
+            $instance->delete_href = route('group.forum.delete-post', ['slug' => $forum->forumable->slug, 'forumSlug' => $forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
+        }
+        else
+        {
+            $instance->update_href = route('forum.thread.post.update', ['slug' => $instance->forumThread->forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
+            $instance->delete_href = route('forum.thread.post.delete', ['slug' => $instance->forumThread->forum->slug, 'threadSlug' => $instance->forumThread->slug, 'uuid' => $instance->uuid]);
+        }
 
         return $instance;
     }

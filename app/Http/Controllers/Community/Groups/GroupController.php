@@ -22,7 +22,7 @@ class GroupController extends Controller
             ]),
         ]);
     }
-
+    
     public function getView($slug)
     {
         $group = Groups::findPreloadedBySlug($slug);

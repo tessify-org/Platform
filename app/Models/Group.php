@@ -39,7 +39,7 @@ class Group extends Model
     {
         return ["slug" => ["source" => "name"]];
     }
-
+    
     //
     // Relationships
     //

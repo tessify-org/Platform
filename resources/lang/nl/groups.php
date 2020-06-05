@@ -133,5 +133,39 @@ return [
     "polls_not_voted" => "Nog niet gestemd",
     
     "forum_title" => "Forum",
+    "forum_not_found" => "Forum niet gevonden",
+    "forum_thread_not_found" => "Thread niet gevonden",
+    "forum_post_not_found" => "Reactie niet gevonden",
+    "forum_created_subforum" => "Subforum is toegevoegd",
+    "forum_updated_subforum" => "Subforum is aangepast",
+    "forum_deleted_subforum" => "Subforum is verwijderd",
+    "forum_created_thread" => "Thread is gestart",
+    "forum_updated_thread" => "Thread is aangepast",
+    "forum_deleted_thread" => "Thread is verwijderd",
+    "forum_replied_to_thread" => "Je reactie is opgeslagen",
+    "forum_updated_post" => "Reactie is aangepast",
+    "forum_deleted_post" => "Reactie is verwijderd",
+
+    "forum_overview_back_to_parent" => "Terug",
+    "forum_overview_subforums" => "Subforums",
+    "forum_overview_threads" => "Threads",
+    "forum_overview_no_threads" => "Er zijn nog geen threads gestart in het groepsforum",
+    "forum_overview_add_thread" => "Start thread",
+    "forum_overview_add_subforum" => "Subforum toevoegen",
+
+    "forum_thread_edit" => "Aanpassen",
+    "forum_thread_delete" => "Verwijderen",
+    "forum_thread_replies" => "Reacties",
+    "forum_thread_no_replies" => "Er zijn nog geen reacties geplaatst.",
+    "forum_thread_reply" => "Reageren",
+
+    "forum_update_post_title" => "Reactie aanpassen",
+    "forum_update_post_cancel" => "Annuleren",
+    "forum_update_post_submit" => "Opslaan",
+
+    "forum_delete_post_title" => "Reactie verwijderen",
+    "forum_delete_post_text" => "Weet je zeker dat je deze reactie wilt verwijderen?",
+    "forum_delete_post_cancel" => "Annuleren",
+    "forum_delete_post_submit" => "Verwijderen",
 
 ];

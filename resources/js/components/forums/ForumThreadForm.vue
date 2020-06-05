@@ -1,6 +1,6 @@
 <template>
     <div id="forum-thread-form__wrapper">
-        <div id="forum-thread-form" class="elevation-1">
+        <div id="forum-thread-form" :class="{ 'elevation-1 padded': doesNotHaveGroup }">
 
             <!-- Title -->
             <div class="form-field">
@@ -80,6 +80,7 @@
 <script>
     export default {
         props: [
+            "group",
             "thread",
             "strings",
             "oldInput",
@@ -96,6 +97,11 @@
                 closed: false,
             }
         }),
+        computed: {
+            doesNotHaveGroup() {
+                return this.group === undefined;
+            },
+        },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
@@ -145,9 +151,11 @@
 
 <style lang="scss">
     #forum-thread-form {
-        padding: 25px;
         border-radius: 3px;
         box-sizing: border-box;
         background-color: #fff;
+        &.padded {
+            padding: 25px;
+        }
     }
 </style>

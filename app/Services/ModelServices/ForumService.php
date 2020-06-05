@@ -5,6 +5,7 @@ namespace App\Services\ModelServices;
 use ForumThreads;
 use ForumThreadPosts;
 
+use App\Models\Group;
 use App\Models\Forum;
 use App\Traits\ModelServiceGetters;
 use App\Contracts\ModelServiceContract;
@@ -88,6 +89,30 @@ class ForumService implements ModelServiceContract
             if ($forum->slug == $slug)
             {
                 return $forum;
+            }
+        }
+
+        return false;
+    }
+
+    public function findGroupForum(Group $group, $slug = null)
+    {
+        foreach ($this->getAllPreloaded() as $forum)
+        {
+            if (is_null($slug))
+            {
+                if ($forum->forumable_type == get_class($group) && intval($forum->forumable_id) == $group->id)
+                {
+                    return $forum;
+                }
+            }
+            else
+            {
+                // if ($forum->forumable_type == get_class($group) && intval($forum->forumable_id) == $group->id && $forum->slug == $slug)
+                if ($forum->slug == $slug)
+                {
+                    return $forum;
+                }
             }
         }
 

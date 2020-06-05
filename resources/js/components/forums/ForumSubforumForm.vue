@@ -1,6 +1,6 @@
 <template>
     <div id="forum-subforum-form__wrapper">
-        <div id="forum-subforum-form" class="elevation-1">
+        <div id="forum-subforum-form" :class="{ 'elevation-1 padded': doesNotHaveGroup }">
 
             <div class="form-field">
                 <v-text-field
@@ -43,6 +43,7 @@
 <script>
     export default {
         props: [
+            "group",
             "forum",
             "strings",
             "oldInput", 
@@ -56,6 +57,11 @@
                 description: "",
             },
         }),
+        computed: {
+            doesNotHaveGroup() {
+                return this.group === undefined;
+            },
+        },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
@@ -99,9 +105,11 @@
 
 <style lang="scss">
     #forum-subforum-form {
-        padding: 25px;
         border-radius: 3px;
         box-sizing: border-box;
         background-color: #fff;
+        &.padded {
+            padding: 25px;
+        }
     }
 </style>

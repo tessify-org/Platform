@@ -1,5 +1,5 @@
 <template>
-    <div id="forum-thread-reply-form" class="elevation-1">
+    <div id="forum-thread-reply-form" :class="{ 'elevation-1 padded': doesNotHaveGroup }">
 
         <div class="form-field">
             <v-textarea
@@ -25,6 +25,7 @@
 <script>
     export default {
         props: [
+            "group",
             "thread",
             "strings",
         ],
@@ -37,11 +38,18 @@
         computed: {
             submitDisabled() {
                 return this.form.message === "";
-            }
+            },
+            hasGroup() {
+                return this.group !== undefined;
+            },
+            doesNotHaveGroup() {
+                return this.group === undefined;
+            },
         },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
+                console.log(this.tag+" group: ", this.group);
                 console.log(this.tag+" thread: ", this.threads);
                 console.log(this.tag+" strings: ", this.strings);
                 this.initializeData();
@@ -58,8 +66,10 @@
 
 <style lang="scss">
     #forum-thread-reply-form {
-        background-color: #fff;
-        padding: 25px;
         box-sizing: border-box;
+        background-color: #ffffff;
+        &.padded {
+            padding: 25px;
+        }
     }
 </style>

@@ -410,9 +410,50 @@ Breadcrumbs::for("group.polls", function($t, $group) {
     $t->parent("group", $group);
     $t->push(__("breadcrumbs.group_polls"), route("group.polls", $group->slug));
 });
-Breadcrumbs::for("group.forum", function($t, $group) {
-    $t->parent("group", $group);
-    $t->push(__("breadcrumbs.group_forum"), route("group.forum", $group->slug));
+Breadcrumbs::for("group.forum", function($t, $group, $forum) {
+    if ($forum->parentForum) {
+        $t->parent("group.forum", $group, $forum->parentForum);
+        $t->push($forum->title, route("group.forum", $group->slug));
+    } else {
+        $t->parent("group", $group);
+        $t->push(__("breadcrumbs.group_forum"), route("group.forum", $group->slug));
+    }
+});
+Breadcrumbs::for("group.forum.create-subforum", function($t, $group, $forum) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push(__("breadcrumbs.group_forum_create_subforum"), route("group.forum.create-subforum", ["slug" => $group->slug, "forumSlug" => $forum->slug]));
+});
+Breadcrumbs::for("group.forum.update-subforum", function($t, $group, $forum) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push(__("breadcrumbs.group_forum_update_subforum"), route("group.forum.update-subforum", ["slug" => $group->slug, "forumSlug" => $forum->slug]));
+});
+Breadcrumbs::for("group.forum.delete-subforum", function($t, $group, $forum) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push(__("breadcrumbs.group_forum_delete_subforum"), route("group.forum.delete-subforum", ["slug" => $group->slug, "forumSlug" => $forum->slug]));
+});
+Breadcrumbs::for("group.forum.create-thread", function($t, $group, $forum) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push(__("breadcrumbs.group_forum_create_thread"), route("group.forum.create-thread", ["slug" => $group->slug, "forumSlug" => $forum->slug]));
+});
+Breadcrumbs::for("group.forum.thread", function($t, $group, $forum, $thread) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push($thread->title, route("group.forum.thread", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug]));
+});
+Breadcrumbs::for("group.forum.update-thread", function($t, $group, $forum, $thread) {
+    $t->parent("group.forum", $group, $forum);
+    $t->push(__("breadcrumbs.group_forum_update_thread"), route("group.forum.update-thread", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug]));
+});
+Breadcrumbs::for("group.forum.delete-thread", function($t, $group, $forum, $thread) {
+    $t->parent("group.forum.thread", $group, $forum, $thread);
+    $t->push(__("breadcrumbs.group_forum_delete_thread"), route("group.forum.delete-thread", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug]));
+});
+Breadcrumbs::for("group.forum.update-post", function($t, $group, $forum, $thread, $post) {
+    $t->parent("group.forum.thread", $group, $forum, $thread);
+    $t->push(__("breadcrumbs.group_forum_update_post"), route("group.forum.update-post", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug, "uuid" => $post->uuid]));
+});
+Breadcrumbs::for("group.forum.delete-post", function($t, $group, $forum, $thread, $post) {
+    $t->parent("group.forum.thread", $group, $forum, $thread);
+    $t->push(__("breadcrumbs.group_forum_delete_post"), route("group.forum.delete-post", ["slug" => $group->slug, "forumSlug" => $forum->slug, "threadSlug" => $thread->slug, "uuid" => $post->uuid]));
 });
 
 // Community > Polls

@@ -114,7 +114,7 @@ class ForumController extends Controller
         flash(__("forums.updated_subforum"))->success();
         return redirect()->route("forum", $subforum->slug);
     }
-
+    
     public function getDeleteSubforum($slug)
     {
         $subforum = Forums::findBySlug($slug);

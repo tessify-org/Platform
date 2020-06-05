@@ -133,5 +133,39 @@ return [
     "polls_not_voted" => "Not voted yet",
     
     "forum_title" => "Forum",
+    "forum_not_found" => "Forum could not be found",
+    "forum_thread_not_found" => "Thread could not be found",
+    "forum_post_not_found" => "Post could not be found",
+    "forum_created_subforum" => "Subforum has been created",
+    "forum_updated_subforum" => "Subforum has been updated",
+    "forum_deleted_subforum" => "Subforum has been deleted",
+    "forum_created_thread" => "Created the thread",
+    "forum_updated_thread" => "Updated the thread",
+    "forum_deleted_thread" => "Deleted the thread",
+    "forum_replied_to_thread" => "Replied to the thread",
+    "forum_updated_post" => "Post has been updated",
+    "forum_deleted_post" => "Post has been deleted",
+
+    "forum_overview_back_to_parent" => "Go back",
+    "forum_overview_subforums" => "Subforums",
+    "forum_overview_threads" => "Threads",
+    "forum_overview_no_threads" => "No threads have been posted in the group forum yet.",
+    "forum_overview_add_thread" => "Start thread",
+    "forum_overview_add_subforum" => "Create subforum",
+
+    "forum_thread_edit" => "Update",
+    "forum_thread_delete" => "Delete",
+    "forum_thread_replies" => "Replies",
+    "forum_thread_no_replies" => "No replies have been posted yet.",
+    "forum_thread_reply" => "Reply",
+
+    "forum_update_post_title" => "Update post",
+    "forum_update_post_cancel" => "Cancel",
+    "forum_update_post_submit" => "Save changes",
+
+    "forum_delete_post_title" => "Delete post",
+    "forum_delete_post_text" => "Are you sure you want to delete this post?",
+    "forum_delete_post_cancel" => "Cancel",
+    "forum_delete_post_submit" => "Save changes",
 
 ];

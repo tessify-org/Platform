@@ -1,5 +1,5 @@
 <template>
-    <div id="forum-post-update-form" class="elevation-1">
+    <div id="forum-post-update-form" :class="{ 'elevation-1 padded': doesNotHaveGroup }">
 
         <!-- Message -->
         <div class="form-field">
@@ -32,6 +32,7 @@
 <script>
     export default {
         props: [
+            "group",
             "post",
             "strings",
             "oldInput",
@@ -47,6 +48,9 @@
         computed: {
             submitDisabled() {
                 return this.form.message === "";
+            },
+            doesNotHaveGroup() {
+                return this.group === undefined;
             },
         },
         methods: {
@@ -76,10 +80,12 @@
 
 <style lang="scss">
     #forum-post-update-form {
-        padding: 25px;
         overflow: hidden;
         border-radius: 3px;
         box-sizing: border-box;
         background-color: #ffffff;
+        &.padded {
+            padding: 25px;
+        }
     }
 </style>

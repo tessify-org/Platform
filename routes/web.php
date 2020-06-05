@@ -371,8 +371,46 @@ Route::group(["middleware" => "auth"], function() {
             Route::get("{slug}/polls", "Community\Groups\GroupController@getPolls")->name("group.polls");
 
             // Forum
-            Route::get("{slug}/forum", "Community\Groups\GroupController@getForum")->name("group.forum");
+            Route::get("{slug}/forum/{forumSlug?}", "Community\Groups\GroupForumController@getForum")->name("group.forum");
             
+            // Forum --> Subform --> Create
+            Route::get("{slug}/forum/subforum-toevoegen/{forumSlug?}", "Community\Groups\GroupForumController@getCreateSubforum")->name("group.forum.create-subforum");
+            Route::post("{slug}/forum/subforum-toevoegen/{forumSlug?}", "Community\Groups\GroupForumController@postCreateSubforum")->name("group.forum.create-subforum.post");
+
+            // Forum --> Subforum --> Update
+            Route::get("{slug}/forum/subforum-aanpassen/{forumSlug?}", "Community\Groups\GroupForumController@getUpdateSubforum")->name("group.forum.update-subforum");
+            Route::post("{slug}/forum/subforum-aanpassen/{forumSlug?}", "Community\Groups\GroupForumController@postUpdateSubforum")->name("group.forum.update-subforum.post");
+
+            // Forum --> Subforum --> Delete
+            Route::get("{slug}/forum/subforum-verwijderen/{forumSlug?}", "Community\Groups\GroupForumController@getDeleteSubforum")->name("group.forum.delete-subforum");
+            Route::post("{slug}/forum/subforum-verwijderen/{forumSlug?}", "Community\Groups\GroupForumController@postDeleteSubforum")->name("group.forum.delete-subforum.post");
+
+            // Forum --> Thread --> Create
+            Route::get("{slug}/forum/{forumSlug}/thread-toevoegen", "Community\Groups\GroupForumController@getCreateThread")->name("group.forum.create-thread");
+            Route::post("{slug}/forum/{forumSlug}/thread-toevoegen", "Community\Groups\GroupForumController@postCreateThread")->name("group.forum.create-thread.post");
+
+            // Forum --> Thread --> View
+            Route::get("{slug}/forum/{forumSlug}/{threadSlug}", "Community\Groups\GroupForumController@getThread")->name("group.forum.thread");
+            
+            // Forum --> Thread --> Update
+            Route::get("{slug}/forum/{forumSlug}/{threadSlug}/aanpassen", "Community\Groups\GroupForumController@getUpdateThread")->name("group.forum.update-thread");
+            Route::post("{slug}/forum/{forumSlug}/{threadSlug}/aanpassen", "Community\Groups\GroupForumController@postUpdateThread")->name("group.forum.update-thread.post");
+
+            // Forum --> Thread --> Delete
+            Route::get("{slug}/forum/{forumSlug}/{threadSlug}/verwijderen", "Community\Groups\GroupForumController@getDeleteThread")->name("group.forum.delete-thread");
+            Route::post("{slug}/forum/{forumSlug}/{threadSlug}/verwijderen", "Community\Groups\GroupForumController@postDeleteThread")->name("group.forum.delete-thread.post");
+
+            // Forum --> Thread --> Reply
+            Route::post("{slug}/forum/{forumSlug}/{threadSlug}/reageren", "Community\Groups\GroupForumController@postReplyToThread")->name("group.forum.reply-to-thread.post");
+
+            // Forum --> Thread --> Post --> Update
+            Route::get("{slug}/forum/{forumSlug}/{threadSlug}/{uuid}/aanpassen", "Community\Groups\GroupForumController@getUpdatePost")->name("group.forum.update-post");
+            Route::post("{slug}/forum/{forumSlug}/{threadSlug}/{uuid}/aanpassen", "Community\Groups\GroupForumController@postUpdatePost")->name("group.forum.update-post.post");
+
+            // Forum --> Thread --> Post --> Delete
+            Route::get("{slug}/forum/{forumSlug}/{threadSlug}/{uuid}/verwijderen", "Community\Groups\GroupForumController@getDeletePost")->name("group.forum.delete-post");
+            Route::post("{slug}/forum/{forumSlug}/{threadSlug}/{uuid}/verwijderen", "Community\Groups\GroupForumController@postDeletePost")->name("group.forum.delete-post.post");
+
         });
 
         // Polls
