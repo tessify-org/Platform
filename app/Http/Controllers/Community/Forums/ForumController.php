@@ -134,7 +134,7 @@ class ForumController extends Controller
             "forum" => $subforum,
         ]);
     }
-
+    
     public function postDeleteSubforum(DeleteSubforumRequest $request, $slug)
     {
         $subforum = Forums::findBySlug($slug);

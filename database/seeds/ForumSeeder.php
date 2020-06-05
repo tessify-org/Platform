@@ -20,7 +20,7 @@ class ForumSeeder extends Seeder
         DB::table("forum_threads")->delete();
         DB::table("forum_thread_posts")->delete();
 
-        $me = User::find(1);
+        // $me = User::find(1);
 
         //
         // Create general forum
@@ -33,32 +33,32 @@ class ForumSeeder extends Seeder
             "deletable" => false,
         ]);
 
-        // Create random subforum
-        $subforum = Forum::create([
-            "parent_forum_id" => $general->id,
-            "title" => "Test subforum",
-            "description" => "Lorem ipsum",
-        ]);
+        // // Create random subforum
+        // $subforum = Forum::create([
+        //     "parent_forum_id" => $general->id,
+        //     "title" => "Test subforum",
+        //     "description" => "Lorem ipsum",
+        // ]);
         
-        // Create rules thread
-        $general_rules_thread = ForumThread::create([
-            "forum_id" => $general->id,
-            "user_id" => $me->id,
-            "title" => "Huisregels",
-            "message" => "Hier volgen een aantal huisregels: wees lief.",
-            "sticky" => true,
-            "order" => 0,
-        ]);
+        // // Create rules thread
+        // $general_rules_thread = ForumThread::create([
+        //     "forum_id" => $general->id,
+        //     "user_id" => $me->id,
+        //     "title" => "Huisregels",
+        //     "message" => "Hier volgen een aantal huisregels: wees lief.",
+        //     "sticky" => true,
+        //     "order" => 0,
+        // ]);
         
-        // Create introduction thread
-        $general_intros_thread = ForumThread::create([
-            "forum_id" => $general->id,
-            "user_id" => $me->id,
-            "title" => "Introducties",
-            "message" => "Welkom! In deze thread kan je je voorstellen aan iedereen op het platform. Wie ben je en wat doe je?",
-            "sticky" => true,
-            "order" => 1,
-        ]);
+        // // Create introduction thread
+        // $general_intros_thread = ForumThread::create([
+        //     "forum_id" => $general->id,
+        //     "user_id" => $me->id,
+        //     "title" => "Introducties",
+        //     "message" => "Welkom! In deze thread kan je je voorstellen aan iedereen op het platform. Wie ben je en wat doe je?",
+        //     "sticky" => true,
+        //     "order" => 1,
+        // ]);
 
         //
         // Create group forums
