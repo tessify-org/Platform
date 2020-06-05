@@ -47,7 +47,7 @@
                                     :strings="{{ $strings->toJson() }}"
                                     :old-input="{{ $oldInput->toJson() }}"
                                     :errors="{{ $errors->toJson() }}"
-                                    back-href="{{ route('forum', ['slug' => $forum->slug]) }}">
+                                    back-href="{{ route('group.forum', ['slug' => $group->slug, 'forumSlug' => $forum->slug]) }}">
                                 </forum-thread-form>
                             </form>
 

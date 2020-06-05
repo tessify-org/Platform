@@ -45,7 +45,7 @@
                                 <p>@lang("forums.subforums_delete_text")</p>
                                 <div class="form-controls">
                                     <div class="form-controls__left">
-                                        <v-btn depressed href="{{ route('forum', ['slug' => $forum->slug]) }}">
+                                        <v-btn depressed href="{{ route('forum', ['slug' => $group->slug, 'forumSlug' => $forum->slug]) }}">
                                             <i class="fas fa-arrow-left"></i>
                                             @lang("forums.subforums_delete_cancel")
                                         </v-btn>
