@@ -13,6 +13,8 @@ return [
 
     "ministries" => "Ministeries",
     "organizations" => "Organisaties",
+    "forum" => "Forum",
+    "polls" => "Polls",
     "groups" => "Groepen",
     "memberlist" => "Leden",
 
