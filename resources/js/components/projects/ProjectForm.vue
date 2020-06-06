@@ -263,6 +263,7 @@
                                 v-model="form.department"
                                 :label="strings.department"
                                 :items="departmentOptions"
+                                :placeholder="strings.optional"
                                 :errors="hasErrors('department')"
                                 :error-messages="getErrors('department')">
                             </v-combobox>
@@ -406,12 +407,12 @@
 
                 // If we received a project, load it's data
                 if (this.project !== undefined && this.project !== null) {
-                    this.form.project_status_id = this.project.project_status_id;
+                    this.form.project_status_id = parseInt(this.project.project_status_id);
                     this.form.project_category = this.project.category.label[this.locale];
                     if (this.project.phase) this.form.project_phase = this.project.phase.label[this.locale];
                     this.form.ministry_id = this.project.ministry_id;
                     this.form.organization_id = this.project.organization_id;
-                    this.form.department = this.project.department.name[this.locale];
+                    if (this.project.department) this.form.department = this.project.department.name[this.locale];
                     this.form.title = this.project.title;
                     this.form.slogan.en = this.project.slogan.en;
                     this.form.slogan.nl = this.project.slogan.nl;
@@ -437,8 +438,8 @@
 
                 // If we received old input, load that data (overwriting whatever is in there)
                 if (this.oldInput !== undefined && this.oldInput !== null) {
-                    if (this.oldInput.project_phase_id !== null) this.form.project_phase_id = this.oldInput.project_phase_id;
-                    if (this.oldInput.project_status_id !== null) this.form.project_status_id = this.oldInput.project_status_id;
+                    if (this.oldInput.project_phase_id !== null) this.form.project_phase = this.oldInput.project_phase;
+                    if (this.oldInput.project_status_id !== null) this.form.project_status_id = parseInt(this.oldInput.project_status_id);
                     if (this.oldInput.project_category_id !== null) this.form.project_category_id = this.oldInput.project_category_id;
                     if (this.oldInput.ministry_id !== null) this.form.ministry_id = parseInt(this.oldInput.ministry_id);
                     if (this.oldInput.organization_id !== null) this.form.organization_id = parseInt(this.oldInput.organization_id);

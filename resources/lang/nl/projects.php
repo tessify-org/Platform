@@ -224,7 +224,7 @@ return [
     "form_no_ministries" => "Geen ministeries gevonden",
     "form_organization" => "Organisatie",
     "form_no_organizations" => "Geen organisaties gevonden",
-    "form_department" => "Departement",
+    "form_department" => "Afdeling",
     "form_project_code" => "Project code",
     "form_project_phase" => "Project fase",
     "form_tags" => "Tags",

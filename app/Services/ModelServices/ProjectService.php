@@ -171,11 +171,17 @@ class ProjectService implements ModelServiceContract
             if ($request->has("organization_id") && intval($request->organization_id) > 0)
             {
                 $data["organization_id"] = $request->organization_id;
-                if ($request->has("department") && $request->department !== "") 
+                if ($request->has("department") && $request->department !== "" && !is_null($request->department)) 
                 {
                     $organization = Organizations::find($request->organization_id);
-                    $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
-                    $data["organization_department_id"] = $department->id;
+                    if ($organization)
+                    {
+                        $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                        if ($department)
+                        {
+                            $data["organization_department_id"] = $department->id;
+                        }
+                    }
                 }
             }
         }
@@ -235,7 +241,7 @@ class ProjectService implements ModelServiceContract
             if ($organization)
             {
                 $project->organization_id = $organization->id;
-                if ($request->department === "")
+                if ($request->department === "" || is_null($request->department))
                 {
                     $project->organization_department_id = null;
                 }
