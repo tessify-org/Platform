@@ -409,7 +409,7 @@ class ProjectController extends Controller
 
         // Fire events (before actually deleting the project so data is still available; maybe implement soft-deletes to ensure it's always available)
         event(new UserDeletedProject(auth()->user(), $project));
-        event(new ProjectDeleted(auth()->user(), $project));
+        event(new ProjectDeleted($project));
 
         // Delete the project
         $project->delete();
