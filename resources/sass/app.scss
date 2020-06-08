@@ -603,8 +603,8 @@
 #dashboard {
     #dashboard-stats {
         display: flex;
-        margin: 0 -25px;
         flex-direction: row;
+        margin: -50px -25px 0 -25px;
         .dashboard-stat__wrapper {
             flex: 1;
             padding: 0 25px;

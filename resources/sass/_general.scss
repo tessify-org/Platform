@@ -590,10 +590,35 @@ $rijkshuisstijl-blue-dark: #0d3764;
         position: absolute;
         background-color: rgba(255, 255, 255, 0.85);
     }
-    #page-header__content {
+    #page-header__bg-illustration {
         top: 0;
         left: 0;
         z-index: 3;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        #bg-illustration__wrapper {
+            height: 100%;
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            #bg-illustration {
+                right: 0;
+                top: 25px;
+                z-index: 3;
+                width: 250px;
+                height: 250px;
+                position: absolute;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
+    #page-header__content {
+        top: 0;
+        left: 0;
+        z-index: 4;
         width: 100%;
         height: 100%;
         display: flex;
@@ -601,6 +626,22 @@ $rijkshuisstijl-blue-dark: #0d3764;
         align-items: center;
         flex-direction: column;
         justify-content: center;
+        &.align-left {
+            #page-header__content-wrapper {
+                align-items: flex-start;
+                #page-header__title {
+
+                }
+            }
+        }
+        #page-header__content-wrapper {
+            display: flex;
+            width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
         #page-header__title {
             font-size: 5em;
             line-height: 1em;
@@ -617,6 +658,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
             text-align: center;
             margin: -50px 0 0 0;
             font-family: 'RoSerifRegular', serif;
+            &.no-margin {
+                margin-bottom: 0 !important;
+            }
         }
         #page-header__actions {
             display: flex;
@@ -630,7 +674,17 @@ $rijkshuisstijl-blue-dark: #0d3764;
         }
     }
 }
-
+@media (max-width: 1300px) {
+    #page-header {
+        #page-header__content {
+            #page-header__content-wrapper {
+                width: 100%;
+                padding: 0 50px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
 
 //
 // Vuetify hacks
