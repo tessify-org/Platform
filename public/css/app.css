@@ -6420,7 +6420,7 @@ i {
 }
 
 #view-task #view-task__sidebar #task-ownership {
-  margin: 0 0 30px 0;
+  margin: -30px 0 30px 0;
 }
 
 #view-task #view-task__sidebar #task-ownership #task-ownership__title {
@@ -7786,6 +7786,11 @@ i {
   margin: 0 0 10px 0;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+#view-group #view-group__content #group #group-content #group-content__header #group-content__header-right #secondary-actions .secondary-action:last-child {
+  flex: 2;
+  margin: 0 0 0 10px;
 }
 
 #view-group #view-group__content #group #group-content #group-content__header #group-content__header-right #share-group {

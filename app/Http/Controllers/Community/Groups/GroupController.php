@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Community\Groups;
 
 use Tags;
+use Users;
 use Polls;
 use Groups;
+use Messages;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Community\Groups\CreateGroupRequest;
@@ -34,6 +36,15 @@ class GroupController extends Controller
 
         return view("pages.community.groups.view", [
             "group" => $group,
+            "users" => Users::getAllPreloaded(),
+            "inviteButtonStrings" => collect([
+                "button" => __("groups.view_invite_friend"),
+                "dialog_title" => __("groups.view_invite_friend_dialog_title"),
+                "dialog_text" => __("groups.view_invite_friend_dialog_text"),
+                "dialog_form_user" => __("groups.view_invite_friend_dialog_form_user"),
+                "dialog_cancel" => __("groups.view_invite_friend_dialog_cancel"),
+                "dialog_submit" => __("groups.view_invite_friend_dialog_submit")
+            ]),
         ]);
     }
 
@@ -193,6 +204,39 @@ class GroupController extends Controller
 
         flash(__("groups.deleted"))->success();
         return redirect()->route("groups");
+    }
+
+    public function getInvite($slug, $userSlug = null)
+    {
+        // Find preloaded by slug
+        $group = Groups::findPreloadedBySlug($slug);
+        if (!$group)
+        {
+            flash(__("groups.group_not_found"))->error();
+            return redirect()->route("groups");
+        }
+        
+        // Make sure we received a target user
+        if (is_null($userSlug))
+        {
+            flash(__("messages.invitation_failed"))->error();
+            return redirect()->route("group", $group->slug);
+        }
+
+        // Grab the target user
+        $user = Users::findBySlug($userSlug);
+        if (!$user)
+        {
+            flash(__("messages.invitation_failed"))->error();
+            return redirect()->route("group", $group->slug);
+        }
+
+        // Send invitation message
+        Messages::sendInviteToGroupMessage($user, $group);
+
+        // Flash message and redirect back to view task page
+        flash(__("messages.invitation_sent"))->success();
+        return redirect()->route("group", $group->slug);
     }
 
     public function getPolls($slug)

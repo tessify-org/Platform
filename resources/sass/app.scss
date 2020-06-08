@@ -2942,7 +2942,7 @@
         flex: 0 0 300px;
         margin: 0 50px 0 0;
         #task-ownership {
-            margin: 0 0 30px 0;
+            margin: -30px 0 30px 0;
             #task-ownership__title {
                 margin: 0 0 10px 0;
                 color: hsl(0, 0%, 25%);
@@ -4132,12 +4132,12 @@
                             margin: 0 0 10px 0;
                             flex-direction: row;
                             justify-content: flex-end;
-                            // .secondary-action {
-                            //     &:last-child {
-                            //         flex: 2;
-                            //         margin: 0 0 0 10px;
-                            //     }
-                            // }
+                            .secondary-action {
+                                &:last-child {
+                                    flex: 2;
+                                    margin: 0 0 0 10px;
+                                }
+                            }
                         }
                         #share-group {
                             padding-top: 5px;

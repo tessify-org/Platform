@@ -131,6 +131,15 @@
                                                 </v-tooltip>
                                             @endif
                                         </div>
+                                        <div class="secondary-action">
+                                            <!-- Invite friend button -->
+                                            <group-invite-button
+                                                :group="{{ $group->toJson() }}"
+                                                :users="{{ $users->toJson() }}"
+                                                :strings="{{ $inviteButtonStrings->toJson() }}"
+                                                endpoint="{{ route('group.invite', $group->slug) }}">
+                                            </group-invite-button>
+                                        </div>
                                     </div>
 
                                     <!-- Share -->

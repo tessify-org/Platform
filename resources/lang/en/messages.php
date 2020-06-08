@@ -83,13 +83,16 @@ return [
     "project_invite_message" => "You have been invited by :user to join the :project project.",
     "project_invite_button" => "View project",
 
-    "task_invite_subject" => "Invitiation for task",
+    "task_invite_subject" => "Invitation for task",
     "task_invite_message" => "You have been invited by :user to join the :task task.",
     "task_invite_button" => "View task",
 
+    "group_invite_subject" => "Invitation for group",
+    "group_invite_message" => "You have been invited by :user to join the group :group.",
+    "group_invite_button" => "View group",
+
     "invitation_sent" => "Invitation has been sent!",
     "invitation_failed" => "Failed to send invitation.",
-
 
     //
     // Questions

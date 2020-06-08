@@ -31,7 +31,7 @@
             <div class="content-section pt50">
                 
                 <!-- Feedback -->
-                @include("partials.feedback")
+                @include("partials.feedback", ["extraMargin" => true])
                 
                 <!-- Dashboard columns -->
                 <div id="task-dashboard">

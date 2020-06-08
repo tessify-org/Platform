@@ -6,6 +6,7 @@ use Auth;
 use Users;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Group;
 use App\Models\Project;
 use App\Models\Message;
 use App\Models\ViewEmailRequest;
@@ -211,6 +212,25 @@ class MessageService implements ModelServiceContract
             ]),
             "data" => [
                 "task_slug" => $targetTask->slug,
+            ],
+        ]);
+    }
+
+    public function sendInviteToGroupMessage(User $targetUser, Group $targetGroup, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        return Message::create([
+            "type" => "invite_to_group",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("messages.group_invite_subject"),
+            "message" => __("messages.group_invite_message", [
+                "user" => $user->formatted_name,
+                "group" => $targetGroup->name,
+            ]),
+            "data" => [
+                "group_slug" => $targetGroup->slug,
             ],
         ]);
     }

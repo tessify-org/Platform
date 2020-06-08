@@ -57,6 +57,13 @@ return [
     "view_hidden" => "Hidden group",
     "view_public" => "Public group",
 
+    "view_invite_friend" => "Invite a friend",
+    "view_invite_friend_dialog_title" => "Invite a friend",
+    "view_invite_friend_dialog_text" => "Send your friend or colleague an invitation to join this group.",
+    "view_invite_friend_dialog_form_user" => "User",
+    "view_invite_friend_dialog_cancel" => "Cancel",
+    "view_invite_friend_dialog_submit" => "Send invitation",
+
     "create_title" => "Create a new group",
     "create_cancel" => "Cancel",
     "create_submit" => "Save group",

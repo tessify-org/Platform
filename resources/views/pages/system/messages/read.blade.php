@@ -89,7 +89,7 @@
                         @if ($message->type == "invite_to_task")
                             <div id="invitation">
                                 <div id="invitation-action">
-                                    <v-btn large color="primary" href="{{ route('tasks.view', $message->data['task_slug']) }}">
+                                    <v-btn large color="primary" depressed href="{{ route('tasks.view', $message->data['task_slug']) }}">
                                         <i class="fas fa-eye"></i>
                                         @lang("messages.task_invite_button")
                                     </v-btn>
@@ -100,9 +100,20 @@
                         @if ($message->type == "invite_to_project")
                             <div id="invitation">
                                 <div id="invitation-action">
-                                    <v-btn large color="primary" href="{{ route('projects.view', $message->data['project_slug']) }}">
+                                    <v-btn large color="primary" depressed href="{{ route('projects.view', $message->data['project_slug']) }}">
                                         <i class="fas fa-eye"></i>
                                         @lang("messages.project_invite_button")
+                                    </v-btn>
+                                </div>
+                            </div>
+                        @endif
+                        <!-- Invitation to group -->
+                        @if ($message->type == "invite_to_group")
+                            <div id="invitation">
+                                <div id="invitation-action">
+                                    <v-btn large color="primary" depressed href="{{ route('group', $message->data['group_slug']) }}">
+                                        <i class="fas fa-eye"></i>
+                                        @lang("messages.group_invite_button")
                                     </v-btn>
                                 </div>
                             </div>

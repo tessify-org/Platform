@@ -87,6 +87,10 @@ return [
     "task_invite_message" => "Je bent uitgenodigd door :user om deel te nemen aam het <strong>:task</strong> werkpakket.",
     "task_invite_button" => "Bekijk werkpakket",
 
+    "group_invite_subject" => "Uitnodiging voor groep",
+    "group_invite_message" => "Je bent uitgenodigd door :user om lid te worden van de groep <strong>:group</strong>.",
+    "group_invite_button" => "Bekijk groep",
+
     "invitation_sent" => "De uitnodiging is verstuurd!",
     "invitation_failed" => "Uitnodiging versturen is mislukt.",
 

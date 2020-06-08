@@ -57,6 +57,13 @@ return [
     "view_hidden" => "Afgeschermde groep",
     "view_public" => "Open groep",
 
+    "view_invite_friend" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_title" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_text" => "Stuur een vriend of collega een uitnodiging om lid te worden van deze groep.",
+    "view_invite_friend_dialog_form_user" => "Gebruiker",
+    "view_invite_friend_dialog_cancel" => "Annuleren",
+    "view_invite_friend_dialog_submit" => "Uitnodiging sturen",
+
     "create_title" => "Groep oprichten",
     "create_cancel" => "Annuleren",
     "create_submit" => "Opslaan",
