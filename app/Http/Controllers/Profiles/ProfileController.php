@@ -7,6 +7,7 @@ use Tags;
 use Users;
 use Tasks;
 use Skills;
+use Groups;
 use Comments;
 use Projects;
 use Messages;
@@ -53,6 +54,7 @@ class ProfileController extends Controller
             "followers" => Users::getFollowers($user),
             "following" => Users::getFollowing($user),
             "assignments" => Assignments::findAllPreloadedForUser($user),
+            "groups" => Groups::getMyGroups($user),
             "projects" => Projects::getAllOngoingForUser($user),
             "tasks" => Tasks::getAllOngoingForUser($user),
             "transactions" => Reputation::getTransactionsForUser($user),

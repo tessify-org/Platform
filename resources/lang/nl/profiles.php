@@ -91,6 +91,9 @@ return [
 
     "profile_projects_no_projects" => "Geen lopende projecten gevonden",
     
+    "profile_groups" => "Groepen",
+    "profile_groups_no_groups" => "Gebruiker is nog geen lid van een groep",
+
     //
     // Update profile
     //

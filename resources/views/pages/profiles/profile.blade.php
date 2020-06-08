@@ -230,41 +230,6 @@
                                 </div>
                             </div>
 
-                            <!-- Reacties -->
-                            <!-- <h3 class="content-card__title">
-                                @lang("profiles.profile_reactions")
-                            </h3>
-                            <div class="content-card mb elevation-1">
-                                <div class="content-card__content">
-                                    Coming soon..
-                                </div>
-                            </div> -->
-                            
-                            <!-- Comments -->
-                            <!-- <div class="content-box elevation-1">
-                                <comments
-                                    :user="{{ $user->toJson() }}"
-                                    :comments="{{ $comments->toJson() }}"
-                                    per-page="3"
-                                    target-type="user"
-                                    target-id="{{ $user->id }}"
-                                    create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
-                                    update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
-                                    delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}"
-                                    title-text="@lang('comments.title')"
-                                    no-comments-text="@lang('comments.no_comments')"
-                                    create-title-text="@lang('comments.create_title')"
-                                    create-submit-text="@lang('comments.create_submit')"
-                                    update-title-text="@lang('comments.update_title')"
-                                    update-cancel-text="@lang('comments.update_cancel')"
-                                    update-submit-text="@lang('comments.update_submit')"
-                                    delete-title-text="@lang('comments.delete_title')"
-                                    delete-text="@lang('comments.delete_text')"
-                                    delete-cancel-text="@lang('comments.delete_cancel')"
-                                    delete-submit-text="@lang('comments.delete_submit')">
-                                </comments>
-                            </div> -->
-
                         </div>
                         <div id="profile-content__right">
 
@@ -292,6 +257,16 @@
                                         no-transactions-text="@lang('profiles.profile_reputation_history_dialog_no_transactions')">
                                     </reputation-history-button>
                                 </div>
+                            </div>
+
+                            <!-- Groups -->
+                            <h3 class="content-card__title">@lang("profiles.profile_groups")</h3>
+                            <div class="content-card mb elevation-1">
+                                <profile-group-list
+                                    :groups="{{ $groups->toJson() }}"
+                                    locale="{{ app()->getLocale() }}"
+                                    no-record-text="@lang('profiles.profile_groups_no_groups')">
+                                </profile-group-list>
                             </div>
 
                             <!-- Current projects -->

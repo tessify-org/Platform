@@ -95,6 +95,9 @@ return [
 
     "profile_projects_no_projects" => "No projects found",
 
+    "profile_groups" => "Groups",
+    "profile_groups_no_groups" => "User is not a member of any group yet",
+
     //
     // Update profile
     //

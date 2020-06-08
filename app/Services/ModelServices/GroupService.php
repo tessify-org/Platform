@@ -8,6 +8,7 @@ use Uploader;
 use GroupRoles;
 use GroupMembers;
 use GroupMemberApplications;
+use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupRole;
 use App\Models\GroupMember;
