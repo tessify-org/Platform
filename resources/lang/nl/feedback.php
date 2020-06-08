@@ -29,6 +29,6 @@ return [
     "dialog_submit" => "Verstuur feedback!",
     
     "thank_you_title" => "Dankjewel!",
-    "thank_you_text" => "Bedankt dat je de tijd hebt genomen om ons feedback te geven.\nWe gaan dit nu vertalen naar een GitHub issue, je kunt op ",
+    "thank_you_text" => "Bedankt dat je de tijd hebt genomen om ons feedback te geven.\nWe gaan dit nu vertalen naar een GitHub issue waar je de voortgang kan volgen.",
     
 ];

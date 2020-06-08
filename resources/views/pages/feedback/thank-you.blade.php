@@ -17,7 +17,7 @@
                     <img id="bug-report-submitted__image" src="{{ asset('storage/images/undraw/bug_fixing.svg') }}">
                 </div>
                 <div id="bug-report-submitted__text">
-                    @lang("feedback.thank_you_text")
+                    {!! nl2br(__("feedback.thank_you_text")) !!}
                 </div>
             </div>
 

@@ -5850,6 +5850,7 @@ i {
 #bug-report-submitted #bug-report-submitted__text {
   text-align: center;
   margin: 50px 0 0 0;
+  font-size: 1.2em;
 }
 
 #get-started {
