@@ -9,7 +9,7 @@
         <div class="content-section">
 
             <!-- Feedback -->
-            @include("partials.feedback")
+            @include("partials.feedback", ["extraMargin" => true])
 
             <!-- View group -->
             <div id="view-group">
@@ -35,6 +35,13 @@
                                     <h2 id="group-subtitle">{{ $group->slogan }}</h2>
                                 @endif
                             </div>
+                            @if ($group->hidden)
+                                <div id="group-header__hidden-wrapper">
+                                    <div id="group-header__hidden">
+                                        @lang("groups.view_hidden")
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
                         <!-- Content -->
@@ -173,13 +180,13 @@
                     <div id="group-page-controls" class="page-controls">
                         <div class="page-controls__right">
                             @can("update", $group)
-                                <v-btn depressed color="warning" href="{{ route('group.edit', $group->slug) }}">
+                                <v-btn depressed color="warning" href="{{ route('group.edit', $group->slug) }}" class="elevation-1">
                                     <i class="fas fa-pen-square"></i>
                                     @lang("general.edit")
                                 </v-btn>
                             @endcan
                             @can("delete", $group)
-                                <v-btn depressed color="red" dark href="{{ route('group.delete', $group->slug) }}">
+                                <v-btn depressed color="red" dark href="{{ route('group.delete', $group->slug) }}" class="elevation-1">
                                     <i class="fas fa-trash"></i>
                                     @lang("general.delete")
                                 </v-btn>

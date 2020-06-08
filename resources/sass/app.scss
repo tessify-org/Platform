@@ -4068,6 +4068,15 @@
                         }
                     }
                 }
+                #group-header__hidden-wrapper {
+                    z-index: 3;
+                    left: 30px;
+                    bottom: 20px;
+                    position: absolute;
+                    #group-header__hidden {
+                        color: rgba(255, 255, 255, 0.5);
+                    }
+                }
             }
             #group-content {
                 padding: 30px;

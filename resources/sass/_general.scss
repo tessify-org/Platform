@@ -768,6 +768,12 @@ i {
 // Flash messages
 //
 
+#feedback-wrapper {
+    &.extra-margin {
+        margin: 0 0 50px 0;
+    }
+}
+
 .alert-wrapper {
     margin-bottom: -20px;
     padding: 50px 50px 0 50px;

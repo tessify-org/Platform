@@ -2691,6 +2691,10 @@ i {
   background-color: #f2f2f2;
 }
 
+#feedback-wrapper.extra-margin {
+  margin: 0 0 50px 0;
+}
+
 .alert-wrapper {
   margin-bottom: -20px;
   padding: 50px 50px 0 50px;
@@ -7702,6 +7706,17 @@ i {
 
 #view-group #view-group__content #group #group-header #group-header__actions #group-header__actions-right .v-btn:first-child {
   margin: 0;
+}
+
+#view-group #view-group__content #group #group-header #group-header__hidden-wrapper {
+  z-index: 3;
+  left: 30px;
+  bottom: 20px;
+  position: absolute;
+}
+
+#view-group #view-group__content #group #group-header #group-header__hidden-wrapper #group-header__hidden {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 #view-group #view-group__content #group #group-content {

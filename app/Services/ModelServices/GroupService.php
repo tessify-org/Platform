@@ -54,7 +54,7 @@ class GroupService implements ModelServiceContract
 
         return $instance;
     }
-
+    
     public function findBySlug($slug)
     {
         foreach ($this->getAll() as $group)
@@ -67,7 +67,7 @@ class GroupService implements ModelServiceContract
 
         return false;
     }
-
+    
     public function findPreloadedBySlug($slug)
     {
         foreach ($this->getAllPreloaded() as $group)
@@ -79,6 +79,27 @@ class GroupService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function getAllForOverview(User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $group)
+        {
+            if (!$group->hidden)
+            {
+                $out[] = $group;
+            }
+            else if (GroupMembers::isMember($group, $user))
+            {
+                $out[] = $group;
+            }
+        }
+
+        return collect($out);
     }
 
     public function getMyGroups(User $user = null)
@@ -97,7 +118,7 @@ class GroupService implements ModelServiceContract
 
         return collect($out);
     }
-
+    
     public function createFromRequest(CreateGroupRequest $request)
     {
         // Grab the logged in user
@@ -115,6 +136,7 @@ class GroupService implements ModelServiceContract
                 "nl" => request("description_nl"),
                 "en" => request("description_en"),
             ],
+            "hidden" => request("hidden") == "true" ? true : false,
         ];
 
         // Upload image if one was provided
@@ -163,6 +185,7 @@ class GroupService implements ModelServiceContract
             $group->header_image_url = $image_url;
             $group->avatar_image_url = $image_url;
         }
+        $group->hidden = request("hidden") == "true" ? true : false;
         $group->save();
 
         // Process the received tags

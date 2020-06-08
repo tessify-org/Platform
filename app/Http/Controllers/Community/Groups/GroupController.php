@@ -16,7 +16,7 @@ class GroupController extends Controller
     public function getOverview()
     {
         return view("pages.community.groups.overview", [
-            "groups" => Groups::getAllPreloaded(),
+            "groups" => Groups::getAllForOverview(),
             "strings" => collect([
                 "no_records" => __("groups.overview_no_records"),
             ]),
@@ -78,6 +78,7 @@ class GroupController extends Controller
                 "description_nl" => old("description_nl"),
                 "description_en" => old("description_en"),
                 "tags" => old("tags"),
+                "hidden" => old("hidden"),
             ]),
             "strings" => collect([
                 "name" => __("groups.form_name"),
@@ -88,6 +89,8 @@ class GroupController extends Controller
                 "avatar_image" => __("groups.form_avatar_image"),
                 "cancel" => __("groups.create_cancel"),
                 "submit" => __("groups.create_submit"),
+                "hidden" => __("groups.form_hidden"),
+                "hidden_hint" => __("groups.form_hidden_hint"),
                 "en" => __("general.en"),
                 "nl" => __("general.nl"),
             ]),
@@ -129,6 +132,7 @@ class GroupController extends Controller
                 "description_nl" => old("description_nl"),
                 "description_en" => old("description_en"),
                 "tags" => old("tags"),
+                "hidden" => old("hidden"),
             ]),
             "strings" => collect([
                 "name" => __("groups.form_name"),
@@ -137,6 +141,8 @@ class GroupController extends Controller
                 "tags" => __("groups.form_tags"),
                 "header_image" => __("groups.form_header_image"),
                 "avatar_image" => __("groups.form_avatar_image"),
+                "hidden" => __("groups.form_hidden"),
+                "hidden_hint" => __("groups.form_hidden_hint"),
                 "cancel" => __("groups.update_cancel"),
                 "submit" => __("groups.update_submit"),
                 "en" => __("general.en"),

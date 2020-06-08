@@ -81,6 +81,31 @@
             </div>
         </div>
 
+        <!-- Hidden -->
+        <div class="form-field checkbox">
+            <div id="hidden-checkbox">
+                <div id="hidden-checkbox__input">
+                    <v-checkbox
+                        :label="strings.hidden"
+                        v-model="form.hidden"
+                        :errors="hasErrors('hidden')"
+                        :error-messages="getErrors('hidden')">
+                    </v-checkbox>
+                    <input type="hidden" name="hidden" :value="form.hidden">
+                </div>
+                <div id="hidden-checkbox__info">
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <span v-on="on">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                        </template>
+                        <span>{{ strings.hidden_hint }}</span>
+                    </v-tooltip>
+                </div>
+            </div>
+        </div>
+
         <!-- Actions -->
         <div class="form-controls">
             <div class="form-controls__left">
@@ -127,10 +152,11 @@
                 },
                 header_image_url: "",
                 tags: [],
+                hidden: false,
             },
             upload_header: {
                 loading: false,
-            }
+            },
         }),
         computed: {
             encodedTags() {
@@ -175,6 +201,7 @@
                             this.form.tags.push(this.group.tags[i].name);
                         }
                     }
+                    this.form.hidden = this.group.hidden;
                 }
                 if (this.oldInput !== undefined && this.oldInput !== null) {
                     if (this.oldInput.name !== null) this.form.name = this.oldInput.name;
@@ -183,6 +210,7 @@
                     if (this.oldInput.description_nl !== null) this.form.description.nl = this.oldInput.description_nl;
                     if (this.oldInput.description_en !== null) this.form.description.en = this.oldInput.description_en;
                     if (this.oldInput.tags !== null) this.form.tags = JSON.parse(this.oldInput.tags);
+                    if (this.oldInput.hidden !== null) this.form.hidden = this.oldInput.hidden === "true" ? true : false;
                 }
             },
             hasErrors(field) {
@@ -272,5 +300,15 @@
         border-radius: 3px;
         box-sizing: border-box;
         background-color: #ffffff;
+    }
+    #hidden-checkbox {
+        display: flex;
+        flex-direction: row;
+        #hidden-checkbox__input {
+            margin: 0 15px 0 0;
+        }
+        #hidden-checkbox__info {
+            margin: 2px 0 0 0;
+        }
     }
 </style>

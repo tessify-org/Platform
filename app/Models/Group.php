@@ -25,6 +25,10 @@ class Group extends Model
         "description",
         "header_image_url",
         "avatar_image_url",
+        "hidden",
+    ];
+    protected $casts = [
+        "hidden" => "boolean",
     ];
     public $translatable = [
         "slogan",

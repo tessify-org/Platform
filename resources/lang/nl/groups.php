@@ -32,6 +32,8 @@ return [
     "form_tags" => "Tags",
     "form_header_image" => "Header afbeelding",
     "form_avatar_image" => "Avatar afbeelding",
+    "form_hidden" => "Afgeschermd",
+    "form_hidden_hint" => "Deze groep zal alleen zichtbaar zijn voor de groepsleden.",
 
     "overview_title" => "Groepen",
     "overview_subtitle" => "Vorm interorganisationele groepen met een gedeeld doel.",
@@ -52,6 +54,8 @@ return [
     "view_link_applications" => "Aanmeldingen",
     "view_link_polls" => "Polls",
     "view_link_forum" => "Forum",
+    "view_hidden" => "Afgeschermde groep",
+    "view_public" => "Open groep",
 
     "create_title" => "Groep oprichten",
     "create_cancel" => "Annuleren",

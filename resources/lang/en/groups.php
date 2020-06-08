@@ -32,6 +32,8 @@ return [
     "form_tags" => "Tags",
     "form_header_image" => "Header image",
     "form_avatar_image" => "Avatar image",
+    "form_hidden" => "Hidden",
+    "form_hidden_hint" => "This group will only be visible to it's members",
 
     "overview_title" => "Groups",
     "overview_subtitle" => "Form inter organizational groups with a common goal.",
@@ -52,6 +54,8 @@ return [
     "view_link_applications" => "Applications",
     "view_link_polls" => "Polls",
     "view_link_forum" => "Forum",
+    "view_hidden" => "Hidden group",
+    "view_public" => "Public group",
 
     "create_title" => "Create a new group",
     "create_cancel" => "Cancel",

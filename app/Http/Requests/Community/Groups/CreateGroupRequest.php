@@ -31,6 +31,7 @@ class CreateGroupRequest extends FormRequest
             "description_en" => "nullable",
             "tags" => "nullable",
             "header_image" => "nullable|image",
+            "hidden" => "required",
         ];
     }
 }
