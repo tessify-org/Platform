@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 @endif
-                
+
                 <!-- Threads -->
                 <div id="forum-overview__threads">
                     <h2 id="forum-overview__threads-title">@lang("forums.overview_threads")</h2>
@@ -90,6 +90,11 @@
                         <div id="forum-overview__threads-list" class="elevation-1">
                             @foreach ($threads as $thread)
                                 <a href="{{ route('forum.thread', ['slug' => $forum->slug, 'threadSlug' => $thread->slug]) }}" class="threads-list__entry">
+                                    @if ($thread->closed)
+                                        <span class="thread-icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    @endif
                                     @if ($thread->sticky)
                                         <span class="thread-icon">
                                             <i class="fas fa-thumbtack"></i>

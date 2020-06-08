@@ -38,10 +38,20 @@
             <!-- Thread info -->
             <div id="view-thread__wrapper">
                 <div id="view-thread" class="elevation-1">
-                    <h1 id="view-thread__title">{{ $thread->title }}</h1>
-                    <div id="view-thread__text">
-                        {{ $thread->message }}
-                    </div>
+                    @if ($thread->closed)
+                        <div id="view-thread__closed-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    @endif
+                    <h1 id="view-thread__title">
+                        @if ($thread->sticky)
+                            <span class="view-thread__title-icon">
+                                <i class="fas fa-thumbtack"></i>
+                            </span>
+                        @endif
+                        {{ $thread->title }}
+                    </h1>
+                    <div id="view-thread__text">{{ $thread->message }}</div>
                 </div>
                 <div id="view-thread__footer">
                     <div id="view-thread__footer-left">
@@ -83,16 +93,30 @@
             </div>
 
             <!-- Reply form -->
-            <div id="view-thread__reply">
-                <h2 id="view-thread__reply-title">@lang("forums.threads_view_reply")</h2>
-                <form action="{{ route('forum.thread.reply.post', ['slug' => $forum->slug, 'threadSlug' => $thread->slug]) }}" method="post">
-                    @csrf
-                    <forum-thread-reply-form
-                        :thread="{{ $thread->toJson() }}"
-                        :strings="{{ $replyStrings->toJson() }}">
-                    </forum-thread-reply-form>
-                </form>
-            </div>
+            @if (!$thread->closed)
+                <div id="view-thread__reply">
+                    <h2 id="view-thread__reply-title">@lang("forums.threads_view_reply")</h2>
+                    <form action="{{ route('forum.thread.reply.post', ['slug' => $forum->slug, 'threadSlug' => $thread->slug]) }}" method="post">
+                        @csrf
+                        <forum-thread-reply-form
+                            :thread="{{ $thread->toJson() }}"
+                            :strings="{{ $replyStrings->toJson() }}">
+                        </forum-thread-reply-form>
+                    </form>
+                </div>
+            @endif
+
+            <!-- Closed -->
+            @if ($thread->closed)
+                <div id="view-thread__closed" class="elevation-1">
+                    <div id="view-thread__closed-icon">
+                        <i class="fas fa-lock"></i>                        
+                    </div>
+                    <div id="view-thread__closed-text">
+                        @lang("forums.threads_view_closed")
+                    </div>
+                </div>
+            @endif
 
         </div>
     </div>

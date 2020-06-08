@@ -8083,11 +8083,31 @@ i {
   padding: 25px;
   overflow: hidden;
   border-radius: 3px;
+  position: relative;
   box-sizing: border-box;
   background-color: #ffffff;
 }
 
+#view-thread__wrapper #view-thread #view-thread__closed-icon {
+  top: 25px;
+  right: 25px;
+  font-size: 1.4em;
+  position: absolute;
+  color: #404040;
+}
+
+#view-thread__wrapper #view-thread #view-thread__title {
+  line-height: 1em;
+}
+
+#view-thread__wrapper #view-thread #view-thread__title .view-thread__title-icon {
+  font-size: 0.8em;
+  margin: 0 10px 0 0;
+  color: #404040;
+}
+
 #view-thread__wrapper #view-thread #view-thread__text {
+  font-size: 1em;
   margin: 10px 0 0 0;
 }
 
@@ -8142,6 +8162,22 @@ i {
 
 #view-thread__reply #view-thread__reply-title {
   margin: 0 0 15px 0;
+}
+
+#view-thread__closed {
+  display: flex;
+  padding: 25px;
+  margin: 50px 0 0 0;
+  border-radius: 3px;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+  background-color: #fafafa;
+}
+
+#view-thread__closed #view-thread__closed-icon {
+  margin: 0 15px 0 0;
 }
 
 #delete-thread-post {

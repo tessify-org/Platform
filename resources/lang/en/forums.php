@@ -57,7 +57,8 @@ return [
     "threads_view_reply" => "Reply",
     "threads_view_reply_message" => "Message",
     "threads_view_reply_submit" => "Place reaction",
-    "threads_view_back" => "Terug naar het forum",
+    "threads_view_back" => "Back to the forum",
+    "threads_view_closed" => "The thread has been closed! You can't place any reactions.",
 
     "threads_create_title" => "Create new thread",
     "threads_create_cancel" => "Cancel",

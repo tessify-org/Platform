@@ -58,6 +58,7 @@ return [
     "threads_view_reply_message" => "Bericht",
     "threads_view_reply_submit" => "Plaats reactie",
     "threads_view_back" => "Terug naar het forum",
+    "threads_view_closed" => "De thread is gesloten! Je kunt niet meer reageren.",
 
     "threads_create_title" => "Thread toevoegen",
     "threads_create_cancel" => "Annuleren",
