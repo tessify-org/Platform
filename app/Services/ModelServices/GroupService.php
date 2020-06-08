@@ -86,7 +86,7 @@ class GroupService implements ModelServiceContract
 
         $out = [];
 
-        foreach ($this->getAll() as $group)
+        foreach ($this->getAllPreloaded() as $group)
         {
             if (GroupMembers::isMember($group, $user))
             {

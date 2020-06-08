@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Auth;
 use Users;
 use Tasks;
+use Groups;
 use Projects;
 use Messages;
 use Notifications;
@@ -45,6 +46,7 @@ class DashboardController extends Controller
             "numTasksCompleted" => Tasks::numCompletedForUser(),
             "numProjectsCompleted" => 0,
             "numReviewsPlaced" => 0,
+            "myGroups" => Groups::getMyGroups(),
             "myProjects" => Projects::getAllForUser(),
             "myTasks" => Tasks::getAllForUser(),
             "greeting" => $greeting,

@@ -37,6 +37,10 @@ return [
     "feed_description" => "The latest updates on everything you follow.",
     "feed_empty" => "Your feed is empty at the moment",
 
+    "groups_title" => "My groups",
+    "groups_description" => "The groups you are a member of",
+    "groups_empty" => "You are not a member of a group yet",
+
     "tasks_title" => "My tasks",
     "tasks_description" => "The tasks you've been assigned to.",
     "tasks_empty" => "You don't have any active tasks",

@@ -37,6 +37,10 @@ return [
     "feed_description" => "De laatste updates van alles wat je volgt.",
     "feed_empty" => "Je feed is momenteel leeg",
 
+    "groups_title" => "Mijn groepen",
+    "groups_description" => "De groepen waarvan je lid bent.",
+    "groups_empty" => "Je bent nog geen lid van een groep",
+
     "tasks_title" => "Mijn werkpakketten",
     "tasks_description" => "De werkpakketten waar je voor staat ingeschreven.",
     "tasks_empty" => "Je hebt geen openstaande werkpakketten",

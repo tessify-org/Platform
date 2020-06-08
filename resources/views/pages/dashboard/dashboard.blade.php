@@ -166,6 +166,17 @@
                     </div>
                     <div id="dashboard-columns__right">
 
+                        <!-- My groups -->
+                        <h3 class="content-card__title">@lang("dashboard.groups_title")</h3>
+                        <h4 class="content-card__description">@lang("dashboard.groups_description")</h4>
+                        <div class="content-card mb elevation-1">
+                            <dashboard-my-groups
+                                :groups="{{ $myGroups->toJson() }}"
+                                locale="{{ app()->getLocale() }}"
+                                no-records-text="@lang('dashboard.groups_empty')">
+                            </dashboard-my-groups>
+                        </div>
+
                         <!-- Current tasks -->
                         <h3 class="content-card__title">@lang("dashboard.tasks_title")</h3>
                         <h4 class="content-card__description">@lang("dashboard.tasks_description")</h4>
