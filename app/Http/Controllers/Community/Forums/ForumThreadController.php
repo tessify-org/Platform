@@ -57,7 +57,7 @@ class ForumThreadController extends Controller
 
         $thread = ForumThreads::createFromRequest($forum, $request);
 
-        flash(__("forums.thread_created"))->success();
+        flash(__("forums.created_thread"))->success();
         return redirect()->route("forum.thread", ["slug" => $forum->slug, "threadSlug" => $thread->slug]);
     }
 

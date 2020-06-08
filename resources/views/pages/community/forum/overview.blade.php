@@ -82,13 +82,13 @@
                         </div>
                     </div>
                 @endif
-
+                
                 <!-- Threads -->
                 <div id="forum-overview__threads">
                     <h2 id="forum-overview__threads-title">@lang("forums.overview_threads")</h2>
-                    @if ($forum->threads->count())
+                    @if ($threads->count())
                         <div id="forum-overview__threads-list" class="elevation-1">
-                            @foreach ($forum->threads as $thread)
+                            @foreach ($threads as $thread)
                                 <a href="{{ route('forum.thread', ['slug' => $forum->slug, 'threadSlug' => $thread->slug]) }}" class="threads-list__entry">
                                     @if ($thread->sticky)
                                         <span class="thread-icon">

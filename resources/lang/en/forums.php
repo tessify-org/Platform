@@ -57,6 +57,7 @@ return [
     "threads_view_reply" => "Reply",
     "threads_view_reply_message" => "Message",
     "threads_view_reply_submit" => "Place reaction",
+    "threads_view_back" => "Terug naar het forum",
 
     "threads_create_title" => "Create new thread",
     "threads_create_cancel" => "Cancel",

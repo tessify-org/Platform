@@ -13,8 +13,18 @@
         <div id="page-header__content">
 
             <!-- Title & subtitle -->
-            <h1 id="page-header__title" class="no-margin">{{ $thread->forum->title }}</h1>
+            <h1 id="page-header__title">{{ $thread->forum->title }}</h1>
             
+            <!-- Back button -->
+            <div id="page-header__actions">
+                <div class="page-header__action">
+                    <v-btn href="{{ route('forum', $thread->forum->slug) }}" color="white">
+                        <i class="fas fa-arrow-left"></i>
+                        @lang("forums.threads_view_back")
+                    </v-btn>
+                </div>
+            </div>
+
         </div>
     </div>
 

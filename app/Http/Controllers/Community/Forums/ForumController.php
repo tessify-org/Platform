@@ -32,6 +32,7 @@ class ForumController extends Controller
 
         return view("pages.community.forum.overview", [
             "forum" => $forum,
+            "threads" => ForumThreads::getAllSortedFor($forum),
         ]);
     }
 

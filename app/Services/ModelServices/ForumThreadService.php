@@ -75,6 +75,15 @@ class ForumThreadService implements ModelServiceContract
         return $out;
     }
 
+    public function getAllSortedFor(Forum $forum)
+    {
+        $threads = collect($this->getAllForForum($forum));
+
+        return $threads->sortByDesc(function($thread) {
+            return $thread->sticky;
+        });
+    }
+
     public function createFromRequest(Forum $forum, CreateThreadRequest $request)
     {
         return ForumThread::create([
