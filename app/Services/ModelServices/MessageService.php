@@ -231,6 +231,8 @@ class MessageService implements ModelServiceContract
             ]),
             "data" => [
                 "group_slug" => $targetGroup->slug,
+                "request_processed" => false,
+                "request_accepted" => null,
             ],
         ]);
     }
@@ -322,5 +324,23 @@ class MessageService implements ModelServiceContract
             "message" => $message,
             "data" => $data,
         ]);
+    }
+
+    public function acceptInvitation(Message $message)
+    {
+        $data = $message->data;
+        $data["request_processed"] = true;
+        $data["request_accepted"] = true;
+        $message->data = $data;
+        $message->save();
+    } 
+
+    public function rejectInvitation(Message $message)
+    {
+        $data = $message->data;
+        $data["request_processed"] = true;
+        $data["request_accepted"] = false;
+        $message->data = $data;
+        $message->save();
     }
 }

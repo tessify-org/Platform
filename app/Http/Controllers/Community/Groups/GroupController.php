@@ -7,6 +7,7 @@ use Users;
 use Polls;
 use Groups;
 use Messages;
+use GroupMembers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Community\Groups\CreateGroupRequest;
@@ -237,6 +238,61 @@ class GroupController extends Controller
         // Flash message and redirect back to view task page
         flash(__("messages.invitation_sent"))->success();
         return redirect()->route("group", $group->slug);
+    }
+
+    public function getAcceptInvite($slug, $messageUuid)
+    {
+        // Find preloaded by slug
+        $group = Groups::findPreloadedBySlug($slug);
+        if (!$group)
+        {
+            flash(__("groups.group_not_found"))->error();
+            return redirect()->route("groups");
+        }
+
+        // Find the message by it's uuid
+        $message = Messages::findByUuid($messageUuid);
+        if (!$message)
+        {
+            flash(__("messages.message_not_found"))->error();
+            return redirect()->route("messages.inbox");
+        }
+
+        // Accept the invitation
+        Messages::acceptInvitation($message);
+
+        // Join the group
+        GroupMembers::join($group);
+
+        // Flash message and redirect to the group page
+        flash(__("groups.invite_accepted"))->success();
+        return redirect()->route("group", $group->slug);
+    }
+
+    public function getRejectInvite($slug, $messageUuid)
+    {
+        // Find preloaded by slug
+        $group = Groups::findPreloadedBySlug($slug);
+        if (!$group)
+        {
+            flash(__("groups.group_not_found"))->error();
+            return redirect()->route("groups");
+        }
+
+        // Find the message by it's uuid
+        $message = Messages::findByUuid($messageUuid);
+        if (!$message)
+        {
+            flash(__("messages.message_not_found"))->error();
+            return redirect()->route("messages.inbox");
+        }
+
+        // Reject the invitation
+        Messages::rejectInvitation($message);
+
+        // Flash message & redirect back to the message
+        flash(__("groups.invite_accepted"))->success();
+        return redirect()->route("messages.read", $messageUuid);
     }
 
     public function getPolls($slug)

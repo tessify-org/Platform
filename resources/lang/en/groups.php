@@ -63,6 +63,8 @@ return [
     "view_invite_friend_dialog_form_user" => "User",
     "view_invite_friend_dialog_cancel" => "Cancel",
     "view_invite_friend_dialog_submit" => "Send invitation",
+    "invite_accepted" => "You've accepted the group invitation and you're now a member!",
+    "invite_rejected" => "You've rejected the group invitation.",
 
     "create_title" => "Create a new group",
     "create_cancel" => "Cancel",

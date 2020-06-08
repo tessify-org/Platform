@@ -343,9 +343,9 @@ Route::group(["middleware" => "auth"], function() {
 
             // Invite
             Route::get("{slug}/uitnodiging-versturen/{userSlug?}", "Community\Groups\GroupController@getInvite")->name("group.invite");
-            Route::get("{slug}/uitnodiging-accepteren", "Community\Groups\GroupController@getAcceptInvite")->name("group.invite.accept");
-            Route::get("{slug}/uitnodiging-afwijzen", "Community\Groups\GroupController@getRejectInvite")->name("group.invite.reject");
-            
+            Route::get("{slug}/uitnodiging-accepteren/{messageUuid}", "Community\Groups\GroupController@getAcceptInvite")->name("group.invite.accept");
+            Route::get("{slug}/uitnodiging-afwijzen/{messageUuid}", "Community\Groups\GroupController@getRejectInvite")->name("group.invite.reject");
+
             // Roles
             Route::get("{slug}/rollen", "Community\Groups\GroupRoleController@getOverview")->name("group.roles");
             

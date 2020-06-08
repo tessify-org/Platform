@@ -63,6 +63,8 @@ return [
     "view_invite_friend_dialog_form_user" => "Gebruiker",
     "view_invite_friend_dialog_cancel" => "Annuleren",
     "view_invite_friend_dialog_submit" => "Uitnodiging sturen",
+    "invite_accepted" => "Je hebt de groepsuitnodiging geaccepteerd en bent nu lid!",
+    "invite_rejected" => "Je hebt de groepsuitnodiging afgeslagen.",
 
     "create_title" => "Groep oprichten",
     "create_cancel" => "Annuleren",

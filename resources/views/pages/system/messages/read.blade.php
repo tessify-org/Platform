@@ -109,14 +109,34 @@
                         @endif
                         <!-- Invitation to group -->
                         @if ($message->type == "invite_to_group")
-                            <div id="invitation">
-                                <div id="invitation-action">
-                                    <v-btn large color="primary" depressed href="{{ route('group', $message->data['group_slug']) }}">
-                                        <i class="fas fa-eye"></i>
-                                        @lang("messages.group_invite_button")
-                                    </v-btn>
+                            @if ($message->data["request_processed"])
+                                @if ($message->data["request_accepted"])
+                                    <div id="request-result" class="accepted">
+                                        <div id="request-result__text">
+                                            @lang("messages.request_accepted")
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="request-result" class="rejected">
+                                        <div id="request-result__text">
+                                            @lang("messages.request_rejected")
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
+                                <div id="request-actions">
+                                    <div id="request-actions__left">
+                                        <v-btn block large dark depressed color="red" href="{{ route('group.invite.reject', ['messageUuid' => $message->uuid, 'slug' => $message->data['group_slug']]) }}">
+                                            @lang("messages.request_action_deny")
+                                        </v-btn>
+                                    </div>
+                                    <div id="request-actions__right">
+                                        <v-btn block large dark depressed color="green" href="{{ route('group.invite.accept', ['messageUuid' => $message->uuid, 'slug' => $message->data['group_slug']]) }}">
+                                            @lang("messages.request_action_accept")
+                                        </v-btn>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
                     </div>
 
