@@ -184,35 +184,29 @@
                         <!-- My groups -->
                         <h3 class="content-card__title">@lang("dashboard.groups_title")</h3>
                         <h4 class="content-card__description">@lang("dashboard.groups_description")</h4>
-                        <div class="content-card mb elevation-1">
-                            <dashboard-my-groups
-                                :groups="{{ $myGroups->toJson() }}"
-                                locale="{{ app()->getLocale() }}"
-                                no-records-text="@lang('dashboard.groups_empty')">
-                            </dashboard-my-groups>
-                        </div>
+                        <dashboard-my-groups
+                            :groups="{{ $myGroups->toJson() }}"
+                            locale="{{ app()->getLocale() }}"
+                            no-records-text="@lang('dashboard.groups_empty')">
+                        </dashboard-my-groups>
 
                         <!-- Current tasks -->
                         <h3 class="content-card__title">@lang("dashboard.tasks_title")</h3>
                         <h4 class="content-card__description">@lang("dashboard.tasks_description")</h4>
-                        <div class="content-card mb elevation-1">
-                            <dashboard-my-tasks
-                                :tasks="{{ $myTasks->toJson() }}"
-                                locale="{{ app()->getLocale() }}"
-                                no-records-text="@lang('dashboard.tasks_empty')">
-                            </dashboard-my-tasks>
-                        </div>
+                        <dashboard-my-tasks
+                            :tasks="{{ $myTasks->toJson() }}"
+                            locale="{{ app()->getLocale() }}"
+                            no-records-text="@lang('dashboard.tasks_empty')">
+                        </dashboard-my-tasks>
                         
                         <!-- My projects -->
                         <h3 class="content-card__title">@lang("dashboard.projects_title")</h3>
                         <h4 class="content-card__description">@lang("dashboard.projects_description")</h4>
-                        <div class="content-card mb elevation-1">
-                            <dashboard-my-projects
-                                :projects="{{ $myProjects->toJson() }}"
-                                locale="{{ app()->getLocale() }}"
-                                no-records-text="@lang('dashboard.projects_empty')">
-                            </dashboard-my-projects>
-                        </div>
+                        <dashboard-my-projects
+                            :projects="{{ $myProjects->toJson() }}"
+                            locale="{{ app()->getLocale() }}"
+                            no-records-text="@lang('dashboard.projects_empty')">
+                        </dashboard-my-projects>
 
                     </div>
                 </div>

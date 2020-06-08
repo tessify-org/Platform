@@ -1,19 +1,34 @@
 <template>
     <div id="dashboard-my-projects">
 
-        <div id="my-projects__list" v-if="mutableProjects.length > 0">
-            <a class="my-project" v-for="(project, ti) in mutableProjects" :key="ti" :href="project.view_href">
-                <span class="my-project__title">
-                    {{ project.title }}
-                </span>
-                <span class="my-project__status">
-                    {{ project.status.label[locale] }}
-                </span>
-            </a>
+        <div class="content-card elevation-1">
+
+            <!-- Projects -->
+            <div id="my-projects__list" v-if="paginatedProjects.length > 0">
+                <a class="my-project" v-for="(project, ti) in paginatedProjects" :key="ti" :href="project.view_href">
+                    <span class="my-project__title">
+                        {{ project.title }}
+                    </span>
+                    <span class="my-project__status">
+                        {{ project.status.label[locale] }}
+                    </span>
+                </a>
+            </div>
+
+            <!-- No records -->
+            <div id="my-projects__empty" v-if="paginatedProjects.length === 0">
+                {{ noRecordsText }}
+            </div>
+
         </div>
 
-        <div id="my-projects__empty" v-if="mutableProjects.length === 0">
-            {{ noRecordsText }}
+        <!-- Pagination -->
+        <div id="pagination-wrapper" v-if="numPaginatedPages > 1">
+            <v-pagination
+                v-model="pagination.currentPage"
+                :length="numPaginatedPages"
+                total-visible="10">
+            </v-pagination>
         </div>
 
     </div>
@@ -29,7 +44,22 @@
         data: () => ({
             tag: "[dashboard-my-projects]",
             mutableProjects: [],
+            paginatedProjects: [],
+            pagination: {
+                perPage: 5,
+                currentPage: 1,
+            },
         }),
+        computed: {
+            numPaginatedPages() {
+                return Math.ceil(this.mutableProjects.length/this.pagination.perPage);
+            },
+        },
+        watch: {
+            "pagination.currentPage": function() {
+                this.paginate();
+            },
+        },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
@@ -44,6 +74,13 @@
                         this.mutableProjects.push(this.projects[i]);
                     }
                 }
+                this.paginate();
+            },
+            paginate() {
+                let start_slicing_at = (this.pagination.currentPage - 1) * this.pagination.perPage;
+                let stop_slicing_at = start_slicing_at + this.pagination.perPage;
+                this.paginatedProjects = this.mutableProjects.slice(start_slicing_at, stop_slicing_at);
+                if (this.pagination.currentPage > this.numPaginationPages) this.pagination.currentPage = 1;
             },
         },
         mounted() {
@@ -54,6 +91,7 @@
 
 <style lang="scss">
     #dashboard-my-projects {
+        margin: 0 0 30px 0;
         #my-projects__list {
             .my-project {
                 display: flex;
@@ -82,6 +120,9 @@
         #my-projects__empty {
             padding: 15px;
             box-sizing: border-box;
+        }
+        #pagination-wrapper {
+            margin-top: 10px;
         }
     }
 </style>

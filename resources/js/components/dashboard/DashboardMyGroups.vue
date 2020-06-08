@@ -1,16 +1,31 @@
 <template>
     <div id="dashboard-my-groups">
+        
+        <div class="content-card elevation-1">
 
-        <div id="my-groups__list" v-if="mutableGroups.length > 0">
-            <a class="my-group" v-for="(group, gi) in mutableGroups" :key="gi" :href="group.view_href">
-                <span class="my-group__title">
-                    {{ group.name }}
-                </span>
-            </a>
+            <!-- Groups -->
+            <div id="my-groups__list" v-if="paginatedGroups.length > 0">
+                <a class="my-group" v-for="(group, gi) in paginatedGroups" :key="gi" :href="group.view_href">
+                    <span class="my-group__title">
+                        {{ group.name }}
+                    </span>
+                </a>
+            </div>
+            
+            <!-- No records -->
+            <div id="my-groups__empty" v-if="paginatedGroups.length === 0">
+                {{ noRecordsText }}
+            </div>
+
         </div>
 
-        <div id="my-groups__empty" v-if="mutableGroups.length === 0">
-            {{ noRecordsText }}
+        <!-- Pagination -->
+        <div id="pagination-wrapper" v-if="numPaginatedPages > 1">
+            <v-pagination
+                v-model="pagination.currentPage"
+                :length="numPaginatedPages"
+                total-visible="10">
+            </v-pagination>
         </div>
 
     </div>
@@ -26,7 +41,22 @@
         data: () => ({
             tag: "[dashboard-my-groups]",
             mutableGroups: [],
+            paginatedGroups: [],
+            pagination: {
+                perPage: 5,
+                currentPage: 1,
+            },
         }),
+        computed: {
+            numPaginatedPages() {
+                return Math.ceil(this.mutableGroups.length/this.pagination.perPage);
+            },
+        },
+        watch: {
+            "pagination.currentPage": function() {
+                this.paginate();
+            },
+        },
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
@@ -41,16 +71,24 @@
                         this.mutableGroups.push(this.groups[i]);
                     }
                 }
+                this.paginate();
+            },
+            paginate() {
+                let start_slicing_at = (this.pagination.currentPage - 1) * this.pagination.perPage;
+                let stop_slicing_at = start_slicing_at + this.pagination.perPage;
+                this.paginatedGroups = this.mutableGroups.slice(start_slicing_at, stop_slicing_at);
+                if (this.pagination.currentPage > this.numPaginationPages) this.pagination.currentPage = 1;
             },
         },
         mounted() {
             this.initialize();
-        }
+        },
     }
 </script>
 
 <style lang="scss">
     #dashboard-my-groups {
+        margin: 0 0 30px 0;
         #my-groups__list {
             .my-group {
                 display: flex;
@@ -79,6 +117,9 @@
         #my-groups__empty {
             padding: 15px;
             box-sizing: border-box;
+        }
+        #pagination-wrapper {
+            margin-top: 10px;
         }
     }
 </style>
