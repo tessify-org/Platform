@@ -569,6 +569,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
             }
         }
     }
+    &.very-narrow {
+        height: 200px;
+    }
     #page-header__bg {
         top: 0;
         left: 0;

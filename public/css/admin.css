@@ -2477,6 +2477,10 @@ input[type=number] {
   margin: 30px -15px 0 -15px;
 }
 
+#page-header.very-narrow {
+  height: 200px;
+}
+
 #page-header #page-header__bg {
   top: 0;
   left: 0;
