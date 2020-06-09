@@ -1445,6 +1445,11 @@ i {
     flex-wrap: wrap;
     flex-direction: row;
     margin: 0 -15px -30px -15px;
+    &.thirds {
+        .card-wrapper {
+            flex: 0 0 33.33%;
+        }
+    }
     .card-wrapper {
         flex: 0 0 50%;
         box-sizing: border-box;

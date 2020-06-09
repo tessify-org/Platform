@@ -8,8 +8,8 @@
 
 return [
 
-    "overview_title" => "Ministeries",
-    "overview_subtitle" => "Lorem ipsum dolor sit emet.",
+    "title" => "Ministeries",
+    "subtitle" => "De 12 ministeries die samen de Rijksoverheid vormen.",
 
     "not_found" => "Ministerie kon niet worden gevonden.",
     "no_records" => "Geen ministeries gevonden.",

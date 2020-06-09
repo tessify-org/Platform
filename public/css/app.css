@@ -3437,6 +3437,10 @@ i {
   margin: 0 -15px -30px -15px;
 }
 
+.card-grid.thirds .card-wrapper {
+  flex: 0 0 33.33%;
+}
+
 .card-grid .card-wrapper {
   flex: 0 0 50%;
   box-sizing: border-box;

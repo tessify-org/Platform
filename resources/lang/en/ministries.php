@@ -9,7 +9,7 @@
 return [
 
     "title" => "Ministries",
-    "subtitle" => "Lorem ipsum dolor sit emet.",
+    "subtitle" => "The 12 ministries that form the government.",
     
     "not_found" => "Ministry could not be found.",
     "no_records" => "No ministries found.",
