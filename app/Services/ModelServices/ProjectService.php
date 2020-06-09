@@ -8,6 +8,8 @@ use Dates;
 use Users;
 use Tasks;
 use Skills;
+use Reviews;
+use Comments;
 use Uploader;
 use TeamRoles;
 use TeamMembers;
@@ -475,11 +477,13 @@ class ProjectService implements ModelServiceContract
     {
         if (is_null($user)) $user = Auth::user();
 
-        if ($project->teamMembers->count())
+        $members = TeamMembers::getAllForProject($project);
+
+        if (count($members))
         {
-            foreach ($project->teamMembers as $teamMember)
+            foreach ($members as $member)
             {
-                if ($teamMember->user_id == $user->id)
+                if ($member->user_id == $user->id)
                 {
                     return true;
                 }
@@ -578,32 +582,33 @@ class ProjectService implements ModelServiceContract
 
     public function getNumComments(Project $project)
     {
-        return $project->comments()->count();
+        $comments = Comments::getAllForProject($project);
+
+        return $comments->count();
     }
 
-    public function getNumReviews(Project $project)
+    public function getNumReviews(Project $project, User $user = null)
     {
-        // Grab logged in user
-        $user = auth()->user();
+        if (is_null($user)) $user = auth()->user();
 
-        // If the user is the admin or author of the project
-        if ($user->is_admin || $project->author->id == $user->id)
+        $reviews = Reviews::getAllForProject($project);
+
+        if ($user->is_admin || $project->author_id == $user->id)
         {
-            // Return the count of all reviews
-            return $project->reviews->count();
+            return $reviews->count();
         }
-        // Otherwise
         else
         {
-            // Return the count of all public reviews
             $out = 0;
-            foreach ($project->reviews as $review)
+
+            foreach ($reviews as $review)
             {
                 if ($review->public)
                 {
                     $out += 1;
                 }
             }
+
             return $out;
         }
     }

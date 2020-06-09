@@ -8,6 +8,8 @@ use Tags;
 use Users;
 use Dates;
 use Skills;
+use Reviews;
+use Comments;
 use Projects;
 use Uploader;
 use Messages;
@@ -61,37 +63,37 @@ class TaskService implements ModelServiceContract
         $project = Projects::find($instance->project_id);
         $instance->view_href = route("tasks.view", ["slug" => $instance->slug]);
 
-        // Add flags to the instance
-        $instance->is_owner = $this->userOwnsTask($instance);
-        $instance->is_project_owner = $this->userOwnsTaskProject($instance);
-        $instance->has_available_slots = $this->hasAvailableSlots($instance);
-        $instance->assigned_to_user = $this->assignedToUser($instance);
-        $instance->num_open_positions = $this->numAvailableSlots($instance);
-        $instance->completed = $this->hasBeenCompleted($instance);
-
         // Preload relationships
         $instance->author = Users::findPreloaded($instance->author_id);
         $instance->ministry = Ministries::findForTask($instance);
         $instance->organization = Organizations::findForTask($instance);
         $instance->department = OrganizationDepartments::findForTask($instance);
         $instance->status = TaskStatuses::findForTask($instance);
+        $instance->completed = $this->hasBeenCompleted($instance);
         $instance->category = TaskCategories::findForTask($instance);
         $instance->seniority = TaskSeniorities::findForTask($instance);
         $instance->skills = Skills::getAllForTask($instance);
         $instance->users = $this->getAssignedUsers($instance);
         $instance->reports = TaskProgressReports::getAllForTask($instance);
+        $instance->num_progress_reports = count($instance->reports);
         $instance->outstanding_reports = TaskProgressReports::getAllOutstandingForTask($instance);
         $instance->has_outstanding_reports = count($instance->outstanding_reports) > 0;
         $instance->has_unread_reviews = $this->hasUnreadReviews($instance->outstanding_reports);
         $instance->tags = Tags::getAllForTask($instance);
+        $instance->comments = Comments::getAllForTask($instance);
+        $instance->num_comments = count($instance->comments);
+        $instance->reviews = Reviews::getAllForTask($instance);
+        $instance->num_reviews = count($instance->reviews);
         
+        // Add flags to the instance
+        $instance->is_owner = $this->userOwnsTask($instance);
+        $instance->is_project_owner = $this->userOwnsTaskProject($instance);
+        $instance->has_available_slots = $this->hasAvailableSlots($instance);
+        $instance->assigned_to_user = $this->assignedToUser($instance);
+        $instance->num_open_positions = $this->numAvailableSlots($instance);
+
         // Preload image
         $instance->header_image_url = asset($instance->header_image_url);
-
-        // Get relationship counts for view task page (sidebar)
-        $instance->num_reviews = $this->getNumReviews($instance);
-        $instance->num_comments = $this->getNumComments($instance);
-        $instance->num_progress_reports = $this->getNumProgressReports($instance);
 
         // Return instance
         return $instance;
@@ -485,7 +487,7 @@ class TaskService implements ModelServiceContract
 
         $out = 0;
 
-        foreach ($this->getAll() as $task)
+        foreach ($this->getAllPreloaded() as $task)
         {
             if ($this->assignedToUser($task, $user) and $task->status->name == "completed")
             {
@@ -500,14 +502,27 @@ class TaskService implements ModelServiceContract
     {
         if (is_null($user)) $user = Auth::user();
 
-        return $task->author_id == $user->id or ($task->project and $task->project->author_id == $user->id);
+        // return $task->author_id == $user->id or ($task->project and $task->project->author_id == $user->id);
+        return $task->author_id == $user->id;
     }
 
     public function userOwnsTaskProject(Task $task, User $user = null)
     {
         if (is_null($user)) $user = Auth::user();
 
-        return $task->project and $task->project->author_id == $user->id;
+        if ($task->project_id)
+        {
+            $project = Projects::find($task->project_id);
+            if ($project)
+            {
+                if ($project->author_id == $user->id)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public function hasUnreadReviews(array $outstandingReports)

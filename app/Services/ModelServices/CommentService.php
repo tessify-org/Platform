@@ -37,6 +37,7 @@ class CommentService implements ModelServiceContract
         
         return $instance;
     }
+
     public function getAllPreloadedForUser(User $user)
     {
         $out = [];
@@ -81,8 +82,7 @@ class CommentService implements ModelServiceContract
 
         return collect($out);
     }
-
-
+    
     public function createFromApiRequest(CreateCommentRequest $request)
     {
         // Convert the target type to a namespaced classname and validate at the same time
