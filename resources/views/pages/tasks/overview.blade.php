@@ -7,21 +7,26 @@
 @section("content")
     <div id="task-overview">
 
-        <!-- Header -->
-        <div id="task-overview__header">
-            <div id="task-overview__header-overlay"></div>
-            <div id="task-overview__header-illustration__wrapper">
-                <div id="task-overview__header-illustration__inner">
-                    <div id="task-overview__header-illustration" style="background-image: url({{ asset('storage/images/undraw/maker_launch.svg') }})"></div>
+        <!-- Page header -->
+        <div id="page-header" class="narrow">
+            <div id="page-header__bg"></div>
+            <div id="page-header__bg-overlay"></div>
+            <div id="page-header__bg-illustration">
+                <div id="bg-illustration__wrapper">
+                    <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/maker_launch.svg') }})"></div>
                 </div>
             </div>
-            <div id="task-overview__header-content" class="content-section">
-                <div id="task-overview__header-text">
-                    <h1 class="page-title centered">@lang("tasks.overview_title")</h1>
-                    <h2 class="page-subtitle centered">@lang("tasks.overview_subtitle")</h2>
-                    <v-btn color="primary" outlined href="{{ route('tasks.create') }}">
-                        @lang("tasks.overview_create_cta")
-                    </v-btn>
+            <div id="page-header__content" class="align-left">
+                <div id="page-header__content-wrapper">
+                    <h1 id="page-header__title" style="margin-left: -5px;">@lang("tasks.overview_title")</h1>
+                    <h2 id="page-header__subtitle" class="no-margin">@lang("tasks.overview_subtitle")</h2>
+                    <div id="page-header__actions">
+                        <div class="page-header__action">
+                            <v-btn color="primary" outlined href="{{ route('tasks.create') }}">
+                                @lang("tasks.overview_create_cta")
+                            </v-btn>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

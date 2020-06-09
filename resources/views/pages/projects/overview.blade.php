@@ -6,25 +6,31 @@
 
 @section("content")
     <div id="project-overview">
-        <!-- Header -->
-        <div id="project-overview__header">
-            <div id="project-overview__header-overlay"></div>
-            <div id="project-overview__header-illustration__wrapper">
-                <div id="project-overview__header-illustration__inner">
-                    <div id="project-overview__header-illustration" style="background-image: url({{ asset('storage/images/undraw/organizing_projects.svg') }})"></div>
+
+        <!-- Page header -->
+        <div id="page-header" class="narrow">
+            <div id="page-header__bg"></div>
+            <div id="page-header__bg-overlay"></div>
+            <div id="page-header__bg-illustration">
+                <div id="bg-illustration__wrapper">
+                    <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/organizing_projects.svg') }})"></div>
                 </div>
             </div>
-            <div id="project-overview__header-content" class="content-section">
-                <div id="project-overview__header-text">
-                    <h1 class="page-title centered">@lang("projects.overview_title")</h1>
-                    <h2 class="page-subtitle centered">@lang("projects.overview_subtitle", ["num_projects" => $projects->count()])</h2>
-                    <v-btn color="primary" outlined href="{{ route('projects.create') }}">
-                        <i class="fas fa-plus"></i>
-                        @lang("projects.overview_create_cta")
-                    </v-btn>
+            <div id="page-header__content" class="align-left">
+                <div id="page-header__content-wrapper">
+                    <h1 id="page-header__title" style="margin-left: -5px;">@lang("projects.overview_title")</h1>
+                    <h2 id="page-header__subtitle" class="no-margin">@lang("projects.overview_subtitle", ["num_projects" => $projects->count()])</h2>
+                    <div id="page-header__actions">
+                        <div class="page-header__action">
+                            <v-btn color="primary" outlined href="{{ route('projects.create') }}">
+                                @lang("projects.overview_create_cta")
+                            </v-btn>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <!-- Content -->
         <div id="project-overview__content" class="content-section__wrapper">
             <div class="content-section pt50">
@@ -79,6 +85,6 @@
                 
             </div>
         </div>
+        
     </div>
-
 @stop
