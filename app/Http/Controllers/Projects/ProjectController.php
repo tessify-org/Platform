@@ -49,6 +49,9 @@ class ProjectController extends Controller
                 "search_title" => __("projects.overview_sidebar_search"),
                 "status_title" => __("projects.overview_sidebar_statuses"),
                 "category_title" => __("projects.overview_sidebar_categories"),
+                "filters" => __("tasks.overview_filters"),
+                "filters_description" => __("tasks.overview_filters_description"),
+                "filters_view_results" => __("tasks.overview_filters_view_results"),
             ])
         ]);
     }

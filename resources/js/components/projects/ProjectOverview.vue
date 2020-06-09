@@ -14,24 +14,20 @@
                 </div>
             </div>
             <div id="project-overview__filters-right">
-                <!-- Status -->
-                <div class="project-overview__filter">
-                    <v-combobox
-                        multiple solo dense
-                        :label="strings.status_title"
-                        :items="statusOptions"
-                        v-model="filters.selected_statuses">
-                    </v-combobox>
-                </div>
-                <!-- Category -->
-                <div class="project-overview__filter">
-                    <v-combobox
-                        multiple solo dense
-                        :label="strings.category_title"
-                        :items="categoryOptions"
-                        v-model="filters.selected_categories">
-                    </v-combobox>
-                </div>
+                <!-- Filters button -->
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <div id="filters-button" class="elevation-2" v-on="on" @click="onClickFilterButton">
+                            <div id="filters-button__text">
+                                {{ numFiltersEnabled }}
+                            </div>
+                            <div id="filters-button__icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                        </div>
+                    </template>
+                    <span>{{ strings.filters }}</span>
+                </v-tooltip>
             </div>
         </div>
         
@@ -67,18 +63,7 @@
                             </span>
                         </span>
                         <span class="project-indicators__right">
-                            <!-- Open -->
-                            <span class="indicator green-icon" v-if="project.status.name === 'open'">
-                                <span class="indicator-icon">
-                                    <i class="fas fa-seedling"></i>
-                                </span>
-                            </span>
-                            <!-- Closed -->
-                            <span class="indicator green-icon" v-if="project.status.name === 'closed'">
-                                <span class="indicator-icon">
-                                    <i class="far fa-check-circle"></i>
-                                </span>
-                            </span>
+                            {{ project.status.label[locale] }}
                         </span>
                     </span>
                 </a>
@@ -97,6 +82,51 @@
             </v-pagination>
         </div>
 
+        <!-- Filters dialog -->
+        <v-dialog v-model="dialogs.filters.show" width="600">
+            <div class="dialog">
+                <div class="dialog__close-button" @click="dialogs.filters.show = false">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="dialog-content">
+                    <h3 class="dialog-title">{{ strings.filters }}</h3>
+                    <div class="dialog-text">
+                        <!-- Description -->
+                        <p>
+                            {{ strings.filters_description }}
+                        </p>
+                        <!-- Status -->
+                        <div class="form-field">
+                            <v-combobox
+                                multiple
+                                hide-details
+                                :items="statusOptions"
+                                :label="strings.status_title"
+                                v-model="filters.selectedStatuses">
+                            </v-combobox>
+                        </div>
+                        <!-- Category -->
+                        <div class="form-field">
+                            <v-combobox
+                                multiple
+                                hide-details
+                                :items="categoryOptions"
+                                :label="strings.category_title"
+                                v-model="filters.selectedCategories">
+                            </v-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog-controls">
+                    <div class="dialog-controls__right">
+                        <v-btn depressed color="white" @click="dialogs.filters.show = false">
+                            {{ strings.filters_view_results }}
+                        </v-btn>
+                    </div>
+                </div>
+            </div>
+        </v-dialog>
+        
     </div>
 </template>
 
@@ -118,24 +148,30 @@
             filteredProjects: [],
             paginatedProjects: [],
             filters: {
-                search_query: "",
-                selected_skills: [],
-                selected_statuses: [],
-                selected_categories: [],
-                selected_seniorities: [],
-                time_range: {
-                    min: 0,
-                    max: 40
-                }
+                searchQuery: "",
+                selectedStatuses: [],
+                selectedCategories: [],
             },
             pagination: {
-                perPage: 16,
+                perPage: 12,
                 currentPage: 1,
+            },
+            dialogs: {
+                filters: {
+                    show: false,
+                },
             },
         }),
         computed: {
             numPaginatedPages() {
                 return Math.ceil(this.filteredProjects.length / this.pagination.perPage);
+            },
+            numFiltersEnabled() {
+                let out = 0;
+                if (this.filters.searchQuery !== "") out += 1;
+                if (this.filters.selectedStatuses.length > 0) out += this.filters.selectedStatuses.length;
+                if (this.filters.selectedCategories.length > 0) out += this.filters.selectedCategories.length;
+                return out;
             },
         },
         watch: {
@@ -152,6 +188,7 @@
         methods: {
             initialize() {
                 console.log(this.tag+" initializing");
+                console.log(this.tag+" locale: ", this.locale);
                 console.log(this.tag+" strings: ", this.strings);
                 console.log(this.tag+" projects: ", this.projects);
                 console.log(this.tag+" statuses: ", this.statuses);
@@ -191,16 +228,14 @@
                         // Grab the project
                         let project = this.mutableProjects[i];
                         // Filter on search query
-                        if (this.filters.search_query !== "") {
-                            let in_title = project.title[this.locale].toLowerCase().includes(this.filters.search_query);
-                            let in_desc = project.description[this.locale].toLowerCase().includes(this.filters.search_query);
-                            if (!in_title && !in_desc) continue;
+                        if (this.filters.searchQuery !== "") {
+                            if (!project.title[this.locale].toLowerCase().includes(this.filters.search_query)) continue;
                         }
                         // Filter on selected status
-                        if (this.filters.selected_statuses.length > 0) {
+                        if (this.filters.selectedStatuses.length > 0) {
                             let matches = false;
-                            for (let i = 0; i < this.filters.selected_statuses.length; i++) {
-                                if (project.status.label[this.locale] === this.filters.selected_statuses[i]) {
+                            for (let i = 0; i < this.filters.selectedStatuses.length; i++) {
+                                if (project.status.label[this.locale] === this.filters.selectedStatuses[i]) {
                                     matches = true;
                                     break;
                                 }
@@ -208,10 +243,10 @@
                             if (!matches) continue;
                         }
                         // Filter on selected category
-                        if (this.filters.selected_categories.length > 0) {
+                        if (this.filters.selectedCategories.length > 0) {
                             let matches = false;
-                            for (let i = 0; i < this.filters.selected_categories.length; i++) {
-                                if (project.category.label[this.locale] === this.filters.selected_categories[i]) {
+                            for (let i = 0; i < this.filters.selectedCategories.length; i++) {
+                                if (project.category.label[this.locale] === this.filters.selectedCategories[i]) {
                                     matches = true;
                                     break;
                                 }
@@ -231,6 +266,9 @@
                 this.paginatedProjects = this.filteredProjects.slice(start_slicing_at, stop_slicing_at);
                 if (this.pagination.currentPage > this.numPaginationPages) this.pagination.currentPage = 1;
             },
+            onClickFilterButton() {
+                this.dialogs.filters.show = true;
+            }
         },
         mounted() {
             this.initialize();
@@ -242,7 +280,7 @@
     #project-overview {
         #project-overview__filters {
             display: flex;
-            margin: 0 0 50px 0;
+            margin: 0 0 30px 0;
             flex-direction: row;
             #project-overview__filters-left {
                 flex: 1;
@@ -256,10 +294,25 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-end;
-                margin: 0 -15px;
-                .project-overview__filter {
-                    padding: 0 15px;
+                #filters-button {
+                    display: flex;
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                    flex-direction: row;
                     box-sizing: border-box;
+                    background-color: #ffffff;
+                    transition: all .3s;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: hsl(0, 0%, 95%);
+                    }
+                    #filters-button__text {
+                        padding: 0 10px 0 0;
+                        box-sizing: border-box;
+                    }
+                    #filters-button__icon {
+
+                    }
                 }
             }
         }
@@ -270,7 +323,7 @@
             justify-content: center;
             margin: 0 -15px -30px -15px;
             .project-wrapper {
-                flex: 0 0 25%;
+                flex: 0 0 33.33%;
                 box-sizing: border-box;
                 padding: 0 15px 30px 15px;
                 .project {
@@ -351,7 +404,6 @@
                         .project-indicators__right {
                             flex: 1;
                             display: flex;
-                            margin: 0 -10px;
                             flex-direction: row;
                             align-items: center;
                             justify-content: flex-end;

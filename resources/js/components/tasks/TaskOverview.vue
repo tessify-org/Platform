@@ -151,6 +151,7 @@
                 </div>
             </div>
         </v-dialog>
+
     </div>
 </template>
 
@@ -366,18 +367,6 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                #task-overview__status {
-                    flex: 0 0 200px;
-                }
-                #task-overview__category {
-                    margin: 0 0 0 30px;
-                }
-                #task-overview__seniorities {
-                    margin: 0 0 0 30px;
-                }
-                #task-overview__skills {
-                    margin: 0 0 0 30px;
-                }
                 #filters-button {
                     display: flex;
                     padding: 5px 10px;
@@ -404,7 +393,6 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            justify-content: center;
             margin: 0 -15px -30px -15px;
             .task-wrapper {
                 flex: 0 0 33.33%;
