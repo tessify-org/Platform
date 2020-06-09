@@ -5,18 +5,33 @@
 @stop
 
 @section("content")
+
+    <!-- Header -->
+    <div id="page-header" class="narrow">
+        <div id="page-header__bg"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/mail_sent.svg') }}); height: 200px; top: 50px; opacity: 0.25;"></div>
+            </div>
+        </div>
+        <div id="page-header__content">
+            <div id="page-header__content-wrapper">
+
+                <!-- Title -->
+                @if ($state == "sender")
+                    <h2 id="page-header__title" class="no-margin">@lang("messages.read_title_sent")</h2>
+                @else
+                    <h2 id="page-header__title" class="no-margin">@lang("messages.read_title_received")</h2>
+                @endif
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
-
-            <!-- Title -->
-            <h1 class="page-title centered">@lang("messages.title")</h1>
-
-            <!-- Subtitle -->
-            @if ($state == "sender")
-                <h2 class="page-subtitle centered">@lang("messages.read_title_sent")</h2>
-            @else
-                <h2 class="page-subtitle centered">@lang("messages.read_title_received")</h2>
-            @endif
 
             <!-- Message -->
             <div id="message-wrapper">

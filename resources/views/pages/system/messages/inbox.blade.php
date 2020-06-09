@@ -5,14 +5,35 @@
 @stop
 
 @section("content")
+
+    <!-- Header -->
+    <div id="page-header" class="narrow">
+        <div id="page-header__bg"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/mailbox.svg') }}); height: 200px; top: 50px;"></div>
+            </div>
+        </div>
+        <div id="page-header__content" class="align-left">
+            <div id="page-header__content-wrapper">
+
+                <!-- Title & subtitle -->
+                <h1 id="page-header__title">@lang("messages.title")</h1>
+                <h2 id="page-header__subtitle" class="no-margin">@lang("messages.inbox_title")</h2>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
-
-            <h1 class="page-title centered">@lang("messages.title")</h1>
-            <h2 class="page-subtitle centered">@lang("messages.inbox_title")</h2>
-        
-            @include("partials.feedback")
             
+            <!-- Feedback -->
+            @include("partials.feedback")
+
+            <!-- Messages -->
             <div id="messages">
                 <div id="messages-sidebar__wrapper">
                     @include("partials.messages-navigation", [
@@ -29,4 +50,5 @@
 
         </div>
     </div>
+    
 @stop
