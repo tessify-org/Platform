@@ -5996,8 +5996,82 @@ i {
   text-align: center;
 }
 
+#community-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 -25px -50px -25px;
+}
+
+#community-links .community-link__wrapper {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 0 25px 50px 25px;
+}
+
+#community-links .community-link__wrapper .community-link {
+  color: #000;
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+#community-links .community-link__wrapper .community-link:hover .community-link__image-wrapper .community-link__image-overlay {
+  opacity: 1;
+}
+
+#community-links .community-link__wrapper .community-link .community-link__image-wrapper {
+  width: 100%;
+  height: 200px;
+  display: block;
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+#community-links .community-link__wrapper .community-link .community-link__image-wrapper .community-link__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#community-links .community-link__wrapper .community-link .community-link__image-wrapper .community-link__image-overlay {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  transition: all 0.3s;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#community-links .community-link__wrapper .community-link .community-link__text-wrapper {
+  display: block;
+  padding: 20px 25px;
+  box-sizing: border-box;
+}
+
+#community-links .community-link__wrapper .community-link .community-link__text-wrapper .community-link__title {
+  display: flex;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+#community-links .community-link__wrapper .community-link .community-link__text-wrapper .community-link__title .community-link__title-icon {
+  margin: 0 10px 0 0;
+}
+
 #community-links .card-wrapper {
-  flex: 0 0 25%;
+  flex: 0 0 50%;
 }
 
 #ministry #ministry-header {

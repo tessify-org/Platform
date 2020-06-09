@@ -137,7 +137,7 @@
                                 </dashboard-activity-feed>
                             </div>
                         </div>
-
+                        
                         <!-- Following -->
                         <div id="dashboard-following">
                             <div id="dashboard-following__title">@lang("dashboard.following_title")</div>
