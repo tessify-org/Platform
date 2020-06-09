@@ -38,17 +38,27 @@
                 <!-- Feedback -->
                 @include("partials.feedback", ["extraMargin" => true])
                 
-                <!-- Dashboard columns -->
+                <task-overview
+                    locale="{{ app()->getLocale() }}"
+                    :tasks="{{ $tasks->toJson() }}"
+                    :statuses="{{ $statuses->toJson() }}"
+                    :categories="{{ $categories->toJson() }}"
+                    :skills="{{ $skills->toJson() }}"
+                    :seniorities="{{ $seniorities->toJson() }}"
+                    :strings="{{ $strings->toJson() }}"
+                    no-records-image-url="{{ asset('storage/images/undraw/void.svg') }}">
+                </task-overview>
+
+
+                <!-- Dashboard columns
                 <div id="task-dashboard">
                     <div id="task-dashboard__sidebar">
 
-                        <!-- Search bar -->
                         <task-dashboard-sidebar-search-bar
                             title="@lang('tasks.overview_sidebar_search')"
                             hint="@lang('tasks.overview_sidebar_search_hint')">
                         </task-dashboard-sidebar-search-bar>
 
-                        <!-- Status -->
                         <task-dashboard-sidebar-statuses
                             locale="{{ app()->getLocale() }}"
                             :statuses="{{ $statuses->toJson() }}"
@@ -57,7 +67,6 @@
                             no-records-text="@lang('tasks.overview_sidebar_statuses_empty')">
                         </task-dashboard-sidebar-statuses>
 
-                        <!-- Categories -->
                         <task-dashboard-sidebar-categories
                             locale="{{ app()->getLocale() }}"
                             :categories="{{ $categories->toJson() }}"
@@ -66,7 +75,6 @@
                             no-records-text="@lang('tasks.overview_sidebar_categories_empty')">
                         </task-dashboard-sidebar-categories>
 
-                        <!-- Skills -->
                         <task-dashboard-sidebar-skills
                             locale="{{ app()->getLocale() }}"
                             :skills="{{ $skills->toJson() }}"
@@ -75,7 +83,6 @@
                             no-records-text="@lang('tasks.overview_sidebar_skills_empty')">
                         </task-dashboard-sidebar-skills>
 
-                        <!-- Seniorities -->
                         <task-dashboard-sidebar-seniorities
                             locale="{{ app()->getLocale() }}"
                             :seniorities="{{ $seniorities->toJson() }}"
@@ -84,7 +91,6 @@
                             no-records-text="@lang('tasks.overview_sidebar_seniorities_empty')">
                         </task-dashboard-sidebar-seniorities>
 
-                        <!-- Duration -->
                         <task-dashboard-sidebar-duration
                             title="@lang('tasks.overview_sidebar_timespan')"
                             hint="@lang('tasks.overview_sidebar_timespan_hint')">
@@ -93,7 +99,6 @@
                     </div>
                     <div id="task-dashboard__content">
 
-                        <!-- Task overview -->
                         <task-dashboard-overview
                             :tasks="{{ $tasks->toJson() }}"
                             locale="{{ app()->getLocale() }}"
@@ -105,7 +110,7 @@
                         </task-dashboard-overview>
 
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

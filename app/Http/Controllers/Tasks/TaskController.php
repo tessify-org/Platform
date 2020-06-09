@@ -43,9 +43,20 @@ class TaskController extends Controller
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
+            "strings" => collect([
+                "no_records" => __("tasks.overview_no_tasks"),
+                "search" => __("tasks.overview_search"),
+                "status" => __("tasks.overview_status"),
+                "skills" => __("tasks.overview_skills"),
+                "categories" => __("tasks.overview_categories"),
+                "seniorities" => __("tasks.overview_seniorities"),
+                "filters" => __("tasks.overview_filters"),
+                "filters_description" => __("tasks.overview_filters_description"),
+                "filters_view_results" => __("tasks.overview_filters_view_results"),
+            ]),
         ]);
     }
-
+    
     public function getView($slug)
     {
         // Grab the task we want to view
