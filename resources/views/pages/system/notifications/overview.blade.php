@@ -28,8 +28,6 @@
     <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
-
-            <h1 class="page-title centered">@lang("")</h1>
         
             @include("partials.feedback")
             
