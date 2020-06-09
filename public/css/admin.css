@@ -2594,6 +2594,24 @@ input[type=number] {
   box-sizing: border-box;
 }
 
+#page-header #page-header__actions-wrapper {
+  top: 0;
+  right: 0;
+  z-index: 4;
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#page-header #page-header__actions-wrapper #page-header__actions {
+  padding: 30px 0;
+  box-sizing: border-box;
+}
+
+#page-header #page-header__actions-wrapper #page-header__actions.align-right {
+  text-align: right;
+}
+
 @media (max-width: 1300px) {
   #page-header #page-header__content #page-header__content-wrapper {
     width: 100%;

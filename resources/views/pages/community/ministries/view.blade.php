@@ -7,21 +7,24 @@
 @section("content")
     <div id="ministry">
 
-        <!-- Header -->
-        <div id="ministry-header">
-            <div id="ministry-header__overlay"></div>
-            <div id="ministry-header__content">
-                <div id="ministry-header__text">
-                    <h1 id="ministry-header__title">{{ $ministry->name }}</h1>
+        <!-- Page header -->
+        <div id="page-header" class="narrow">
+            <div id="page-header__bg"></div>
+            <div id="page-header__bg-overlay"></div>
+            <div id="page-header__content">
+                <div id="page-header__content-wrapper">
+                    <h1 id="page-header__title" class="no-margin" style="margin-left: -5px;">{{ $ministry->name }}</h1>
                 </div>
-                <div id="ministry-header__actions">
+            </div>
+            <div id="page-header__actions-wrapper">
+                <div id="page-header__actions" class="align-right">
                     @if (!Auth::user()->hasSubscribed($ministry))
-                        <v-btn depressed href="{{ route('ministries.subscribe', ['slug' => $ministry->slug]) }}">
+                        <v-btn color="white" href="{{ route('ministries.subscribe', ['slug' => $ministry->slug]) }}">
                             <i class="fas fa-check-circle"></i>
                             @lang("ministries.view_subscribe")
                         </v-btn>
                     @else
-                        <v-btn depressed href="{{ route('ministries.unsubscribe', ['slug' => $ministry->slug]) }}">
+                        <v-btn color="white" href="{{ route('ministries.unsubscribe', ['slug' => $ministry->slug]) }}">
                             <i class="fas fa-times-circle"></i>
                             @lang("ministries.view_unsubscribe")
                         </v-btn>

@@ -8,20 +8,23 @@
     <div id="organization">
         
         <!-- Header -->
-        <div id="organization-header">
-            <div id="organization-header__overlay"></div>
-            <div id="organization-header__content">
-                <div id="organization-header__text">
-                    <h1 id="organization-header__title">{{ $organization->name }}</h1>
+        <div id="page-header" class="narrow">
+            <div id="page-header__bg"></div>
+            <div id="page-header__bg-overlay"></div>
+            <div id="page-header__content">
+                <div id="page-header__content-wrapper">
+                    <h1 id="page-header__title" class="no-margin" style="margin-left: -5px;">{{ $organization->name }}</h1>
                 </div>
-                <div id="organization-header__actions">
+            </div>
+            <div id="page-header__actions-wrapper">
+                <div id="page-header__actions" class="align-right">
                     @if (!Auth::user()->hasSubscribed($organization))
-                        <v-btn depressed href="{{ route('organizations.subscribe', ['slug' => $organization->slug]) }}">
+                        <v-btn color="white" href="{{ route('organizations.subscribe', ['slug' => $organization->slug]) }}">
                             <i class="fas fa-check-circle"></i>
                             @lang("organizations.view_subscribe")
                         </v-btn>
                     @else
-                        <v-btn depressed href="{{ route('organizations.unsubscribe', ['slug' => $organization->slug]) }}">
+                        <v-btn color="white" href="{{ route('organizations.unsubscribe', ['slug' => $organization->slug]) }}">
                             <i class="fas fa-times-circle"></i>
                             @lang("organizations.view_unsubscribe")
                         </v-btn>
