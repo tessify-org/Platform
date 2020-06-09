@@ -76,29 +76,6 @@
                     </a>
                 </div>
 
-                <!-- Groups -->
-                <div class="community-link__wrapper">
-                    <a class="community-link elevation-1" href="{{ route('groups') }}">
-                        <span class="community-link__image-wrapper">
-                            <span class="community-link__image" style="background-image: url({{ asset('storage/images/unsplash/groups.jpg') }})"></span>
-                            <span class="community-link__image-overlay"></span>
-                        </span>
-                        <span class="community-link__text-wrapper">
-                            <span class="community-link__title">
-                                <span class="community-link__title-icon">
-                                    <i class="fas fa-users"></i>
-                                </span>
-                                <span class="community-link__title-text">
-                                    @lang("community.groups")
-                                </span>
-                            </span>
-                            <span class="community-link__text">
-                                @lang("community.groups_summary")
-                            </span>
-                        </span>
-                    </a>
-                </div>
-
                 <!-- Forum -->
                 <div class="community-link__wrapper">
                     <a class="community-link elevation-1" href="{{ route('forum') }}">
@@ -117,6 +94,29 @@
                             </span>
                             <span class="community-link__text">
                                 @lang("community.forum_summary")
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Groups -->
+                <div class="community-link__wrapper">
+                    <a class="community-link elevation-1" href="{{ route('groups') }}">
+                        <span class="community-link__image-wrapper">
+                            <span class="community-link__image" style="background-image: url({{ asset('storage/images/unsplash/groups.jpg') }})"></span>
+                            <span class="community-link__image-overlay"></span>
+                        </span>
+                        <span class="community-link__text-wrapper">
+                            <span class="community-link__title">
+                                <span class="community-link__title-icon">
+                                    <i class="fas fa-users"></i>
+                                </span>
+                                <span class="community-link__title-text">
+                                    @lang("community.groups")
+                                </span>
+                            </span>
+                            <span class="community-link__text">
+                                @lang("community.groups_summary")
                             </span>
                         </span>
                     </a>
@@ -167,7 +167,7 @@
                         </span>
                     </a>
                 </div>
-                
+
             </div>
 
         </div>
