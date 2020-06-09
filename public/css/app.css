@@ -2474,7 +2474,7 @@ input[type=number] {
 }
 
 #page-header.narrow #page-header__content #page-header__actions {
-  margin: 0;
+  margin: 30px -15px 0 -15px;
 }
 
 #page-header #page-header__bg {
@@ -2580,9 +2580,9 @@ input[type=number] {
 
 #page-header #page-header__content #page-header__actions {
   display: flex;
-  margin: 50px 0 0 0;
   flex-direction: row;
   justify-content: center;
+  margin: 50px -15px 0 -15px;
 }
 
 #page-header #page-header__content #page-header__actions .page-header__action {
@@ -8186,8 +8186,16 @@ i {
   align-items: center;
 }
 
-#forum-overview #forum-overview__threads #forum-overview__threads-title {
-  margin: 0 0 10px 0;
+#forum-overview #forum-overview__threads #forum-overview__threads-header {
+  display: flex;
+  margin: 0 0 15px 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+#forum-overview #forum-overview__threads #forum-overview__threads-header #forum-overview__threads-title {
+  flex: 1;
+  font-size: 1.5em;
 }
 
 #forum-overview #forum-overview__threads #forum-overview__threads-list {

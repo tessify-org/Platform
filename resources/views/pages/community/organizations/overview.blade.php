@@ -5,7 +5,7 @@
 @stop
 
 @section("content")
-
+    
     <!-- Page header -->
     <div id="page-header" class="narrow">
         <div id="page-header__bg"></div>
@@ -25,10 +25,10 @@
     <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
-
+            
             <!-- Feedback -->
             @include("partials.feedback")
-
+            
             <!-- Overview -->
             @if ($organizations->count())
                 <div class="card-grid">
@@ -46,7 +46,7 @@
                     @lang("organizations.no_records")
                 </div>
             @endif
-
+            
         </div>
     </div>
     

@@ -4462,8 +4462,18 @@
         }
     }
     #forum-overview__threads {
-        #forum-overview__threads-title {
-            margin: 0 0 10px 0;
+        #forum-overview__threads-header {
+            display: flex;
+            margin: 0 0 15px 0;
+            flex-direction: row;
+            align-items: center;
+            #forum-overview__threads-title {
+                flex: 1;
+                font-size: 1.5em;
+            }
+            #forum-overview__threads-actions {
+
+            }
         }
         #forum-overview__threads-list {
             overflow: hidden;

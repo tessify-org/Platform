@@ -565,7 +565,7 @@ $rijkshuisstijl-blue-dark: #0d3764;
                 margin: -50px 0 30px 0;
             }
             #page-header__actions {
-                margin: 0;
+                margin: 30px -15px 0 -15px;
             }
         }
     }
@@ -664,9 +664,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
         }
         #page-header__actions {
             display: flex;
-            margin: 50px 0 0 0;
             flex-direction: row;
             justify-content: center;
+            margin: 50px -15px 0 -15px;
             .page-header__action {
                 padding: 0 15px;
                 box-sizing: border-box;

@@ -10,48 +10,48 @@
     <div id="page-header" class="narrow">
         <div id="page-header__bg"></div>
         <div id="page-header__bg-overlay"></div>
-        <div id="page-header__content">
-
-            <!-- Title & subtitle -->
-            @if ($forum->hasParent())
-                <h1 id="page-header__title">{{ $forum->parentForum->title }}</h1>
-                <h2 id="page-header__subtitle">{{ $forum->title }}</h2>
-            @else
-                <h1 id="page-header__title">{{ $forum->title }}</h1>
-            @endif
-
-            <!-- Actions -->
-            <div id="page-header__actions">
-                <!-- Create thread -->
-                <div class="page-header__action">
-                    <v-btn color="primary" href="{{ route('forum.create-thread', $forum->slug) }}">
-                        <i class="fas fa-plus"></i>
-                        @lang("forums.general_overview_create_thread")
-                    </v-btn>
-                </div>
-                <!-- Create subforum -->
-                <div class="page-header__action">
-                    <v-btn color="primary" href="{{ route('forum.create-subforum', $forum->slug) }}">
-                        <i class="fas fa-plus"></i>
-                        @lang("forums.general_overview_create_subforum")
-                    </v-btn>
-                </div>
-                @if ($forum->hasParent())
-                    <!-- Edit -->
-                    <div class="page-header__action">
-                        <v-btn color="warning" href="{{ route('forum.update-subforum', $forum->slug) }}" class="icon-only">
-                            <i class="fas fa-edit"></i>
-                        </v-btn>
-                    </div>
-                    <!-- Delete -->
-                    <div class="page-header__action">
-                        <v-btn color="red" dark href="{{ route('forum.delete-subforum', $forum->slug) }}" class="icon-only">
-                            <i class="fas fa-trash"></i>
-                        </v-btn>
-                    </div>
-                @endif
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/online_discussion.svg') }});"></div>
             </div>
-            
+        </div>
+        <div id="page-header__content" class="align-left">
+            <div id="page-header__content-wrapper">
+
+                <!-- Title & subtitle -->
+                @if ($forum->hasParent())
+                    <h1 id="page-header__title">{{ $forum->parentForum->title }}</h1>
+                    <h2 id="page-header__subtitle">{{ $forum->title }}</h2>
+                @else
+                    <h1 id="page-header__title" class="no-margin">{{ $forum->title }}</h1>
+                @endif
+
+                <!-- Actions -->
+                <div id="page-header__actions">
+                    <!-- Create subforum -->
+                    <div class="page-header__action">
+                        <v-btn color="primary" href="{{ route('forum.create-subforum', $forum->slug) }}">
+                            <i class="fas fa-plus"></i>
+                            @lang("forums.general_overview_create_subforum")
+                        </v-btn>
+                    </div>
+                    @if ($forum->hasParent())
+                        <!-- Edit -->
+                        <div class="page-header__action">
+                            <v-btn color="warning" href="{{ route('forum.update-subforum', $forum->slug) }}" class="icon-only">
+                                <i class="fas fa-edit"></i>
+                            </v-btn>
+                        </div>
+                        <!-- Delete -->
+                        <div class="page-header__action">
+                            <v-btn color="red" dark href="{{ route('forum.delete-subforum', $forum->slug) }}" class="icon-only">
+                                <i class="fas fa-trash"></i>
+                            </v-btn>
+                        </div>
+                    @endif
+                </div>
+                
+            </div>
         </div>
     </div>
 
@@ -85,7 +85,15 @@
 
                 <!-- Threads -->
                 <div id="forum-overview__threads">
-                    <h2 id="forum-overview__threads-title">@lang("forums.overview_threads")</h2>
+                    <div id="forum-overview__threads-header">
+                        <h2 id="forum-overview__threads-title">@lang("forums.overview_threads")</h2>
+                        <div id="forum-overview__threads-actions">
+                            <v-btn small color="primary" href="{{ route('forum.create-thread', $forum->slug) }}">
+                                <i class="fas fa-plus"></i>
+                                @lang("forums.general_overview_create_thread")
+                            </v-btn>
+                        </div>
+                    </div>
                     @if ($threads->count())
                         <div id="forum-overview__threads-list" class="elevation-1">
                             @foreach ($threads as $thread)
