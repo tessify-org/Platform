@@ -29,7 +29,7 @@
 
             <!-- Community links -->
             <div id="community-links">
-                
+
                 <!-- Ministries -->
                 <div class="community-link__wrapper">
                     <a class="community-link elevation-1" href="{{ route('ministries') }}">
@@ -63,7 +63,7 @@
                         <span class="community-link__text-wrapper">
                             <span class="community-link__title">
                                 <span class="community-link__title-icon">
-                                    <i class="fas fa-chess-rook"></i>
+                                    <i class="fas fa-city"></i>
                                 </span>
                                 <span class="community-link__title-text">
                                     @lang("community.organizations")
@@ -86,7 +86,7 @@
                         <span class="community-link__text-wrapper">
                             <span class="community-link__title">
                                 <span class="community-link__title-icon">
-                                    <i class="fas fa-chess-rook"></i>
+                                    <i class="fas fa-users"></i>
                                 </span>
                                 <span class="community-link__title-text">
                                     @lang("community.groups")
@@ -109,7 +109,7 @@
                         <span class="community-link__text-wrapper">
                             <span class="community-link__title">
                                 <span class="community-link__title-icon">
-                                    <i class="fas fa-chess-rook"></i>
+                                    <i class="fas fa-comments"></i>
                                 </span>
                                 <span class="community-link__title-text">
                                     @lang("community.forum")
@@ -132,7 +132,7 @@
                         <span class="community-link__text-wrapper">
                             <span class="community-link__title">
                                 <span class="community-link__title-icon">
-                                    <i class="fas fa-chess-rook"></i>
+                                    <i class="fas fa-poll"></i>
                                 </span>
                                 <span class="community-link__title-text">
                                     @lang("community.polls")
@@ -155,7 +155,7 @@
                         <span class="community-link__text-wrapper">
                             <span class="community-link__title">
                                 <span class="community-link__title-icon">
-                                    <i class="fas fa-chess-rook"></i>
+                                    <i class="fas fa-users"></i>
                                 </span>
                                 <span class="community-link__title-text">
                                     @lang("community.memberlist")
@@ -167,49 +167,7 @@
                         </span>
                     </a>
                 </div>
-
-                <!-- 
-                <div class="card-wrapper">
-                    <a class="card elevation-1" href="{{ route('groups') }}">
-                        <span class="card-icon">
-                            <i class="fas fa-comments"></i>
-                        </span>
-                        <span class="card-title">
-                            @lang("community.forum")
-                        </span>
-                    </a>
-                </div>
-                <div class="card-wrapper">
-                    <a class="card elevation-1" href="{{ route('groups') }}">
-                        <span class="card-icon">
-                            <i class="fas fa-poll"></i>
-                        </span>
-                        <span class="card-title">
-                            @lang("community.polls")
-                        </span>
-                    </a>
-                </div>
-                <div class="card-wrapper">
-                    <a class="card elevation-1" href="{{ route('groups') }}">
-                        <span class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span class="card-title">
-                            @lang("community.groups")
-                        </span>
-                    </a>
-                </div>
-                <div class="card-wrapper">
-                    <a class="card elevation-1" href="{{ route('memberlist') }}">
-                        <span class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span class="card-title">
-                            @lang("community.memberlist")
-                        </span>
-                    </a>
-                </div> 
-                -->
+                
             </div>
 
         </div>
