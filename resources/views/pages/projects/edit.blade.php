@@ -5,18 +5,33 @@
 @stop
 
 @section("content")
+
+    <!-- Page header -->
+    <div id="page-header" class="very-narrow">
+        <div id="page-header__bg"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/engineers.svg') }})"></div>
+            </div>
+        </div>
+        <div id="page-header__content" class="align-left">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title" class="no-margin">@lang("projects.update_title")</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
 
-            <h1 class="page-title centered">
-                @lang("projects.update_title")
-            </h1>
-        
+            <!-- Feedback -->
             @include("partials.feedback")
 
+            <!-- Form -->
             <form action="{{ route('projects.edit.post', $project->slug) }}" method="post" enctype="multipart/form-data">
                 @csrf
-
                 <project-form
                     :project="{{ $project->toJson() }}"
                     :project-phases="{{ $phases->toJson() }}"
@@ -36,9 +51,9 @@
                     update-resource-api-endpoint="{{ route('api.projects.resources.update.post') }}"
                     delete-resource-api-endpoint="{{ route('api.projects.resources.delete.post') }}">
                 </project-form>
-
             </form>
 
         </div>
     </div>
+
 @stop

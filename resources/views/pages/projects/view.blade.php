@@ -228,13 +228,13 @@
                     <div id="project-page-controls" class="page-controls">
                         <div class="page-controls__right">
                             @can("update", $project)
-                                <v-btn depressed color="warning" href="{{ route('projects.edit', $project->slug) }}">
+                                <v-btn color="warning" href="{{ route('projects.edit', $project->slug) }}">
                                     <i class="fas fa-pen-square"></i>
                                     @lang("general.edit")
                                 </v-btn>
                             @endcan
                             @can("delete", $project)
-                                <v-btn depressed color="red" dark href="{{ route('projects.delete', $project->slug) }}">
+                                <v-btn color="red" dark href="{{ route('projects.delete', $project->slug) }}">
                                     <i class="fas fa-trash"></i>
                                     @lang("general.delete")
                                 </v-btn>

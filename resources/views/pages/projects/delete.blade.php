@@ -5,18 +5,33 @@
 @stop
 
 @section("content")
+
+    <!-- Page header -->
+    <div id="page-header" class="very-narrow">
+        <div id="page-header__bg"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/throw_away.svg') }})"></div>
+            </div>
+        </div>
+        <div id="page-header__content" class="align-left">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title" class="no-margin">@lang("projects.delete_title")</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
 
-            <h1 id="delete-dialog__title" class="page-title centered">
-                @lang("projects.delete_title")
-            </h1>
-        
+            <!-- Feedback -->
             @include("partials.feedback")
 
+            <!-- Form -->
             <form action="{{ route('projects.delete.post', $project->slug) }}" method="post">
                 @csrf
-
                 <div id="delete-dialog" class="elevation-1">
                     <div id="delete-dialog__text">
                         {!! nl2br(__('projects.delete_text', ['title' => $project->title])) !!}
@@ -36,9 +51,9 @@
                         </div>
                     </div>
                 </div>
-
             </form>
 
         </div>
     </div>
+
 @stop

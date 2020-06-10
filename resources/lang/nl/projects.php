@@ -182,7 +182,7 @@ return [
     // Update project
     //
 
-    "update_title" => "Project wijzigen",
+    "update_title" => "Project aanpassen",
     "update_back" => "Terug naar project",
     "update_submit" => "Wijzigingen opslaan",
 
@@ -230,9 +230,11 @@ return [
     "form_tags" => "Tags",
     "form_optional" => "Optioneel",
 
-    "description_nl_required" => "Nederlandse beschrijving is verplicht",
-    "description_en_required" => "Engelse beschrijving is verplicht",
+    "description_nl_required" => "Een Nederlandse beschrijving is verplicht",
+    "description_en_required" => "Een Engelse beschrijving is verplicht",
     "ministry_invalid" => "Ongeldig ministerie opgegeven",
+    "project_phase_required" => "Project fase is verplicht",
+    "organization_id_exists" => "Organisatie is verplicht",
 
     //
     // Delete project

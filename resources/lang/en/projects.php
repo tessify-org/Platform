@@ -235,6 +235,8 @@ return [
     "description_nl_required" => "Dutch description is required",
     "description_en_required" => "English description is required",
     "ministry_invalid" => "Invalid ministry supplied",
+    "project_phase_required" => "Project phase is required",
+    "organization_id_exists" => "Organization is required",
 
     //
     // Delete project

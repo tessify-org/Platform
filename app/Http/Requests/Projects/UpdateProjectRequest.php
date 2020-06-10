@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Projects;
 
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProjectRequest extends FormRequest
@@ -14,7 +13,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return auth()->check();
     }
 
     /**
@@ -27,7 +26,8 @@ class UpdateProjectRequest extends FormRequest
         return [
             "project_status_id" => "required|exists:project_statuses,id",
             "project_category" => "required",
-            "project_phase" => "nullable",
+            "project_phase" => "required",
+            "project_code" => "nullable",
             "ministry_id" => "nullable|exists:ministries,id",
             "organization_id" => "nullable|exists:organizations,id",
             "department" => "nullable",
@@ -36,13 +36,10 @@ class UpdateProjectRequest extends FormRequest
             "slogan_en" => "nullable",
             "description_nl" => "required",
             "description_en" => "required",
+            "header_image" => "nullable|image",
             "starts_at" => "nullable",
             "ends_at" => "nullable",
-            "header_image" => "nullable|image",
-            "resources" => "nullable",
-            "team_roles" => "nullable",
             "has_deadline" => "required",
-            "project_code" => "nullable",
             "budget" => "nullable",
             "tags" => "nullable",
         ];
@@ -56,7 +53,11 @@ class UpdateProjectRequest extends FormRequest
     public function messages()
     {
         return [
-
+            "description_nl.required" => __("projects.description_nl_required"),
+            "description_en.required" => __("projects.description_en_required"),
+            "ministry_id.exists" => __("projects.ministry_invalid"),
+            "project_phase.required" => __("projects.project_phase_required"),
+            "organization_id.exists" => __("projects.organization_id_exists"),
         ];
     }
 }

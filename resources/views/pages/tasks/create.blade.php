@@ -12,7 +12,7 @@
         <div id="page-header__bg-overlay"></div>
         <div id="page-header__bg-illustration">
             <div id="bg-illustration__wrapper">
-                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/add_files.svg') }})"></div>
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/add_file.svg') }})"></div>
             </div>
         </div>
         <div id="page-header__content" class="align-left">

@@ -1,233 +1,11 @@
 <template>
     <div id="project-form__wrapper">
-        <div id="project-form">
-            <div id="project-form__left">
-                
-                <!-- General properties -->
-                <h2 class="content-card__title">{{ strings.general_title }}</h2>
-                <h3 class="content-card__description">{{ strings.general_description }}</h3>
-                <div class="content-card elevation-1 mb">
-                    <div class="content-card__content">
 
-                        <!-- Category -->
-                        <div class="form-field">
-                            <v-combobox
-                                :label="strings.category+'*'"
-                                :items="categoryOptions"
-                                v-model="form.project_category"
-                                :errors="hasErrors('project_category')"
-                                :error-messages="getErrors('project_category')">
-                            </v-combobox>
-                            <input type="hidden" name="project_category" :value="form.project_category">
-                        </div> 
+        <!-- Ownership & Current state -->
+        <div id="top-sections">
+            <div class="top-section">
 
-                        <!-- Title -->
-                        <div class="form-field">
-                            <v-text-field 
-                                name="title" 
-                                :label="strings.title+'*'"
-                                :placeholder="strings.title_hint"
-                                v-model="form.title" 
-                                :errors="hasErrors('title')" 
-                                :error-messages="getErrors('title')">
-                            </v-text-field>
-                        </div>
-
-                        <!-- Slogan -->
-                        <div class="form-fields">
-                            <div class="form-field">
-                                <v-text-field
-                                    name="slogan_nl"
-                                    :label="strings.slogan+' ('+strings.nl+')*'"
-                                    :placeholder="strings.slogan_hint"
-                                    v-model="form.slogan.nl"
-                                    :errors="hasErrors('slogan_nl')"
-                                    :error-messages="getErrors('slogan_nl')">
-                                </v-text-field>
-                            </div>
-                            <div class="form-field">
-                                <v-text-field
-                                    name="slogan_en"
-                                    :label="strings.slogan+' ('+strings.en+')*'"
-                                    :placeholder="strings.slogan_hint"
-                                    v-model="form.slogan.en"
-                                    :errors="hasErrors('slogan_en')"
-                                    :error-messages="getErrors('slogan_en')">
-                                </v-text-field>
-                            </div>
-                        </div>
-
-                        <!-- Description -->
-                        <div class="form-fields">
-                            <div class="form-field">
-                                <v-textarea
-                                    name="description_nl" 
-                                    :label="strings.description+' ('+strings.nl+')*'"
-                                    :placeholder="strings.description_hint"
-                                    v-model="form.description.nl" 
-                                    :errors="hasErrors('description_nl')" 
-                                    :error-messages="getErrors('description_nl')">
-                                </v-textarea>
-                            </div>
-                            <div class="form-field">
-                                <v-textarea
-                                    name="description_en" 
-                                    :label="strings.description+' ('+strings.en+')*'"
-                                    :placeholder="strings.description_hint"
-                                    v-model="form.description.en" 
-                                    :errors="hasErrors('description_en')" 
-                                    :error-messages="getErrors('description_en')">
-                                </v-textarea>
-                            </div>
-                        </div>
-
-                        <!-- Tags -->
-                        <div class="form-field">
-                            <v-combobox
-                                multiple
-                                :label="strings.tags"
-                                :placeholder="strings.tags_hint"
-                                v-model="form.tags"
-                                :items="tagOptions"
-                                :errors="hasErrors('tags')"
-                                :error-messages="getErrors('tags')">
-                            </v-combobox>
-                            <input type="hidden" name="tags" :value="encodedTags">
-                        </div>
-
-                        <!-- Has budget -->
-                        <div class="form-field checkbox">
-                            <v-checkbox
-                                hide-details
-                                :label="strings.has_budget"
-                                v-model="form.has_budget">
-                            </v-checkbox>
-                        </div>
-
-                        <!-- Budget -->
-                        <div class="form-field" v-if="form.has_budget">
-                            <v-text-field
-                                prefix="€"
-                                v-model="form.budget"
-                                :label="strings.budget"
-                                :errors="hasErrors('budget')"
-                                :error-messages="getErrors('budget')">
-                            </v-text-field>
-                        </div>
-                        <input type="hidden" name="budget" :value="form.budget">
-
-                        <!-- Has deadline -->
-                        <div class="form-field checkbox">
-                            <v-checkbox
-                                hide-details
-                                :label="strings.has_deadline"
-                                v-model="form.has_deadline">
-                            </v-checkbox>
-                            <input type="hidden" name="has_deadline" :value="form.has_deadline">
-                        </div>
-
-                        <!-- Start & End date -->
-                        <div class="form-fields">
-                            <!-- Starts at -->
-                            <div class="form-field">
-                                <datepicker
-                                    name="starts_at"
-                                    :label="strings.start_date+'*'"
-                                    v-model="form.starts_at"
-                                    :errors="hasErrors('starts_at')"
-                                    :error-messages="getErrors('starts_at')">
-                                </datepicker>
-                            </div>
-                            <!-- Ends at -->
-                            <div class="form-field" v-if="form.has_deadline">
-                                <datepicker
-                                    name="ends_at"
-                                    :label="strings.deadline+'*'"
-                                    v-model="form.ends_at"
-                                    :errors="hasErrors('ends_at')"
-                                    :error-messages="getErrors('ends_at')">
-                                </datepicker>
-                            </div>
-                        </div>
-
-                        <!-- Project code -->
-                        <div class="form-field mb-0 mt-10">
-                            <v-text-field
-                                name="project_code"
-                                :label="strings.project_code"
-                                v-model="form.project_code"
-                                :placeholder="strings.optional"
-                                :errors="hasErrors('project_code')"
-                                :error-messages="getErrors('project_code')">
-                            </v-text-field>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Design -->
-                <h2 class="content-card__title">{{ strings.formatting_title }}</h2>
-                <h3 class="content-card__description">{{ strings.formatting_description }}</h3>
-                <div class="content-card elevation-1 mb">
-                    <div class="content-card__content">
-
-                        <!-- Header image -->
-                        <div class="image-field" :class="{ 'has-errors': hasErrors('header_image') }">
-                            <div class="image-field__label">{{ strings.header_image }}</div>
-                            <div class="image-field__image-wrapper" v-if="hasProject && projectHasImage">
-                                <img class="image-field__image" :src="project.header_image_url">
-                            </div>
-                            <div class="image-field__input">
-                                <input type="file" name="header_image">
-                            </div>
-                            <div class="image-field__errors" v-if="hasErrors('header_image')">
-                                <div class="image-field__error" v-for="(error, ei) in getErrors('header_image')" :key="ei">
-                                    {{ error }}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-            </div>
-            <!-- Right column -->
-            <div id="project-form__right">
-
-                <!-- Relationships card -->
-                <h2 class="content-card__title">{{ strings.status_title }}</h2>
-                <h3 class="content-card__description">{{ strings.status_description }}</h3>
-                <div class="content-card elevation-1 mb">
-                    <div class="content-card__content">
-
-                        <!-- Status -->
-                        <div class="form-field mb-0">
-                            <v-select
-                                :label="strings.status"
-                                :items="statusOptions"
-                                v-model="form.project_status_id"
-                                :errors="hasErrors('project_status_id')"
-                                :error-messages="getErrors('project_status_id')">
-                            </v-select>
-                            <input type="hidden" name="project_status_id" :value="form.project_status_id">
-                        </div>
-
-                        <!-- Phase -->
-                        <div class="form-field mb-0">
-                            <v-combobox
-                                :label="strings.project_phase"
-                                :items="phaseOptions"
-                                v-model="form.project_phase"
-                                :errors="hasErrors('project_phase')"
-                                :error-messages="getErrors('project_phase')">
-                            </v-combobox>
-                            <input type="hidden" name="project_phase" :value="form.project_phase">
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <!-- Administrative -->
+                <!-- Ownership fields -->
                 <h2 class="content-card__title">{{ strings.ownership_title }}</h2>
                 <h3 class="content-card__description">{{ strings.ownership_description }}</h3>
                 <div class="content-card elevation-1 mb">
@@ -274,8 +52,234 @@
                 </div>
 
             </div>
+            <div class="top-section">
+
+                <!-- Current state fields -->
+                <h2 class="content-card__title">{{ strings.status_title }}</h2>
+                <h3 class="content-card__description">{{ strings.status_description }}</h3>
+                <div class="content-card elevation-1 mb">
+                    <div class="content-card__content">
+
+                        <!-- Status -->
+                        <div class="form-field mb-0">
+                            <v-select
+                                :label="strings.status"
+                                :items="statusOptions"
+                                v-model="form.project_status_id"
+                                :errors="hasErrors('project_status_id')"
+                                :error-messages="getErrors('project_status_id')">
+                            </v-select>
+                            <input type="hidden" name="project_status_id" :value="form.project_status_id">
+                        </div>
+
+                        <!-- Phase -->
+                        <div class="form-field mb-0">
+                            <v-combobox
+                                :label="strings.project_phase"
+                                :items="phaseOptions"
+                                v-model="form.project_phase"
+                                :errors="hasErrors('project_phase')"
+                                :error-messages="getErrors('project_phase')">
+                            </v-combobox>
+                            <input type="hidden" name="project_phase" :value="form.project_phase">
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
         </div>
 
+        <!-- General properties -->
+        <h2 class="content-card__title">{{ strings.general_title }}</h2>
+        <h3 class="content-card__description">{{ strings.general_description }}</h3>
+        <div class="content-card elevation-1 mb">
+            <div class="content-card__content">
+
+                <!-- Category -->
+                <div class="form-field">
+                    <v-combobox
+                        :label="strings.category+'*'"
+                        :items="categoryOptions"
+                        v-model="form.project_category"
+                        :errors="hasErrors('project_category')"
+                        :error-messages="getErrors('project_category')">
+                    </v-combobox>
+                    <input type="hidden" name="project_category" :value="form.project_category">
+                </div> 
+
+                <!-- Title -->
+                <div class="form-field">
+                    <v-text-field 
+                        name="title" 
+                        :label="strings.title+'*'"
+                        :placeholder="strings.title_hint"
+                        v-model="form.title" 
+                        :errors="hasErrors('title')" 
+                        :error-messages="getErrors('title')">
+                    </v-text-field>
+                </div>
+
+                <!-- Slogan -->
+                <div class="form-fields">
+                    <div class="form-field">
+                        <v-text-field
+                            name="slogan_nl"
+                            :label="strings.slogan+' ('+strings.nl+')'"
+                            :placeholder="strings.slogan_hint"
+                            v-model="form.slogan.nl"
+                            :errors="hasErrors('slogan_nl')"
+                            :error-messages="getErrors('slogan_nl')">
+                        </v-text-field>
+                    </div>
+                    <div class="form-field">
+                        <v-text-field
+                            name="slogan_en"
+                            :label="strings.slogan+' ('+strings.en+')'"
+                            :placeholder="strings.slogan_hint"
+                            v-model="form.slogan.en"
+                            :errors="hasErrors('slogan_en')"
+                            :error-messages="getErrors('slogan_en')">
+                        </v-text-field>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-fields">
+                    <div class="form-field">
+                        <v-textarea
+                            name="description_nl" 
+                            :label="strings.description+' ('+strings.nl+')*'"
+                            :placeholder="strings.description_hint"
+                            v-model="form.description.nl" 
+                            :errors="hasErrors('description_nl')" 
+                            :error-messages="getErrors('description_nl')">
+                        </v-textarea>
+                    </div>
+                    <div class="form-field">
+                        <v-textarea
+                            name="description_en" 
+                            :label="strings.description+' ('+strings.en+')*'"
+                            :placeholder="strings.description_hint"
+                            v-model="form.description.en" 
+                            :errors="hasErrors('description_en')" 
+                            :error-messages="getErrors('description_en')">
+                        </v-textarea>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="form-field">
+                    <v-combobox
+                        multiple
+                        :label="strings.tags"
+                        :placeholder="strings.tags_hint"
+                        v-model="form.tags"
+                        :items="tagOptions"
+                        :errors="hasErrors('tags')"
+                        :error-messages="getErrors('tags')">
+                    </v-combobox>
+                    <input type="hidden" name="tags" :value="encodedTags">
+                </div>
+
+                <!-- Has budget -->
+                <div class="form-field checkbox">
+                    <v-checkbox
+                        hide-details
+                        :label="strings.has_budget"
+                        v-model="form.has_budget">
+                    </v-checkbox>
+                </div>
+
+                <!-- Budget -->
+                <div class="form-field" v-if="form.has_budget">
+                    <v-text-field
+                        prefix="€"
+                        v-model="form.budget"
+                        :label="strings.budget"
+                        :errors="hasErrors('budget')"
+                        :error-messages="getErrors('budget')">
+                    </v-text-field>
+                </div>
+                <input type="hidden" name="budget" :value="form.budget">
+
+                <!-- Has deadline -->
+                <div class="form-field checkbox">
+                    <v-checkbox
+                        hide-details
+                        :label="strings.has_deadline"
+                        v-model="form.has_deadline">
+                    </v-checkbox>
+                    <input type="hidden" name="has_deadline" :value="form.has_deadline">
+                </div>
+
+                <!-- Start & End date -->
+                <div class="form-fields">
+                    <!-- Starts at -->
+                    <div class="form-field">
+                        <datepicker
+                            name="starts_at"
+                            :label="strings.start_date+'*'"
+                            v-model="form.starts_at"
+                            :errors="hasErrors('starts_at')"
+                            :error-messages="getErrors('starts_at')">
+                        </datepicker>
+                    </div>
+                    <!-- Ends at -->
+                    <div class="form-field" v-if="form.has_deadline">
+                        <datepicker
+                            name="ends_at"
+                            :label="strings.deadline+'*'"
+                            v-model="form.ends_at"
+                            :errors="hasErrors('ends_at')"
+                            :error-messages="getErrors('ends_at')">
+                        </datepicker>
+                    </div>
+                </div>
+
+                <!-- Project code -->
+                <div class="form-field mb-0 mt-10">
+                    <v-text-field
+                        name="project_code"
+                        :label="strings.project_code"
+                        v-model="form.project_code"
+                        :placeholder="strings.optional"
+                        :errors="hasErrors('project_code')"
+                        :error-messages="getErrors('project_code')">
+                    </v-text-field>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Design -->
+        <h2 class="content-card__title">{{ strings.formatting_title }}</h2>
+        <h3 class="content-card__description">{{ strings.formatting_description }}</h3>
+        <div class="content-card elevation-1 mb">
+            <div class="content-card__content">
+
+                <!-- Header image -->
+                <div class="image-field" :class="{ 'has-errors': hasErrors('header_image') }">
+                    <div class="image-field__label">{{ strings.header_image }}</div>
+                    <div class="image-field__image-wrapper" v-if="hasProject && projectHasImage">
+                        <img class="image-field__image" :src="project.header_image_url">
+                    </div>
+                    <div class="image-field__image-wrapper" v-if="!hasProject && defaultHeaderImageUrl !== undefined && defaultHeaderImageUrl !== null">
+                        <img class="image-field__image" :src="defaultHeaderImageUrl">
+                    </div>
+                    <div class="image-field__input">
+                        <input type="file" name="header_image">
+                    </div>
+                    <div class="image-field__errors" v-if="hasErrors('header_image')">
+                        <div class="image-field__error" v-for="(error, ei) in getErrors('header_image')" :key="ei">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
         <!-- Controls -->
         <div class="page-controls">
             <div class="page-controls__left">
@@ -315,6 +319,7 @@
             "createResourceApiEndpoint",
             "updateResourceApiEndpoint",
             "deleteResourceApiEndpoint",
+            "defaultHeaderImageUrl",
         ],
         data: () => ({
             tag: "[project-form]",
@@ -347,7 +352,7 @@
                 has_deadline: false,
                 has_budget: false,
                 budget: 0,
-            }
+            },
         }),
         computed: {
             hasProject() {
@@ -440,7 +445,7 @@
                 if (this.oldInput !== undefined && this.oldInput !== null) {
                     if (this.oldInput.project_phase_id !== null) this.form.project_phase = this.oldInput.project_phase;
                     if (this.oldInput.project_status_id !== null) this.form.project_status_id = parseInt(this.oldInput.project_status_id);
-                    if (this.oldInput.project_category_id !== null) this.form.project_category_id = this.oldInput.project_category_id;
+                    if (this.oldInput.project_category !== null) this.form.project_category = this.oldInput.project_category;
                     if (this.oldInput.ministry_id !== null) this.form.ministry_id = parseInt(this.oldInput.ministry_id);
                     if (this.oldInput.organization_id !== null) this.form.organization_id = parseInt(this.oldInput.organization_id);
                     if (this.oldInput.department !== null) this.form.department = this.oldInput.department;
@@ -543,11 +548,23 @@
         },
         mounted() {
             this.initialize();
-        }
+        },
     }
 </script>
 
 <style lang="scss">
+    #project-form__wrapper {
+        #top-sections {
+            display: flex;
+            flex-direction: row;
+            margin: 0 -25px 0 -25px;
+            .top-section {
+                flex: 1;
+                padding: 0 25px;
+                box-sizing: border-box;
+            }
+        }
+    }
     #project-form {
         display: flex;
         flex-direction: row;
@@ -556,7 +573,7 @@
         }
         #project-form__right {
             flex: 0 0 400px;
-            margin: 0 0 0 30px;
+            margin: 0 0 0 50px;
             .form-field {
                 width: 350px;
             }

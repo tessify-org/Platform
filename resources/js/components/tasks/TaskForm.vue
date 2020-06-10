@@ -1,7 +1,7 @@
 <template>
     <div id="task-form__wrapper">
 
-        <!-- Parent sections -->
+        <!-- Parent sections (ownership & parent project) -->
         <div id="parent-sections">
             <div class="parent-section">
 
