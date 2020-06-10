@@ -571,6 +571,15 @@ $rijkshuisstijl-blue-dark: #0d3764;
     }
     &.very-narrow {
         height: 200px;
+        #page-header__bg-illustration {
+            #bg-illustration__wrapper {
+                #bg-illustration {
+                    top: 20px;
+                    width: 180px;
+                    height: 180px;
+                }
+            }
+        }
     }
     #page-header__bg {
         top: 0;
@@ -609,8 +618,8 @@ $rijkshuisstijl-blue-dark: #0d3764;
                 right: 0;
                 top: 20px;
                 z-index: 3;
-                width: 180px;
-                height: 180px;
+                width: 280px;
+                height: 280px;
                 position: absolute;
                 background-size: contain;
                 background-repeat: no-repeat;
