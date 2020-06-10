@@ -343,14 +343,19 @@
             initializeData() {
                 if (this.task !== undefined && this.task !== null && this.task.skills !== undefined && this.task.skills !== null && this.task.skills.length > 0) {
                     for (let i = 0; i < this.task.skills.length; i++) {
-                        this.mutableSkills.push({
+                        let data = {
                             skill: this.task.skills[i].name[this.locale],
                             description: {
-                                nl: this.task.skills[i].pivot.description.nl,
-                                en: this.task.skills[i].pivot.description.en,
+                                nl: "",
+                                en: "",
                             },
                             required_mastery: this.task.skills[i].pivot.required_mastery,
-                        });
+                        };
+                        if (this.task.skills[i].pivot !== undefined && this.task.skills[i].pivot.description !== undefined && this.task.skills[i].pivot.description !== null) {
+                            data.description.nl = this.task.skills[i].pivot.description.nl;
+                            data.description.en = this.task.skills[i].pivot.description.en;
+                        }
+                        this.mutableSkills.push(data);
                     }
                 }
                 if (this.oldInput !== undefined && this.oldInput !== null) {

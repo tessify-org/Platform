@@ -67,7 +67,7 @@ class Group extends Model
     {
         return $this->hasMany(GroupMemberApplication::class);
     }
-
+    
     public function tags()
     {
         return $this->morphToMany(Tag::class, "taggable");
@@ -81,5 +81,10 @@ class Group extends Model
     public function forum()
     {
         return $this->morphOne(Forum::class, "forumable");
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

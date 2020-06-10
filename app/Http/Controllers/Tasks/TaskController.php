@@ -6,6 +6,7 @@ use Auth;
 use Tags;
 use Users;
 use Tasks;
+use Groups;
 use Skills;
 use Comments;
 use ReviewRequests;
@@ -56,7 +57,7 @@ class TaskController extends Controller
             ]),
         ]);
     }
-    
+
     public function getView($slug)
     {
         // Grab the task we want to view
@@ -155,11 +156,12 @@ class TaskController extends Controller
             "ministries" => Ministries::getAll(),
             "organizations" => Organizations::getAll(),
             "departments" => OrganizationDepartments::getAll(),
+            "groups" => Groups::getMyGroups(),
             "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
-                "ministry_id" => old("ministry_id"),
-                "organization_id" => old("organization_id"),
+                "group" => old("group"),
+                "organization" => old("organization"),
                 "department" => old("department"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category" => old("task_category"),
@@ -177,6 +179,8 @@ class TaskController extends Controller
                 "has_deadline" => old("has_deadline"),
             ]),
             "strings" => collect([
+                "parent_project_title" => __("tasks.form_parent_project_title"),
+                "parent_project_description" => __("tasks.form_parent_project_description"),
                 "general_title" => __("tasks.form_general_title"),
                 "general_description" => __("tasks.form_general_description"),
                 "ownership_title" => __("tasks.form_ownership_title"),
@@ -185,6 +189,12 @@ class TaskController extends Controller
                 "formatting_description" => __("tasks.form_formatting_description"),
                 "skills_title" => __("tasks.form_skills_title"),
                 "skills_description" => __("tasks.form_skills_description"),
+                "parent_type" => __("tasks.form_parent_type"),
+                "parent_type_me" => __("tasks.form_parent_type_me"),
+                "parent_type_organization" => __("tasks.form_parent_type_organization"),
+                "parent_type_group" => __("tasks.form_parent_type_group"),
+                "group" => __("tasks.form_group"),
+                "group_no_groups" => __("tasks.form_group_no_groups"),
                 "header_image" => __("tasks.form_header_image"),
                 "has_deadline" => __("tasks.form_has_deadline"),
                 "ends_at" => __("tasks.form_ends_at"),
@@ -279,11 +289,12 @@ class TaskController extends Controller
             "ministries" => Ministries::getAll(),
             "organizations" => Organizations::getAll(),
             "departments" => OrganizationDepartments::getAll(),
+            "groups" => Groups::getMyGroups(),
             "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
-                "ministry_id" => old("ministry_id"),
-                "organization_id" => old("organization_id"),
+                "group" => old("group"),
+                "organization" => old("organization"),
                 "department" => old("department"),
                 "task_status_id" => old("task_status_id"),
                 "task_seniority_id" => old("task_seniority_id"),
@@ -303,6 +314,8 @@ class TaskController extends Controller
                 "has_deadline" => old("has_deadline"),
             ]),
             "strings" => collect([
+                "parent_project_title" => __("tasks.form_parent_project_title"),
+                "parent_project_description" => __("tasks.form_parent_project_description"),
                 "general_title" => __("tasks.form_general_title"),
                 "general_description" => __("tasks.form_general_description"),
                 "ownership_title" => __("tasks.form_ownership_title"),
@@ -311,6 +324,12 @@ class TaskController extends Controller
                 "formatting_description" => __("tasks.form_formatting_description"),
                 "skills_title" => __("tasks.form_skills_title"),
                 "skills_description" => __("tasks.form_skills_description"),
+                "parent_type" => __("tasks.form_parent_type"),
+                "parent_type_me" => __("tasks.form_parent_type_me"),
+                "parent_type_organization" => __("tasks.form_parent_type_organization"),
+                "parent_type_group" => __("tasks.form_parent_type_group"),
+                "group" => __("tasks.form_group"),
+                "group_no_groups" => __("tasks.form_group_no_groups"),
                 "header_image" => __("tasks.form_header_image"),
                 "has_deadline" => __("tasks.form_has_deadline"),
                 "ends_at" => __("tasks.form_ends_at"),

@@ -6,11 +6,26 @@
 
 @section("content")
     <div id="team-member-application">
+
+        <!-- Page header -->
+        <div id="page-header" class="very-narrow">
+            <div id="page-header__bg"></div>
+            <div id="page-header__bg-overlay"></div>
+            <div id="page-header__bg-illustration">
+                <div id="bg-illustration__wrapper">
+                    <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/throw_away.svg') }})"></div>
+                </div>
+            </div>
+            <div id="page-header__content" class="align-left">
+                <div id="page-header__content-wrapper">
+                    <h1 id="page-header__title" class="no-margin">@lang("tasks.delete_title")</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
         <div class="content-section__wrapper">
             <div class="content-section">
-
-                <!-- Title -->
-                <h1 class="page-title centered">@lang("tasks.delete_title")</h1>
 
                 <!-- Feedback -->
                 @include("partials.feedback")
@@ -41,5 +56,6 @@
 
             </div>
         </div>
+
     </div>
 @stop

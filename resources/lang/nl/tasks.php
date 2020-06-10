@@ -219,10 +219,12 @@ return [
 
     // Create & Edit form
 
+    "form_parent_project_title" => "Project",
+    "form_parent_project_description" => "Is dit werkpakket alleenstaand of ondergeschikt aan een project?",
     "form_general_title" => "Algemene informatie",
     "form_general_description" => "Beschrijf het werkpakket zo duidelijk mogelijk.",
     "form_ownership_title" => "Eigenaarschap",
-    "form_ownership_description" => "Welke entiteiten zijn eigenaar van dit werkpakket?",
+    "form_ownership_description" => "Welke entiteit is eigenaar van dit werkpakket?",
     "form_skills_title" => "Vereiste vaardigheden",
     "form_skills_description" => "Welke vaardigheden heeft iemand nodig om dit werkpakket te kunnen uitvoeren?",
     "form_ministry" => "Ministerie",
@@ -237,7 +239,13 @@ return [
     "form_ends_at" => "Einddatum",
     "form_project" => "Project",
     "form_no_projects" => "Geen projecten gevonden",
-    "form_dont_associate_project" => "Niet associeren met een project",
+    "form_dont_associate_project" => "Dit werkpakket is onafhankelijk",
+    "form_parent_type" => "Dit werkpakket behoort toe tot",
+    "form_parent_type_me" => "Mij (en heeft dus geen entiteit erboven)",
+    "form_parent_type_organization" => "Een organisatie",
+    "form_parent_type_group" => "Een groep",
+    "form_group" => "Groep waar deze taak toe behoort",
+    "form_group_no_groups" => "Je bent nog geen lid van een groep",
 
     "title_nl_required" => "Nederlandse titel is verplicht",
     "title_en_required" => "Engelse titel is verplicht",

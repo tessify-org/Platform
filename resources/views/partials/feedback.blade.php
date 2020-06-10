@@ -8,7 +8,7 @@
             </div>
         @endforeach
     </div>
-
+    
     <!-- Forget the message so it disappears (on the next request) after being shown -->
     {{ session()->forget('flash_notification') }}
 

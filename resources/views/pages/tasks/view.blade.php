@@ -5,19 +5,35 @@
 @stop
 
 @section("content")
+
+    <!-- Page header -->
+    <div id="page-header" class="narrow">
+        <div id="page-header__bg" style="background-image: url({{ asset($task->header_image_url) }})"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__content">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title" class="smaller" style="margin-left: -5px;">{{ $task->title }}</h1>
+                @if ($task->project)
+                    <h2 id="page-header__subtitle" class="no-margin">
+                        {!! __("tasks.view_part_of_project", ["title" => $task->project->title]) !!}
+                    </h2>
+                @endif
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
 
             <!-- Feedback -->
-            @include("partials.feedback")
+            @include("partials.feedback", ["extraMargin" => true])
 
             <!-- Task page -->
             <div id="view-task">
                 <aside id="view-task__sidebar">
 
-                    @include("partials.tasks.view-sidebar", [
-                        "task" => $task,
-                    ])
+                    @include("partials.tasks.view-sidebar", ["task" => $task])
 
                 </aside>
                 <main id="view-task__content">
@@ -53,20 +69,6 @@
                     <!-- Task information -->
                     <div id="task" class="elevation-2">
 
-                        <!-- Header -->
-                        <div id="task-header">
-                            <div id="task-header__bg" style="background-image: url({{ asset($task->header_image_url) }})"></div>
-                            <div id="task-header__bg-overlay"></div>
-                            <div id="task-header__text">
-                                <!-- Title -->
-                                <h1 id="task-title">@lang("tasks.view_title")</h1>
-                                <!-- Project title -->
-                                @if ($task->project)
-                                    <h2 id="task-project">{!! __("tasks.view_part_of_project", ["title" => $task->project->title]) !!}</h2>
-                                @endif
-                            </div>
-                        </div>
-
                         <!-- Content -->
                         <div id="task-content">
                         
@@ -74,9 +76,6 @@
                             <div id="task-content__header">
                                 <div id="task-content__header-left">
                                 
-                                    <!-- Title -->
-                                    <h1 id="task-title">{{ $task->title }}</h1>
-
                                     <!-- Tags -->
                                     @if (count($task->tags))
                                         <div id="task-tags" class="tags">
@@ -354,4 +353,5 @@
 
         </div>
     </div>
+
 @stop

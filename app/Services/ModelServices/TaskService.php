@@ -8,6 +8,7 @@ use Tags;
 use Users;
 use Dates;
 use Skills;
+use Groups;
 use Reviews;
 use Comments;
 use Projects;
@@ -68,6 +69,7 @@ class TaskService implements ModelServiceContract
         $instance->ministry = Ministries::findForTask($instance);
         $instance->organization = Organizations::findForTask($instance);
         $instance->department = OrganizationDepartments::findForTask($instance);
+        $instance->group = Groups::findForTask($instance);
         $instance->status = TaskStatuses::findForTask($instance);
         $instance->completed = $this->hasBeenCompleted($instance);
         $instance->category = TaskCategories::findForTask($instance);
@@ -284,29 +286,41 @@ class TaskService implements ModelServiceContract
         $category = TaskCategories::findOrCreateByName($request->task_category);
         
         // Process ownerships relationships
-        if ($request->has("ministry_id") && intval($request->ministry_id) > 0) {
-            $task->ministry_id = $request->ministry_id;
-            $organization = Organizations::find($request->organization_id);
-            if ($request->has("organization_id") && intval($request->organization_id) > 0 && $organization) {
-                $task->organization_id = $request->organization_id;
-                if ($request->has("department") && $request->department != "") {
-                    $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
-                    if ($department) {
-                        $task->organization_department_id = $department->id;
-                    } else {
-                        $task->organization_department_id = null;
-                    }
-                } else {
-                    $task->organization_department_id = null;
-                }
-            } else {
-                $task->organization_id = null;
-                $task->organization_department_id = null;
-            }
-        } else {
+        if (is_null($request->parent_type))
+        {
+            $task->group_id = null;
             $task->ministry_id = null;
             $task->organization_id = null;
             $task->organization_department_id = null;
+        }
+        else if ($request->parent_type == "organization")
+        {
+            $task->group_id = null;
+
+            $organization = Organizations::findByName($request->organization);
+            if ($organization)
+            {
+                $task->ministry_id = $organization->ministry_id;
+                $task->organization_id = $organization->id;
+
+                $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                if ($department)
+                {
+                    $task->organization_department_id = $department->id;
+                }
+            }
+        }
+        else if ($request->parent_type == "group")
+        {
+            $task->ministry_id = null;
+            $task->organization_id = null;
+            $task->organization_department_id = null;
+
+            $group = Groups::findByName($request->group);
+            if ($group)
+            {
+                $task->group_id = $group->id;
+            }
         }
 
         // Update the task's properties

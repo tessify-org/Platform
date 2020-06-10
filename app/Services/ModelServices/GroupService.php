@@ -9,6 +9,7 @@ use GroupRoles;
 use GroupMembers;
 use GroupMemberApplications;
 use App\Models\User;
+use App\Models\Task;
 use App\Models\Group;
 use App\Models\GroupRole;
 use App\Models\GroupMember;
@@ -55,6 +56,32 @@ class GroupService implements ModelServiceContract
         return $instance;
     }
     
+    public function findByName($name)
+    {
+        foreach ($this->getAll() as $group)
+        {
+            if ($group->name == $name)
+            {
+                return $group;
+            }
+        }
+
+        return false;
+    }
+
+    public function findPreloadedByName($name)
+    {
+        foreach ($this->getAllPreloaded() as $group)
+        {
+            if ($group->name == $name)
+            {
+                return $group;
+            }
+        }
+
+        return false;
+    }
+
     public function findBySlug($slug)
     {
         foreach ($this->getAll() as $group)
@@ -76,6 +103,16 @@ class GroupService implements ModelServiceContract
             {
                 return $group;
             }
+        }
+
+        return false;
+    }
+
+    public function findForTask(Task $task)
+    {
+        if (!is_null($task->group_id) && $task->group_id > 0)
+        {
+            return $this->find($task->group_id);
         }
 
         return false;

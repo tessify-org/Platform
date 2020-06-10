@@ -320,7 +320,6 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            justify-content: center;
             margin: 0 -15px -30px -15px;
             .project-wrapper {
                 flex: 0 0 33.33%;

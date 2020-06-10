@@ -607,10 +607,10 @@ $rijkshuisstijl-blue-dark: #0d3764;
             position: relative;
             #bg-illustration {
                 right: 0;
-                top: 25px;
+                top: 20px;
                 z-index: 3;
-                width: 250px;
-                height: 250px;
+                width: 180px;
+                height: 180px;
                 position: absolute;
                 background-size: contain;
                 background-repeat: no-repeat;
@@ -653,6 +653,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
             text-align: center;
             &.no-margin {
                 margin: 0;
+            }
+            &.smaller {
+                font-size: 3.5em;
             }
         }
         #page-header__subtitle {

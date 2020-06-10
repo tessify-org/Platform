@@ -20,6 +20,7 @@ class Task extends Model
     protected $fillable = [
         "author_id",
         "project_id",
+        "group_id",
         "ministry_id",
         "organization_id",
         "organization_department_id",
@@ -60,10 +61,20 @@ class Task extends Model
     //
     // Relationships
     //
-
+    
     public function author()
     {
         return $this->belongsTo(User::class, "author_id", "id");
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+    
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 
     public function ministry()
@@ -81,11 +92,6 @@ class Task extends Model
         return $this->belongsTo(OrganizationDepartment::class);
     }
 
-    public function project()
-    {
-        return $this->belongsTo(Project::class);
-    }
-    
     public function status()
     {
         return $this->belongsTo(TaskStatus::class, "task_status_id", "id");

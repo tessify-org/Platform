@@ -220,10 +220,12 @@ return [
 
     // Create & Edit form
 
+    "form_parent_project_title" => "Project",
+    "form_parent_project_description" => "Is this a standalone task or does it belong to a project?",
     "form_general_title" => "General information",
     "form_general_description" => "Describe the task as best as you can.",
     "form_ownership_title" => "Ownership",
-    "form_ownership_description" => "What entities own this task?",
+    "form_ownership_description" => "What entity owns this task?",
     "form_ministry" => "Ministry",
     "form_no_ministries" => "No ministries found",
     "form_organization" => "Organization",
@@ -236,7 +238,13 @@ return [
     "form_ends_at" => "End date",
     "form_project" => "Project",
     "form_no_projects" => "No projects found",
-    "form_dont_associate_project" => "Don't associate with a project",
+    "form_dont_associate_project" => "This task is not associated with a project",
+    "form_parent_type" => "This task belongs to",
+    "form_parent_type_me" => "Me (and does not have any parent entity)",
+    "form_parent_type_organization" => "An organization",
+    "form_parent_type_group" => "A group",
+    "form_group" => "Group this task belongs to",
+    "form_group_no_groups" => "You are not a member of any group yet.",
 
     "title_nl_required" => "Dutch title is required",
     "title_en_required" => "English title is required",

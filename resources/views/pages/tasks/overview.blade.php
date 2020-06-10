@@ -36,8 +36,9 @@
             <div class="content-section pt50">
                 
                 <!-- Feedback -->
-                @include("partials.feedback", ["extraMargin" => true])
+                @include("partials.feedback", ["extraMargin" => true, "moveUp" => true])
                 
+                <!-- Tasks -->
                 <task-overview
                     locale="{{ app()->getLocale() }}"
                     :tasks="{{ $tasks->toJson() }}"
@@ -48,8 +49,7 @@
                     :strings="{{ $strings->toJson() }}"
                     no-records-image-url="{{ asset('storage/images/undraw/void.svg') }}">
                 </task-overview>
-
-
+                
                 <!-- Dashboard columns
                 <div id="task-dashboard">
                     <div id="task-dashboard__sidebar">

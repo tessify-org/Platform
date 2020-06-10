@@ -26,8 +26,8 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             "project_id" => "nullable|exists:projects,id",
-            "ministry_id" => "nullable|exists:ministries,id",
-            "organization_id" => "nullable|exists:organizations,id",
+            "group" => "nullable",
+            "organization" => "nullable",
             "department" => "nullable",
             "task_category" => "required",
             "task_status_id" => "required|exists:task_statuses,id",

@@ -2522,10 +2522,10 @@ input[type=number] {
 
 #page-header #page-header__bg-illustration #bg-illustration__wrapper #bg-illustration {
   right: 0;
-  top: 25px;
+  top: 20px;
   z-index: 3;
-  width: 250px;
-  height: 250px;
+  width: 180px;
+  height: 180px;
   position: absolute;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2568,6 +2568,10 @@ input[type=number] {
 
 #page-header #page-header__content #page-header__title.no-margin {
   margin: 0;
+}
+
+#page-header #page-header__content #page-header__title.smaller {
+  font-size: 3.5em;
 }
 
 #page-header #page-header__content #page-header__subtitle {

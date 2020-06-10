@@ -6,7 +6,7 @@
             <div id="header-bg" :style="{ backgroundImage: 'url('+task.header_image_url+')' }"></div>
             <div id="header-bg-overlay"></div>
             <div id="header-text">
-                <h2 id="header-text__title">{{ task.title }}</h2>
+                <h2 id="header-text__title">{{ task.title[locale] }}</h2>
             </div>
         </div>
         
@@ -56,12 +56,13 @@
             "errors",
             "oldInput",
             "backHref",
+            "locale",
         ],
         data: () => ({
             tag: "[task-abandon-form]",
             form: {
                 reason: "",
-            }
+            },
         }),
         methods: {
             initialize() {
@@ -71,6 +72,7 @@
                 console.log(this.tag+" errors: ", this.errors);
                 console.log(this.tag+" back href: ", this.backHref);
                 console.log(this.tag+" old input: ", this.oldInput);
+                console.log(this.tag+" locale: ", this.locale);
                 this.initializeData();
             },
             initializeData() {
@@ -136,13 +138,17 @@
                 z-index: 3;
                 width: 100%;
                 height: 100%;
+                padding: 25px;
                 display: flex;
                 position: absolute;
+                align-items: center;
                 box-sizing: border-box;
                 flex-direction: column;
-                padding: 25px 25px 25px 25px;
+                justify-content: center;
                 #header-text__title {
+                    font-size: 2em;
                     text-align: center;
+                    line-height: 1.2em;
                 }
             }
         }
