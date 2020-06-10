@@ -1,3 +1,36 @@
+<!-- Status -->
+<div id="task-status__wrapper">
+    <div id="task-status__title">@lang("tasks.view_status")</div>
+    @if ($task->status->name == "completed")
+        <div id="task-status" class="elevation-1 completed">
+            <div id="task-status__icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div id="task-status__text">
+                {{ $task->status->label }}
+            </div>
+        </div>
+    @elseif ($task->status->name == "in_progress")
+        <div id="task-status" class="elevation-1 in_progress">
+            <div id="task-status__icon">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div id="task-status__text">
+                {{ $task->status->label }}
+            </div>
+        </div>
+    @elseif ($task->status->name == "open")
+        <div id="task-status" class="elevation-1 open">
+            <div id="task-status__icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+            <div id="task-status__text">
+                {{ $task->status->label }}
+            </div>
+        </div>
+    @endif
+</div>
+
 <!-- Ownership -->
 <div id="task-ownership">
     <div id="task-ownership__title">@lang("tasks.view_ownership")</div>
@@ -39,39 +72,6 @@
     </div>
 </div>
 
-<!-- Status -->
-<div id="task-status__wrapper">
-    <div id="task-status__title">@lang("tasks.view_status")</div>
-    @if ($task->status->name == "completed")
-        <div id="task-status" class="elevation-1 completed">
-            <div id="task-status__icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <div id="task-status__text">
-                {{ $task->status->label }}
-            </div>
-        </div>
-    @elseif ($task->status->name == "in_progress")
-        <div id="task-status" class="elevation-1 in_progress">
-            <div id="task-status__icon">
-                <i class="fas fa-tasks"></i>
-            </div>
-            <div id="task-status__text">
-                {{ $task->status->label }}
-            </div>
-        </div>
-    @elseif ($task->status->name == "open")
-        <div id="task-status" class="elevation-1 open">
-            <div id="task-status__icon">
-                <i class="fas fa-box-open"></i>
-            </div>
-            <div id="task-status__text">
-                {{ $task->status->label }}
-            </div>
-        </div>
-    @endif
-</div>
-
 <!-- Signed up users -->
 <div id="task-users">
     <div id="task-users__title">@lang("tasks.view_assigned_users")</div>
@@ -98,7 +98,7 @@
     <div id="task-links__title">@lang("tasks.view_links")</div>
     <div id="task-links__links" class="elevation-1">
         <!-- Reviews -->
-        <a class="task-link @if (isset($page) && $page === 'reviews') selected @endif" href="{{ route('tasks.reviews', $task->slug) }}">
+        <a class="task-link @if (isset($page) && $page === 'reviews') selected @endif" href="{{ route('tasks.reviews', $task->slug) }}" v-ripple>
             <span class="task-link__icon">
                 <i class="fas fa-scroll"></i>
             </span>
@@ -107,7 +107,7 @@
             </span>
         </a>
         <!-- Comments -->
-        <a class="task-link @if (isset($page) && $page == 'comments') selected @endif" href="{{ route('tasks.comments', $task->slug) }}">
+        <a class="task-link @if (isset($page) && $page == 'comments') selected @endif" href="{{ route('tasks.comments', $task->slug) }}" v-ripple>
             <span class="task-link__icon">
                 <i class="far fa-comments"></i>
             </span>
@@ -116,7 +116,7 @@
             </span>
         </a>
         <!-- Progress reports -->
-        <a class="task-link @if (isset($page) && $page === 'progress-reports') selected @endif" href="{{ route('tasks.progress-reports', $task->slug) }}">
+        <a class="task-link @if (isset($page) && $page === 'progress-reports') selected @endif" href="{{ route('tasks.progress-reports', $task->slug) }}" v-ripple>
             <span class="task-link__icon">
                 <i class="fas fa-tasks"></i>
             </span>
@@ -132,5 +132,66 @@
             </span>
         </a>
         -->
+    </div>
+</div>
+
+<!-- Actions -->
+<div id="task-actions">
+    <div id="task-actions__title">@lang("tasks.view_actions")</div>
+    <div id="task-actions__list" class="elevation-1">
+        <!-- Invite a friend -->
+        <task-invite-button
+            :task="{{ $task->toJson() }}"
+            :users="{{ $users->toJson() }}"
+            :strings="{{ $inviteButtonStrings->toJson() }}"
+            endpoint="{{ route('tasks.invite', $task->slug) }}"
+            border-bottom>
+        </task-invite-button>
+        <!-- Ask question -->
+        <task-ask-question-button
+            :task="{{ $task->toJson() }}"
+            :users="{{ $users->toJson() }}"
+            :strings="{{ $askQuestionStrings->toJson() }}"
+            endpoint="{{ route('tasks.ask-question.post', $task->slug) }}">
+        </task-ask-question-button>
+        <!-- Leave -->
+        @if ($task->assigned_to_user)
+            <a class="task-action leave-action" href="{{ route('tasks.abandon', $task->slug) }}" v-ripple>
+                <span class="task-action__icon">
+                    <i class="fas fa-door-open"></i>
+                </span>
+                <span class="task-action__text">
+                    @lang("tasks.view_leave")
+                </span>
+            </a>
+        @endif
+        <!-- Manage task -->
+        @canany(["update", "delete"], $task)
+            <div class="form-controls__left">
+                <!-- Update -->
+                @can("update", $task)
+                    <a class="task-action update-action" href="{{ route('tasks.edit', ['slug' => $task->slug]) }}" v-ripple>
+                        <span class="task-action__icon">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="task-action__text">
+                            @lang("general.edit")
+                        </span>
+                    </a>
+                @endcan
+                <!-- Delete -->
+                @can("delete", $task)
+                    <a class="task-action delete-action" href="{{ route('tasks.delete', ['slug' => $task->slug]) }}" v-ripple>
+                        <span class="task-action__icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                        <span class="task-action__text">
+                            @lang("general.delete")
+                        </span>
+                    </a>
+                @endcan
+            </div>
+        @endcanany
+        
     </div>
 </div>

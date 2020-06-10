@@ -2,9 +2,14 @@
     <div id="task-invite-button__wrapper">
 
         <!-- Invite button -->
-        <v-btn block small depressed @click="onClickButton">
-            {{ strings.button }}
-        </v-btn>
+        <div id="task-invite-button" :class="{ 'border-bottom': hasBorderBottom, 'border-radius-bottom': isStandalone }" @click="onClickButton" v-ripple>
+            <div id="task-invite-button__icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <div id="task-invite-button__text">
+                {{ strings.button }}
+            </div>
+        </div>
         
         <!-- Dialog -->
         <v-dialog v-model="dialog.show" width="500">
@@ -59,6 +64,8 @@
             "users",
             "endpoint",
             "strings",
+            "standalone",
+            "borderBottom",
         ],
         data: () => ({
             tag: "[task-invite-button]",
@@ -74,6 +81,12 @@
         computed: {
             confirmDisabled() {
                 return this.dialog.form.user_slug === "";
+            },
+            isStandalone() {
+                return this.standalone !== undefined;
+            },
+            hasBorderBottom() {
+                return this.borderBottom !== undefined;
             },
         },
         methods: {
@@ -114,7 +127,34 @@
 <style lang="scss">
     #task-invite-button__wrapper {
         #task-invite-button {
-
+            display: flex;
+            color: #000000;
+            padding: 10px 15px;
+            transition: all .3s;
+            align-items: center;
+            flex-direction: row;
+            text-decoration: none;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            &.border-bottom {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            &.border-radius-bottom {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+            &:hover {
+                color: #0a64eb;
+                cursor: pointer;
+            }
+            #task-invite-button__icon {
+                flex: 0 0 30px;
+            }
+            #task-invite-button__text {
+                flex: 1;
+            }
         }
     }
 </style>

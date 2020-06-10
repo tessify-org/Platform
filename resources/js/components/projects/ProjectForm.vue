@@ -257,7 +257,7 @@
         <h3 class="content-card__description">{{ strings.formatting_description }}</h3>
         <div class="content-card elevation-1 mb">
             <div class="content-card__content">
-
+                
                 <!-- Header image -->
                 <div class="image-field" :class="{ 'has-errors': hasErrors('header_image') }">
                     <div class="image-field__label">{{ strings.header_image }}</div>

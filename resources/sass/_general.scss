@@ -581,6 +581,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
             }
         }
     }
+    &.white-border-bottom {
+        border-bottom: 2px solid #ffffff;
+    }
     #page-header__bg {
         top: 0;
         left: 0;
@@ -1358,6 +1361,17 @@ i {
         margin-top: 30px;
     }
 }
+.content-card__small-title {
+    font-size: 1em;
+    font-weight: 300;
+    margin: 0 0 5px 0;
+    &.align-right {
+        text-align: right;
+    }
+    &.mt {
+        margin-top: 30px;
+    }
+}
 .content-card__description {
     font-size: 1em;
     font-weight: 300;
@@ -1514,8 +1528,9 @@ i {
     }
 }
 
-
-
+//
+// Tags
+//
 
 .tags {
     display: flex;
@@ -1526,11 +1541,16 @@ i {
         padding: 0 5px 10px 5px;
         box-sizing: border-box;
         .tag {
-            color: #fff;
-            font-size: .8em;
+            color: #000;
+            font-size: .9em;
             padding: 2px 5px;
             border-radius: 3px;
-            background-color: #123552;
+            transition: all .3s;
+            text-decoration: none;
+            background-color: hsl(0, 0%, 95%);
+            &:hover {
+                background-color: hsl(0, 0%, 85%);
+            }
         }
     }
 }

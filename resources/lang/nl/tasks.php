@@ -64,15 +64,16 @@ return [
     "view_join" => "Schrijf mij in!",
     "view_leave" => "Uitschrijven",
 
-    "view_awaiting_progress_title" => "Progressie rapporteren",
-    "view_awaiting_progress_text" => "Heb je progressie gemaakt?",
-    "view_awaiting_progress_button" => "Rapporteer je progressie",
+    "view_awaiting_progress" => "Progressie rapporteren",
+    "view_awaiting_progress_title" => "Heb je vorderingen gemaakt?",
+    "view_awaiting_progress_text" => "Rapporteer je werk zodat de werkpakket eigenaar je werk verder kan verwerken.",
+    "view_awaiting_progress_button" => "Rapporteer progressie",
     
     "view_pending_review_title" => "Recenseer je ervaring",
     "view_pending_review_text" => "We zijn erg benieuwd hoe je werken aan dit werkpakket hebt ervaren. Tips & tops en wat je dan ook kwijt wilt.",
     "view_pending_review_button" => "Schrijf recensie",
     
-    "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
+    "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project",
     
     "view_invite_friend" => "Vriend uitnodigen",
     "view_invite_friend_dialog_title" => "Vriend uitnodigen",
@@ -95,9 +96,9 @@ return [
     "view_position" => "positie",
     "view_positions" => "posities",
     "view_urgency" => "Urgentie",
-    "view_location" => "The place to be",
-    "view_remote_work_title" => "Werken op afstand",
-    "view_remote_work_description" => "Dit werkpakket kan je op afstand doen, dus zoek een fijne plek op en ga aan de slag!",
+    "view_location" => "Locatie",
+    "view_remote_work_title" => "Locatie onafhankelijk",
+    "view_remote_work_description" => "Dit werkpakket kan je op afstand doen.",
     "view_ownership" => "Eigenaarschap",
     "view_links" => "Links",
     "view_link_reviews" => "Recensies",
@@ -107,6 +108,8 @@ return [
     "view_status_in_progress" => "In progressie",
     "view_status_completed" => "Voltooid!",
     "view_no_users" => "Er zijn nog geen gebruikers ingeschreven",
+    "view_actions" => "Acties",
+    
 
     "view_title" => "Werkpakket",
     "view_assign_to_self" => "Schrijf mij in!",
@@ -131,6 +134,11 @@ return [
     "view_updated_at" => "Laatse update",
     "view_tags" => "Tags",
     "view_no_tags" => "Er zijn nog geen tags geassocieerd met dit werkpakket",
+    "view_details" => "Details",
+    "view_sign_up" => "Inschrijven",
+    "view_sign_up_title" => "Er is een positie vrij!",
+    "view_sign_up_description" => "Ziet dit werkpakket eruit als iets wat jou leuk lijkt om te doen? Schrijf je in en ga aan de slag!",
+    "view_sign_up_button" => "Schrijf mij in",
 
     "view_cta_completed_title" => "Werkpakket is voltooid!",
     "view_cta_completed_text" => "We willen iedereen die hier aan heeft bijgedragen bedanken!",
