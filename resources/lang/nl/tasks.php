@@ -16,6 +16,7 @@ return [
     // General
     //
 
+    "back" => "Terug",
     "back_to_task" => "Terug naar werkpakket",
 
     //
@@ -101,6 +102,7 @@ return [
     "view_remote_work_description" => "Dit werkpakket kan je op afstand doen.",
     "view_ownership" => "Eigenaarschap",
     "view_links" => "Links",
+    "view_link_info" => "Informatie",
     "view_link_reviews" => "Recensies",
     "view_link_comments" => "Commentaar",
     "view_link_progress_reports" => "Progressie rapporten",
@@ -268,11 +270,11 @@ return [
     // Delete
     //
 
-    "delete_title" => "Taak verwijderen",
-    "delete_text" => "Weet je zeker dat je deze taak (:title) wilt verwijderen?",
+    "delete_title" => "Werkpakket verwijderen",
+    "delete_text" => "Weet je zeker dat je dit werkpakket (:title) wilt verwijderen?",
     "delete_back" => "Nee, <span class='extra-text'>ga terug</span>",
     "delete_submit" => "Ja, <span class='extra-text'>verwijder werkpakket</span>",
-    "deleted" => "Taak is verwijderd!",
+    "deleted" => "Werkpakket is verwijderd!",
 
     //
     // Actions
@@ -301,11 +303,11 @@ return [
     "report_progress_title" => "Progressie rapporteren",
     "report_progress_back" => "Terug",
     "report_progress_submit" => "Verstuur rapport",
-    "report_progress_message" => "Bericht",
+    "report_progress_message" => "Omschrijf de verrichte werkzaamheden",
     "report_progress_message_placeholder" => "Beschrijf de werkzaamheden die je hebt uitgevoerd en upload bestanden indien nodig.",
     "report_progress_attachment" => "Bijlagen",
-    "report_progress_hours" => "Uren",
-    "report_progress_completed" => "Werk is af",
+    "report_progress_hours" => "Hoeveel uur ben je bezig geweest?",
+    "report_progress_completed" => "Werkpakket is hiermee afgerond",
     "report_progress_success" => "Je hebt je progressie met success gerapporteerd!",
 
     // 
@@ -343,6 +345,7 @@ return [
     "review_not_found" => "Review kon niet worden gevonden.",
     "reviews_title" => "Recensies",
     "reviews_no_records" => "Er zijn nog geen recensies geschreven voor dit werkpakket.",
+    "reviews_back" => "Terug",
 
     //
     // Progress reports

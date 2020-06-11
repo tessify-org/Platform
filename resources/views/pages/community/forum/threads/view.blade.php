@@ -7,15 +7,10 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="narrow">
+    <div id="page-header" class="narrow light">
         <div id="page-header__bg"></div>
-        <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
-
-            <!-- Title & subtitle -->
             <h1 id="page-header__title">{{ $thread->forum->title }}</h1>
-            
-            <!-- Back button -->
             <div id="page-header__actions">
                 <div class="page-header__action">
                     <v-btn href="{{ route('forum', $thread->forum->slug) }}" color="white">
@@ -24,7 +19,6 @@
                     </v-btn>
                 </div>
             </div>
-
         </div>
     </div>
 

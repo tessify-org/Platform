@@ -73,24 +73,6 @@ class TaskController extends Controller
             "task" => $task,
             "users" => Users::getAllPreloaded(),
             "userHasPendingReviewRequest" => ReviewRequests::hasOutstandingRequestsFor($task),
-            "inviteButtonStrings" => collect([
-                "button" => __("tasks.view_invite_friend"),
-                "dialog_title" => __("tasks.view_invite_friend_dialog_title"),
-                "dialog_text" => __("tasks.view_invite_friend_dialog_text"),
-                "dialog_form_user" => __("tasks.view_invite_friend_dialog_form_user"),
-                "dialog_cancel" => __("tasks.view_invite_friend_dialog_cancel"),
-                "dialog_submit" => __("tasks.view_invite_friend_dialog_submit")
-            ]),
-            "askQuestionStrings" => collect([
-                "button" => __("tasks.view_ask_question"),
-                "dialog_title" => __("tasks.view_ask_question_dialog_title"),
-                "dialog_text" => __("tasks.view_ask_question_dialog_text"),
-                "dialog_form_question" => __("tasks.view_ask_question_dialog_form_question"),
-                "dialog_cancel" => __("tasks.view_ask_question_dialog_cancel"),
-                "dialog_submit" => __("tasks.view_ask_question_dialog_submit"),
-                "success_dialog_title" => __("tasks.view_ask_question_success_dialog_title"),
-                "success_dialog_text" => __("tasks.view_ask_question_success_dialog_text"),
-            ]),
             "requiredSkillsStrings" => collect([
                 "description" => __("tasks.view_required_skills_description"),
                 "mastery" => __("tasks.view_required_skills_required_mastery"),

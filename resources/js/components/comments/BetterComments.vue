@@ -1,11 +1,11 @@
 <template>
-    <div class="comments">
+    <div class="comments" :class="{ 'standalone': isStandalone }">
 
         <!-- Title -->
-        <h1>{{ strings.title }}</h1>
+        <h1 class="comments__title">{{ strings.title }}</h1>
 
         <!-- Comments -->
-        <div class="comments__list" v-if="paginatedComments.length > 0">
+        <div class="comments__list" :class="{ 'elevation-2': isStandalone }" v-if="paginatedComments.length > 0">
             <div class="comment-wrapper" v-for="(comment, ci) in paginatedComments" :key="ci">
                 <div class="comment">{{ comment.body }}</div>
                 <div class="comment-footer">
@@ -33,7 +33,7 @@
         </div>
 
         <!-- No comments -->
-        <div class="comments__empty" v-if="paginatedComments.length === 0">
+        <div class="comments__empty" :class="{ 'elevation-2': isStandalone }" v-if="paginatedComments.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Post comment form -->
-        <div class="comments__form">
+        <div class="comments__form" :class="{ 'elevation-2': isStandalone }">
 
             <!-- Label -->
             <div class="comments__form-label">{{ strings.create_title }}</div>
@@ -170,6 +170,7 @@
             "perPage",
             "strings",
             "apiEndpoints",
+            "standalone",
         ],
         data: () => ({
             tag: "[comments]",
@@ -223,6 +224,9 @@
             },
             confirmEditDisabled() {
                 return this.dialogs.edit.form.comment === "";
+            },
+            isStandalone() {
+                return this.standalone !== undefined;
             },
         },
         watch: {
@@ -393,6 +397,28 @@
 
 <style lang="scss">
     .comments {
+        &.standalone {
+            margin: 0 0 30px 0;
+            .comments__title {
+                font-size: 1em;
+                font-weight: 300;
+                margin: 0 0 10px 0;
+            }
+            .comments__list {
+                overflow: hidden;
+                border-radius: 3px;
+                background-color: #fff;
+            }
+            .comments__empty {
+                padding: 15px;
+                overflow: hidden;
+                border-radius: 3px;
+                box-sizing: border-box;
+                background-color: #fff;
+            }
+        }
+
+
         h1 {
             line-height: 1em;
             margin: 0 0 10px 0;
@@ -507,7 +533,12 @@
             justify-content: center;
         }
         .comments__form {
+            padding: 15px;
+            overflow: hidden;
             margin: 30px 0 0 0;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #fff;
             .comments__form-label {
                 font-size: 1.4em;
                 font-weight: 500;

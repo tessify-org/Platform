@@ -400,5 +400,27 @@ class AppServiceProvider extends ServiceProvider
         View::composer("layouts.admin", function($view) {
             $view->with("user", Auth::user());
         });
+
+        View::composer("partials.tasks.view-sidebar", function($view) {
+            $view->with("users", app("users")->getAllPreloaded());
+            $view->with("inviteButtonStrings", collect([
+                "button" => __("tasks.view_invite_friend"),
+                "dialog_title" => __("tasks.view_invite_friend_dialog_title"),
+                "dialog_text" => __("tasks.view_invite_friend_dialog_text"),
+                "dialog_form_user" => __("tasks.view_invite_friend_dialog_form_user"),
+                "dialog_cancel" => __("tasks.view_invite_friend_dialog_cancel"),
+                "dialog_submit" => __("tasks.view_invite_friend_dialog_submit")
+            ]));
+            $view->with("askQuestionStrings", collect([
+                "button" => __("tasks.view_ask_question"),
+                "dialog_title" => __("tasks.view_ask_question_dialog_title"),
+                "dialog_text" => __("tasks.view_ask_question_dialog_text"),
+                "dialog_form_question" => __("tasks.view_ask_question_dialog_form_question"),
+                "dialog_cancel" => __("tasks.view_ask_question_dialog_cancel"),
+                "dialog_submit" => __("tasks.view_ask_question_dialog_submit"),
+                "success_dialog_title" => __("tasks.view_ask_question_success_dialog_title"),
+                "success_dialog_text" => __("tasks.view_ask_question_success_dialog_text"),
+            ]));
+        });
     }
 }

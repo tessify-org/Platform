@@ -21,10 +21,10 @@
                 <div class="item-content" v-if="skill.visible">
                     <div class="item-description">
                         <div class="item-description__label">{{ strings.description }}</div>
-                        <div class="item-description__text" v-if="skill.pivot.description !== null">
-                            {{ skill.pivot.description }}
+                        <div class="item-description__text" v-if="skill.pivot.description !== null && skill.pivot.description[locale] !== ''">
+                            {{ skill.pivot.description[locale] }}
                         </div>
-                        <div class="item-description__text" v-if="skill.pivot.description === null">
+                        <div class="item-description__text" v-if="skill.pivot.description === null || skill.pivot.description[locale] !== ''">
                             {{ strings.missing_description }}
                         </div>
                     </div>

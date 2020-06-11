@@ -1,8 +1,11 @@
 <template>
     <div id="task-progress-report-overview">
 
+        <!-- Title -->
+        <h3 id="task-progress-report-overview__title">{{ strings.title }}</h3>
+
         <!-- Reviews -->
-        <div id="task-progress-report-overview__reports" v-if="paginatedData.length > 0">
+        <div id="task-progress-report-overview__reports" class="elevation-2" v-if="paginatedData.length > 0">
             <a class="progress-report" v-for="(report, ri) in paginatedData" :key="ri" :href="report.view_href">
                 <span class="progress-report__author">
                     {{ report.user.formatted_name }}
@@ -17,7 +20,7 @@
         </div>
 
         <!-- No reviews -->
-        <div id="task-progress-report-overview__no-reports" v-if="paginatedData.length === 0">
+        <div id="task-progress-report-overview__no-reports" class="elevation-2" v-if="paginatedData.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -85,10 +88,15 @@
 
 <style lang="scss">
     #task-progress-report-overview {
-        margin: 30px 0 0 0;
+        margin: 0 0 30px 0;
+        #task-progress-report-overview__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
+        }
         #task-progress-report-overview__reports {
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             .progress-report {
                 display: flex;
                 color: #000;
@@ -120,6 +128,14 @@
                     justify-content: flex-end;
                 }
             }
+        }
+        #task-progress-report-overview__no-reports {
+            padding: 15px 25px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        #task-progress-report-overview__pagination {
+            
         }
     }
 </style>

@@ -11,10 +11,7 @@
         <div id="page-header__bg" style="background-image: url({{ asset($poll->header_image_url) }})"></div>
         <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
-
-            <!-- Title & subtitle -->
             <h1 id="page-header__title" class="no-margin">{{ $poll->title }}</h1>
-            
         </div>
     </div>
 

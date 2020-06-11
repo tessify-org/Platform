@@ -51,12 +51,12 @@
                     <!-- Sidebar -->
                     @include("partials.tasks.view-sidebar", [
                         "task" => $task,
-                        "users" => $users,
+                        "page" => "info",
                     ])
 
                 </aside>
                 <main id="view-task__content">
-
+                    
                     <!-- Progress report -->
                     @if ($task->status->name != "completed" && $task->assigned_to_user)
                         <h3 class="content-card__small-title">@lang("tasks.view_awaiting_progress")</h3>
@@ -104,7 +104,7 @@
                             <div id="sign-up__illustration" style="background-image: url({{ asset('storage/images/undraw/freelancer_white.svg') }});"></div>
                         </div>
                     @endif
-
+                    
                     <!-- Task information -->
                     <div id="task">
 

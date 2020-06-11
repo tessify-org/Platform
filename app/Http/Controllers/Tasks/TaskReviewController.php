@@ -24,6 +24,7 @@ class TaskReviewController extends Controller
             "task" => $task,
             "reviews" => Reviews::getAllForTask($task),
             "strings" => collect([
+                "title" => __("tasks.reviews_title"),
                 "no_records" => __("tasks.reviews_no_records"),
             ]),
         ]);

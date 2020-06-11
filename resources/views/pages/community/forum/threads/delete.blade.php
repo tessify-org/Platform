@@ -7,15 +7,11 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="narrow">
+    <div id="page-header" class="narrow light">
         <div id="page-header__bg"></div>
-        <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
-
-            <!-- Title & subtitle -->
             <h1 id="page-header__title">@lang("forums.threads_delete_title")</h1>
             <h1 id="page-header__subtitle">{{ $thread->title }}</h1>
-            
         </div>
     </div>
 

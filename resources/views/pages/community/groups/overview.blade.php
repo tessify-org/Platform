@@ -7,16 +7,11 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="narrow">
+    <div id="page-header" class="narrow light">
         <div id="page-header__bg"></div>
-        <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
-
-            <!-- Title & subtitle -->
             <h1 id="page-header__title">@lang("groups.overview_title")</h1>
             <h2 id="page-header__subtitle" class="no-margin">@lang("groups.overview_subtitle")</h2>
-
-            <!-- Actions -->
             <div id="page-header__actions">
                 <div class="page-header__action">
                     <v-btn color="primary" href="{{ route('groups.create') }}">
@@ -25,7 +20,6 @@
                     </v-btn>
                 </div>
             </div>
-
         </div>
     </div>
 

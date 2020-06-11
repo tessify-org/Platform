@@ -97,6 +97,15 @@
 <div id="task-links">
     <div id="task-links__title">@lang("tasks.view_links")</div>
     <div id="task-links__links" class="elevation-1">
+        <!-- Information -->
+        <a class="task-link @if (isset($page) && $page === 'info') selected @endif" href="{{ route('tasks.view', $task->slug) }}">
+            <span class="task-link__icon">
+                <i class="fas fa-info-circle"></i>
+            </span>
+            <span class="task-link__text">
+                @lang("tasks.view_link_info")
+            </span>
+        </a>
         <!-- Reviews -->
         <a class="task-link @if (isset($page) && $page === 'reviews') selected @endif" href="{{ route('tasks.reviews', $task->slug) }}" v-ripple>
             <span class="task-link__icon">

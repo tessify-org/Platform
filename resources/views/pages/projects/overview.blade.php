@@ -8,9 +8,8 @@
     <div id="project-overview">
 
         <!-- Page header -->
-        <div id="page-header" class="narrow">
+        <div id="page-header" class="narrow light">
             <div id="page-header__bg"></div>
-            <div id="page-header__bg-overlay"></div>
             <div id="page-header__bg-illustration">
                 <div id="bg-illustration__wrapper">
                     <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/organizing_projects.svg') }}); top: 10px;"></div>

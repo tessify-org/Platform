@@ -5,15 +5,28 @@
 @stop
 
 @section("content")
+
+    <!-- Page header -->
+    <div id="page-header" class="very-narrow light">
+        <div id="page-header__bg"></div>
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/add_file.svg') }})"></div>
+            </div>
+        </div>
+        <div id="page-header__content">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title" class="no-margin">@lang("tasks.progress_report_title")</h1>
+            </div>
+        </div>
+    </div>
+
     <div id="team-member-application">
         <div class="content-section__wrapper">
             <div class="content-section">
 
                 <!-- Progress report -->
                 <div id="progress-report">
-
-                    <!-- Title -->
-                    <h1 class="page-title centered">@lang("tasks.progress_report_title")</h1>
 
                     <!-- Feedback -->
                     @include("partials.feedback")
@@ -103,12 +116,12 @@
                             </div>
                         @endforeach
                     @endif
-
+                    
                     <!-- Actions -->
                     <div id="progress-report__actions">
                         
                         <!-- Go back to task -->
-                        <v-btn href="{{ route('tasks.view', ['slug' => $task->slug]) }}">
+                        <v-btn color="white" href="{{ route('tasks.view', ['slug' => $task->slug]) }}">
                             <i class="fas fa-arrow-left"></i>
                             @lang("tasks.progress_report_back")
                         </v-btn>

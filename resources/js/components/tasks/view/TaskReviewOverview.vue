@@ -1,8 +1,11 @@
 <template>
     <div id="task-review-overview">
 
+        <!-- Title -->
+        <h3 id="task-review-overview__title">{{ strings.title }}</h3>
+
         <!-- Reviews -->
-        <div id="task-review-overview__reviews" v-if="paginatedData.length > 0">
+        <div id="task-review-overview__reviews" class="elevation-2" v-if="paginatedData.length > 0">
             <a class="task-review" v-for="(review, ri) in paginatedData" :key="ri" :href="review.view_href">
                 <span class="task-review__author">
                     {{ review.user.formatted_name }}
@@ -17,13 +20,17 @@
         </div>
 
         <!-- No reviews -->
-        <div id="task-review-overview__no-reviews" v-if="paginatedData.length === 0">
+        <div id="task-review-overview__no-reviews" class="elevation-2" v-if="paginatedData.length === 0">
             {{ strings.no_records }}
         </div>
 
         <!-- Pagination -->
         <div id="task-review-overview__pagination" v-if="numPaginatedPages > 1">
-            <v-pagination v-model="pagination.currentPage" :length="numPaginatedPages" total-visible="10"></v-pagination>
+            <v-pagination 
+                v-model="pagination.currentPage" 
+                :length="numPaginatedPages" 
+                total-visible="10">
+            </v-pagination>
         </div>
 
     </div>
@@ -85,14 +92,20 @@
 
 <style lang="scss">
     #task-review-overview {
-        margin: 30px 0 0 0;
+        margin: 0 0 30px 0;
+        #task-review-overview__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
+        }
         #task-review-overview__reviews {
+            overflow: hidden;
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             .task-review {
                 display: flex;
                 color: #000;
-                padding: 10px 15px;
+                padding: 15px 25px;
                 transition: all .3s;
                 flex-direction: row;
                 text-decoration: none;
@@ -120,6 +133,15 @@
                     justify-content: flex-end;
                 }
             }
+        }
+        #task-review-overview__no-reviews {
+            padding: 25px;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        #task-review-overview__pagination {
+            margin: 30px 0 0 0;
         }
     }
 </style>

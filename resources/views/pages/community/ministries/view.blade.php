@@ -8,9 +8,8 @@
     <div id="ministry">
 
         <!-- Page header -->
-        <div id="page-header" class="narrow">
+        <div id="page-header" class="narrow light">
             <div id="page-header__bg"></div>
-            <div id="page-header__bg-overlay"></div>
             <div id="page-header__content">
                 <div id="page-header__content-wrapper">
                     <h1 id="page-header__title" class="no-margin" style="margin-left: -5px;">{{ $ministry->name }}</h1>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Tasks;
 
+use Users;
 use Tasks;
 use TaskProgressReports;
 use TaskProgressReportReviews;
@@ -78,8 +79,10 @@ class TaskProgressController extends Controller
         // Render the view progress report page
         return view("pages.tasks.progress-reports.overview", [
             "task" => $task,
+            "users" => Users::getAllPreloaded(),
             "reports" => collect(TaskProgressReports::getAllForTask($task)),
             "strings" => collect([
+                "title" => __("tasks.progress_reports_title"),
                 "no_records" => __("tasks.progress_reports_no_records"),
                 "hours" => __("general.hour"),
             ]),

@@ -584,6 +584,19 @@ $rijkshuisstijl-blue-dark: #0d3764;
     &.white-border-bottom {
         border-bottom: 2px solid #ffffff;
     }
+    &.light {
+        #page-header__bg-overlay {
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+        #page-header__content {
+            #page-header__title {
+                color: #000;
+            }
+            #page-header__subtitle {
+                color: #000;
+            }
+        }
+    }
     #page-header__bg {
         top: 0;
         left: 0;
@@ -602,8 +615,9 @@ $rijkshuisstijl-blue-dark: #0d3764;
         z-index: 2;
         width: 100%;
         height: 100%;
+        color: #fff;
         position: absolute;
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(0, 0, 0, 0.75);
     }
     #page-header__bg-illustration {
         top: 0;
@@ -658,6 +672,7 @@ $rijkshuisstijl-blue-dark: #0d3764;
             justify-content: center;
         }
         #page-header__title {
+            color: #fff;
             font-size: 5em;
             line-height: 1em;
             font-weight: 600;
@@ -671,6 +686,7 @@ $rijkshuisstijl-blue-dark: #0d3764;
             }
         }
         #page-header__subtitle {
+            color: #fff;
             font-size: 2.2em;
             font-weight: 300;
             text-align: center;

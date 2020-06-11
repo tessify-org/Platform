@@ -16,7 +16,8 @@ return [
     // General
     //
 
-    "back_to_task" => "Back to task",
+    "back" => "Go back",
+    "back_to_task" => "Go back to task",
 
     //
     // Overview
@@ -101,6 +102,7 @@ return [
     "view_remote_work_description" => "You can complete this task remotely.",
     "view_ownership" => "Ownership",
     "view_links" => "Links",
+    "view_link_info" => "Information",
     "view_link_reviews" => "Reviews",
     "view_link_comments" => "Comments",
     "view_link_progress_reports" => "Progress reports",
@@ -343,6 +345,7 @@ return [
     "review_not_found" => "Review could not be found.",
     "reviews_title" => "Reviews",
     "reviews_no_records" => "No reviews have been published yet for this task.",
+    "reviews_back" => "Go back",
 
     //
     // Progress reports
