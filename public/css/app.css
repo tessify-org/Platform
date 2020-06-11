@@ -6617,26 +6617,29 @@ i {
 #view-task #view-task__sidebar #task-status__wrapper #task-status {
   padding: 15px;
   display: flex;
-  color: #111;
   border-radius: 3px;
   margin: 0 0 30px 0;
   align-items: center;
   flex-direction: row;
   box-sizing: border-box;
   justify-content: center;
+  color: #111;
   background-color: #ffffff;
 }
 
 #view-task #view-task__sidebar #task-status__wrapper #task-status.open {
-  color: #1976d2;
+  color: #fff;
+  background-color: #1976d2;
 }
 
 #view-task #view-task__sidebar #task-status__wrapper #task-status.in_progress {
-  color: #df5200;
+  color: #fff;
+  background-color: #df5200;
 }
 
 #view-task #view-task__sidebar #task-status__wrapper #task-status.completed {
-  color: #2db201;
+  color: #fff;
+  background-color: #2db201;
 }
 
 #view-task #view-task__sidebar #task-status__wrapper #task-status #task-status__icon {
