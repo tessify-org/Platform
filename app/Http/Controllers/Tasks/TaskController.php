@@ -470,7 +470,7 @@ class TaskController extends Controller
             flash(__("projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-
+        
         return view("pages.tasks.abandon", [
             "task" => $task,
             "strings" => collect([

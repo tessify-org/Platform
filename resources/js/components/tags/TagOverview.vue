@@ -8,6 +8,7 @@
                 <!-- Search -->
                 <v-text-field
                     solo
+                    hide-details
                     :label="strings.search"
                     v-model="filters.searchQuery">
                 </v-text-field>
@@ -122,6 +123,7 @@
     #tag-overview {
         #tag-overview__filters {
             display: flex;
+            margin: 0 0 50px 0;
             align-items: center;
             flex-direction: row;
             #tag-overview__filters-search {

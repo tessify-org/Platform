@@ -1,15 +1,6 @@
 <template>
     <div id="task-abandon-form" class="elevation-1">
         
-        <!-- Header -->
-        <div id="task-abandon-form__header">
-            <div id="header-bg" :style="{ backgroundImage: 'url('+task.header_image_url+')' }"></div>
-            <div id="header-bg-overlay"></div>
-            <div id="header-text">
-                <h2 id="header-text__title">{{ task.title[locale] }}</h2>
-            </div>
-        </div>
-        
         <!-- Content -->
         <div id="task-abandon-form__content">
             
