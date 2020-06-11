@@ -105,7 +105,7 @@ Breadcrumbs::for("projects", function($t) {
 Breadcrumbs::for("projects.view", function($t, $project) {
     $t->parent("projects");
     // $t->push(__('breadcrumbs.projects_view'), route("projects.view", $project->slug));
-    $t->push(ucfirst(strtolower($project->title)), route("projects.view", $project->slug));
+    $t->push(__("breadcrumbs.project").": ".ucfirst(strtolower($project->title)), route("projects.view", $project->slug));
 });
 Breadcrumbs::for("projects.create", function($t) {
     $t->parent("projects");
@@ -214,7 +214,7 @@ Breadcrumbs::for("tasks", function($t) {
 Breadcrumbs::for("tasks.view", function($t, $task) {
     $t->parent("tasks");
     // $t->push(__("breadcrumbs.tasks_view"), route("tasks.view", ["slug" => $task->slug]));
-    $t->push(ucfirst($task->title), route("tasks.view", ["slug" => $task->slug]));
+    $t->push(__("breadcrumbs.task").": ".ucfirst($task->title), route("tasks.view", ["slug" => $task->slug]));
 });
 Breadcrumbs::for("tasks.create", function($t, $project = null) {
     $t->parent("tasks");
