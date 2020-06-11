@@ -7,12 +7,12 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="narrow">
+    <div id="page-header" class="very-narrow">
         <div id="page-header__bg"></div>
         <div id="page-header__bg-overlay"></div>
         <div id="page-header__bg-illustration">
             <div id="bg-illustration__wrapper">
-                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/mail_sent.svg') }}); height: 200px; top: 50px; opacity: 0.25;"></div>
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/mail_sent.svg') }}); height: 110px; top: 44px; opacity: 0.25;"></div>
             </div>
         </div>
         <div id="page-header__content">

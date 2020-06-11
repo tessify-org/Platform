@@ -247,7 +247,7 @@
                 for (let i = 0; i < this.mutableTasks.length; i++) {
                     let task = this.mutableTasks[i];
                     if (this.filters.searchQuery !== "") {
-                        if (!task.title[this.locale].toLowerCase().includes(this.filters.searchQuery)) continue;
+                        if (!task.title[this.locale].toLowerCase().includes(this.filters.searchQuery.toLowerCase())) continue;
                     }
                     if (this.filters.selectedStatuses.length > 0) {
                         let matches = false;

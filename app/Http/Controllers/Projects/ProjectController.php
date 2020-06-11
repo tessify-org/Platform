@@ -266,7 +266,7 @@ class ProjectController extends Controller
         flash(__("projects.project_created"))->success();
         return redirect()->route("projects.view", $project->slug);
     }
-
+    
     public function getEdit($slug)
     {
         // Grab the project we want to update

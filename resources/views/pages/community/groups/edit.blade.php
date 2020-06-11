@@ -6,15 +6,19 @@
 
 @section("content")
 
-    <!-- Header -->
-    <div id="page-header" class="narrow">
-        <div id="page-header__bg" style="background-image: url({{ asset('storage/images/groups/headers/default.jpg') }})"></div>
+    <!-- Page header -->
+    <div id="page-header" class="very-narrow">
+        <div id="page-header__bg"></div>
         <div id="page-header__bg-overlay"></div>
-        <div id="page-header__content">
-
-            <!-- Title & subtitle -->
-            <h1 id="page-header__title" class="no-margin">@lang("groups.update_title")</h1>
-
+        <div id="page-header__bg-illustration">
+            <div id="bg-illustration__wrapper">
+                <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/engineers.svg') }})"></div>
+            </div>
+        </div>
+        <div id="page-header__content" class="align-left">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title" class="no-margin">@lang("groups.update_title")</h1>
+            </div>
         </div>
     </div>
 

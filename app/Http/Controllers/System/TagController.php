@@ -15,6 +15,10 @@ class TagController extends Controller
         // Render the tag overview page
         return view("pages.system.tags.overview", [
             "tags" => $tags,
+            "strings" => collect([
+                "search" => __("tags.overview_search"),
+                "no_records" => __("tags.overview_no_records"),
+            ]),
         ]);
     }
 

@@ -3,15 +3,32 @@
 
         <!-- Controls -->
         <div id="search-controls">
-            <div id="search-controls__input">
-                <v-text-field
-                    solo hide-details
-                    :placeholder="strings.search_placeholder"
-                    v-model="form.query">
-                </v-text-field>
+            <div id="search-controls__left">
+
+                <!-- Search bar -->
+                <div id="search-bar">
+                    <div id="search-bar__input">
+                        <v-text-field
+                            solo
+                            hide-details
+                            v-model="form.query"
+                            :placeholder="strings.search_placeholder">
+                        </v-text-field>
+                    </div>
+                    <div id="search-bar__num-results" v-if="mutableResults.length > 0">
+                        {{ numResultsText }}
+                    </div>
+                </div>
+
             </div>
-            <div id="search-controls__num-results" v-if="mutableResults.length > 0">
-                {{ numResultsText }}
+            <div id="search-controls__right">
+
+                <!-- Tags -->
+                <v-btn color="white" :href="tagOverviewHref">
+                    <i class="fas fa-tag"></i>
+                    {{ strings.view_tags }}
+                </v-btn>
+
             </div>
         </div>
 
@@ -80,6 +97,8 @@
         <div id="no-results" class="elevation-1" v-if="paginatedResults.length === 0 && searched && !loading">
             {{ strings.no_results }}
         </div>
+
+        <!-- No results because of missing query -->
         <div id="no-results" class="elevation-1" v-if="paginatedResults.length === 0 && !searched && !loading">
             {{ strings.enter_query }}
         </div>
@@ -111,6 +130,7 @@
             "apiEndpoint",
             "strings",
             "locale",
+            "tagOverviewHref",
         ],
         data: () => ({
             tag: "[search-results]",
@@ -218,19 +238,26 @@
 <style lang="scss">
     #search-results__wrapper {
         #search-controls {
-            margin: 0 0 30px 0;
             display: flex;
-            flex-direction: column;
+            margin: 0 0 50px 0;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            #search-controls__input {
-                width: 500px;
+            #search-controls__left {
+                flex: 1;
+                #search-bar {
+                    width: 500px;
+                    #search-bar__input {
+                        width: 100%;
+                    }
+                    #search-bar__num-results {
+                        font-size: .8em;
+                        margin: 10px 0 0 0;
+                        color: rgba(0, 0, 0, 0.5);
+                    }
+                }
             }
-            #search-controls__num-results {
-                text-align: center;
-                margin: 10px 0 0 0;
-                font-size: .8em;
-                color: rgba(0, 0, 0, 0.5);
+            #search-controls__right {
+
             }
         }
         #search-results {

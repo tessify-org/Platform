@@ -7,9 +7,9 @@
 */
 
 return [
-
+    
     "title" => "Zoeken",
-    "search_placeholder" => "Zoek..",
+    "search_placeholder" => "Zoeken..",
     "no_results" => "Geen resultaten gevonden.",
     "enter_query" => "Vul iets hierboven in om het platform te doorzoeken.",
     

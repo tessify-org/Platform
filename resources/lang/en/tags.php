@@ -13,6 +13,7 @@
 return [
 
     "overview_title" => "Tags",
+    "overview_search" => "Search",
     "overview_no_records" => "No tags have been added to the platform yet.",
 
     "view_title" => "Tag",

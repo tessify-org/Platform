@@ -263,7 +263,7 @@
                 if (this.poll !== undefined && this.poll !== null) {
                     return this.poll.header_image_url;
                 } else {
-                    return this.defaultHeaderImage;
+                    return this.defaultHeaderImageUrl;
                 }
             },
             hasSelectedGroup() {

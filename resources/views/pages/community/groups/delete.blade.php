@@ -5,6 +5,8 @@
 @stop
 
 @section("content")
+
+    <!-- Content -->
     <div class="content-section__wrapper">
         <div class="content-section">
 

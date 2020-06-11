@@ -23,6 +23,7 @@ class SearchController extends Controller
                 "organization_type" => __("search.organization_type"),
                 "results_found" => __("search.results_found"),
                 "result_found" => __("search.result_found"),
+                "view_tags" => __("search.view_tags"),
             ]),
         ]);
     }
@@ -43,6 +44,7 @@ class SearchController extends Controller
                 "organization_type" => __("search.organization_type"),
                 "results_found" => __("search.results_found"),
                 "result_found" => __("search.result_found"),
+                "view_tags" => __("search.view_tags"),
             ]),
         ]);
     }
