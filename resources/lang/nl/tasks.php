@@ -109,7 +109,10 @@ return [
     "view_status_completed" => "Voltooid!",
     "view_no_users" => "Er zijn nog geen gebruikers ingeschreven",
     "view_actions" => "Acties",
-    
+
+    "view_required_skills_description" => "Beschrijving",
+    "view_required_skills_required_mastery" => "Ervaringsniveau",
+    "view_required_skills_missing_description" => "Er is momenteel geen omschrijving.",
 
     "view_title" => "Werkpakket",
     "view_assign_to_self" => "Schrijf mij in!",

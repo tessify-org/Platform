@@ -109,6 +109,10 @@ return [
     "view_status_completed" => "Completed",
     "view_no_users" => "No users have signed up yet",
     "view_actions" => "Actions",
+    
+    "view_required_skills_description" => "Description",
+    "view_required_skills_required_mastery" => "Required mastery",
+    "view_required_skills_missing_description" => "A description is currently missing.",
 
     "view_title" => "Task",
     "view_assign_to_self" => "Sign me up!",

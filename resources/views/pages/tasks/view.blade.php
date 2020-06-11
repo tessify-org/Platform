@@ -209,18 +209,11 @@
                                 <div class="content-card__content no-padding">
                                     
                                     <!-- Required skill list -->
-                                    <div id="task-required-skills">
-                                        @foreach ($task->skills as $skill)
-                                            <div class="required-skill">
-                                                <div class="required-skill__name">{{ $skill->name }}</div>
-                                                @if (!is_null($skill->pivot->description))
-                                                    <div class="required-skill__description">
-                                                        {{ $skill->pivot->description->$locale }}
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                    <task-required-skills-accordeon
+                                        :skills="{{ json_encode($task->skills) }}"
+                                        :strings="{{ $requiredSkillsStrings->toJson() }}"
+                                        locale="{{ $locale }}">
+                                    </task-required-skills-accordeon>
 
                                 </div>
                             </div>

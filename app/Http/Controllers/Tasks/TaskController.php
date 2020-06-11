@@ -91,6 +91,11 @@ class TaskController extends Controller
                 "success_dialog_title" => __("tasks.view_ask_question_success_dialog_title"),
                 "success_dialog_text" => __("tasks.view_ask_question_success_dialog_text"),
             ]),
+            "requiredSkillsStrings" => collect([
+                "description" => __("tasks.view_required_skills_description"),
+                "mastery" => __("tasks.view_required_skills_required_mastery"),
+                "missing_description" => __("tasks.view_required_skills_missing_description"),
+            ]),
             "locale" => app()->getLocale(),
         ]);
     }
@@ -470,7 +475,7 @@ class TaskController extends Controller
             flash(__("projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-        
+
         return view("pages.tasks.abandon", [
             "task" => $task,
             "strings" => collect([
