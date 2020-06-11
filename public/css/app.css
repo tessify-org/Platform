@@ -6901,6 +6901,7 @@ i {
 
 #view-task #view-task__sidebar #task-actions #task-actions__list .task-action.update-action {
   color: #fff;
+  border-bottom: 0;
   background-color: #fb8c00;
 }
 
@@ -6911,6 +6912,7 @@ i {
 #view-task #view-task__sidebar #task-actions #task-actions__list .task-action.leave-action,
 #view-task #view-task__sidebar #task-actions #task-actions__list .task-action.delete-action {
   color: #fff;
+  border-bottom: 0;
   background-color: #f44336;
 }
 

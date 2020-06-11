@@ -3270,6 +3270,7 @@
                     }
                     &.update-action {
                         color: #fff;
+                        border-bottom: 0;
                         background-color: #fb8c00;
                         &:hover {
                             background-color: #ffa631;
@@ -3277,6 +3278,7 @@
                     }
                     &.leave-action, &.delete-action {
                         color: #fff;
+                        border-bottom: 0;
                         background-color: #f44336;
                         &:hover {
                             background-color: #fb4d40;
