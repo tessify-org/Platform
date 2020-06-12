@@ -68,7 +68,7 @@ class GroupPolicy
      */
     public function update(User $user, Group $group)
     {
-        return $group->author_id == $user->id
+        return $group->founder_id == $user->id
             ? Response::allow()
             : Response::deny(__("policies.update_deny"));
     }
@@ -82,7 +82,7 @@ class GroupPolicy
      */
     public function delete(User $user, Group $group)
     {
-        return $group->author_id == $user->id
+        return $group->founder_id == $user->id
             ? Response::allow()
             : Response::deny(__("policies.delete_deny"));
     }
@@ -96,7 +96,7 @@ class GroupPolicy
      */
     public function manageGroupRoles(User $user, Group $group)
     {
-        return $group->author_id == $user->id
+        return $group->founder_id == $user->id
             ? Response::allow()
             : Response::deny(__("policies.manage_group_roles_deny"));
     }
@@ -110,7 +110,7 @@ class GroupPolicy
      */
     public function manageGroupMemberApplications(User $user, Group $group)
     {
-        return $group->author_id == $user->id
+        return $group->founder_id == $user->id
             ? Response::allow()
             : Response::deny(__("policies.manage_group_applications_deny"));
     }
@@ -124,7 +124,7 @@ class GroupPolicy
      */
     public function manageGroupMembers(User $user, Group $group)
     {
-        return $group->author_id == $user->id
+        return $group->founder_id == $user->id
             ? Response::allow()
             : Response::deny(__("policies.manage_group_members_deny"));
     }
