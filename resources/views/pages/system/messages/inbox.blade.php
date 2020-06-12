@@ -7,9 +7,8 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="very-narrow">
+    <div id="page-header" class="very-narrow light">
         <div id="page-header__bg"></div>
-        <div id="page-header__bg-overlay"></div>
         <div id="page-header__bg-illustration">
             <div id="bg-illustration__wrapper">
                 <div id="bg-illustration" style="background-image: url({{ asset('storage/images/undraw/mailbox.svg') }}); width: 130px; height: 130px; top: 36px;"></div>

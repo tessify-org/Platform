@@ -1,6 +1,20 @@
 <template>
     <div id="group-overview">
 
+        <!-- Filters -->
+        <div id="group-overview__filters" v-if="numPaginatedPages > 1 || filters.searchQuery !== ''">
+            <div id="group-overview__filters-left">
+                <!-- Search bar -->
+                <div class="group-overview__filter">
+                    <v-text-field
+                        solo dense 
+                        :label="strings.search" 
+                        v-model="filters.searchQuery">
+                    </v-text-field>
+                </div>
+            </div>
+        </div>
+
         <!-- List -->
         <div id="group-overview__list" v-if="paginatedGroups.length > 0">
             <div class="group-wrapper" v-for="(group, gi) in paginatedGroups" :key="gi">
@@ -49,21 +63,36 @@
         data: () => ({
             tag: "[group-overview]",
             mutableGroups: [],
-            paginatedGroups: [],
+            filters: {
+                searchQuery: "",
+            },
+            filteredGroups: [],
             pagination: {
-                perPage: 12,
+                perPage: 9,
                 currentPage: 1,
             },
+            paginatedGroups: [],
             descLimit: 100,
         }),
         computed: {
             numPaginatedPages() {
                 return Math.ceil(this.mutableGroups.length / this.pagination.perPage);
             },
+            numFiltersEnabled() {
+                let out = 0;
+                if (this.filters.searchQuery !== "") out += 1;
+                return out;
+            },
         },
         watch: {
             "pagination.currentPage": function() {
                 this.paginate();
+            },
+            "filters": {
+                deep: true,
+                handler: function() {
+                    this.filter();
+                }
             },
         },
         methods: {
@@ -80,12 +109,26 @@
                         this.mutableGroups.push(this.groups[i]);
                     }
                 }
+                this.filter();
+            },
+            filter() {
+                this.filteredGroups = [];
+                if (this.mutableGroups.length > 0) {
+                    for (let i = 0; i < this.mutableGroups.length; i++) {
+                        let group = this.mutableGroups[i];
+                        if (this.filters.searchQuery !== "") {
+                            if (!group.name.toLowerCase().includes(this.filters.searchQuery.toLowerCase())) continue;
+                            if (!group.description.toLowerCase().includes(this.filters.searchQuery.toLowerCase())) continue;
+                        }
+                        this.filteredGroups.push(group);
+                    }
+                }
                 this.paginate();
             },
             paginate() {
                 let start_slicing_at = (this.pagination.currentPage - 1) * this.pagination.perPage;
                 let stop_slicing_at = start_slicing_at + this.pagination.perPage;
-                this.paginatedGroups = this.mutableGroups.slice(start_slicing_at, stop_slicing_at);
+                this.paginatedGroups = this.filteredGroups.slice(start_slicing_at, stop_slicing_at);
                 if (this.pagination.currentPage > this.numPaginationPages) this.pagination.currentPage = 1;
             },
             getGroupDescription(group) {
@@ -105,11 +148,21 @@
 
 <style lang="scss">
     #group-overview {
+        #group-overview__filters {
+            display: flex;
+            margin: 0 0 30px 0;
+            flex-direction: row;
+            #group-overview__filters-left {
+                flex: 0 0 300px;
+                #group-overview__filter {
+
+                }
+            }
+        }
         #group-overview__list {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            justify-content: center;
             margin: 0 -25px -50px -25px;
             .group-wrapper {
                 flex: 0 0 33.33%;

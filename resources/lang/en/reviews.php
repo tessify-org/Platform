@@ -35,6 +35,7 @@ return [
     "overview_requests_no_records" => "You don't have any outstanding review requests at the moment.",
     "overview_requests_accept" => "Accept",
     "overview_requests_reject" => "Reject",
+    "overview_no_records" => "You have not written any reviews yet.",
     
     "view_title" => "My review",
     "view_rating" => "Rating",

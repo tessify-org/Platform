@@ -7,15 +7,11 @@
 @section("content")
 
     <!-- Header -->
-    <div id="page-header" class="very-narrow">
+    <div id="page-header" class="very-narrow light">
         <div id="page-header__bg"></div>
-        <div id="page-header__bg-overlay"></div>
         <div id="page-header__content">
-
-            <!-- Title & subtitle -->
             <h1 id="page-header__title">{{ ucfirst(strtolower($tag->name)) }}</h1>
             <h1 id="page-header__subtitle">@lang("tags.view_title")</h1>
-            
         </div>
     </div>
 
@@ -68,4 +64,5 @@
 
         </div>
     </div>
+    
 @stop

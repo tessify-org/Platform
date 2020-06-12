@@ -12,6 +12,7 @@
 return [
 
     "title" => "Settings",
+    "link_update_profile" => "Update profile",
     "link_change_password" => "Change password",
 
     "change_password_title" => "Change password",

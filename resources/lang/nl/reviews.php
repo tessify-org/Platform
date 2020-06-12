@@ -35,6 +35,7 @@ return [
     "overview_requests_no_records" => "Je hebt momenteel geen openstaande verzoeken om een review te schrijven.",
     "overview_requests_accept" => "Accepteren",
     "overview_requests_reject" => "Afwijzen",
+    "overview_no_records" => "Je hebt nog geen reviews geschreven.",
     
     "view_title" => "Mijn review",
     "view_rating" => "Beoordeling",

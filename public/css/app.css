@@ -5953,11 +5953,6 @@ i {
   margin: 0 0 0 10px;
 }
 
-#notifications {
-  width: 800px;
-  margin: 0 auto;
-}
-
 #bug-report-button__wrapper {
   top: 0;
   left: 0;
@@ -8319,7 +8314,6 @@ i {
 
 #setting-links {
   width: 600px;
-  margin: 0 auto;
   overflow: hidden;
   border-radius: 3px;
   background-color: #fff;

@@ -229,7 +229,7 @@
                         let project = this.mutableProjects[i];
                         // Filter on search query
                         if (this.filters.searchQuery !== "") {
-                            if (!project.title[this.locale].toLowerCase().includes(this.filters.search_query)) continue;
+                            if (!project.title[this.locale].toLowerCase().includes(this.filters.search_query.toLowerCase())) continue;
                         }
                         // Filter on selected status
                         if (this.filters.selectedStatuses.length > 0) {

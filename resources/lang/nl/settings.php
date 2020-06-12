@@ -12,6 +12,7 @@
 return [
 
     "title" => "Instellingen",
+    "link_update_profile" => "Profiel aanpassen",
     "link_change_password" => "Wachtwoord veranderen",
     
     "change_password_title" => "Wachtwoord veranderen",

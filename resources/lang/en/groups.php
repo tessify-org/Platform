@@ -39,6 +39,7 @@ return [
     "overview_subtitle" => "Form inter organizational groups with a common goal.",
     "overview_create" => "Create a new group",
     "overview_no_records" => "No groups have been added to the platform yet.",
+    "overview_search" => "Search",
 
     "view_title" => "Group",
     "view_subscribe" => "Follow group",

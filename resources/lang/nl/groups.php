@@ -39,6 +39,7 @@ return [
     "overview_subtitle" => "Vorm interorganisationele groepen met een gedeeld doel.",
     "overview_create" => "Nieuwe groep oprichten",
     "overview_no_records" => "Er zijn nog geen groepen toegevoegd aan het platform.",
+    "overview_search" => "Zoeken",
 
     "view_title" => "Groep",
     "view_subscribe" => "Volgen",

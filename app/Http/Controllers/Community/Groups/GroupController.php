@@ -22,6 +22,7 @@ class GroupController extends Controller
             "groups" => Groups::getAllForOverview(),
             "strings" => collect([
                 "no_records" => __("groups.overview_no_records"),
+                "search" => __("groups.overview_search"),
             ]),
         ]);
     }
