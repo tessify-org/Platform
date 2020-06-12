@@ -93,6 +93,7 @@ return [
     "view_team_members" => "Teamleden",
     "view_no_team_members" => "Dit project heeft nog geen teamleden.",
     "view_links" => "Links",
+    "view_link_info" => "Informatie",
     "view_link_resources" => "Hulpmiddelen",
     "view_link_team" => "Team leden",
     "view_link_roles" => "Team rollen",
@@ -121,7 +122,17 @@ return [
     "view_unsubscribed" => "Je bent gestopt met het volgen van dit project",
     "view_tags" => "Tags",
     "view_no_tags" => "Er zijn nog geen tags geassocieerd met dit project",
-    
+    "view_description" => "Omschrijving",
+    "view_tasks" => "Werk",
+    "view_tasks_title" => "Werkpakketten",
+    "view_tasks_text" => "Er zijn :num_tasks beschikbare werkpakketten",
+    "view_sign_up" => "Aanmelden",
+    "view_sign_up_title" => "Wil je bijdragen?",
+    "view_sign_up_description" => "Meld je aan en wordt dit teamlid van dit project.",
+    "view_pending_application" => "Aanmelding",
+    "view_pending_application_title" => "Je hebt je aangemeld!",
+    "view_pending_application_description" => "Nu is het wachten tot de eigenaar van het project je aanmelding verwerkt. Even geduld dus.",
+
     //
     // Tasks
     //

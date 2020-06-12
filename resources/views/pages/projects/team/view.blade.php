@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.team.view", $project) !!}
+    {!! Breadcrumbs::render("projects.team", $project) !!}
 @stop
 
 @section("content")

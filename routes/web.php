@@ -109,7 +109,7 @@ Route::group(["middleware" => "auth"], function() {
     
     // Get started
     Route::get("get-started", "Projects\ProjectController@getGetStarted")->name("get-started");
-
+    
     // Projects
     Route::group(["prefix" => "projecten"], function() {
                 

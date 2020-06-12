@@ -1,36 +1,26 @@
 <template>
     <div id="project-task-overview">
 
-        <!-- Header -->
-        <div id="project-task-overview__header">
-            <div id="project-task-overview__header-left">
-                <h1 id="project-title">{{ strings.title }}</h1>
-            </div>
-            <div id="project-task-overview__header-right">
-                <v-btn small depressed color="primary" :href="createHref">
-                    <i class="fas fa-plus"></i>
-                    {{ strings.create }}
-                </v-btn>
-            </div>
-        </div>
+        <!-- Title -->
+        <h3 id="project-title">{{ strings.title }}</h3>
 
         <!-- Tasks -->
         <div id="project-task-overview__tasks" v-if="paginatedTasks.length > 0">
             <div class="task-wrapper" v-for="(task, ti) in paginatedTasks" :key="ti">
-                <a class="task" :href="task.view_href">
+                <a class="task elevation-2" :href="task.view_href">
                     <div class="task__bg" :style="{ backgroundImage: 'url('+task.header_image_url+')' }"></div>
                     <div class="task__overlay"></div>
                     <div class="task__text">
-                        <h2 class="task-title">{{ task.title }}</h2>
+                        <h2 class="task-title">{{ task.title[locale] }}</h2>
                         <div class="task-spacer"></div>
-                        <div class="task-status">{{ task.status.label }}</div>
+                        <div class="task-status">{{ task.status.label[locale] }}</div>
                     </div>
                 </a>
             </div>
         </div>
 
         <!-- No tasks -->
-        <div id="project-task-overview__no-records" v-if="paginatedTasks.length === 0">
+        <div id="project-task-overview__no-records" class="elevation-2" v-if="paginatedTasks.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -49,6 +39,7 @@
             "tasks",
             "strings",
             "createHref",
+            "locale",
         ],
         data: () => ({
             tag: "[project-task-overview]",
@@ -101,25 +92,17 @@
 
 <style lang="scss">
     #project-task-overview {
-        #project-task-overview__header {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            #project-task-overview__header-left {
-                flex: 1;
-                #project-title {
-                    margin: 0 !important;
-                }
-            }
-            #project-task-overview__header-right {
-                
-            }
+        margin: 0 0 30px 0;
+        #project-title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
         }
         #project-task-overview__tasks {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            margin: 30px -15px -30px -15px;
+            margin: 0 -15px -30px -15px;
             .task-wrapper {
                 flex: 0 0 50%;
                 padding: 0 15px 30px 15px;
@@ -185,10 +168,10 @@
             }
         }
         #project-task-overview__no-records {
-            margin: 15px 0 0 0;
+            margin: 0;
         }
         #project-task-overview__pagination {
-            margin: 15px 0 0 0;
+            margin: 30px 0 0 0;
         }
     }
 </style>

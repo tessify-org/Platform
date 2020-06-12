@@ -2,7 +2,14 @@
     <div id="project-ask-question-button__wrapper">
 
         <!-- Button -->
-        <a href="#" id="project-ask-question-button__link" @click="onClickButton">{{ strings.button }}</a>
+        <div id="project-ask-question-button" :class="{ 'border-bottom': hasBorderBottom, 'border-radius-bottom': isStandalone }" @click="onClickButton" v-ripple>
+            <div id="project-ask-question-button__icon">
+                <i class="fas fa-question"></i>
+            </div>
+            <div id="project-ask-question-button__text">
+                {{ strings.button }}
+            </div>
+        </div>
 
         <!-- Question dialog -->
         <v-dialog v-model="dialogs.question.show" width="500">
@@ -73,6 +80,8 @@
             "project",
             "endpoint",
             "strings",
+            "standalone",
+            "borderBottom",
         ],
         data: () => ({
             tag: "[project-ask-question-button]",
@@ -93,6 +102,12 @@
         computed: {
             confirmDisabled() {
                 return this.dialogs.question.form.question === "";
+            },
+            isStandalone() {
+                return this.standalone !== undefined;
+            },
+            hasBorderBottom() {
+                return this.borderBottom !== undefined;
             },
         },
         methods: {
@@ -149,7 +164,36 @@
 </script>
 
 <style lang="scss">
-    #project-ask-question-button {
-
+    #project-ask-question-button__wrapper {
+        #project-ask-question-button {
+            display: flex;
+            color: #000000;
+            padding: 10px 15px;
+            transition: all .3s;
+            align-items: center;
+            flex-direction: row;
+            text-decoration: none;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            &.border-bottom {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            &.border-radius-bottom {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+            &:hover {
+                color: #0a64eb;
+                cursor: pointer;
+            }
+            #project-ask-question-button__icon {
+                flex: 0 0 30px;
+            }
+            #project-ask-question-button__text {
+                flex: 1;
+            }
+        }
     }
 </style>

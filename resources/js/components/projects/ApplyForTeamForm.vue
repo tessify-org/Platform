@@ -2,7 +2,7 @@
     <div id="apply-for-team-form__wrapper">
         
         <!-- Form -->
-        <div id="apply-for-team-form" class="elevation-1">
+        <div id="apply-for-team-form" class="elevation-2">
             <!-- Project -->
             <div class="form-field">
                 <v-text-field
@@ -38,13 +38,13 @@
         <!-- Controls -->
         <div class="form-controls">
             <div class="form-controls__left">
-                <v-btn outlined :href="backHref">
+                <v-btn color="white" :href="backHref">
                     <i class="fas fa-arrow-left"></i>
                     {{ backText }}
                 </v-btn>
             </div>
             <div class="form-controls__right">
-                <v-btn type="submit" color="success" depressed>
+                <v-btn type="submit" color="success">
                     <i class="fas fa-save"></i>
                     {{ submitText }}
                 </v-btn>

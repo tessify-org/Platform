@@ -2,17 +2,10 @@
     <div id="project-team-member-overview">
 
         <!-- Header -->
-        <div id="project-team-member-overview__header">
-            <div id="project-team-member-overview__header-left">
-                <h1 id="project-title">{{ strings.title }}</h1>
-            </div>
-            <div id="project-team-member-overview__header-right">
-                
-            </div>
-        </div>
+        <h3 id="project-title">{{ strings.title }}</h3>
 
         <!-- Team members -->
-        <div id="project-team-member-overview__team-members" v-if="mutableMembers.length > 0">
+        <div id="project-team-member-overview__team-members" class="elevation-2" v-if="mutableMembers.length > 0">
             <div class="team-member" v-for="(member, mi) in mutableMembers" :key="mi" @click="onClickMember(mi)">
                 <div class="team-member__avatar" :style="{ backgroundImage: 'url('+member.user.avatar_url+')' }"></div>
                 <div class="team-member__text">
@@ -29,7 +22,7 @@
         </div>
 
         <!-- No team members -->
-        <div id="project-team-member-overview__no-team-members" v-if="mutableMembers.length === 0">
+        <div id="project-team-member-overview__no-team-members" class="elevation-2" v-if="mutableMembers.length === 0">
             {{ strings.no_members }}
         </div>
 
@@ -357,27 +350,16 @@
 
 <style lang="scss">
     #project-team-member-overview {
-        #project-team-member-overview__header {
-            display: flex;
-            margin: 0 0 30px 0;
-            flex-direction: row;
-            #project-team-member-overview__header-left {
-                flex: 1;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                #project-title {
-                    margin: 0 !important;
-                }
-            }   
-            #project-team-member-overview__header-left {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
+        margin: 0 0 30px 0;
+        #project-title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
         }
         #project-team-member-overview__team-members {
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 3px;
+            background-color: #fff;
             .team-member {
                 display: flex;
                 padding: 15px;
@@ -430,7 +412,11 @@
             }
         }
         #project-team-member-overview__no-team-members {
-
+            padding: 25px;
+            overflow: hidden;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #ffffff;
         }
     }
     #dialog-member-roles {

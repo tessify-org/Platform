@@ -164,9 +164,6 @@
 </script>
 
 <style lang="scss">
-    #task-ask-question-button {
-
-    }
     #task-ask-question-button__wrapper {
         #task-ask-question-button {
             display: flex;

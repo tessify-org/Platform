@@ -24,6 +24,7 @@ class ProjectReviewController extends Controller
             "project" => $project,
             "reviews" => Reviews::getAllForProject($project),
             "strings" => collect([
+                "title" => __("projects.reviews_title"),
                 "no_records" => __("projects.reviews_no_records"),
             ]),
         ]);

@@ -6,6 +6,7 @@ use Auth;
 use Users;
 use TeamRoles;
 use TeamMembers;
+use App\Models\User;
 use App\Models\Project;
 use App\Models\TeamMemberApplication;
 use App\Traits\ModelServiceGetters;
@@ -173,5 +174,35 @@ class TeamMemberApplicationService implements ModelServiceContract
         $application->save();
         
         return $this->preload($application);
+    }
+
+    public function hasOutstandingApplication(Project $project, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        foreach ($this->getAll() as $application)
+        {
+            if ($application->project_id == $project->id && $application->user_id == $user->id && !$application->processed)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getOutstandingApplication(Project $project, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        foreach ($this->getAll() as $application)
+        {
+            if ($application->project_id == $project->id && $application->user_id == $user->id && !$application->processed)
+            {
+                return $application;
+            }
+        }
+
+        return false;
     }
 }

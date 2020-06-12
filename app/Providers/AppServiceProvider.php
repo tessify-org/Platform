@@ -422,5 +422,27 @@ class AppServiceProvider extends ServiceProvider
                 "success_dialog_text" => __("tasks.view_ask_question_success_dialog_text"),
             ]));
         });
+
+        View::composer("partials.projects.view-sidebar", function($view) {
+            $view->with("users", app("users")->getAllPreloaded());
+            $view->with("inviteButtonStrings", collect([
+                "button" => __("projects.view_invite_friend"),
+                "dialog_title" => __("projects.view_invite_friend_dialog_title"),
+                "dialog_text" => __("projects.view_invite_friend_dialog_text"),
+                "dialog_form_user" => __("projects.view_invite_friend_dialog_form_user"),
+                "dialog_cancel" => __("projects.view_invite_friend_dialog_cancel"),
+                "dialog_submit" => __("projects.view_invite_friend_dialog_submit")
+            ]));
+            $view->with("askQuestionStrings", collect([
+                "button" => __("projects.view_ask_question"),
+                "dialog_title" => __("projects.view_ask_question_dialog_title"),
+                "dialog_text" => __("projects.view_ask_question_dialog_text"),
+                "dialog_form_question" => __("projects.view_ask_question_dialog_form_question"),
+                "dialog_cancel" => __("projects.view_ask_question_dialog_cancel"),
+                "dialog_submit" => __("projects.view_ask_question_dialog_submit"),
+                "success_dialog_title" => __("projects.view_ask_question_success_dialog_title"),
+                "success_dialog_text" => __("projects.view_ask_question_success_dialog_text"),
+            ]));
+        });
     }
 }

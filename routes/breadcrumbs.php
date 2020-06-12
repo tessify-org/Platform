@@ -137,8 +137,11 @@ Breadcrumbs::for("projects.team", function($t, $project) {
     $t->parent("projects.view", $project);
     $t->push(__("breadcrumbs.projects_team_view"), route("projects.team", $project->slug));
 });
+Breadcrumbs::for("projects.team.view", function($t, $project) {
+
+});
 Breadcrumbs::for("projects.team.leave", function($t, $project) {
-    $t->parent("projects.team.view", $project);
+    $t->parent("projects.team", $project);
     $t->push(__("breadcrumbs.projects_team_leave"), route("projects.team.leave", $project->slug));
 });
 

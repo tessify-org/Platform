@@ -1,8 +1,11 @@
 <template>
     <div id="project-resource-overview">
 
+        <!-- Title -->
+        <h3 id="project-resource-overview__title">{{ strings.title }}</h3>
+
         <!-- Resources -->
-        <div id="project-resource-overview__resources" v-if="paginatedResources.length > 0">
+        <div id="project-resource-overview__resources" class="elevation-1" v-if="paginatedResources.length > 0">
             <div class="resource" v-for="(resource, ri) in paginatedResources" :key="ri" @click="onClickResource(ri)">
                 <div class="resource-icon" v-if="resource.file_type === 'pdf'">
                     <i class="fas fa-file-pdf"></i>
@@ -18,7 +21,7 @@
         </div>
 
         <!-- No resources -->
-        <div id="project-resource-overview__no-resources" v-if="paginatedResources.length === 0">
+        <div id="project-resource-overview__no-resources" class="elevation-1" v-if="paginatedResources.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -172,7 +175,6 @@
                 </div>
             </div>
         </v-dialog>
-
 
     </div>
 </template>
@@ -366,14 +368,19 @@
 
 <style lang="scss">
     #project-resource-overview {
-        margin: 30px 0 0 0;
+        margin: 0 0 30px 0;
+        #project-resource-overview__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
+        }
         #project-resource-overview__resources {
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             .resource {
                 display: flex;
                 color: #000;
-                padding: 10px 15px;
+                padding: 15px 15px;
                 transition: all .3s;
                 flex-direction: row;
                 text-decoration: none;
@@ -384,7 +391,7 @@
                 }
                 &:hover {
                     cursor: pointer;
-                    background-color: hsl(0, 0%, 90%);
+                    background-color: hsl(0, 0%, 98%);
                 }
                 .resource-icon {
                     flex: 0 0 25px;
@@ -400,6 +407,13 @@
                 }
             }
         }
+    }
+    #project-resource-overview__no-resources {
+        padding: 15px 25px;
+        overflow: hidden;
+        border-radius: 3px;
+        box-sizing: border-box;
+        background-color: #ffffff;
     }
     #resource-info {
         display: flex;

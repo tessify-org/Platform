@@ -100,7 +100,7 @@ class ProjectTeamController extends Controller
             return redirect()->route("projects");
         }
 
-        return view("pages.projects.teams.leave", [
+        return view("pages.projects.team.leave", [
             "project" => $project,
         ]);
     }
@@ -119,7 +119,7 @@ class ProjectTeamController extends Controller
         TeamMembers::removeUserFromTeam($project);
 
         flash(__("projects.leave_team_success"))->success();
-        return redirect()->route("projects.team.view", $project->slug);
+        return redirect()->route("projects.view", $project->slug);
     }
 
     public function getRemoveMember($slug, $userSlug)

@@ -20,7 +20,7 @@ class ProjectTeamMemberApplicationController extends Controller
             return redirect()->route("projects");
         }
 
-        return view("pages.projects.teams.applications.overview", [
+        return view("pages.projects.team.applications.overview", [
             "project" => $project,
             "applications" => Projects::getTeamMemberApplications($project),
             "myApplications" => Projects::getMyTeamMemberApplications($project),
@@ -43,7 +43,7 @@ class ProjectTeamMemberApplicationController extends Controller
             return redirect()->route("projects", $project->slug);
         }
 
-        return view("pages.projects.teams.applications.view", [
+        return view("pages.projects.team.applications.view", [
             "project" => $project,
             "application" => $application,
         ]);
@@ -58,7 +58,7 @@ class ProjectTeamMemberApplicationController extends Controller
             return redirect()->route("projects");
         }
         
-        return view("pages.projects.teams.applications.create", [
+        return view("pages.projects.team.applications.create", [
             "project" => $project,
             "roles" => Projects::getOutstandingRoles($project),
             "oldInput" => collect([
@@ -99,7 +99,7 @@ class ProjectTeamMemberApplicationController extends Controller
             return redirect()->route("projects", $project->slug);
         }
 
-        return view("pages.projects.teams.applications.edit", [
+        return view("pages.projects.team.applications.edit", [
             "project" => $project,
             "application" => $application,
             "roles" => Projects::getOutstandingRoles($project),

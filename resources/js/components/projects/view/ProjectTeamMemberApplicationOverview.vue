@@ -2,10 +2,10 @@
     <div id="project-team-member-application-overview">
         
         <!-- Title -->
-        <h1 id="project-title">{{ strings.title }}</h1>
+        <h3 id="project-title">{{ strings.title }}</h3>
 
         <!-- Application list -->
-        <div id="applications" v-if="mutableApplications.length > 0">
+        <div id="applications" class="elevation-2" v-if="mutableApplications.length > 0">
             <div class="application" v-for="(application, ai) in mutableApplications" :key="ai" @click="onClickApplication(ai)">
                 <div class="application-user">
                     {{ application.user.formatted_name }}
@@ -20,7 +20,7 @@
         </div>
 
         <!-- No applications -->
-        <div id="no-applications" v-if="mutableApplications.length === 0">
+        <div id="no-applications" class="elevation-2" v-if="mutableApplications.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -203,13 +203,15 @@
 
 <style lang="scss">
     #project-team-member-application-overview {
-        margin-top: 40px;
+        margin: 0 0 30px 0;
         #project-title {
-
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
         }
         #applications {
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             .application {
                 padding: 15px;
                 display: flex;
@@ -222,7 +224,7 @@
                 }
                 &:hover {
                     cursor: pointer;
-                    background-color: hsl(0, 0%, 95%);
+                    background-color: hsl(0, 0%, 98%);
                 }
                 .application-user {
                     flex: 1;
@@ -246,7 +248,10 @@
             }
         }
         #no-applications {
-
+            padding: 25px;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #fff;
         }
     }
 </style>

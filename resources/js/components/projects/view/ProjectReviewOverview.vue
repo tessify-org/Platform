@@ -1,8 +1,11 @@
 <template>
     <div id="project-review-overview">
 
+        <!-- Title -->
+        <h3 id="project-review-overview__title">{{ strings.title }}</h3>
+        
         <!-- Reviews -->
-        <div id="project-review-overview__reviews" v-if="paginatedData.length > 0">
+        <div id="project-review-overview__reviews" class="elevation-2" v-if="paginatedData.length > 0">
             <a class="project-review" v-for="(review, ri) in paginatedData" :key="ri" :href="review.view_href">
                 <span class="project-review__author">
                     {{ review.user.formatted_name }}
@@ -17,7 +20,7 @@
         </div>
 
         <!-- No reviews -->
-        <div id="project-review-overview__no-reviews" v-if="paginatedData.length === 0">
+        <div id="project-review-overview__no-reviews" class="elevation-2" v-if="paginatedData.length === 0">
             {{ strings.no_records }}
         </div>
 
@@ -85,7 +88,12 @@
 
 <style lang="scss">
     #project-review-overview {
-        margin: 30px 0 0 0;
+        margin: 0 0 30px 0;
+        #project-review-overview__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
+        }
         #project-review-overview__reviews {
             border-radius: 3px;
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -120,6 +128,16 @@
                     justify-content: flex-end;
                 }
             }
+        }
+        #project-review-overview__no-reviews {
+            padding: 15px 25px;
+            overflow: hidden;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+        #project-review-overview__pagination {
+            margin: 30px 0 0 0;
         }
     }
 </style>

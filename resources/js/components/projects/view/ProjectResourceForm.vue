@@ -1,13 +1,16 @@
 <template>
     <div id="project-resource-form__wrapper">
 
+        <!-- Title -->
+        <h3 id="project-resource-form__title">{{ strings.title }}</h3>
+
         <!-- Form -->
         <div id="project-resource-form">
 
             <!-- Mutable resources to process -->
             <div id="resources" v-if="mutableResources.length > 0">
                 <!-- Resource -->
-                <div class="resource" v-for="(resource, ri) in mutableResources" :key="ri">
+                <div class="resource elevation-2" v-for="(resource, ri) in mutableResources" :key="ri">
                     <!-- Icon -->
                     <div class="resource-icon">
                         <!-- Image preview -->
@@ -22,10 +25,10 @@
                         <!-- URL -->
                         <div class="form-field">
                             <v-text-field
+                                disabled
                                 hide-details
                                 :label="strings.form_file"
-                                v-model="mutableResources[ri].file_url"
-                                disabled>
+                                v-model="mutableResources[ri].file_url">
                             </v-text-field>
                         </div>
                         <!-- Title -->
@@ -49,7 +52,7 @@
             </div>
 
             <!-- Upload files -->
-            <div id="upload-files">
+            <div id="upload-files" class="elevation-2">
                 <!-- Hidden input field (top layer) -->
                 <input id="upload-files__input" multiple type="file" accept="*" :disabled="uploading" @change="onFilesChanged($event)">
                 <!-- Text layer (idle) -->
@@ -72,7 +75,7 @@
         <!-- Controls -->
         <div class="form-controls">
             <div class="form-controls__left">
-                <v-btn depressed :href="backHref">
+                <v-btn color="white" :href="backHref">
                     <i class="fas fa-arrow-left"></i>
                     {{ strings.back }}
                 </v-btn>
@@ -168,16 +171,26 @@
 
 <style lang="scss">
     #project-resource-form__wrapper {
+        margin: 0 0 30px 0;
+        #project-resource-form__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
+        }
         #project-resource-form {
             #resources {
-                margin: 30px 0 0 0;
+                margin: 0 0 30px 0;
                 .resource {
                     display: flex;
                     padding: 25px;
                     margin: 0 0 15px 0;
+                    border-radius: 3px;
                     flex-direction: row;
                     box-sizing: border-box;
-                    background-color: hsl(0, 0%, 95%);
+                    background-color: #fff;
+                    &:last-child {
+                        margin: 0;
+                    }
                     .resource-icon {
                         flex: 0 0 100px;
                         margin: 0 25px 0 0;
@@ -203,18 +216,14 @@
                     .resource-inputs {
                         flex: 1;
                     }
-                    &:last-child {
-                        margin: 0;
-                    }
                 }
             }
             #upload-files {
                 height: 120px;
                 cursor: pointer;
-                margin: 30px 0 0 0;
                 position: relative;
                 border-radius: 3px;
-                background-color: hsl(0, 0%, 95%);
+                background-color: hsl(0, 0%, 100%);
                 #upload-files__input {
                     top: 0;
                     left: 0;

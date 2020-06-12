@@ -1,29 +1,27 @@
 <template>
     <div id="project-team-roles-overview">
 
-        <!-- Header -->
-        <div id="project-team-roles-overview__header">
-            <div id="project-team-roles-overview__header-left">
-                <h1 id="project-title">{{ strings.title }}</h1>
-            </div>
-            <div id="project-team-roles-overview__header-right">
-                <v-btn small depressed color="primary" @click="onClickCreate">
-                    <i class="fas fa-plus"></i>
-                    {{ strings.add_button }}
-                </v-btn>
-            </div>
-        </div>
-
+        <!-- Title -->
+        <h3 id="project-team-roles-overview__title">{{ strings.title }}</h3>
+        
         <!-- Team roles -->
-        <div id="project-team-roles-overview__team-roles" v-if="mutableRoles.length > 0">
+        <div id="project-team-roles-overview__team-roles" class="elevation-2" v-if="mutableRoles.length > 0">
             <div class="team-role" v-for="(role, ri) in mutableRoles" :key="ri" @click="onClickView(ri)">
                 <div class="team-role__name">{{ role.name }}</div>
             </div>
         </div>
 
         <!-- No team roles -->
-        <div id="project-team-roles-overview__no-roles" v-if="mutableRoles.length === 0">
+        <div id="project-team-roles-overview__no-roles" class="elevation-2" v-if="mutableRoles.length === 0">
             {{ strings.no_records }}
+        </div>
+
+        <!-- Controls -->
+        <div id="project-team-roles-overview__controls">
+            <v-btn color="primary" @click="onClickCreate">
+                <i class="fas fa-plus"></i>
+                {{ strings.add_button }}
+            </v-btn>
         </div>
 
         <!-- View dialog -->
@@ -487,27 +485,16 @@
 
 <style lang="scss">
     #project-team-roles-overview {
-        #project-team-roles-overview__header {
-            display: flex;
-            margin: 0 0 30px 0;
-            flex-direction: row;
-            align-items: center;
-            #project-team-roles-overview__header-left {
-                flex: 1;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                #project-title {
-                    margin: 0 !important;
-                }
-            }
-            #project-team-roles-overview__header-right {
-
-            }
+        margin: 0 0 30px 0;
+        position: relative;
+        #project-team-roles-overview__title {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 0 0 5px 0;
         }
         #project-team-roles-overview__team-roles {
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             .team-role {
                 display: flex;
                 color: #000;
@@ -530,7 +517,19 @@
             }
         }
         #project-team-roles-overview__no-roles {
-               
+            padding: 15px 25px;
+            overflow: hidden;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+        #project-team-roles-overview__controls {
+            right: 0;
+            bottom: -65px;
+            display: flex;
+            position: absolute;
+            flex-direction: row;
+            justify-content: flex-end;
         }
     }
 </style>

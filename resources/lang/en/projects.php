@@ -93,6 +93,7 @@ return [
     "view_team_members" => "Team members",
     "view_no_team_members" => "This project does not have any team members yet.",
     "view_links" => "Links",
+    "view_link_info" => "Information",
     "view_link_resources" => "Resources",
     "view_link_team" => "Team members",
     "view_link_roles" => "Team roles",
@@ -121,6 +122,16 @@ return [
     "view_unsubscribed" => "You have stopped following this project",
     "view_tags" => "Tags",
     "view_no_tags" => "No tags have been associated with this project yet.",
+    "view_description" => "Description",
+    "view_tasks" => "Work",
+    "view_tasks_title" => "Tasks",
+    "view_tasks_text" => "There are :num_tasks available tasks",
+    "view_sign_up" => "Signup",
+    "view_sign_up_title" => "Want to contribute?",
+    "view_sign_up_description" => "Sign yourself up and join this project's team.",
+    "view_pending_application" => "Application",
+    "view_pending_application_title" => "You've applied!",
+    "view_pending_application_description" => "Now you have to wait for the project owner to process your application. Check back in a little bit!",
 
     //
     // Tasks

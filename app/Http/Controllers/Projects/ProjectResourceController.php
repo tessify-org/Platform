@@ -26,6 +26,7 @@ class ProjectResourceController extends Controller
             "project" => $project,
             "resources" => collect(ProjectResources::getAllPreloadedForProject($project)),
             "strings" => collect([
+                "title" => __("projects.resources_title"),
                 "no_records" => __("projects.no_resources"),
                 "add_button" => __("projects.add_resources"),
                 "view_dialog_title" => __("projects.resources_view_dialog_title"),
@@ -62,6 +63,7 @@ class ProjectResourceController extends Controller
         return view("pages.projects.resources.create", [
             "project" => $project,
             "strings" => collect([
+                "title" => __("projects.resources_create_title"),
                 "upload_title" => __("projects.resources_create_upload_title"),
                 "upload_subtitle" => __("projects.resources_create_upload_subtitle"),
                 "form_file" => __("projects.resources_create_form_file"),
