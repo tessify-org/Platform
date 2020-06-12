@@ -43,6 +43,8 @@ return [
 
     "overview_title" => "Projecten",
     "overview_subtitle" => "Er zijn al :num_projects projecten geregistreerd!",
+    "overview_subtitle_singular" => "Er is al 1 project geregistreerd.",
+    "overview_subtitle_zero" => "Er zijn nog geen projecten geregisteerd, wees de eerste!",
     "overview_create_cta" => "Zelf project starten!",
     "overview_description" => "Beschrijving",
     "overview_view" => "Bekijk project",

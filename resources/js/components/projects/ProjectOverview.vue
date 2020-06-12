@@ -2,7 +2,7 @@
     <div id="project-overview">
 
         <!-- Filters -->
-        <div id="project-overview__filters">
+        <div id="project-overview__filters" v-if="mutableProjects.length > 0">
             <div id="project-overview__filters-left">
                 <!-- Search bar -->
                 <div class="project-overview__filter">

@@ -102,9 +102,14 @@ Route::group(["middleware" => "auth"], function() {
     
     // Settings
     Route::group(["prefix" => "instellingen"], function() {
+
+        // Overview
         Route::get("/", "Settings\SettingsController@getSettings")->name("settings");
+
+        // Change password
         Route::get("wachtwoord-veranderen", "Settings\SettingsController@getChangePassword")->name("settings.change-password");
         Route::post("wachtwoord-veranderen", "Settings\SettingsController@postChangePassword")->name("settings.change-password.post");
+
     });
     
     // Get started
@@ -275,12 +280,17 @@ Route::group(["middleware" => "auth"], function() {
 
     // Search
     Route::group(["prefix" => "zoeken"], function() {
+
+        // Search
         Route::get("/", "System\SearchController@getSearch")->name("search");
         Route::post("/", "System\SearchController@postSearch")->name("search.post");
+
+        // Tags 
         Route::group(["prefix" => "tags"], function() {
             Route::get("/", "System\TagController@getOverview")->name("tags");
             Route::get("{slug}", "System\TagController@getView")->name("tags.view");
         });
+        
     });
 
     // Community

@@ -18,7 +18,15 @@
             <div id="page-header__content" class="align-left">
                 <div id="page-header__content-wrapper">
                     <h1 id="page-header__title" style="margin-left: -5px;">@lang("projects.overview_title")</h1>
-                    <h2 id="page-header__subtitle" class="no-margin">@lang("projects.overview_subtitle", ["num_projects" => $projects->count()])</h2>
+                    <h2 id="page-header__subtitle" class="no-margin">
+                        @if ($projects->count() == 0)
+                            @lang("projects.overview_subtitle_zero")
+                        @elseif ($projects->count() == 1)
+                            @lang("projects.overview_subtitle_singular")
+                        @else
+                            @lang("projects.overview_subtitle", ["num_projects" => $projects->count()])
+                        @endif
+                    </h2>
                     <div id="page-header__actions">
                         <div class="page-header__action">
                             <v-btn color="primary" outlined href="{{ route('projects.create') }}">

@@ -42,7 +42,9 @@ return [
     //
 
     "overview_title" => "Projects",
-    "overview_subtitle" => "Currently :num_projects projects registered!",
+    "overview_subtitle" => "There are :num_projects projects registered already!",
+    "overview_subtitle_singular" => "There's already one project registered!",
+    "overview_subtitle_zero" => "No projects have been registered, be the first!",
     "overview_create_cta" => "Start a project yourself!",
     "overview_description" => "Description",
     "overview_view" => "View project",

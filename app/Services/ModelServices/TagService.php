@@ -29,6 +29,8 @@ class TagService implements ModelServiceContract
     
     public function preload($instance)
     {
+        $instance->view_href = route("tags.view", $instance->slug);
+        
         return $instance;
     }
 
