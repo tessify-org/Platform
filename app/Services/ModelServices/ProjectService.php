@@ -9,6 +9,7 @@ use Users;
 use Tasks;
 use Skills;
 use Reviews;
+use Messages;
 use Comments;
 use Uploader;
 use TeamRoles;
