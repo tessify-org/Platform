@@ -9,6 +9,7 @@ use Tasks;
 use Skills;
 use Comments;
 use Projects;
+use Messages;
 use Reputation;
 use Ministries;
 use WorkMethods;
