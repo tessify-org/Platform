@@ -119,6 +119,17 @@
                 @lang("projects.view_link_team") ({{ $project->num_team_members }})
             </span>
         </a>
+        <!-- Team member applications -->
+        @if ($project->is_owner)
+            <a class="project-link @if (isset($page) && $page == 'applications') selected @endif" href="{{ route('projects.team.applications', $project->slug) }}">
+                <span class="project-link__icon">
+                    <i class="fas fa-users"></i>
+                </span>
+                <span class="project-link__text">
+                    @lang("projects.view_link_applications")  ({{ $project->num_outstanding_applications }})
+                </span>
+            </a>
+        @endif
         <!-- Team roles -->
         <a class="project-link @if (isset($page) && $page == 'team-roles') selected @endif" href="{{ route('projects.team.roles', $project->slug) }}">
             <span class="project-link__icon">

@@ -76,12 +76,12 @@
                     </div>
                     <div class="dialog-controls__right">
                         <!-- Deny -->
-                        <v-btn small depressed color="red" dark @click="onClickDeny" :loading="dialogs.view.deny_loading" :disabled="viewDialogDenyDisabled">
+                        <v-btn small depressed color="red" dark :href="mutableApplications[dialogs.view.index].deny_href">
                             <i class="fas fa-ban"></i>
                             {{ strings.view_dialog_deny }}
                         </v-btn>
                         <!-- Accept -->
-                        <v-btn small depressed color="green" dark @click="onClickAccept" :loading="dialogs.view.accept_loading" :disabled="viewDialogAcceptDisabled">
+                        <v-btn small depressed color="green" dark :href="mutableApplications[dialogs.view.index].accept_href">
                             <i class="fas fa-check"></i>
                             {{ strings.view_dialog_accept }}
                         </v-btn>

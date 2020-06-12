@@ -62,20 +62,18 @@
                         :api-endpoints="{{ $memberOverviewApiEndpoints->toJson() }}">
                     </project-team-member-overview>
                     
-                    <!-- Application overview -->
-                    <project-team-member-application-overview
-                        :project="{{ $project->toJson() }}"
-                        :applications="{{ $applications->toJson() }}"
-                        :strings="{{ $applicationOverviewStrings->toJson() }}"
-                        :api-endpoints="{{ $applicationOverviewApiEndpoints->toJson() }}">
-                    </project-team-member-application-overview>
-                    
                     <!-- Page controls -->
                     <div class="page-controls">
                         <div class="page-controls__left">
                             <v-btn color="white" href="{{ route('projects.view', $project->slug) }}">
                                 <i class="fas fa-arrow-left"></i>
                                 @lang("projects.back_to_project")
+                            </v-btn>
+                        </div>
+                        <div class="page-controls__right">
+                            <v-btn color="primary" href="{{ route('projects.team.applications', $project->slug) }}">
+                                <i class="fas fa-user-plus"></i>
+                                @lang("projects.view_applications")
                             </v-btn>
                         </div>
                     </div>

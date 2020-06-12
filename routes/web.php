@@ -109,7 +109,7 @@ Route::group(["middleware" => "auth"], function() {
     
     // Get started
     Route::get("get-started", "Projects\ProjectController@getGetStarted")->name("get-started");
-    
+
     // Projects
     Route::group(["prefix" => "projecten"], function() {
                 
@@ -138,7 +138,10 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/hulpmiddelen/uploaden", "Projects\ProjectResourceController@postCreate")->name("projects.resources.create.post");
 
         // View --> Team members
-        Route::get("{slug}/team-leden", "Projects\ProjectTeamController@getOverview")->name("projects.team");
+        Route::get("{slug}/team", "Projects\ProjectTeamController@getOverview")->name("projects.team");
+
+        // // View --> Team member applications
+        // Route::get("{slug}/team/aanmeldingen", "Projects\ProjectTeamController@getApplications")->name("projects.team.applications");
 
         // View --> Team roles
         Route::get("{slug}/team-rollen", "Projects\ProjectTeamRoleController@getOverview")->name("projects.team.roles");

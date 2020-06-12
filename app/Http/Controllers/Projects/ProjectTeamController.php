@@ -74,7 +74,7 @@ class ProjectTeamController extends Controller
             ]),
         ]);
     }
-
+    
     public function getView($slug)
     {
         $project = Projects::findPreloadedBySlug($slug);

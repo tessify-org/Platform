@@ -97,6 +97,7 @@ return [
     "view_link_resources" => "Resources",
     "view_link_team" => "Team members",
     "view_link_roles" => "Team roles",
+    "view_link_applications" => "Applications",
     "view_link_reviews" => "Reviews",
     "view_link_comments" => "Comments",
     "view_link_tasks" => "Tasks",
@@ -132,6 +133,7 @@ return [
     "view_pending_application" => "Application",
     "view_pending_application_title" => "You've applied!",
     "view_pending_application_description" => "Now you have to wait for the project owner to process your application. Check back in a little bit!",
+    "view_applications" => "View applications",
 
     //
     // Tasks

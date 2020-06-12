@@ -95,6 +95,7 @@ return [
     "view_links" => "Links",
     "view_link_info" => "Informatie",
     "view_link_resources" => "Hulpmiddelen",
+    "view_link_applications" => "Aanmeldingen",
     "view_link_team" => "Team leden",
     "view_link_roles" => "Team rollen",
     "view_link_reviews" => "Recensies",
@@ -132,6 +133,7 @@ return [
     "view_pending_application" => "Aanmelding",
     "view_pending_application_title" => "Je hebt je aangemeld!",
     "view_pending_application_description" => "Nu is het wachten tot de eigenaar van het project je aanmelding verwerkt. Even geduld dus.",
+    "view_applications" => "Bekijk aanmeldingen",
 
     //
     // Tasks

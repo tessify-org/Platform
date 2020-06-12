@@ -5,79 +5,71 @@
 @stop
 
 @section("content")
-    <div id="project">
 
-        <!-- Header -->
-        <div id="project-header" style="background-image: url({{ asset($project->header_image_url) }});">
-            <div id="project-header__overlay"></div>
-            <div id="project-header__content" class="content-section">
-
-                <div id="project-header__text">
-                    <h1 id="project-header__title">{{ $project->title }}</h1>
-                    <h2 id="project-header__slogan">{{ $project->slogan }}</h2>
-                </div>
-
+    <!-- Page header -->
+    <div id="page-header" class="white-border-bottom">
+        <div id="page-header__bg" style="background-image: url({{ asset($project->header_image_url) }})"></div>
+        <div id="page-header__bg-overlay"></div>
+        <div id="page-header__content">
+            <div id="page-header__content-wrapper">
+                <h1 id="page-header__title">{{ $project->title }}</h1>
+                @if ($project->slogan)
+                    <h2 id="page-header__subtitle">{{ $project->slogan }}<h2>
+                @endif
             </div>
         </div>
-
-        <!-- Content -->
-        <div id="project-content" class="content-section__wrapper">
-            <div class="content-section pt50">
-
-                <!-- Feedback -->
-                @include("partials.feedback")
-
-                <!-- Navigation -->
-                @include("partials.projects.navigation", [
-                    "page" => "team-applications",
-                    "project" => $project,    
-                ])
-
-                <!-- Project's team member applications -->
-                <div id="project-member-applications" class="content-box elevation-1">
-
-                    <h3 class="content-subtitle">
-                        @lang("projects.view_applications_manage_title")
-                    </h3>
-
-                    @if ($applications->count())
-                        <project-team-application-list
-                            :applications="{{ $applications->toJson() }}"
-                            no-applications-text="@lang('projects.view_applications_my_empty')"
-                            accepted-text="@lang('general.accepted')"
-                            rejected-text="@lang('general.rejected')"
-                            pending-text="@lang('general.pending')">
-                        </project-team-application-list>
-                    @else
-                        <div id="no-applications">
-                            @lang("projects.view_applications_manage_title")
-                        </div>
-                    @endif
-
-                </div>
-
-                <!-- My applications -->
-                <div id="project-my-applications" class="content-box elevation-1">
-                    <h3 class="content-subtitle">
-                        @lang("projects.view_applications_my_title")
-                    </h3>
-                    @if ($myApplications->count())
-                        <project-team-application-list
-                            :applications="{{ $myApplications->toJson() }}"
-                            no-applications-text="@lang('projects.view_applications_my_empty')"
-                            accepted-text="@lang('general.accepted')"
-                            rejected-text="@lang('general.rejected')"
-                            pending-text="@lang('general.pending')">
-                        </project-team-application-list>
-                    @else
-                        <div id="no-applications">
-                            @lang("projects.view_applications_my_empty")
-                        </div>
-                    @endif
-                </div>
-
+        <div id="page-header__actions-wrapper">
+            <div id="page-header__actions" class="align-right">
+                @if (!auth()->user()->hasSubscribed($project))
+                    <v-btn color="white" href="{{ route('projects.subscribe', ['slug' => $project->slug]) }}">
+                        <i class="fas fa-check-circle"></i>
+                        @lang("projects.view_subscribe")
+                    </v-btn>
+                @else
+                    <v-btn color="white" href="{{ route('projects.unsubscribe', ['slug' => $project->slug]) }}">
+                        <i class="fas fa-times-circle"></i>
+                        @lang("projects.view_unsubscribe")
+                    </v-btn>
+                @endif
             </div>
         </div>
-
     </div>
+    
+    <!-- Content wrapper -->
+    <div class="content-section__wrapper">
+        <div class="content-section">
+
+            <!-- Feedback -->
+            @include("partials.feedback")
+
+            <!-- View project -->
+            <div id="view-project">
+                <div id="view-project__sidebar">
+
+                    <!-- Sidebar -->
+                    @include("partials.projects.view-sidebar", [
+                        "project" => $project,
+                        "page" => "info",
+                    ])
+
+                </div>
+                <div id="view-project__content">
+                    
+                    <!-- Feedback -->
+                    @include("partials.feedback")
+                        
+                    <!-- Application overview -->
+                    <project-team-member-application-overview
+                        :project="{{ $project->toJson() }}"
+                        :applications="{{ $applications->toJson() }}"
+                        :strings="{{ $strings->toJson() }}"
+                        api-endpoints="{{ $apiEndpoints->toJson() }}">
+                    </project-team-member-application-overview>
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 @stop

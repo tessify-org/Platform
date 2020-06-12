@@ -76,7 +76,7 @@ class ProjectController extends Controller
             "resources" => Projects::getResources($project),
         ]);
     }
-
+    
     public function getViewRoles($slug)
     {
         // Grab the project we want to view

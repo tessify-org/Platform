@@ -36,6 +36,10 @@ class TeamMemberApplicationService implements ModelServiceContract
         $instance->user = Users::findPreloaded($instance->user_id);
         $instance->team_role = TeamRoles::find($instance->team_role_id);
         $instance->formatted_created_at = $instance->created_at->format("d-m-Y H:m:s");
+        
+        $instance->accept_href = route("projects.team.applications.accept", ["slug" => $instance->project->slug, "uuid" => $instance->uuid]);
+        $instance->deny_href = route("projects.team.applications.reject", ["slug" => $instance->project->slug, "uuid" => $instance->uuid]);
+
 
         return $instance;
     }
@@ -204,5 +208,25 @@ class TeamMemberApplicationService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function getOutstandingApplications(Project $project)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $application)
+        {
+            if ($application->project_id == $project->id && !$application->processed)
+            {
+                $out[] = $application;
+            }
+        }
+
+        return $out;
+    }
+
+    public function numOutstandingApplications(Project $project)
+    {
+        return count($this->getOutstandingApplications($project));
     }
 }

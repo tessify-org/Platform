@@ -89,6 +89,7 @@ class ProjectService implements ModelServiceContract
         $instance->is_team_member = $this->isTeamMember($instance);
         $instance->has_outstanding_application = TeamMemberApplications::hasOutstandingApplication($instance);
         if ($instance->has_outstanding_application) $instance->outstanding_application = TeamMemberApplications::getOutstandingApplication($instance);
+        $instance->num_outstanding_applications = TeamMemberApplications::numOutstandingApplications($instance);
         $instance->is_owner = $this->isOwner($instance);
 
         // Get relationship counts for view task page (sidebar)

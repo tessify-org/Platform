@@ -22,8 +22,22 @@ class ProjectTeamMemberApplicationController extends Controller
 
         return view("pages.projects.team.applications.overview", [
             "project" => $project,
-            "applications" => Projects::getTeamMemberApplications($project),
-            "myApplications" => Projects::getMyTeamMemberApplications($project),
+            "applications" => collect(TeamMemberApplications::getAllForProject($project)),
+            "strings" => collect([
+                "title" => __("projects.team_applications_title"),
+                "no_records" => __("projects.team_applications_no_records"),
+                "view_dialog_title" => __("projects.team_applications_view_dialog_title"),
+                "view_dialog_user" => __("projects.team_applications_view_dialog_user"),
+                "view_dialog_role" => __("projects.team_applications_view_dialog_role"),
+                "view_dialog_motivation" => __("projects.team_applications_view_dialog_motivation"),
+                "view_dialog_date" => __("projects.team_applications_view_dialog_date"),
+                "view_dialog_back" => __("projects.team_applications_view_dialog_back"),
+                "view_dialog_deny" => __("projects.team_applications_view_dialog_deny"),
+                "view_dialog_accept" => __("projects.team_applications_view_dialog_accept"),
+            ]),
+            "apiEndpoints" => collect([
+
+            ]),
         ]);
     }
 
@@ -201,7 +215,7 @@ class ProjectTeamMemberApplicationController extends Controller
         TeamMemberApplications::accept($application);
 
         flash(__("projects.application_accepted"))->success();
-        return redirect()->route("projects.team.applications.view", ["slug" => $project->slug, "uuid" => $application->uuid]);
+        return redirect()->route("projects.team.applications", ["slug" => $project->slug]);
     }
 
     public function getReject($slug, $uuid)
@@ -225,7 +239,7 @@ class ProjectTeamMemberApplicationController extends Controller
         TeamMemberApplications::reject($application);
 
         flash(__("projects.application_rejected"))->success();
-        return redirect()->route("projects.team.applications.view", ["slug" => $project->slug, "uuid" => $application->uuid]);
+        return redirect()->route("projects.team.applications", ["slug" => $project->slug]);
     }
 
     public function getReopen($slug, $uuid)
@@ -249,6 +263,6 @@ class ProjectTeamMemberApplicationController extends Controller
         TeamMemberApplications::reopen($application);
 
         flash(__("projects.application_reopened"))->success();
-        return redirect()->route("projects.team.applications.view", ["slug" => $project->slug, "uuid" => $application->uuid]);
+        return redirect()->route("projects.team.applications", ["slug" => $project->slug]);
     }
 }
