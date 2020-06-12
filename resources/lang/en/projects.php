@@ -89,6 +89,7 @@ return [
     "view_ask_question_success_dialog_text" => "Your question has been asked.",
 
     "view_ownership" => "Ownership",
+    "view_founder" => "Founder",
     "view_status" => "Status",
     "view_team_members" => "Team members",
     "view_no_team_members" => "This project does not have any team members yet.",

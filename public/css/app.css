@@ -7183,8 +7183,7 @@ i {
 }
 
 #view-project #view-project__sidebar #project-ownership #project-ownership__title {
-  margin: 0 0 10px 0;
-  color: #404040;
+  margin: 0 0 5px 0;
 }
 
 #view-project #view-project__sidebar #project-ownership #project-ownership__content {
@@ -7276,6 +7275,52 @@ i {
 }
 
 #view-project #view-project__sidebar #project-ownership #project-ownership__content #ownership-author #author #author-name {
+  margin: 0 0 0 15px;
+}
+
+#view-project #view-project__sidebar #project-founder {
+  margin: 0 0 30px 0;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__title {
+  margin: 0 0 5px 0;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__content {
+  overflow: hidden;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__content #project-founder__user #founder {
+  display: flex;
+  padding: 15px;
+  color: #000;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__content #project-founder__user #founder:hover {
+  text-decoration: underline;
+  background-color: #fafafa;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__content #project-founder__user #founder #founder-avatar {
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 20px;
+  background-size: cover;
+  background-color: #f5f5f5;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#view-project #view-project__sidebar #project-founder #project-founder__content #project-founder__user #founder #founder-name {
   margin: 0 0 0 15px;
 }
 

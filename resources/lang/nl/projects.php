@@ -89,6 +89,7 @@ return [
     "view_ask_question_success_dialog_text" => "Je vraag is verstuurd.",
 
     "view_ownership" => "Eigenaarschap",
+    "view_founder" => "Oprichter",
     "view_status" => "Status",
     "view_team_members" => "Teamleden",
     "view_no_team_members" => "Dit project heeft nog geen teamleden.",

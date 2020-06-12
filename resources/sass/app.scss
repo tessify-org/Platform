@@ -3522,8 +3522,7 @@
         #project-ownership {
             margin: 0 0 30px 0;
             #project-ownership__title {
-                margin: 0 0 10px 0;
-                color: hsl(0, 0%, 25%);
+                margin: 0 0 5px 0;
             }
             #project-ownership__content {
                 overflow: hidden;
@@ -3598,6 +3597,47 @@
                             background-position: center center;
                         }
                         #author-name {
+                            margin: 0 0 0 15px;
+                        }
+                    }
+                }
+            }
+        }
+        #project-founder {
+            margin: 0 0 30px 0;
+            #project-founder__title {
+                margin: 0 0 5px 0;
+            }
+            #project-founder__content {
+                overflow: hidden;
+                border-radius: 3px;
+                box-sizing: border-box;
+                background-color: hsl(0, 0%, 100%);
+                #project-founder__user {
+                    #founder {
+                        display: flex;
+                        padding: 15px;
+                        color: #000;
+                        align-items: center;
+                        flex-direction: row;
+                        text-decoration: none;
+                        box-sizing: border-box;
+                        background-color: #fff;
+                        transition: all .3s;
+                        &:hover {
+                            text-decoration: underline;
+                            background-color: hsl(0, 0%, 98%);
+                        }
+                        #founder-avatar {
+                            height: 40px;
+                            flex: 0 0 40px;
+                            border-radius: 20px;
+                            background-size: cover;
+                            background-color: #f5f5f5;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                        }
+                        #founder-name {
                             margin: 0 0 0 15px;
                         }
                     }

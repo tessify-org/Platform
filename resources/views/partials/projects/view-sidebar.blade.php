@@ -60,6 +60,21 @@
     </div>
 </div>
 
+<!-- Founder -->
+@if ($project->ministry)
+    <div id="project-founder">
+        <div id="project-founder__title">@lang("projects.view_founder")</div>
+        <div id="project-founder__content" class="elevation-1">
+            <div id="project-founder__user">
+                <a href="{{ route('profile', $project->author->slug) }}" id="founder">
+                    <span id="founder-avatar" style="background-image: url({{ asset($project->author->avatar_url) }})"></span>
+                    <span id="founder-name">{{ $project->author->formatted_name }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+@endif
+
 <!-- Signed up users -->
 <div id="project-users">
     <div id="project-users__title">@lang("projects.view_team_members")</div>
@@ -157,7 +172,6 @@
                 @lang("projects.view_link_comments") ({{ $project->num_comments }})
             </span>
         </a>
-
         <!--
         <a class="project-link" href="#">
             <span class="project-link__icon">
